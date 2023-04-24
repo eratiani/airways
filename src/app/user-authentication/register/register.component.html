@@ -57,6 +57,12 @@
 				<mat-error *ngIf="checkValidation('country')">
 					{{ fieldRequired }}
 				</mat-error>
+				<mat-checkbox formControlName="termsAndServices" >
+					I agree to Airway's Privacy Policy and Terms of Use
+				</mat-checkbox>
+				<mat-error *ngIf="checkValidation('termsAndServices')">
+					{{ fieldRequired }}
+				</mat-error>
   <hr>
 			<div class="socialMediaFlex">
         	<button  [disabled]="registerForm.invalid"  class="m-4"  type="submit" mat-raised-button color="primary">Submit</button>

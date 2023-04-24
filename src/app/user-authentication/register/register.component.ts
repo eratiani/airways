@@ -23,11 +23,15 @@ export class RegisterComponent {
        'password': new FormControl(null, [Validators.required, this.checkPassword]),
        'dateOfBirth': new FormControl(null, [Validators.required, this.dateNotInFutureValidator]),
        'gender':  new FormControl(null, [Validators.required]),
-       'country':  new FormControl(null, [Validators.required])
+       'country':  new FormControl(null, [Validators.required]),
+       'termsAndServices':  new FormControl(null, [ this.termsAndServicesvalidation]),
       }
      )
    
  
+   }
+   termsAndServicesvalidation(control:AbstractControl){
+    return control.value
    }
      emaiErrors() {
      return this.registerForm.get('email')?.hasError('required') ? 'This field is required' :

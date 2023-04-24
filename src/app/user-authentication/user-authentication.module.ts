@@ -12,6 +12,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import {HttpClientModule} from '@angular/common/http';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
@@ -38,7 +39,8 @@ import { AuthenticationFormContainerComponent } from './authentication-form-cont
     MatSelectModule,
     MatRadioModule,
     MatSelectCountryModule.forRoot('en'),
-    HttpClientModule
+    HttpClientModule,
+    MatCheckboxModule
   ]
   ,
   exports: [
