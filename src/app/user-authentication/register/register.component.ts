@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +9,8 @@ import { FormGroup, FormControl, Validators, FormGroupDirective, AbstractControl
 export class RegisterComponent {
   registerForm!: FormGroup;
   fieldRequired: string = "This field is required"
-   constructor() { }
+   constructor() { 
+   }
  
    ngOnInit() {
      this.createForm();
@@ -20,6 +21,9 @@ export class RegisterComponent {
        {'username': new FormControl(null,[Validators.required]),
        'email': new FormControl(null,[Validators.required, Validators.pattern(emailregex)]),
        'password': new FormControl(null, [Validators.required, this.checkPassword]),
+       'dateOfBirth': new FormControl(null, [Validators.required, this.dateNotInFutureValidator]),
+       'gender':  new FormControl(null, [Validators.required]),
+       'country':  new FormControl(null, [Validators.required])
       }
      )
    
@@ -29,6 +33,10 @@ export class RegisterComponent {
      return this.registerForm.get('email')?.hasError('required') ? 'This field is required' :
        this.registerForm.get('email')?.hasError('pattern') ? 'Not a valid emailaddress' :''
    }
+   dateErrors() {
+    return this.registerForm.get('dateOfBirth')?.hasError('required') ? 'This field is required' :
+      this.registerForm.get('dateOfBirth')?.hasError('dateNotInFuture') ? 'Not a valid date of birth' :''
+  }
  checkPassword(control:AbstractControl ) {
      let enteredPassword = control.value
      let passwordCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/;
@@ -47,8 +55,20 @@ export class RegisterComponent {
      const email = formData.value.email;
      const password = formData.value.password;
      const username = formData.value.username;
+     console.log(formData,formDirective);
+     
     //  this.auth.registerUSer(email, password, username);
-      formDirective.resetForm();
-     this.registerForm.reset();
+    //   formDirective.resetForm();
+    //  this.registerForm.reset();
  }
+ dateNotInFutureValidator(control: AbstractControl): ValidationErrors | null {
+  const inputDate = new Date(control.value);
+  const currentDate = new Date();
+
+  if (inputDate > currentDate) {
+    return { dateNotInFuture: true };
+  }
+
+  return null;
+}
  }

@@ -3,5 +3,6 @@
     <mat-toolbar (click)="onRegisterActive()" [class.active]="isActive" class="login-toolbar btn btn-primary" >REGISTER</mat-toolbar>
 </div>
 
-    <app-register></app-register>
+    <app-register *ngIf="isActive"></app-register>
+    <app-log-in *ngIf="!isActive"></app-log-in>
 
