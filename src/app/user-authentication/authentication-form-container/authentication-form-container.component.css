@@ -1,0 +1,7 @@
+ .container--buttons{
+    display: flex;
+ }
+.container-custom{
+    width: 30vw;
+    margin: 0 auto;
+}

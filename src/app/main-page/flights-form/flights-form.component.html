@@ -1,0 +1,133 @@
+<div class="container-sm d-flex flex-column align-items-center justify-content-center">
+<mat-radio-group
+class="d-flex justify-content-center align-items-center"
+aria-label="Select an option"
+>
+<mat-radio-button (change)="onRoundTrip()" value="Round Trip">Round Trip</mat-radio-button>
+<mat-radio-button (change)="onOneWayFlight()" value="One Way" >One Way</mat-radio-button>
+</mat-radio-group>
+<form *ngIf="!oneWayTrip"
+  class="container-sm d-flex flex-column align-items-center justify-content-center"
+>
+ 
+  <mat-form-field class="m-md-2 col-sm-6" appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option>None</mat-option>
+      <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2">Option 2</mat-option>
+      <mat-option value="option3">Option 3</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="m-md-2 col-sm-6" appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option>None</mat-option>
+      <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2">Option 2</mat-option>
+      <mat-option value="option3">Option 3</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="row">
+    <div class="col-sm-7 d-flex justify-content-center ">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Start date" />
+          <input matEndDate placeholder="End date" />
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-5 d-flex justify-content-center">
+      <mat-form-field class="" appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option>None</mat-option>
+          <mat-option value="option1">Option 1</mat-option>
+          <mat-option value="option2">Option 2</mat-option>
+          <mat-option value="option3">Option 3</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="w-50 d-flex justify-content-end">
+    <button type="submit" class="btn btn-primary">search</button>
+  </div>
+</form>
+<form *ngIf="oneWayTrip"
+  class="container-sm d-flex flex-column align-items-center justify-content-center"
+>
+  
+  <mat-form-field class="m-md-2 col-sm-6" appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option>None</mat-option>
+      <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2">Option 2</mat-option>
+      <mat-option value="option3">Option 3</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="m-md-2 col-sm-6" appearance="fill">
+    <mat-label>Select an option</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option>None</mat-option>
+      <mat-option value="option1">Option 1</mat-option>
+      <mat-option value="option2">Option 2</mat-option>
+      <mat-option value="option3">Option 3</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="row">
+    <div class="col-sm-7 d-flex justify-content-center ">
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker2">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-5 d-flex justify-content-center">
+      <mat-form-field class="" appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select >
+          <mat-option value="adult">
+            Adult
+            <div class="option-controls">
+              <button mat-button (click)="increaseValue($event,'adult')">+</button>
+              {{ optionValues.adult }}
+              <button mat-button (click)="decreaseValue($event,'adult')">-</button>
+            </div>
+          </mat-option>
+          <mat-option value="child">
+            Child
+            <div class="option-controls">
+              <button mat-button (click)="increaseValue($event,'child')">+</button>
+              {{ optionValues.child }}
+              <button mat-button (click)="decreaseValue($event,'child')">-</button>
+            </div>
+          </mat-option>
+          <mat-option value="infant">
+            Infant
+            <div class="option-controls">
+              <button mat-button (click)="increaseValue($event,'infant')">+</button>
+              {{ optionValues.infant }}
+              <button mat-button (click)="decreaseValue($event,'infant')">-</button>
+            </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="w-50 d-flex justify-content-end">
+    <button type="submit" class="btn btn-primary">search</button>
+  </div>
+</form>
+</div>
