@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ContentMainComponent } from './content-main/content-main.component';
 import { FlightsFormComponent } from './flights-form/flights-form.component';
 import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
+import { BookingViewModule } from '../booking/booking.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UserAuthenticationModule } from '../user-authentication/user-authentica
     MatDatepickerModule,
     MatNativeDateModule,
     MatInputModule,
-    UserAuthenticationModule
+    UserAuthenticationModule,
+    BookingViewModule
   ],
 })
 export class MainPageModule {}
