@@ -1,0 +1,11 @@
+<div class="container-md">
+    <h2 style="margin-left: 15px;"><span><img src="../../../assets/planeRight.png" alt="planr"></span> from to destination</h2>
+    <div class="cards-container d-flex m-2">
+        <div style="width: 20vw; border-right: 2px solid black; margin-left: 15px;" *ngFor="let flight of mockFlights | slice:0:5" class="flight-card">
+            <p>{{ flight.date }}</p>
+            <p>{{ flight.day }}</p>
+            <div *ngIf="flight.date < 3"><img src="../../../assets/noFly.png" alt="noFly"></div>
+            <p *ngIf="flight.date >= 3">{{ flight.price }}</p>
+        </div>
+    </div>
+</div>
