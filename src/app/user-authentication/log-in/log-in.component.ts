@@ -7,7 +7,7 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BackendUserService } from 'src/app/shared/services/backend-user.service';
+import { BackendUserService } from 'src/app/services/backend-user.service';
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
@@ -67,21 +67,15 @@ export class LogInComponent {
     try {
       const password = formData.value.password;
       const username = formData.value.username;
-      const user = {
-        login: username,
-        password: password,
-      };
-      const result = await this.userService.loginUser(user);
 
-      this.token = result as { token: string };
-      this.router.navigateByUrl('/Home');
-      formDirective.resetForm();
-      this.logInForm.reset();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.userService.loginUser(username, password).subscribe((test) => {
+        console.log(test);
+        this.router.navigateByUrl('/Home');
+        formDirective.resetForm();
+        this.logInForm.reset();
+      });
     } catch (err: any) {
       // this.errorService.generateError(err);
     }
-
-    //  this.auth.registerUSer(email, password, username);
   }
 }

@@ -1,0 +1,27 @@
+{
+  "users": [
+    {
+      "email": "example@asd",
+      "password": "$2a$10$zgW0dg1oWqm9mtNUHiIYBu1INYY/5AnR0mGunOCudvFc0Nr4Esokm",
+      "id": 1
+    },
+    {
+      "email": "example@asd1",
+      "password": "$2a$10$FygRMUXyP6xpKmWQOg0Hzu8LcpJpp3u3fT3FFrvGk12/95FdnqUiS",
+      "id": 2
+    },
+    {
+      "email": "example@qwe.com",
+      "password": "$2a$10$Nunm/ie1WKvDBpXI65ecme5PlatvrBim0x/iTemmqo9kYl.78MdGO",
+      "id": 3
+    },
+    {
+      "email": "example@asd.com",
+      "password": "$2a$10$h7jdsVa3iHO7gs6W6n1ZFucMpvaBelZ0Nv2lN8t4/1PpvTH6PIhw2",
+      "id": 4
+    }
+  ],
+  "fliyght-data": {
+    "field1": "example"
+  }
+}
