@@ -5,8 +5,7 @@ import { BookingViewComponent } from './booking-view/booking-view.component';
 import { FlightsSearchInputComponent } from './flights-search-input/flights-search-input.component';
 import { FlightSelectedComponent } from './flight-selected/flight-selected.component';
 import { ReturnFlightSelectedComponent } from './return-flight-selected/return-flight-selected.component';
-
-
+import { BookingRoutig } from './booking-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,13 +13,11 @@ import { ReturnFlightSelectedComponent } from './return-flight-selected/return-f
     BookingViewComponent,
     FlightsSearchInputComponent,
     FlightSelectedComponent,
-    ReturnFlightSelectedComponent
+    ReturnFlightSelectedComponent,
   ],
-  imports: [
-    CommonModule
+  imports: [CommonModule, BookingRoutig],
+  exports: [
+    // BookingViewComponent
   ],
-  exports:[
-    BookingViewComponent
-  ]
 })
-export class BookingViewModule { }
+export class BookingViewModule {}

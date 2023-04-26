@@ -1,13 +1,7 @@
 <div class="container-fluid posAbs">
-  <app-header (signIn)="onSignIn($event)"></app-header>
-  <app-booking-view></app-booking-view>
-  <br />
-  <app-passengers-view></app-passengers-view>
-  <br />
   <app-flights-form></app-flights-form>
   <br />
-  <div *ngIf="signedIn" class="container custom">
+  <div *ngIf="headerState.showAuth" class="container custom">
     <app-authentication-form-container></app-authentication-form-container>
   </div>
-  <app-footer></app-footer>
 </div>
