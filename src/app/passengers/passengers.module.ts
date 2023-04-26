@@ -19,6 +19,7 @@ import { PassengerAdultComponent } from './passenger-adult/passenger-adult.compo
 import { PassengerChildComponent } from './passenger-child/passenger-child.component';
 import { PassengerInfantComponent } from './passenger-infant/passenger-infant.component';
 import { PassengerContactInfoComponent } from './passenger-contact-info/passenger-contact-info.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,13 @@ import { PassengerContactInfoComponent } from './passenger-contact-info/passenge
     MatRadioModule,
     HttpClientModule,
     MatSlideToggleModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: PassengersViewComponent,
+      },
+    ]),
   ],
-  exports: [PassengersViewComponent],
+  // exports: [PassengersViewComponent],
 })
 export class PassengersModule {}
