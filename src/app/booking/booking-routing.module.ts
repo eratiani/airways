@@ -14,6 +14,11 @@ const routes: Routes = [
         (m) => m.PassengersModule
       ),
   },
+  {
+    path: 'summary',
+    loadChildren: () =>
+      import('./../summary/summary.module').then((m) => m.SummaryModule),
+  },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
