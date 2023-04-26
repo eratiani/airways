@@ -1,0 +1,18 @@
+<div class="container-bill   d-flex justify-content-end">
+    <div class="card col-5">
+        <div  *ngFor="let item of flightPrices">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.passengerType }} {{ item.ticketType }}</h5>
+            <p class="card-text">fare: {{ item.ticketPrice }}</p>
+            <p class="card-text">Tax and Service Charge: {{ item.taxAndServiceCharge }}</p>
+            <p class="card-text">Total Price: {{ item.totalPrice }}</p>
+          </div>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between p-2">
+
+            <p class="text-end">total:  </p>
+            <p class="text-end">552  </p>
+        </div>
+      </div>
+    </div>

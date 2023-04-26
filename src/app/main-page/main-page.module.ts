@@ -16,6 +16,7 @@ import { FlightsFormComponent } from './flights-form/flights-form.component';
 import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
 import { BookingViewModule } from '../booking/booking.module';
 import { PassengersModule } from '../passengers/passengers.module';
+import { SummaryModule } from '../summary/summary.module';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PassengersModule } from '../passengers/passengers.module';
     UserAuthenticationModule,
     BookingViewModule,
     PassengersModule,
+    SummaryModule
   ],
 })
 export class MainPageModule {}
