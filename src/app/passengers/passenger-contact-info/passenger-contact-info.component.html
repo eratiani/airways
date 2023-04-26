@@ -1,0 +1,26 @@
+<h1>Contact details</h1>
+<p>
+  We need contact details to be able to deliver the latest information regarding
+  your flight.
+</p>
+<div class="container--form">
+  <form
+    class="d-flex flex-column"
+    [formGroup]="contactForm"
+    #formDirective="ngForm"
+    (ngSubmit)="onSubmit(formDirective)"
+  >
+    <mat-form-field class="col-3">
+      <input
+        autofocus
+        type="email"
+        matInput
+        placeholder="Email *"
+        formControlName="email"
+      />
+      <mat-error *ngIf="checkValidation('email')">
+        {{ emaiErrors() }}
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>

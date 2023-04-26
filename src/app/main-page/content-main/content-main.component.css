@@ -1,9 +1,9 @@
-.posAbs{
-    position: relative;
+.posAbs {
+  position: relative;
 }
-.custom{
-    width: 40%;
-    position: absolute;
-    top: 20%;
-    left: 50%;
+.custom {
+  width: 40%;
+  position: absolute;
+  top: 20%;
+  left: 50%;
 }

@@ -102,6 +102,9 @@ export class RegisterComponent {
         this.registerForm.get(input)?.touched);
     return validation;
   }
+  setGender(gender: string) {
+    this.registerForm.get('gender')?.setValue(gender);
+  }
   onSubmit(formDirective: FormGroupDirective): void {
     // const email = formData.value.email;
     // const password = formData.value.password;
@@ -115,6 +118,7 @@ export class RegisterComponent {
       this.registerForm.reset();
     });
   }
+
   dateNotInFutureValidator(control: AbstractControl): ValidationErrors | null {
     const inputDate = new Date(control.value);
     const currentDate = new Date();

@@ -88,9 +88,40 @@
           </mat-form-field>
         </div>
         <mat-radio-group formControlName="gender">
-          <mat-radio-button [value]="'option1'">Option 1</mat-radio-button>
-          <mat-radio-button [value]="'option2'">Option 2</mat-radio-button>
+          <mat-radio-button
+            class="btn-check-custom"
+            name="options"
+            id="female"
+            [value]="'female'"
+          >
+          </mat-radio-button>
+          <mat-label
+            for="female"
+            [ngClass]="{
+              active: registerForm.get('gender')?.value === 'female'
+            }"
+            (click)="setGender('female')"
+            class="btn btn-primary m-2"
+            >Female</mat-label
+          >
+          <mat-radio-button
+            class="btn-check-custom"
+            name="options"
+            id="male"
+            [value]="'male'"
+          >
+          </mat-radio-button>
+          <mat-label
+            for="male"
+            [ngClass]="{
+              active: registerForm.get('gender')?.value === 'male'
+            }"
+            (click)="setGender('male')"
+            class="btn btn-primary"
+            >Male</mat-label
+          >
         </mat-radio-group>
+
         <mat-error *ngIf="checkValidation('gender')">
           {{ fieldRequired }}
         </mat-error>
