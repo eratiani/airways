@@ -1,0 +1,114 @@
+<div
+  class="container-sm d-flex flex-column align-items-center justify-content-center"
+>
+  <form
+    [formGroup]="searchForm"
+    (submit)="onSubmit()"
+    class="container-sm d-flex flex-column align-items-center justify-content-center"
+  >
+    <mat-radio-group
+      formControlName="oneWay"
+      class="d-flex justify-content-center align-items-center"
+      aria-label="Select an option"
+    >
+      <mat-radio-button [value]="false">Round Trip</mat-radio-button>
+      <mat-radio-button [value]="true">One Way</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field class="m-md-2 col-sm-6" appearance="fill">
+      <mat-label>From</mat-label>
+      <mat-select formControlName="from">
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="searchForm.controls.from.errors">{{
+        errorMessage
+      }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="m-md-2 col-sm-6" appearance="fill">
+      <mat-label>Destination</mat-label>
+      <mat-select formControlName="to">
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="searchForm.controls.to.errors">{{
+        errorMessage
+      }}</mat-error>
+    </mat-form-field>
+
+    <div class="row">
+      <div class="col-sm-7 d-flex justify-content-center">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a range</mat-label>
+          <mat-date-range-input formGroupName="date" [rangePicker]="picker">
+            <input matStartDate formControlName="startDate" />
+            <input matEndDate formControlName="endDate" />
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-5 d-flex justify-content-center">
+        <mat-form-field class="" appearance="fill">
+          <mat-label>Select an option</mat-label>
+          <mat-select>
+            <mat-option value="adult">
+              Adult
+              <div class="option-controls">
+                <button mat-button (click)="increaseValue($event, 'adult')">
+                  +
+                </button>
+                {{ optionValues.adult }}
+                <button mat-button (click)="decreaseValue($event, 'adult')">
+                  -
+                </button>
+              </div>
+            </mat-option>
+            <mat-option value="child">
+              Child
+              <div class="option-controls">
+                <button mat-button (click)="increaseValue($event, 'child')">
+                  +
+                </button>
+                {{ optionValues.child }}
+                <button mat-button (click)="decreaseValue($event, 'child')">
+                  -
+                </button>
+              </div>
+            </mat-option>
+            <mat-option value="infant">
+              Infant
+              <div class="option-controls">
+                <button mat-button (click)="increaseValue($event, 'infant')">
+                  +
+                </button>
+                {{ optionValues.infant }}
+                <button mat-button (click)="decreaseValue($event, 'infant')">
+                  -
+                </button>
+              </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="w-50 d-flex justify-content-end">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="searchForm.invalid"
+      >
+        search
+      </button>
+    </div>
+  </form>
+</div>

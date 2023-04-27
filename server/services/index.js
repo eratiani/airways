@@ -9,20 +9,10 @@ const cities = [
   "Seoul",
   "Dubai",
   "Singapore",
-  "Barcelona",
-  "Istanbul",
-  "Los Angeles",
-  "Rome",
-  "Shanghai",
-  "Chicago",
-  "Berlin",
-  "Hong Kong",
-  "Sydney",
-  "Amsterdam",
-  "San Francisco",
 ];
+
 function cityGenerate(prev) {
-  const tempGenerate = cities[Math.round(Math.random() * 21)];
+  const tempGenerate = cities[Math.round(Math.random() * 9)];
   return tempGenerate !== prev ? tempGenerate : cityGenerate(prev);
 }
 
@@ -47,4 +37,4 @@ function generate(amount) {
   return data;
 }
 
-console.log(JSON.stringify(generate(100)));
+console.log(JSON.stringify(generate(200)));
