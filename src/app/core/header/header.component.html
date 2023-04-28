@@ -47,12 +47,12 @@
               <a
                 style="height: 40px; width: 100px; cursor: pointer"
                 class="nav-link btn btn-success d-flex align-items-center justify-content-center"
-                (click)="onSignIn()"
+                (click)="handleLog()"
               >
                 <span
                   ><img src="../../../assets/log-in.png" alt="log-in"
                 /></span>
-                Sign in</a
+                {{ userState.loggedIn ? "Log Out" : "Sign In" }}</a
               >
             </div>
             <div class="nav-item m-2">

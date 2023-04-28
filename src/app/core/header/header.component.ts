@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderStateService } from '../services/header-state.service';
+import { BackendUserService } from 'src/app/services/backend-user.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,16 @@ import { HeaderStateService } from '../services/header-state.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  constructor(private headState: HeaderStateService) {}
+  constructor(
+    private headState: HeaderStateService,
+    public userState: BackendUserService
+  ) {}
   selected = 'option2';
-  onSignIn() {
-    this.headState.showAuth = true;
+  handleLog() {
+    if (!this.userState.loggedIn) {
+      this.headState.showAuth = true;
+    } else {
+      this.userState.logOut();
+    }
   }
 }

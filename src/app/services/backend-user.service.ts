@@ -10,9 +10,9 @@ type RespType = { accessToken: string; user: Pick<UserData, 'email' | 'id'> };
   providedIn: 'root',
 })
 export class BackendUserService {
-  private loggedIn = false;
-  private token: string = '';
-  private userLocal = {
+  loggedIn = false;
+  token: string = '';
+  userLocal = {
     _id: 0,
     email: '',
   };
@@ -47,8 +47,11 @@ export class BackendUserService {
           localStorage.setItem('token', this.token); // or store in ngrx
         })
       );
-
     // localStorage.setItem('logedIn', `false`);
     // localStorage.setItem('userName', user.login);
+  }
+  logOut() {
+    this.loggedIn = false;
+    localStorage.removeItem('token');
   }
 }
