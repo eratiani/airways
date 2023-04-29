@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
+import { SnackBarService } from 'src/app/services/snack-bar.srvice';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,8 @@ export class RegisterComponent {
   fieldRequired: string = 'This field is required';
   constructor(
     private auth: BackendUserService,
-    private headerState: HeaderStateService
+    private headerState: HeaderStateService,
+    private snackBar: SnackBarService
   ) {}
 
   ngOnInit() {
@@ -118,6 +120,7 @@ export class RegisterComponent {
 
     this.auth.registerUser({ ...other, age }).subscribe((test) => {
       console.log(test);
+      this.snackBar.open('You are register successfully!');
       this.registerForm.reset();
       this.headerState.showAuth = false;
     });

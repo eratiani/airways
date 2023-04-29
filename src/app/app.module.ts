@@ -8,6 +8,7 @@ import { MainPageModule } from './main-page/main-page.module';
 import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import { flightsReducer } from './redux/reducers';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -17,6 +18,7 @@ import { flightsReducer } from './redux/reducers';
     MainPageModule,
     CoreModule,
     StoreModule.forRoot({ flightData: flightsReducer }, {}),
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -5,8 +5,10 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
+import { SnackBarService } from 'src/app/services/snack-bar.srvice';
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
@@ -20,7 +22,8 @@ export class LogInComponent {
   fieldRequired: string = 'This field is required';
   constructor(
     private userService: BackendUserService,
-    private headerState: HeaderStateService
+    private headerState: HeaderStateService,
+    private snackBar: SnackBarService
   ) {}
 
   ngOnInit() {
@@ -72,6 +75,7 @@ export class LogInComponent {
       const { password, username } = this.logInForm.value;
       this.userService.loginUser(username!, password!).subscribe((test) => {
         console.log(test);
+        this.snackBar.open('You are login successfully!');
         this.logInForm.reset();
         this.headerState.showAuth = false;
       });
