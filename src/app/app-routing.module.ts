@@ -12,6 +12,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./booking/booking.module').then((m) => m.BookingViewModule),
   },
+  {
+    path: 'passengers',
+    loadChildren: () =>
+      import('./passengers/passengers.module').then((m) => m.PassengersModule),
+  },
+  {
+    path: 'summary',
+    loadChildren: () =>
+      import('./summary/summary.module').then((m) => m.SummaryModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 

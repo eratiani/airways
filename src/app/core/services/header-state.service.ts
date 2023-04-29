@@ -7,9 +7,9 @@ export class HeaderStateService {
   private userOnBookingPageSubject = new BehaviorSubject<boolean>(false);
   userOnBookingPage$ = this.userOnBookingPageSubject.asObservable();
   private userOnSummaryPageSubject = new BehaviorSubject<boolean>(false);
-  userOnSummaryPage$ = this.userOnBookingPageSubject.asObservable();
+  userOnSummaryPage$ = this.userOnSummaryPageSubject.asObservable();
   private userOnpassengersPageSubject = new BehaviorSubject<boolean>(false);
-  userOnpassengersPage$ = this.userOnBookingPageSubject.asObservable();
+  userOnpassengersPage$ = this.userOnpassengersPageSubject.asObservable();
 
   toggleUserOnBookingPage() {
     this.userOnBookingPageSubject.next(!this.userOnBookingPageSubject.value);

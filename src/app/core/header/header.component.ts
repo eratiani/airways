@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HeaderStateService } from '../services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   userOnBookingPage!: boolean;
   userOnPassangersPage!: boolean;
   userOnSummaryPage!: boolean;
@@ -24,15 +24,20 @@ export class HeaderComponent implements OnInit {
       )
     );
     this.subscriptions.add(
-      this.headState.userOnBookingPage$.subscribe(
-        (userOnBookingPage) => (this.userOnBookingPage = userOnBookingPage)
-      )
+      this.headState.userOnpassengersPage$.subscribe((userOnPassangersPage) => {
+        console.log(userOnPassangersPage);
+
+        this.userOnPassangersPage = userOnPassangersPage;
+      })
     );
     this.subscriptions.add(
-      this.headState.userOnBookingPage$.subscribe(
-        (userOnBookingPage) => (this.userOnBookingPage = userOnBookingPage)
+      this.headState.userOnSummaryPage$.subscribe(
+        (userOnSummaryPage) => (this.userOnSummaryPage = userOnSummaryPage)
       )
     );
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
   selected = 'option2';
   handleLog() {
