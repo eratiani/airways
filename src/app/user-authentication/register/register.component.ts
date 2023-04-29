@@ -3,10 +3,10 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  FormGroupDirective,
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
+import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 
 @Component({
@@ -25,7 +25,10 @@ export class RegisterComponent {
     termsAndServices: FormControl<boolean>;
   }>;
   fieldRequired: string = 'This field is required';
-  constructor(private auth: BackendUserService) {}
+  constructor(
+    private auth: BackendUserService,
+    private headerState: HeaderStateService
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -105,17 +108,18 @@ export class RegisterComponent {
   setGender(gender: string) {
     this.registerForm.get('gender')?.setValue(gender);
   }
-  onSubmit(formDirective: FormGroupDirective): void {
-    // const email = formData.value.email;
-    // const password = formData.value.password;
-    // const username = formData.value.username;
-    const { email, password, username } = this.registerForm.value;
-    console.log(formDirective, password);
+  onSubmit(): void {
+    if (this.registerForm.invalid) {
+      return;
+    }
+    const { termsAndServices, dateOfBirth, ...other } = this.registerForm.value;
+    const age =
+      new Date().getFullYear() - new Date(dateOfBirth!).getFullYear() + 1;
 
-    this.auth.registerUser(email!, password!).subscribe((test) => {
+    this.auth.registerUser({ ...other, age }).subscribe((test) => {
       console.log(test);
-      formDirective.resetForm();
       this.registerForm.reset();
+      this.headerState.showAuth = false;
     });
   }
 

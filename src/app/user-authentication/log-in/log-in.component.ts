@@ -3,10 +3,9 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  FormGroupDirective,
   AbstractControl,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 @Component({
   selector: 'app-log-in',
@@ -14,12 +13,14 @@ import { BackendUserService } from 'src/app/services/backend-user.service';
   styleUrls: ['./log-in.component.css'],
 })
 export class LogInComponent {
-  logInForm!: FormGroup;
+  logInForm!: FormGroup<{
+    username: FormControl<string>;
+    password: FormControl<string>;
+  }>;
   fieldRequired: string = 'This field is required';
-  token: { token: string } = { token: '' };
   constructor(
     private userService: BackendUserService,
-    private router: Router
+    private headerState: HeaderStateService
   ) {}
 
   ngOnInit() {
@@ -29,11 +30,14 @@ export class LogInComponent {
     let emailregex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.logInForm = new FormGroup({
-      username: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [
-        Validators.required,
-        this.checkPassword,
-      ]),
+      username: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      password: new FormControl('', {
+        validators: [Validators.required, this.checkPassword],
+        nonNullable: true,
+      }),
     });
   }
   emaiErrors() {
@@ -63,16 +67,13 @@ export class LogInComponent {
       (this.logInForm.get(input)?.dirty || this.logInForm.get(input)?.touched);
     return validation;
   }
-  async onSubmit(formData: FormGroup, formDirective: FormGroupDirective) {
+  async onSubmit() {
     try {
-      const password = formData.value.password;
-      const username = formData.value.username;
-
-      this.userService.loginUser(username, password).subscribe((test) => {
+      const { password, username } = this.logInForm.value;
+      this.userService.loginUser(username!, password!).subscribe((test) => {
         console.log(test);
-        this.router.navigateByUrl('/Home');
-        formDirective.resetForm();
         this.logInForm.reset();
+        this.headerState.showAuth = false;
       });
     } catch (err: any) {
       // this.errorService.generateError(err);

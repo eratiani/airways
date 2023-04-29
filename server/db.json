@@ -19,6 +19,51 @@
       "email": "example@asd.com",
       "password": "$2a$10$h7jdsVa3iHO7gs6W6n1ZFucMpvaBelZ0Nv2lN8t4/1PpvTH6PIhw2",
       "id": 4
+    },
+    {
+      "email": "example1@asd.com",
+      "password": "$2a$10$ogAqrmJyfgH5aAyrI3nCg.N/9.uJN8jMMW//kr0TrZVJBdKdrDd.y",
+      "username": "example1@asd.com",
+      "gender": "male",
+      "country": {
+        "name": "Albania",
+        "alpha2Code": "AL",
+        "alpha3Code": "ALB",
+        "numericCode": "008",
+        "callingCode": "+355"
+      },
+      "age": 1,
+      "id": 5
+    },
+    {
+      "email": "ex12@asd.com",
+      "password": "$2a$10$ts6c7JCENYytkG0vCNrD7enQfNkl6bR2W73Lhw5g6lViYvdXNEyT2",
+      "username": "sak12",
+      "gender": "female",
+      "country": {
+        "name": "American Samoa",
+        "alpha2Code": "AS",
+        "alpha3Code": "ASM",
+        "numericCode": "016",
+        "callingCode": "+1684"
+      },
+      "age": 0,
+      "id": 6
+    },
+    {
+      "email": "ex23@asd.zxc",
+      "password": "$2a$10$0VdDNHyX6sSQLcKbW5BU0eNogiPsAJxIAoRBVSTpOeQ0UK7VouQe6",
+      "username": "sak12",
+      "gender": "female",
+      "country": {
+        "name": "Åland Islands",
+        "alpha2Code": "AX",
+        "alpha3Code": "ALA",
+        "numericCode": "248",
+        "callingCode": "+358"
+      },
+      "age": 1,
+      "id": 7
     }
   ],
   "data": [

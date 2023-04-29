@@ -4,33 +4,24 @@ import { tap } from 'rxjs';
 import { UserData } from '../models/user.model';
 
 const SERVER = 'http://localhost:3000';
-type RespType = { accessToken: string; user: Pick<UserData, 'email' | 'id'> };
+type RespType = { accessToken: string; user: UserData };
 
 @Injectable({
   providedIn: 'root',
 })
 export class BackendUserService {
   loggedIn = false;
-  token: string = '';
-  userLocal = {
-    _id: 0,
-    email: '',
-  };
+  // token: string = '';
+  userLocal: Partial<UserData> = {};
 
-  constructor(
-    private http: HttpClient // private router: Router // private store: Store<AppState>
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  registerUser(email: string, password: string) {
-    return this.http
-      .post<RespType>(`${SERVER}/register`, { email, password })
-      .pipe(
-        tap(({ accessToken, user: { email, id } }) => {
-          this.token = accessToken;
-          this.loggedIn = true;
-          this.userLocal = { email, _id: id };
-        })
-      );
+  registerUser(user: Partial<UserData>) {
+    return this.http.post<RespType>(`${SERVER}/register`, user).pipe(
+      tap(({ accessToken, user: { email, id } }) => {
+        this.setLoggin(accessToken, id, email);
+      })
+    );
   }
 
   loginUser(email: string, password: string) {
@@ -38,20 +29,19 @@ export class BackendUserService {
       .post<RespType>(`${SERVER}/login`, { email, password })
       .pipe(
         tap(({ accessToken, user: { id } }) => {
-          this.token = accessToken;
-          this.loggedIn = true;
-
-          this.token = accessToken;
-          this.userLocal = { email, _id: id };
-
-          localStorage.setItem('token', this.token); // or store in ngrx
+          this.setLoggin(accessToken, id, email);
         })
       );
-    // localStorage.setItem('logedIn', `false`);
-    // localStorage.setItem('userName', user.login);
   }
   logOut() {
     this.loggedIn = false;
     localStorage.removeItem('token');
+  }
+
+  private setLoggin(token: string, id: number, email: string) {
+    // this.token = token;
+    this.loggedIn = true;
+    this.userLocal = { email, id };
+    localStorage.setItem('token', token);
   }
 }
