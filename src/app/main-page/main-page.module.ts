@@ -8,8 +8,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 
-import { ContentMainComponent } from './content-main/content-main.component';
-import { FlightsFormComponent } from './flights-form/flights-form.component';
+import { ContentMainComponent } from './components/content-main/content-main.component';
+import { FlightsFormComponent } from './components/flights-form/flights-form.component';
 import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
 import { BookingViewModule } from '../booking/booking.module';
 import { PassengersModule } from '../passengers/passengers.module';
