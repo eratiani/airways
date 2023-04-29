@@ -16,13 +16,32 @@ import { SnackBarService } from 'src/app/services/snack-bar.srvice';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  private preSelectData = {
+    username: 'JohnDoe',
+    email: 'johndoe@example.com',
+    password: 'myPassword',
+    gender: 'male',
+    dateOfBirth: '1990-01-01',
+    country: {
+      name: 'Germany',
+      alpha2Code: 'DE',
+      alpha3Code: 'DEU',
+      numericCode: '276',
+    },
+    termsAndServices: true,
+  };
   registerForm!: FormGroup<{
     username: FormControl<string>;
     email: FormControl<string>;
     password: FormControl<string>;
     gender: FormControl<string>;
     dateOfBirth: FormControl<string>;
-    country: FormControl<string>;
+    country: FormControl<{
+      name: string;
+      alpha2Code: string;
+      alpha3Code: string;
+      numericCode: string;
+    }>;
     termsAndServices: FormControl<boolean>;
   }>;
   fieldRequired: string = 'This field is required';
@@ -59,10 +78,18 @@ export class RegisterComponent {
         validators: Validators.required,
         nonNullable: true,
       }),
-      country: new FormControl('', {
-        validators: Validators.required,
-        nonNullable: true,
-      }),
+      country: new FormControl(
+        {
+          name: '',
+          alpha2Code: '',
+          alpha3Code: '',
+          numericCode: '',
+        },
+        {
+          validators: Validators.required,
+          nonNullable: true,
+        }
+      ),
       termsAndServices: new FormControl(false, {
         validators: [this.termsAndServicesvalidation],
         nonNullable: true,
@@ -114,7 +141,8 @@ export class RegisterComponent {
     if (this.registerForm.invalid) {
       return;
     }
-    const { termsAndServices, dateOfBirth, ...other } = this.registerForm.value;
+    const { termsAndServices, dateOfBirth, country, ...other } =
+      this.registerForm.value;
     const age =
       new Date().getFullYear() - new Date(dateOfBirth!).getFullYear() + 1;
 
@@ -125,7 +153,17 @@ export class RegisterComponent {
       this.headerState.showAuth = false;
     });
   }
-
+  onGoogleFbSignIn() {
+    this.registerForm.patchValue({
+      username: this.preSelectData.username,
+      email: this.preSelectData.email,
+      password: this.preSelectData.password,
+      gender: this.preSelectData.gender,
+      dateOfBirth: this.preSelectData.dateOfBirth,
+      country: this.preSelectData.country,
+      termsAndServices: this.preSelectData.termsAndServices,
+    });
+  }
   dateNotInFutureValidator(control: AbstractControl): ValidationErrors | null {
     const inputDate = new Date(control.value);
     const currentDate = new Date();

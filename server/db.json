@@ -64,6 +64,22 @@
       },
       "age": 1,
       "id": 7
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$7FjnyStWucLX2gL77xm4YOTS7ddF0LVol90ZZwvo.AL0oNdbj84Ni",
+      "username": "smth",
+      "gender": "male",
+      "age": 1,
+      "id": 8
+    },
+    {
+      "email": "e@mail.ru",
+      "password": "$2a$10$d0JnYsAojBEQp6KibKid/euwnl9Pj1FLX.CxMSxptRZn.2XUTcOei",
+      "username": "wasdasd",
+      "gender": "female",
+      "age": 1,
+      "id": 9
     }
   ],
   "data": [

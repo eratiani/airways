@@ -15,8 +15,12 @@ import { SnackBarService } from 'src/app/services/snack-bar.srvice';
   styleUrls: ['./log-in.component.css'],
 })
 export class LogInComponent {
+  private preSelectData = {
+    email: 'johndoe@example.com',
+    password: 'myPassword',
+  };
   logInForm!: FormGroup<{
-    username: FormControl<string>;
+    email: FormControl<string>;
     password: FormControl<string>;
   }>;
   fieldRequired: string = 'This field is required';
@@ -33,8 +37,8 @@ export class LogInComponent {
     let emailregex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.logInForm = new FormGroup({
-      username: new FormControl('', {
-        validators: [Validators.required],
+      email: new FormControl('', {
+        validators: [Validators.required, Validators.pattern(emailregex)],
         nonNullable: true,
       }),
       password: new FormControl('', {
@@ -70,10 +74,16 @@ export class LogInComponent {
       (this.logInForm.get(input)?.dirty || this.logInForm.get(input)?.touched);
     return validation;
   }
+  onGoogleFbSignIn() {
+    this.logInForm.patchValue({
+      email: this.preSelectData.email,
+      password: this.preSelectData.password,
+    });
+  }
   async onSubmit() {
     try {
-      const { password, username } = this.logInForm.value;
-      this.userService.loginUser(username!, password!).subscribe((test) => {
+      const { password, email } = this.logInForm.value;
+      this.userService.loginUser(email!, password!).subscribe((test) => {
         console.log(test);
         this.snackBar.open('You are login successfully!');
         this.logInForm.reset();
