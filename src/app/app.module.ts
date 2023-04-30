@@ -9,9 +9,10 @@ import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import { flightsReducer } from './redux/reducers';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HiglightDirective } from './directives/higlight.directive';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent],
+  declarations: [AppComponent, PageNotFoundComponent, HiglightDirective],
   imports: [
     BrowserModule,
     AppRoutingModule,
