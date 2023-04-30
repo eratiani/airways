@@ -6,6 +6,7 @@ import { FlightsSearchInputComponent } from './flights-search-input/flights-sear
 import { FlightSelectedComponent } from './flight-selected/flight-selected.component';
 import { ReturnFlightSelectedComponent } from './return-flight-selected/return-flight-selected.component';
 import { BookingRoutig } from './booking-routing.module';
+import { HiglightDirective } from './directives/higlight.directive';
 
 @NgModule({
   declarations: [
@@ -14,8 +15,9 @@ import { BookingRoutig } from './booking-routing.module';
     FlightsSearchInputComponent,
     FlightSelectedComponent,
     ReturnFlightSelectedComponent,
+    HiglightDirective
   ],
-  imports: [CommonModule, BookingRoutig],
+  imports: [CommonModule, BookingRoutig,],
   exports: [
     // BookingViewComponent
   ],

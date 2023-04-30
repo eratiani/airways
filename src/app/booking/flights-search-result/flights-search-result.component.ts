@@ -7,15 +7,27 @@ import { Component } from '@angular/core';
 })
 export class FlightsSearchResultComponent {
  mockFlights  = [
-  { date: 1, day: "Wednesday", price: "4.5$" },
-  { date: 2, day: "Thursday", price: "4.5$" },
-  { date: 3, day: "Friday", price: "4.5$" },
-  { date: 4, day: "Saturday", price: "4.5$" },
-  { date: 5, day: "Sunday", price: "4.5$" },
-  { date: 6, day: "Monday", price: "4.5$" },
-  { date: 7, day: "Tuesday", price: "4.5$" },
-  { date: 8, day: "Wednesday", price: "4.5$" },
-  { date: 9, day: "Thursday", price: "4.5$" },
-  { date: 0, day: "Friday", price: "4.5$" }
+  { date: 1, day: "Wednesday", price: "4.5$", seatsAvailable:20, seatsTotal:70 },
+  { date: 2, day: "Thursday", price: "4.5$", seatsAvailable:33, seatsTotal:170 },
+  { date: 3, day: "Friday", price: "4.5$" , seatsAvailable:10, seatsTotal:20},
+  { date: 4, day: "Saturday", price: "4.5$" , seatsAvailable:50, seatsTotal:170},
+  { date: 5, day: "Sunday", price: "4.5$" , seatsAvailable:200 , seatsTotal:270},
+  { date: 6, day: "Monday", price: "4.5$" , seatsAvailable:5, seatsTotal:30},
+  { date: 7, day: "Tuesday", price: "4.5$" , seatsAvailable:7, seatsTotal:10},
+  { date: 8, day: "Wednesday", price: "4.5$" , seatsAvailable:22, seatsTotal:40},
+  { date: 9, day: "Thursday", price: "4.5$" , seatsAvailable:36, seatsTotal:70},
+  { date: 0, day: "Friday", price: "4.5$" , seatsAvailable:20, seatsTotal:30}
 ]
+onFilightSelect(event:Event){
+  this.selectCard(event);
+    
+}
+selectCard(event:Event){
+  const target = event.target as HTMLElement;
+    const flightCard = target.closest('.flight-card');
+    if (!flightCard) return;
+    flightCard.classList.add("moveElement")
+    
+}
+
 }
