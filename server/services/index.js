@@ -34,6 +34,7 @@ function generate(amount) {
       total_seats: total,
       available_seats: Math.round(Math.random() * total),
       cost: Math.round(Math.random() * 1000) + 200,
+      id: String(i),
     });
   }
   return data;

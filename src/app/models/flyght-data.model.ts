@@ -5,4 +5,5 @@ export interface FlightDataType {
   available_seats: number;
   total_seats: number;
   cost: number;
+  id: string;
 }

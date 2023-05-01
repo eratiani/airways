@@ -19,7 +19,10 @@ export class FlightsSearchResultComponent {
   matchedFlights: FlightDataType[] = [];
 
   selectCard(flightCard: HTMLDivElement, flight: FlightDataType) {
-    // should remove 'moveElement' from all cards
+    // remove 'moveElement' from all cards
+    Array.from(flightCard.parentElement?.children || []).forEach((elem) => {
+      elem.classList.remove('moveElement');
+    });
     flightCard.classList.add('moveElement');
     this.selectedCard = flight;
   }

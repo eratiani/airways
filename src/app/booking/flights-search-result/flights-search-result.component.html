@@ -9,6 +9,7 @@
       class="flight-card"
       (click)="selectCard(card, flight)"
       #card
+      [id]="flight.id"
     >
       <p>{{ flight.date | date : "dd MMM" }}</p>
       <p>{{ flight.date | date : "EEEE" }}</p>
@@ -19,6 +20,7 @@
       <!-- will use user pipe next -->
       <p>{{ flight.cost | currency : "USD" }}</p>
       <div
+        *ngIf="selectedCard?.id === card.id"
         class="highlighted"
         appHiglight
         [elementAvailableSeats]="flight.available_seats"
