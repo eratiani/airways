@@ -1,20 +1,23 @@
-.flight-card{
-width: 20vw;
-background-color: white;
-border-right: 2px solid black;
-text-align: center;
-position: relative;
-padding-bottom: 16px;
+.flight-card {
+  width: 20vw;
+  background-color: white;
+  border-right: 2px solid black;
+  text-align: center;
+  position: relative;
+  padding-bottom: 16px;
 }
-.highlighted{
-    width: 100%;
-    height: 6px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    /* transform: translateX(-50%); */
+.highlighted {
+  width: 100%;
+  height: 6px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  /* transform: translateX(-50%); */
 }
-.moveElement{
-    z-index: 2;
+.moveElement {
+  z-index: 2;
+}
+.moveElement-two {
+  z-index: 2;
 }

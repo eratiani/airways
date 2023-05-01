@@ -1,42 +1,57 @@
 <div class="container-md">
-    <h2 style="margin-left: 15px;"><span><img src="../../../assets/planeRight.png" alt="planr"></span> from to destination</h2>
-    <div class="cards-container d-flex m-2" (click)="onFilightSelect($event)"  >
-        <div  *ngFor="let flight of mockFlights | slice:0:5" class="flight-card"
-      >
-     
-            <p>{{ flight.date }}</p>
-            <p>{{ flight.day }}</p>
-            <div *ngIf="flight.date < 3"><img src="../../../assets/noFly.png" alt="noFly"></div>
-            <p *ngIf="flight.date >= 3">{{ flight.price }}</p>
-            <div class="highlighted"
-     appHiglight 
-     [elementAvailableSeats]=" flight.seatsAvailable"
-     [elementTotalSeats]="flight.seatsTotal"></div>
-        </div>
+  <h2 style="margin-left: 15px">
+    <span><img src="../../../assets/planeRight.png" alt="planr" /></span> from
+    to destination
+  </h2>
+  <div class="cards-container d-flex m-2" (click)="onFilightSelect($event)">
+    <div *ngFor="let flight of mockFlights | slice : 0 : 5" class="flight-card">
+      <p>{{ flight.date }}</p>
+      <p>{{ flight.day }}</p>
+      <div *ngIf="flight.date < 3">
+        <img src="../../../assets/noFly.png" alt="noFly" />
+      </div>
+      <p *ngIf="flight.date >= 3">{{ flight.price }}</p>
+      <div
+        class="highlighted"
+        appHiglight
+        [elementAvailableSeats]="flight.seatsAvailable"
+        [elementTotalSeats]="flight.seatsTotal"
+      ></div>
     </div>
-    <app-flight-selected></app-flight-selected>
-    <div class="d-flex justify-content-end">
-        <a href="" class="btn ">back</a>
-        <a href="" class="btn btn-primary">continue</a>
+  </div>
+  <app-flight-selected *ngIf="flightSelected"></app-flight-selected>
+  <div class="d-flex justify-content-end">
+    <a routerLink="../" class="btn">back</a>
+    <a href="" class="btn btn-primary">continue</a>
+  </div>
+  <h2 style="margin-left: 15px">
+    <span><img src="../../../assets/planeLeft.png" alt="planr" /></span> from to
+    destination
+  </h2>
+  <div
+    class="cards-container d-flex m-2"
+    (click)="onReturnFilightSelect($event)"
+  >
+    <div *ngFor="let flight of mockFlights | slice : 0 : 5" class="flight-card">
+      <p>{{ flight.date }}</p>
+      <p>{{ flight.day }}</p>
+      <div *ngIf="flight.date < 3">
+        <img src="../../../assets/noFly.png" alt="noFly" />
+      </div>
+      <p *ngIf="flight.date >= 3">{{ flight.price }}</p>
+      <div
+        class="highlighted"
+        appHiglight
+        [elementAvailableSeats]="flight.seatsAvailable"
+        [elementTotalSeats]="flight.seatsTotal"
+      ></div>
     </div>
-    <h2 style="margin-left: 15px;"><span><img src="../../../assets/planeLeft.png" alt="planr"></span> from to destination</h2>
-    <div class="cards-container d-flex m-2"
-    (click)="onFilightSelect($event)">
-        <div *ngFor="let flight of mockFlights | slice:0:5" class="flight-card">
-            <p>{{ flight.date }}</p>
-            <p>{{ flight.day }}</p>
-            <div *ngIf="flight.date < 3"><img src="../../../assets/noFly.png" alt="noFly"></div>
-            <p *ngIf="flight.date >= 3">{{ flight.price }}</p>
-            <div class="highlighted"
-     appHiglight 
-     [elementAvailableSeats]=" flight.seatsAvailable"
-     [elementTotalSeats]="flight.seatsTotal"></div>
-        </div>
-    </div>
-    <app-return-flight-selected></app-return-flight-selected>
-    <div class="d-flex justify-content-end">
-        <a href="" class="btn ">back</a>
-        <a href="" class="btn btn-primary">continue</a>
-    </div>
+  </div>
+  <app-return-flight-selected
+    *ngIf="returnFlightSelected"
+  ></app-return-flight-selected>
+  <div class="d-flex justify-content-end">
+    <a routerLink="../" class="btn">back</a>
+    <a href="" class="btn btn-primary">continue</a>
+  </div>
 </div>
-
