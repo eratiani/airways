@@ -1,10 +1,12 @@
 <div class="container d-flex align-items-center justify-content-between">
   <div>
-    <p>sat march 28 (date)</p>
+    <p>{{ flight.date | date : "mediumDate" }}</p>
+    <!-- to do  -->
     <p>4:50 (time ) <span>utc timeZone</span></p>
-    <p>location</p>
+    <p>{{ flight.from }}</p>
   </div>
   <div class="d-flex flex-column align-items-center">
+    <!-- to do  -->
     <p>time of flight</p>
     <div>
       <span
@@ -17,22 +19,29 @@
         ><img style="max-width: 10vw" src="../../../assets/Arrow 1.png" alt=""
       /></span>
     </div>
+    <!-- to do  -->
     <p>type of flight</p>
   </div>
   <div>
+    <!-- to do  -->
     <p>sat march 28 (date of arriwal)</p>
+    <!-- to do  -->
     <p><span>utc timeZone</span>4:50 (time )</p>
-    <p>location</p>
+    <p>{{ flight.to }}</p>
   </div>
   <div>
+    <!-- to do  -->
     <p>Flight no. FR 1925</p>
   </div>
   <div>
-    <p style="background-color: #f1c933">100 seats available</p>
+    <p style="background-color: #f1c933">
+      {{ flight.available_seats }} seats available
+    </p>
     <div>
       <p style="margin: 0">price</p>
-      <p>€146.70</p>
+      <!-- with user pipe -->
+      <p>{{ flight.cost | currency : "USD" }}</p>
     </div>
   </div>
-  <a href="" class="btn btn-primary">select</a>
+  <button class="btn btn-primary">select</button>
 </div>

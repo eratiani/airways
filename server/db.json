@@ -84,1404 +84,1604 @@
   ],
   "data": [
     {
-      "from": "Dublin",
-      "to": "Beijing",
-      "date": "Sat Nov 04 2023",
-      "available_seats": 146,
-      "cost": 999
-    },
-    {
-      "from": "Dublin",
-      "to": "Dubai",
-      "date": "Mon Sep 25 2023",
-      "available_seats": 133,
-      "cost": 289
-    },
-    {
-      "from": "Dubai",
-      "to": "Seoul",
+      "from": "Paris",
+      "to": "Tokyo",
       "date": "Thu Nov 30 2023",
-      "available_seats": 227,
-      "cost": 473
+      "total_seats": 176,
+      "available_seats": 138,
+      "cost": 512
     },
     {
-      "from": "London",
-      "to": "Warsaw",
-      "date": "Sat Oct 21 2023",
-      "available_seats": 187,
-      "cost": 506
-    },
-    {
-      "from": "Warsaw",
-      "to": "Tokyo",
-      "date": "Mon Aug 07 2023",
-      "available_seats": 212,
-      "cost": 1168
-    },
-    {
-      "from": "Dubai",
+      "from": "Beijing",
       "to": "New York City",
-      "date": "Sat Dec 23 2023",
-      "available_seats": 1,
-      "cost": 959
+      "date": "Tue Jul 25 2023",
+      "total_seats": 24,
+      "available_seats": 11,
+      "cost": 882
     },
     {
-      "from": "New York City",
-      "to": "Warsaw",
-      "date": "Thu Nov 02 2023",
-      "available_seats": 54,
-      "cost": 1103
-    },
-    {
-      "from": "Dublin",
-      "to": "Seoul",
-      "date": "Thu Oct 05 2023",
-      "available_seats": 247,
-      "cost": 321
-    },
-    {
-      "from": "London",
-      "to": "Tokyo",
-      "date": "Thu Nov 09 2023",
-      "available_seats": 222,
-      "cost": 370
-    },
-    {
-      "from": "Dublin",
+      "from": "Beijing",
       "to": "Dubai",
-      "date": "Fri Dec 29 2023",
-      "available_seats": 28,
-      "cost": 683
-    },
-    {
-      "from": "London",
-      "to": "New York City",
-      "date": "Wed Sep 06 2023",
-      "available_seats": 13,
-      "cost": 751
-    },
-    {
-      "from": "New York City",
-      "to": "Seoul",
-      "date": "Sun Oct 22 2023",
+      "date": "Thu Sep 28 2023",
+      "total_seats": 34,
       "available_seats": 9,
-      "cost": 655
-    },
-    {
-      "from": "Paris",
-      "to": "Dubai",
-      "date": "Wed Aug 23 2023",
-      "available_seats": 100,
-      "cost": 710
-    },
-    {
-      "from": "London",
-      "to": "New York City",
-      "date": "Tue Nov 14 2023",
-      "available_seats": 141,
-      "cost": 903
-    },
-    {
-      "from": "Seoul",
-      "to": "Warsaw",
-      "date": "Mon Nov 27 2023",
-      "available_seats": 245,
-      "cost": 535
-    },
-    {
-      "from": "London",
-      "to": "New York City",
-      "date": "Thu Sep 14 2023",
-      "available_seats": 229,
-      "cost": 682
+      "cost": 407
     },
     {
       "from": "Warsaw",
-      "to": "Paris",
-      "date": "Sun Oct 15 2023",
-      "available_seats": 238,
-      "cost": 1175
-    },
-    {
-      "from": "Beijing",
-      "to": "Singapore",
-      "date": "Tue Nov 07 2023",
-      "available_seats": 63,
-      "cost": 980
-    },
-    {
-      "from": "Singapore",
-      "to": "London",
-      "date": "Thu Nov 16 2023",
-      "available_seats": 98,
-      "cost": 1140
-    },
-    {
-      "from": "Dubai",
-      "to": "Warsaw",
-      "date": "Tue Sep 12 2023",
-      "available_seats": 51,
-      "cost": 262
-    },
-    {
-      "from": "Beijing",
-      "to": "Paris",
-      "date": "Tue Nov 28 2023",
-      "available_seats": 117,
-      "cost": 1182
-    },
-    {
-      "from": "Singapore",
-      "to": "New York City",
-      "date": "Fri Nov 17 2023",
-      "available_seats": 67,
-      "cost": 907
-    },
-    {
-      "from": "Dubai",
-      "to": "Singapore",
-      "date": "Tue Aug 15 2023",
-      "available_seats": 34,
-      "cost": 403
-    },
-    {
-      "from": "Tokyo",
-      "to": "Singapore",
-      "date": "Sun Nov 05 2023",
-      "available_seats": 232,
-      "cost": 871
-    },
-    {
-      "from": "Tokyo",
-      "to": "New York City",
-      "date": "Sun Aug 20 2023",
-      "available_seats": 185,
-      "cost": 913
-    },
-    {
-      "from": "Paris",
-      "to": "New York City",
-      "date": "Thu Dec 14 2023",
-      "available_seats": 61,
-      "cost": 1031
-    },
-    {
-      "from": "Singapore",
-      "to": "New York City",
-      "date": "Sat Dec 09 2023",
-      "available_seats": 46,
-      "cost": 737
-    },
-    {
-      "from": "Dublin",
-      "to": "New York City",
-      "date": "Fri Sep 01 2023",
-      "available_seats": 14,
-      "cost": 326
-    },
-    {
-      "from": "Tokyo",
-      "to": "Paris",
-      "date": "Thu Aug 24 2023",
-      "available_seats": 142,
-      "cost": 971
-    },
-    {
-      "from": "Paris",
-      "to": "Tokyo",
-      "date": "Thu Aug 31 2023",
-      "available_seats": 89,
-      "cost": 685
-    },
-    {
-      "from": "Paris",
-      "to": "New York City",
-      "date": "Sun Nov 19 2023",
-      "available_seats": 220,
-      "cost": 1125
-    },
-    {
-      "from": "Tokyo",
-      "to": "London",
-      "date": "Wed Jul 12 2023",
-      "available_seats": 119,
-      "cost": 1088
-    },
-    {
-      "from": "Tokyo",
-      "to": "New York City",
-      "date": "Sun Oct 08 2023",
-      "available_seats": 63,
-      "cost": 245
-    },
-    {
-      "from": "Tokyo",
-      "to": "Beijing",
-      "date": "Fri Jul 21 2023",
-      "available_seats": 104,
-      "cost": 618
-    },
-    {
-      "from": "Seoul",
       "to": "Dublin",
-      "date": "Fri Dec 01 2023",
-      "available_seats": 134,
-      "cost": 259
-    },
-    {
-      "from": "Warsaw",
-      "to": "New York City",
-      "date": "Mon Sep 25 2023",
-      "available_seats": 104,
-      "cost": 685
+      "date": "Wed Nov 15 2023",
+      "total_seats": 99,
+      "available_seats": 75,
+      "cost": 394
     },
     {
       "from": "Beijing",
-      "to": "Dubai",
-      "date": "Sat Aug 19 2023",
-      "available_seats": 31,
-      "cost": 356
-    },
-    {
-      "from": "New York City",
-      "to": "Paris",
-      "date": "Wed Nov 01 2023",
-      "available_seats": 145,
-      "cost": 514
-    },
-    {
-      "from": "Tokyo",
-      "to": "Paris",
-      "date": "Sat Dec 30 2023",
-      "available_seats": 99,
-      "cost": 475
-    },
-    {
-      "from": "Singapore",
-      "to": "London",
-      "date": "Thu Dec 07 2023",
-      "available_seats": 77,
-      "cost": 416
-    },
-    {
-      "from": "Beijing",
-      "to": "Tokyo",
-      "date": "Sun Aug 27 2023",
-      "available_seats": 204,
-      "cost": 319
-    },
-    {
-      "from": "Seoul",
-      "to": "Paris",
-      "date": "Tue Nov 14 2023",
-      "available_seats": 190,
-      "cost": 1112
-    },
-    {
-      "from": "Tokyo",
-      "to": "Dubai",
-      "date": "Tue Nov 14 2023",
-      "available_seats": 8,
+      "to": "Singapore",
+      "date": "Mon Jul 10 2023",
+      "total_seats": 131,
+      "available_seats": 54,
       "cost": 707
     },
     {
-      "from": "Dubai",
+      "from": "Tokyo",
+      "to": "Warsaw",
+      "date": "Sun Aug 13 2023",
+      "total_seats": 104,
+      "available_seats": 85,
+      "cost": 360
+    },
+    {
+      "from": "New York City",
+      "to": "Dubai",
+      "date": "Sun Sep 03 2023",
+      "total_seats": 190,
+      "available_seats": 177,
+      "cost": 838
+    },
+    {
+      "from": "Dublin",
       "to": "Paris",
-      "date": "Sun Aug 20 2023",
-      "available_seats": 207,
-      "cost": 946
+      "date": "Mon Nov 27 2023",
+      "total_seats": 198,
+      "available_seats": 171,
+      "cost": 281
     },
     {
       "from": "London",
-      "to": "New York City",
-      "date": "Thu Nov 23 2023",
-      "available_seats": 229,
-      "cost": 461
+      "to": "Paris",
+      "date": "Mon Jun 26 2023",
+      "total_seats": 26,
+      "available_seats": 19,
+      "cost": 928
     },
     {
-      "from": "Dublin",
-      "to": "Seoul",
-      "date": "Fri Sep 22 2023",
-      "available_seats": 74,
-      "cost": 811
-    },
-    {
-      "from": "Dubai",
-      "to": "New York City",
-      "date": "Fri Oct 20 2023",
-      "available_seats": 190,
-      "cost": 284
+      "from": "Tokyo",
+      "to": "Dubai",
+      "date": "Fri Jul 21 2023",
+      "total_seats": 163,
+      "available_seats": 9,
+      "cost": 446
     },
     {
       "from": "Beijing",
-      "to": "New York City",
-      "date": "Fri Dec 01 2023",
-      "available_seats": 102,
-      "cost": 380
+      "to": "Dubai",
+      "date": "Sat Aug 12 2023",
+      "total_seats": 185,
+      "available_seats": 27,
+      "cost": 1109
     },
     {
-      "from": "Warsaw",
-      "to": "New York City",
-      "date": "Mon Nov 20 2023",
-      "available_seats": 200,
-      "cost": 601
+      "from": "Dubai",
+      "to": "Beijing",
+      "date": "Wed Nov 15 2023",
+      "total_seats": 127,
+      "available_seats": 37,
+      "cost": 553
+    },
+    {
+      "from": "London",
+      "to": "Paris",
+      "date": "Thu Nov 02 2023",
+      "total_seats": 229,
+      "available_seats": 80,
+      "cost": 920
     },
     {
       "from": "New York City",
-      "to": "Tokyo",
-      "date": "Wed Aug 30 2023",
-      "available_seats": 164,
-      "cost": 909
+      "to": "Dubai",
+      "date": "Mon Dec 25 2023",
+      "total_seats": 176,
+      "available_seats": 122,
+      "cost": 620
+    },
+    {
+      "from": "Dubai",
+      "to": "Dublin",
+      "date": "Tue Sep 26 2023",
+      "total_seats": 10,
+      "available_seats": 10,
+      "cost": 429
+    },
+    {
+      "from": "London",
+      "to": "Dublin",
+      "date": "Tue Nov 07 2023",
+      "total_seats": 82,
+      "available_seats": 33,
+      "cost": 259
+    },
+    {
+      "from": "London",
+      "to": "Seoul",
+      "date": "Sun Aug 13 2023",
+      "total_seats": 31,
+      "available_seats": 6,
+      "cost": 1108
+    },
+    {
+      "from": "Seoul",
+      "to": "Paris",
+      "date": "Tue Oct 10 2023",
+      "total_seats": 88,
+      "available_seats": 3,
+      "cost": 964
     },
     {
       "from": "Paris",
-      "to": "Tokyo",
+      "to": "London",
       "date": "Thu Nov 16 2023",
-      "available_seats": 52,
-      "cost": 1037
+      "total_seats": 151,
+      "available_seats": 106,
+      "cost": 391
+    },
+    {
+      "from": "Beijing",
+      "to": "Seoul",
+      "date": "Thu Jun 15 2023",
+      "total_seats": 25,
+      "available_seats": 24,
+      "cost": 748
+    },
+    {
+      "from": "Seoul",
+      "to": "Tokyo",
+      "date": "Sat Oct 07 2023",
+      "total_seats": 46,
+      "available_seats": 19,
+      "cost": 732
+    },
+    {
+      "from": "New York City",
+      "to": "Dublin",
+      "date": "Mon Oct 30 2023",
+      "total_seats": 150,
+      "available_seats": 74,
+      "cost": 840
+    },
+    {
+      "from": "Warsaw",
+      "to": "Singapore",
+      "date": "Tue Dec 05 2023",
+      "total_seats": 248,
+      "available_seats": 237,
+      "cost": 854
     },
     {
       "from": "Dublin",
       "to": "Seoul",
-      "date": "Tue Nov 21 2023",
-      "available_seats": 153,
-      "cost": 876
+      "date": "Wed Sep 20 2023",
+      "total_seats": 174,
+      "available_seats": 85,
+      "cost": 1033
     },
     {
-      "from": "New York City",
+      "from": "Tokyo",
+      "to": "Beijing",
+      "date": "Tue Dec 26 2023",
+      "total_seats": 44,
+      "available_seats": 37,
+      "cost": 643
+    },
+    {
+      "from": "Dublin",
+      "to": "Beijing",
+      "date": "Sun Oct 08 2023",
+      "total_seats": 209,
+      "available_seats": 19,
+      "cost": 288
+    },
+    {
+      "from": "Paris",
+      "to": "New York City",
+      "date": "Mon Aug 07 2023",
+      "total_seats": 4,
+      "available_seats": 2,
+      "cost": 974
+    },
+    {
+      "from": "Tokyo",
+      "to": "London",
+      "date": "Thu Jul 13 2023",
+      "total_seats": 23,
+      "available_seats": 22,
+      "cost": 1034
+    },
+    {
+      "from": "Seoul",
+      "to": "London",
+      "date": "Sun Dec 10 2023",
+      "total_seats": 137,
+      "available_seats": 90,
+      "cost": 982
+    },
+    {
+      "from": "Dublin",
       "to": "Paris",
-      "date": "Sun Jul 23 2023",
-      "available_seats": 242,
-      "cost": 209
+      "date": "Sat Sep 09 2023",
+      "total_seats": 57,
+      "available_seats": 13,
+      "cost": 1123
     },
     {
       "from": "Tokyo",
       "to": "Dublin",
-      "date": "Sat Nov 11 2023",
-      "available_seats": 2,
-      "cost": 610
+      "date": "Wed Sep 06 2023",
+      "total_seats": 19,
+      "available_seats": 10,
+      "cost": 1037
+    },
+    {
+      "from": "London",
+      "to": "Dubai",
+      "date": "Mon Jul 03 2023",
+      "total_seats": 217,
+      "available_seats": 57,
+      "cost": 944
+    },
+    {
+      "from": "Seoul",
+      "to": "Paris",
+      "date": "Mon Dec 11 2023",
+      "total_seats": 124,
+      "available_seats": 71,
+      "cost": 540
+    },
+    {
+      "from": "Beijing",
+      "to": "Paris",
+      "date": "Mon Dec 18 2023",
+      "total_seats": 87,
+      "available_seats": 26,
+      "cost": 626
+    },
+    {
+      "from": "Paris",
+      "to": "Dubai",
+      "date": "Mon Aug 21 2023",
+      "total_seats": 93,
+      "available_seats": 39,
+      "cost": 841
     },
     {
       "from": "New York City",
-      "to": "Singapore",
-      "date": "Tue Aug 08 2023",
-      "available_seats": 21,
-      "cost": 254
+      "to": "Paris",
+      "date": "Tue Oct 24 2023",
+      "total_seats": 26,
+      "available_seats": 24,
+      "cost": 528
+    },
+    {
+      "from": "London",
+      "to": "New York City",
+      "date": "Fri Nov 03 2023",
+      "total_seats": 53,
+      "available_seats": 53,
+      "cost": 552
+    },
+    {
+      "from": "New York City",
+      "to": "Beijing",
+      "date": "Sat Sep 16 2023",
+      "total_seats": 229,
+      "available_seats": 27,
+      "cost": 600
+    },
+    {
+      "from": "Beijing",
+      "to": "Seoul",
+      "date": "Wed Aug 23 2023",
+      "total_seats": 243,
+      "available_seats": 12,
+      "cost": 616
+    },
+    {
+      "from": "Dublin",
+      "to": "New York City",
+      "date": "Fri Jul 28 2023",
+      "total_seats": 239,
+      "available_seats": 216,
+      "cost": 237
+    },
+    {
+      "from": "New York City",
+      "to": "Dubai",
+      "date": "Thu Oct 26 2023",
+      "total_seats": 28,
+      "available_seats": 26,
+      "cost": 1158
+    },
+    {
+      "from": "Tokyo",
+      "to": "Dublin",
+      "date": "Thu Sep 21 2023",
+      "total_seats": 89,
+      "available_seats": 89,
+      "cost": 894
+    },
+    {
+      "from": "Seoul",
+      "to": "Tokyo",
+      "date": "Sun Nov 19 2023",
+      "total_seats": 85,
+      "available_seats": 24,
+      "cost": 596
+    },
+    {
+      "from": "Paris",
+      "to": "Beijing",
+      "date": "Mon Jul 24 2023",
+      "total_seats": 130,
+      "available_seats": 66,
+      "cost": 486
+    },
+    {
+      "from": "Dubai",
+      "to": "Tokyo",
+      "date": "Mon Aug 14 2023",
+      "total_seats": 171,
+      "available_seats": 8,
+      "cost": 633
+    },
+    {
+      "from": "Paris",
+      "to": "Dublin",
+      "date": "Tue Sep 26 2023",
+      "total_seats": 147,
+      "available_seats": 7,
+      "cost": 730
+    },
+    {
+      "from": "Seoul",
+      "to": "Dubai",
+      "date": "Tue Aug 22 2023",
+      "total_seats": 126,
+      "available_seats": 116,
+      "cost": 1111
+    },
+    {
+      "from": "London",
+      "to": "Seoul",
+      "date": "Thu Jun 29 2023",
+      "total_seats": 133,
+      "available_seats": 130,
+      "cost": 212
+    },
+    {
+      "from": "London",
+      "to": "Seoul",
+      "date": "Fri Dec 22 2023",
+      "total_seats": 29,
+      "available_seats": 18,
+      "cost": 671
+    },
+    {
+      "from": "Paris",
+      "to": "Tokyo",
+      "date": "Sat Jul 22 2023",
+      "total_seats": 56,
+      "available_seats": 52,
+      "cost": 504
+    },
+    {
+      "from": "Dublin",
+      "to": "Paris",
+      "date": "Fri Aug 11 2023",
+      "total_seats": 152,
+      "available_seats": 78,
+      "cost": 456
+    },
+    {
+      "from": "London",
+      "to": "Paris",
+      "date": "Sat Oct 14 2023",
+      "total_seats": 44,
+      "available_seats": 37,
+      "cost": 898
+    },
+    {
+      "from": "New York City",
+      "to": "Warsaw",
+      "date": "Sun Sep 10 2023",
+      "total_seats": 184,
+      "available_seats": 97,
+      "cost": 623
+    },
+    {
+      "from": "Paris",
+      "to": "Seoul",
+      "date": "Thu Jul 06 2023",
+      "total_seats": 77,
+      "available_seats": 48,
+      "cost": 948
+    },
+    {
+      "from": "Dublin",
+      "to": "Paris",
+      "date": "Mon Jul 24 2023",
+      "total_seats": 249,
+      "available_seats": 109,
+      "cost": 1042
+    },
+    {
+      "from": "New York City",
+      "to": "Beijing",
+      "date": "Thu Sep 07 2023",
+      "total_seats": 109,
+      "available_seats": 101,
+      "cost": 332
+    },
+    {
+      "from": "Seoul",
+      "to": "Tokyo",
+      "date": "Sun Aug 27 2023",
+      "total_seats": 159,
+      "available_seats": 68,
+      "cost": 372
     },
     {
       "from": "Dubai",
       "to": "London",
-      "date": "Wed Nov 15 2023",
-      "available_seats": 28,
+      "date": "Sat Aug 12 2023",
+      "total_seats": 84,
+      "available_seats": 20,
+      "cost": 406
+    },
+    {
+      "from": "Tokyo",
+      "to": "Dublin",
+      "date": "Mon Aug 28 2023",
+      "total_seats": 48,
+      "available_seats": 32,
+      "cost": 1174
+    },
+    {
+      "from": "Warsaw",
+      "to": "New York City",
+      "date": "Fri Aug 11 2023",
+      "total_seats": 52,
+      "available_seats": 33,
+      "cost": 339
+    },
+    {
+      "from": "Singapore",
+      "to": "Tokyo",
+      "date": "Thu Dec 21 2023",
+      "total_seats": 208,
+      "available_seats": 19,
+      "cost": 353
+    },
+    {
+      "from": "Beijing",
+      "to": "New York City",
+      "date": "Fri Jul 28 2023",
+      "total_seats": 19,
+      "available_seats": 13,
+      "cost": 963
+    },
+    {
+      "from": "Dublin",
+      "to": "Paris",
+      "date": "Fri Sep 29 2023",
+      "total_seats": 57,
+      "available_seats": 29,
+      "cost": 1103
+    },
+    {
+      "from": "Seoul",
+      "to": "Paris",
+      "date": "Wed Aug 30 2023",
+      "total_seats": 93,
+      "available_seats": 82,
+      "cost": 953
+    },
+    {
+      "from": "Singapore",
+      "to": "Paris",
+      "date": "Sat Sep 09 2023",
+      "total_seats": 149,
+      "available_seats": 52,
+      "cost": 718
+    },
+    {
+      "from": "Dubai",
+      "to": "Beijing",
+      "date": "Sun Jun 25 2023",
+      "total_seats": 90,
+      "available_seats": 69,
+      "cost": 962
+    },
+    {
+      "from": "Seoul",
+      "to": "Beijing",
+      "date": "Sat Jun 03 2023",
+      "total_seats": 206,
+      "available_seats": 63,
+      "cost": 588
+    },
+    {
+      "from": "Paris",
+      "to": "Singapore",
+      "date": "Sat Jul 29 2023",
+      "total_seats": 102,
+      "available_seats": 54,
+      "cost": 318
+    },
+    {
+      "from": "Tokyo",
+      "to": "London",
+      "date": "Wed Sep 20 2023",
+      "total_seats": 168,
+      "available_seats": 115,
+      "cost": 981
+    },
+    {
+      "from": "Tokyo",
+      "to": "Beijing",
+      "date": "Mon Jul 03 2023",
+      "total_seats": 165,
+      "available_seats": 94,
       "cost": 844
     },
     {
       "from": "Singapore",
-      "to": "Tokyo",
-      "date": "Fri Jul 14 2023",
-      "available_seats": 153,
-      "cost": 461
-    },
-    {
-      "from": "New York City",
-      "to": "London",
-      "date": "Mon Oct 09 2023",
-      "available_seats": 104,
-      "cost": 438
-    },
-    {
-      "from": "Tokyo",
-      "to": "Paris",
-      "date": "Fri Sep 22 2023",
-      "available_seats": 140,
-      "cost": 743
-    },
-    {
-      "from": "Dublin",
-      "to": "Dubai",
-      "date": "Mon Dec 25 2023",
-      "available_seats": 154,
-      "cost": 222
-    },
-    {
-      "from": "New York City",
-      "to": "Beijing",
-      "date": "Thu Oct 05 2023",
-      "available_seats": 85,
-      "cost": 726
-    },
-    {
-      "from": "Paris",
       "to": "Seoul",
-      "date": "Thu Sep 21 2023",
-      "available_seats": 64,
-      "cost": 1180
+      "date": "Thu Aug 10 2023",
+      "total_seats": 79,
+      "available_seats": 25,
+      "cost": 506
     },
     {
-      "from": "Paris",
-      "to": "Dubai",
-      "date": "Thu Aug 03 2023",
-      "available_seats": 83,
-      "cost": 201
-    },
-    {
-      "from": "New York City",
-      "to": "Seoul",
-      "date": "Mon Nov 06 2023",
-      "available_seats": 201,
-      "cost": 330
-    },
-    {
-      "from": "Dublin",
-      "to": "Dubai",
-      "date": "Fri Sep 22 2023",
-      "available_seats": 8,
-      "cost": 312
-    },
-    {
-      "from": "Seoul",
-      "to": "London",
+      "from": "Beijing",
+      "to": "New York City",
       "date": "Tue Jul 11 2023",
-      "available_seats": 200,
-      "cost": 555
+      "total_seats": 180,
+      "available_seats": 76,
+      "cost": 280
+    },
+    {
+      "from": "New York City",
+      "to": "Tokyo",
+      "date": "Fri Jul 07 2023",
+      "total_seats": 193,
+      "available_seats": 51,
+      "cost": 995
+    },
+    {
+      "from": "Singapore",
+      "to": "Tokyo",
+      "date": "Tue Jul 25 2023",
+      "total_seats": 60,
+      "available_seats": 3,
+      "cost": 203
     },
     {
       "from": "Dubai",
+      "to": "Seoul",
+      "date": "Mon Jun 05 2023",
+      "total_seats": 205,
+      "available_seats": 54,
+      "cost": 1185
+    },
+    {
+      "from": "New York City",
+      "to": "Paris",
+      "date": "Fri Aug 11 2023",
+      "total_seats": 70,
+      "available_seats": 56,
+      "cost": 810
+    },
+    {
+      "from": "Beijing",
       "to": "London",
-      "date": "Wed Nov 22 2023",
-      "available_seats": 101,
+      "date": "Thu Jun 15 2023",
+      "total_seats": 55,
+      "available_seats": 15,
+      "cost": 261
+    },
+    {
+      "from": "London",
+      "to": "Paris",
+      "date": "Wed Oct 25 2023",
+      "total_seats": 242,
+      "available_seats": 132,
+      "cost": 714
+    },
+    {
+      "from": "Dubai",
+      "to": "New York City",
+      "date": "Fri Sep 15 2023",
+      "total_seats": 66,
+      "available_seats": 44,
+      "cost": 977
+    },
+    {
+      "from": "London",
+      "to": "Dublin",
+      "date": "Sun Oct 01 2023",
+      "total_seats": 207,
+      "available_seats": 93,
       "cost": 953
+    },
+    {
+      "from": "Singapore",
+      "to": "Seoul",
+      "date": "Fri Sep 22 2023",
+      "total_seats": 58,
+      "available_seats": 37,
+      "cost": 538
+    },
+    {
+      "from": "Tokyo",
+      "to": "London",
+      "date": "Sat Nov 04 2023",
+      "total_seats": 194,
+      "available_seats": 66,
+      "cost": 280
+    },
+    {
+      "from": "Dublin",
+      "to": "Seoul",
+      "date": "Sun Jul 30 2023",
+      "total_seats": 154,
+      "available_seats": 27,
+      "cost": 259
+    },
+    {
+      "from": "New York City",
+      "to": "Dubai",
+      "date": "Fri Nov 17 2023",
+      "total_seats": 213,
+      "available_seats": 188,
+      "cost": 468
+    },
+    {
+      "from": "London",
+      "to": "Paris",
+      "date": "Sat Jul 15 2023",
+      "total_seats": 118,
+      "available_seats": 81,
+      "cost": 773
+    },
+    {
+      "from": "Seoul",
+      "to": "Dubai",
+      "date": "Fri Sep 08 2023",
+      "total_seats": 202,
+      "available_seats": 23,
+      "cost": 809
     },
     {
       "from": "Paris",
       "to": "New York City",
       "date": "Fri Oct 06 2023",
-      "available_seats": 145,
-      "cost": 878
+      "total_seats": 55,
+      "available_seats": 47,
+      "cost": 247
     },
     {
-      "from": "Singapore",
+      "from": "Dublin",
       "to": "Paris",
-      "date": "Tue Dec 05 2023",
-      "available_seats": 35,
-      "cost": 640
+      "date": "Sat Nov 25 2023",
+      "total_seats": 168,
+      "available_seats": 74,
+      "cost": 464
     },
     {
       "from": "London",
-      "to": "Seoul",
-      "date": "Fri Aug 11 2023",
-      "available_seats": 75,
-      "cost": 236
-    },
-    {
-      "from": "Beijing",
       "to": "Dublin",
-      "date": "Fri Oct 13 2023",
-      "available_seats": 47,
-      "cost": 1165
-    },
-    {
-      "from": "Beijing",
-      "to": "Paris",
-      "date": "Wed Nov 08 2023",
-      "available_seats": 94,
-      "cost": 767
-    },
-    {
-      "from": "Warsaw",
-      "to": "Tokyo",
-      "date": "Wed Nov 22 2023",
-      "available_seats": 61,
-      "cost": 582
-    },
-    {
-      "from": "Singapore",
-      "to": "Tokyo",
-      "date": "Sat Sep 23 2023",
-      "available_seats": 162,
-      "cost": 290
+      "date": "Sun Aug 20 2023",
+      "total_seats": 223,
+      "available_seats": 210,
+      "cost": 785
     },
     {
       "from": "Seoul",
+      "to": "London",
+      "date": "Sat Sep 30 2023",
+      "total_seats": 199,
+      "available_seats": 163,
+      "cost": 307
+    },
+    {
+      "from": "Dublin",
+      "to": "Tokyo",
+      "date": "Tue Sep 26 2023",
+      "total_seats": 182,
+      "available_seats": 47,
+      "cost": 579
+    },
+    {
+      "from": "Tokyo",
+      "to": "Dubai",
+      "date": "Tue Dec 26 2023",
+      "total_seats": 154,
+      "available_seats": 93,
+      "cost": 279
+    },
+    {
+      "from": "Dubai",
+      "to": "Seoul",
+      "date": "Thu Dec 14 2023",
+      "total_seats": 1,
+      "available_seats": 1,
+      "cost": 1188
+    },
+    {
+      "from": "Dublin",
+      "to": "Dubai",
+      "date": "Thu Jul 20 2023",
+      "total_seats": 84,
+      "available_seats": 82,
+      "cost": 1049
+    },
+    {
+      "from": "Tokyo",
       "to": "Paris",
-      "date": "Sat Oct 14 2023",
-      "available_seats": 132,
-      "cost": 1176
+      "date": "Mon Jun 26 2023",
+      "total_seats": 71,
+      "available_seats": 70,
+      "cost": 636
+    },
+    {
+      "from": "Dublin",
+      "to": "Singapore",
+      "date": "Thu Oct 26 2023",
+      "total_seats": 71,
+      "available_seats": 19,
+      "cost": 852
+    },
+    {
+      "from": "London",
+      "to": "Beijing",
+      "date": "Mon Oct 30 2023",
+      "total_seats": 238,
+      "available_seats": 128,
+      "cost": 212
+    },
+    {
+      "from": "Tokyo",
+      "to": "Dubai",
+      "date": "Sat Aug 19 2023",
+      "total_seats": 96,
+      "available_seats": 56,
+      "cost": 477
+    },
+    {
+      "from": "Seoul",
+      "to": "Beijing",
+      "date": "Sun Oct 29 2023",
+      "total_seats": 133,
+      "available_seats": 51,
+      "cost": 428
+    },
+    {
+      "from": "Seoul",
+      "to": "Warsaw",
+      "date": "Sat Jul 22 2023",
+      "total_seats": 6,
+      "available_seats": 0,
+      "cost": 215
+    },
+    {
+      "from": "Paris",
+      "to": "London",
+      "date": "Sat Nov 25 2023",
+      "total_seats": 130,
+      "available_seats": 10,
+      "cost": 1044
+    },
+    {
+      "from": "Seoul",
+      "to": "New York City",
+      "date": "Fri Sep 15 2023",
+      "total_seats": 58,
+      "available_seats": 6,
+      "cost": 911
+    },
+    {
+      "from": "Tokyo",
+      "to": "New York City",
+      "date": "Fri Aug 18 2023",
+      "total_seats": 202,
+      "available_seats": 133,
+      "cost": 656
     },
     {
       "from": "New York City",
-      "to": "Dublin",
-      "date": "Tue Aug 22 2023",
-      "available_seats": 180,
-      "cost": 750
+      "to": "Seoul",
+      "date": "Wed Jul 05 2023",
+      "total_seats": 21,
+      "available_seats": 20,
+      "cost": 511
     },
     {
-      "from": "Beijing",
+      "from": "Paris",
+      "to": "Beijing",
+      "date": "Wed Jul 12 2023",
+      "total_seats": 37,
+      "available_seats": 29,
+      "cost": 866
+    },
+    {
+      "from": "Dubai",
       "to": "Paris",
-      "date": "Sat Jul 08 2023",
-      "available_seats": 138,
-      "cost": 1089
-    },
-    {
-      "from": "Warsaw",
-      "to": "Singapore",
-      "date": "Sat Aug 05 2023",
-      "available_seats": 94,
-      "cost": 403
+      "date": "Mon Nov 27 2023",
+      "total_seats": 223,
+      "available_seats": 90,
+      "cost": 539
     },
     {
       "from": "London",
       "to": "Paris",
-      "date": "Sat Aug 26 2023",
-      "available_seats": 167,
-      "cost": 566
+      "date": "Tue Jul 25 2023",
+      "total_seats": 164,
+      "available_seats": 70,
+      "cost": 466
     },
     {
-      "from": "Dublin",
+      "from": "London",
       "to": "Beijing",
-      "date": "Wed Oct 04 2023",
-      "available_seats": 44,
-      "cost": 1179
+      "date": "Thu Jul 20 2023",
+      "total_seats": 99,
+      "available_seats": 11,
+      "cost": 1183
+    },
+    {
+      "from": "Dubai",
+      "to": "Seoul",
+      "date": "Sat Aug 12 2023",
+      "total_seats": 231,
+      "available_seats": 52,
+      "cost": 347
+    },
+    {
+      "from": "Warsaw",
+      "to": "London",
+      "date": "Sat Aug 19 2023",
+      "total_seats": 248,
+      "available_seats": 13,
+      "cost": 648
     },
     {
       "from": "Tokyo",
+      "to": "London",
+      "date": "Sun Oct 15 2023",
+      "total_seats": 78,
+      "available_seats": 32,
+      "cost": 637
+    },
+    {
+      "from": "Paris",
       "to": "Warsaw",
-      "date": "Tue Sep 05 2023",
-      "available_seats": 183,
+      "date": "Tue Nov 28 2023",
+      "total_seats": 136,
+      "available_seats": 126,
+      "cost": 792
+    },
+    {
+      "from": "Beijing",
+      "to": "Paris",
+      "date": "Fri Sep 15 2023",
+      "total_seats": 178,
+      "available_seats": 20,
+      "cost": 700
+    },
+    {
+      "from": "London",
+      "to": "New York City",
+      "date": "Sun Jul 16 2023",
+      "total_seats": 9,
+      "available_seats": 8,
+      "cost": 748
+    },
+    {
+      "from": "Paris",
+      "to": "Dublin",
+      "date": "Sun Nov 26 2023",
+      "total_seats": 239,
+      "available_seats": 133,
+      "cost": 1058
+    },
+    {
+      "from": "Dublin",
+      "to": "London",
+      "date": "Fri Aug 04 2023",
+      "total_seats": 111,
+      "available_seats": 54,
+      "cost": 1131
+    },
+    {
+      "from": "Beijing",
+      "to": "Tokyo",
+      "date": "Fri Sep 08 2023",
+      "total_seats": 78,
+      "available_seats": 21,
+      "cost": 661
+    },
+    {
+      "from": "Dubai",
+      "to": "Seoul",
+      "date": "Sun Jul 02 2023",
+      "total_seats": 185,
+      "available_seats": 22,
+      "cost": 1189
+    },
+    {
+      "from": "Singapore",
+      "to": "New York City",
+      "date": "Wed Jul 12 2023",
+      "total_seats": 203,
+      "available_seats": 165,
+      "cost": 476
+    },
+    {
+      "from": "London",
+      "to": "New York City",
+      "date": "Mon Aug 14 2023",
+      "total_seats": 75,
+      "available_seats": 49,
+      "cost": 814
+    },
+    {
+      "from": "Dubai",
+      "to": "Dublin",
+      "date": "Tue Aug 01 2023",
+      "total_seats": 216,
+      "available_seats": 195,
+      "cost": 862
+    },
+    {
+      "from": "Seoul",
+      "to": "Beijing",
+      "date": "Tue Oct 31 2023",
+      "total_seats": 242,
+      "available_seats": 121,
+      "cost": 336
+    },
+    {
+      "from": "Singapore",
+      "to": "Beijing",
+      "date": "Mon Jul 17 2023",
+      "total_seats": 243,
+      "available_seats": 125,
+      "cost": 910
+    },
+    {
+      "from": "New York City",
+      "to": "Seoul",
+      "date": "Sat Aug 05 2023",
+      "total_seats": 82,
+      "available_seats": 22,
+      "cost": 551
+    },
+    {
+      "from": "Seoul",
+      "to": "Dublin",
+      "date": "Sun Jun 04 2023",
+      "total_seats": 214,
+      "available_seats": 45,
+      "cost": 250
+    },
+    {
+      "from": "Tokyo",
+      "to": "Paris",
+      "date": "Fri Sep 08 2023",
+      "total_seats": 209,
+      "available_seats": 61,
+      "cost": 580
+    },
+    {
+      "from": "Seoul",
+      "to": "Singapore",
+      "date": "Mon Oct 02 2023",
+      "total_seats": 98,
+      "available_seats": 16,
+      "cost": 577
+    },
+    {
+      "from": "Warsaw",
+      "to": "Seoul",
+      "date": "Tue Nov 28 2023",
+      "total_seats": 148,
+      "available_seats": 32,
+      "cost": 268
+    },
+    {
+      "from": "Paris",
+      "to": "Singapore",
+      "date": "Thu Dec 21 2023",
+      "total_seats": 18,
+      "available_seats": 7,
+      "cost": 237
+    },
+    {
+      "from": "Seoul",
+      "to": "Dubai",
+      "date": "Tue Dec 26 2023",
+      "total_seats": 207,
+      "available_seats": 199,
+      "cost": 1168
+    },
+    {
+      "from": "New York City",
+      "to": "Dubai",
+      "date": "Thu Nov 02 2023",
+      "total_seats": 242,
+      "available_seats": 146,
+      "cost": 681
+    },
+    {
+      "from": "Paris",
+      "to": "Dublin",
+      "date": "Wed Nov 29 2023",
+      "total_seats": 47,
+      "available_seats": 3,
+      "cost": 1072
+    },
+    {
+      "from": "Tokyo",
+      "to": "Beijing",
+      "date": "Fri Jul 21 2023",
+      "total_seats": 25,
+      "available_seats": 7,
+      "cost": 1165
+    },
+    {
+      "from": "Tokyo",
+      "to": "London",
+      "date": "Wed Nov 15 2023",
+      "total_seats": 213,
+      "available_seats": 105,
+      "cost": 314
+    },
+    {
+      "from": "London",
+      "to": "Tokyo",
+      "date": "Thu Nov 23 2023",
+      "total_seats": 160,
+      "available_seats": 101,
+      "cost": 318
+    },
+    {
+      "from": "Beijing",
+      "to": "Dubai",
+      "date": "Mon Aug 28 2023",
+      "total_seats": 32,
+      "available_seats": 23,
+      "cost": 1048
+    },
+    {
+      "from": "Paris",
+      "to": "Beijing",
+      "date": "Mon Sep 04 2023",
+      "total_seats": 79,
+      "available_seats": 51,
+      "cost": 1152
+    },
+    {
+      "from": "Paris",
+      "to": "Dublin",
+      "date": "Sat Nov 11 2023",
+      "total_seats": 126,
+      "available_seats": 91,
+      "cost": 755
+    },
+    {
+      "from": "New York City",
+      "to": "Warsaw",
+      "date": "Mon Aug 28 2023",
+      "total_seats": 96,
+      "available_seats": 21,
+      "cost": 1052
+    },
+    {
+      "from": "Paris",
+      "to": "London",
+      "date": "Sun Nov 26 2023",
+      "total_seats": 183,
+      "available_seats": 108,
+      "cost": 1023
+    },
+    {
+      "from": "Seoul",
+      "to": "Beijing",
+      "date": "Mon Oct 30 2023",
+      "total_seats": 226,
+      "available_seats": 113,
+      "cost": 865
+    },
+    {
+      "from": "Singapore",
+      "to": "Paris",
+      "date": "Tue Jun 27 2023",
+      "total_seats": 103,
+      "available_seats": 101,
+      "cost": 550
+    },
+    {
+      "from": "Tokyo",
+      "to": "New York City",
+      "date": "Thu Nov 09 2023",
+      "total_seats": 79,
+      "available_seats": 35,
+      "cost": 759
+    },
+    {
+      "from": "Beijing",
+      "to": "Dublin",
+      "date": "Wed Oct 04 2023",
+      "total_seats": 69,
+      "available_seats": 59,
+      "cost": 653
+    },
+    {
+      "from": "Singapore",
+      "to": "Seoul",
+      "date": "Wed Sep 20 2023",
+      "total_seats": 208,
+      "available_seats": 21,
+      "cost": 415
+    },
+    {
+      "from": "New York City",
+      "to": "London",
+      "date": "Tue Dec 05 2023",
+      "total_seats": 36,
+      "available_seats": 8,
+      "cost": 1163
+    },
+    {
+      "from": "New York City",
+      "to": "Dubai",
+      "date": "Sun Jun 11 2023",
+      "total_seats": 121,
+      "available_seats": 86,
+      "cost": 422
+    },
+    {
+      "from": "Tokyo",
+      "to": "New York City",
+      "date": "Wed Jul 19 2023",
+      "total_seats": 34,
+      "available_seats": 1,
+      "cost": 754
+    },
+    {
+      "from": "London",
+      "to": "New York City",
+      "date": "Sun Jun 18 2023",
+      "total_seats": 241,
+      "available_seats": 144,
+      "cost": 853
+    },
+    {
+      "from": "Paris",
+      "to": "Beijing",
+      "date": "Thu Oct 26 2023",
+      "total_seats": 17,
+      "available_seats": 10,
+      "cost": 401
+    },
+    {
+      "from": "Dubai",
+      "to": "Beijing",
+      "date": "Mon Jul 10 2023",
+      "total_seats": 205,
+      "available_seats": 19,
+      "cost": 994
+    },
+    {
+      "from": "London",
+      "to": "Paris",
+      "date": "Fri Oct 20 2023",
+      "total_seats": 196,
+      "available_seats": 186,
+      "cost": 874
+    },
+    {
+      "from": "Singapore",
+      "to": "Dublin",
+      "date": "Sat Jun 24 2023",
+      "total_seats": 15,
+      "available_seats": 6,
+      "cost": 465
+    },
+    {
+      "from": "Dublin",
+      "to": "Seoul",
+      "date": "Sun Dec 24 2023",
+      "total_seats": 41,
+      "available_seats": 1,
+      "cost": 518
+    },
+    {
+      "from": "Tokyo",
+      "to": "Seoul",
+      "date": "Sat Aug 26 2023",
+      "total_seats": 94,
+      "available_seats": 69,
       "cost": 666
     },
     {
-      "from": "Paris",
+      "from": "Beijing",
+      "to": "Tokyo",
+      "date": "Fri Oct 13 2023",
+      "total_seats": 43,
+      "available_seats": 26,
+      "cost": 288
+    },
+    {
+      "from": "Beijing",
       "to": "Seoul",
-      "date": "Sat Jul 29 2023",
-      "available_seats": 104,
-      "cost": 836
-    },
-    {
-      "from": "Paris",
-      "to": "Seoul",
-      "date": "Sun Aug 20 2023",
-      "available_seats": 217,
-      "cost": 898
-    },
-    {
-      "from": "Dubai",
-      "to": "Seoul",
-      "date": "Tue Jul 04 2023",
-      "available_seats": 187,
-      "cost": 1127
-    },
-    {
-      "from": "Singapore",
-      "to": "Dublin",
-      "date": "Sat Sep 23 2023",
-      "available_seats": 237,
-      "cost": 526
-    },
-    {
-      "from": "Warsaw",
-      "to": "Dubai",
-      "date": "Sun Nov 05 2023",
-      "available_seats": 235,
-      "cost": 973
-    },
-    {
-      "from": "Dublin",
-      "to": "Dubai",
-      "date": "Fri Sep 22 2023",
-      "available_seats": 204,
-      "cost": 328
-    },
-    {
-      "from": "Tokyo",
-      "to": "Dublin",
-      "date": "Fri Nov 10 2023",
-      "available_seats": 232,
-      "cost": 1173
+      "date": "Tue Nov 14 2023",
+      "total_seats": 162,
+      "available_seats": 124,
+      "cost": 224
     },
     {
       "from": "London",
-      "to": "Seoul",
-      "date": "Wed Aug 16 2023",
-      "available_seats": 158,
-      "cost": 546
+      "to": "Dubai",
+      "date": "Thu Dec 21 2023",
+      "total_seats": 243,
+      "available_seats": 206,
+      "cost": 445
     },
     {
-      "from": "Beijing",
-      "to": "Seoul",
-      "date": "Sun Jul 02 2023",
-      "available_seats": 198,
-      "cost": 904
+      "from": "Paris",
+      "to": "Dubai",
+      "date": "Tue Aug 22 2023",
+      "total_seats": 215,
+      "available_seats": 127,
+      "cost": 652
     },
     {
-      "from": "Dubai",
-      "to": "London",
-      "date": "Mon Oct 30 2023",
-      "available_seats": 46,
-      "cost": 777
-    },
-    {
-      "from": "Dubai",
-      "to": "Paris",
-      "date": "Sat Nov 18 2023",
-      "available_seats": 167,
-      "cost": 1069
-    },
-    {
-      "from": "Singapore",
-      "to": "Warsaw",
-      "date": "Mon Dec 04 2023",
-      "available_seats": 68,
-      "cost": 815
-    },
-    {
-      "from": "Beijing",
-      "to": "Warsaw",
-      "date": "Sun Jul 23 2023",
-      "available_seats": 163,
-      "cost": 1055
-    },
-    {
-      "from": "Warsaw",
+      "from": "Dublin",
       "to": "Beijing",
-      "date": "Tue Aug 08 2023",
-      "available_seats": 167,
-      "cost": 791
+      "date": "Tue Sep 19 2023",
+      "total_seats": 231,
+      "available_seats": 136,
+      "cost": 284
     },
     {
-      "from": "London",
+      "from": "Warsaw",
       "to": "Tokyo",
-      "date": "Sat Oct 28 2023",
-      "available_seats": 246,
-      "cost": 1177
+      "date": "Thu Jul 20 2023",
+      "total_seats": 32,
+      "available_seats": 24,
+      "cost": 250
     },
     {
       "from": "Tokyo",
-      "to": "London",
-      "date": "Wed Nov 22 2023",
-      "available_seats": 117,
-      "cost": 1055
+      "to": "Seoul",
+      "date": "Sat Jun 03 2023",
+      "total_seats": 240,
+      "available_seats": 210,
+      "cost": 1181
     },
     {
-      "from": "Beijing",
-      "to": "Dubai",
-      "date": "Sat Sep 16 2023",
-      "available_seats": 195,
-      "cost": 323
-    },
-    {
-      "from": "New York City",
-      "to": "Paris",
-      "date": "Sat Sep 02 2023",
-      "available_seats": 168,
-      "cost": 397
-    },
-    {
-      "from": "Paris",
-      "to": "Singapore",
-      "date": "Tue Sep 12 2023",
-      "available_seats": 179,
-      "cost": 617
-    },
-    {
-      "from": "Beijing",
+      "from": "Dubai",
       "to": "Tokyo",
-      "date": "Sat Nov 25 2023",
-      "available_seats": 105,
-      "cost": 960
+      "date": "Wed Nov 01 2023",
+      "total_seats": 236,
+      "available_seats": 38,
+      "cost": 227
     },
     {
       "from": "Dublin",
-      "to": "Seoul",
-      "date": "Sat Sep 23 2023",
-      "available_seats": 50,
-      "cost": 1136
+      "to": "London",
+      "date": "Fri Jul 14 2023",
+      "total_seats": 210,
+      "available_seats": 114,
+      "cost": 518
+    },
+    {
+      "from": "London",
+      "to": "Paris",
+      "date": "Sat Jun 24 2023",
+      "total_seats": 69,
+      "available_seats": 13,
+      "cost": 758
+    },
+    {
+      "from": "Dubai",
+      "to": "Beijing",
+      "date": "Thu Oct 12 2023",
+      "total_seats": 47,
+      "available_seats": 13,
+      "cost": 934
     },
     {
       "from": "Beijing",
-      "to": "London",
-      "date": "Mon Jul 03 2023",
-      "available_seats": 121,
+      "to": "Singapore",
+      "date": "Sun Jun 18 2023",
+      "total_seats": 43,
+      "available_seats": 1,
+      "cost": 277
+    },
+    {
+      "from": "Dublin",
+      "to": "Dubai",
+      "date": "Sat Jun 17 2023",
+      "total_seats": 92,
+      "available_seats": 35,
+      "cost": 758
+    },
+    {
+      "from": "Seoul",
+      "to": "Singapore",
+      "date": "Mon Dec 04 2023",
+      "total_seats": 173,
+      "available_seats": 116,
+      "cost": 969
+    },
+    {
+      "from": "London",
+      "to": "Dublin",
+      "date": "Fri Nov 24 2023",
+      "total_seats": 141,
+      "available_seats": 57,
+      "cost": 694
+    },
+    {
+      "from": "Paris",
+      "to": "Beijing",
+      "date": "Mon Dec 25 2023",
+      "total_seats": 64,
+      "available_seats": 64,
       "cost": 916
     },
     {
       "from": "Beijing",
-      "to": "Dubai",
-      "date": "Mon Sep 18 2023",
-      "available_seats": 131,
-      "cost": 860
-    },
-    {
-      "from": "Singapore",
-      "to": "Paris",
-      "date": "Sun Nov 26 2023",
-      "available_seats": 207,
-      "cost": 614
-    },
-    {
-      "from": "London",
       "to": "Dublin",
-      "date": "Tue Nov 28 2023",
-      "available_seats": 202,
-      "cost": 625
-    },
-    {
-      "from": "Warsaw",
-      "to": "Dublin",
-      "date": "Sat Aug 26 2023",
-      "available_seats": 247,
-      "cost": 1043
-    },
-    {
-      "from": "Beijing",
-      "to": "Dublin",
-      "date": "Thu Sep 07 2023",
-      "available_seats": 247,
-      "cost": 748
-    },
-    {
-      "from": "New York City",
-      "to": "Tokyo",
-      "date": "Wed Aug 16 2023",
-      "available_seats": 12,
-      "cost": 689
+      "date": "Wed Aug 02 2023",
+      "total_seats": 1,
+      "available_seats": 1,
+      "cost": 1076
     },
     {
       "from": "Tokyo",
-      "to": "London",
-      "date": "Wed Aug 09 2023",
-      "available_seats": 222,
-      "cost": 913
-    },
-    {
-      "from": "New York City",
-      "to": "Warsaw",
-      "date": "Fri Oct 13 2023",
-      "available_seats": 135,
-      "cost": 928
-    },
-    {
-      "from": "Tokyo",
-      "to": "Warsaw",
-      "date": "Sun Oct 08 2023",
-      "available_seats": 59,
-      "cost": 1188
-    },
-    {
-      "from": "Dubai",
-      "to": "Beijing",
-      "date": "Mon Aug 28 2023",
-      "available_seats": 93,
-      "cost": 233
-    },
-    {
-      "from": "Beijing",
-      "to": "Warsaw",
-      "date": "Wed Aug 16 2023",
-      "available_seats": 31,
-      "cost": 900
-    },
-    {
-      "from": "Paris",
-      "to": "Dublin",
-      "date": "Thu Sep 21 2023",
-      "available_seats": 118,
-      "cost": 311
-    },
-    {
-      "from": "London",
-      "to": "New York City",
-      "date": "Sun Nov 12 2023",
-      "available_seats": 81,
-      "cost": 691
-    },
-    {
-      "from": "Seoul",
-      "to": "London",
-      "date": "Tue Sep 05 2023",
-      "available_seats": 5,
-      "cost": 912
-    },
-    {
-      "from": "Dubai",
-      "to": "Beijing",
-      "date": "Thu Nov 30 2023",
-      "available_seats": 248,
-      "cost": 1084
-    },
-    {
-      "from": "Tokyo",
-      "to": "Beijing",
-      "date": "Sun Nov 05 2023",
-      "available_seats": 113,
-      "cost": 404
-    },
-    {
-      "from": "Dubai",
-      "to": "Beijing",
-      "date": "Sat Sep 09 2023",
-      "available_seats": 207,
-      "cost": 986
-    },
-    {
-      "from": "Dubai",
       "to": "Singapore",
-      "date": "Fri Jul 28 2023",
-      "available_seats": 180,
-      "cost": 838
-    },
-    {
-      "from": "London",
-      "to": "Paris",
-      "date": "Sat Nov 25 2023",
-      "available_seats": 47,
-      "cost": 317
-    },
-    {
-      "from": "Singapore",
-      "to": "Paris",
-      "date": "Fri Sep 08 2023",
-      "available_seats": 41,
-      "cost": 246
-    },
-    {
-      "from": "New York City",
-      "to": "Dublin",
-      "date": "Sat Jul 08 2023",
-      "available_seats": 50,
-      "cost": 1029
-    },
-    {
-      "from": "Dublin",
-      "to": "Paris",
-      "date": "Tue Nov 07 2023",
-      "available_seats": 192,
-      "cost": 640
-    },
-    {
-      "from": "Paris",
-      "to": "Dubai",
-      "date": "Fri Aug 25 2023",
-      "available_seats": 190,
-      "cost": 1053
-    },
-    {
-      "from": "Dublin",
-      "to": "Seoul",
-      "date": "Sun Dec 10 2023",
-      "available_seats": 238,
-      "cost": 897
-    },
-    {
-      "from": "Paris",
-      "to": "New York City",
-      "date": "Tue Oct 17 2023",
-      "available_seats": 3,
-      "cost": 1200
-    },
-    {
-      "from": "Beijing",
-      "to": "Dubai",
-      "date": "Wed Sep 06 2023",
-      "available_seats": 39,
-      "cost": 496
-    },
-    {
-      "from": "London",
-      "to": "Beijing",
-      "date": "Sun Nov 26 2023",
-      "available_seats": 33,
-      "cost": 285
+      "date": "Fri Sep 29 2023",
+      "total_seats": 46,
+      "available_seats": 6,
+      "cost": 772
     },
     {
       "from": "Tokyo",
       "to": "New York City",
-      "date": "Wed Nov 29 2023",
-      "available_seats": 179,
-      "cost": 490
+      "date": "Wed Jul 19 2023",
+      "total_seats": 42,
+      "available_seats": 16,
+      "cost": 510
+    },
+    {
+      "from": "Dubai",
+      "to": "Paris",
+      "date": "Mon Oct 16 2023",
+      "total_seats": 77,
+      "available_seats": 66,
+      "cost": 970
+    },
+    {
+      "from": "Singapore",
+      "to": "Dubai",
+      "date": "Sun Jul 23 2023",
+      "total_seats": 69,
+      "available_seats": 38,
+      "cost": 241
+    },
+    {
+      "from": "Dubai",
+      "to": "Paris",
+      "date": "Tue Jun 27 2023",
+      "total_seats": 202,
+      "available_seats": 8,
+      "cost": 355
     },
     {
       "from": "London",
       "to": "Dublin",
+      "date": "Tue Dec 05 2023",
+      "total_seats": 165,
+      "available_seats": 124,
+      "cost": 1128
+    },
+    {
+      "from": "Tokyo",
+      "to": "New York City",
       "date": "Fri Sep 15 2023",
-      "available_seats": 210,
-      "cost": 1013
+      "total_seats": 222,
+      "available_seats": 32,
+      "cost": 1062
     },
     {
       "from": "Beijing",
-      "to": "Seoul",
-      "date": "Thu Nov 02 2023",
-      "available_seats": 54,
-      "cost": 347
-    },
-    {
-      "from": "Tokyo",
-      "to": "Seoul",
-      "date": "Sat Sep 23 2023",
-      "available_seats": 210,
-      "cost": 331
-    },
-    {
-      "from": "Paris",
-      "to": "Dubai",
-      "date": "Tue Jul 11 2023",
-      "available_seats": 45,
-      "cost": 331
-    },
-    {
-      "from": "Dublin",
-      "to": "London",
-      "date": "Sat Nov 11 2023",
-      "available_seats": 200,
-      "cost": 1109
-    },
-    {
-      "from": "New York City",
-      "to": "Dublin",
-      "date": "Tue Jul 18 2023",
-      "available_seats": 131,
-      "cost": 953
-    },
-    {
-      "from": "London",
-      "to": "New York City",
-      "date": "Wed Sep 13 2023",
-      "available_seats": 115,
-      "cost": 911
-    },
-    {
-      "from": "Seoul",
-      "to": "Dublin",
-      "date": "Fri Aug 25 2023",
-      "available_seats": 78,
-      "cost": 342
-    },
-    {
-      "from": "Tokyo",
-      "to": "Dublin",
-      "date": "Wed Nov 15 2023",
-      "available_seats": 60,
-      "cost": 688
-    },
-    {
-      "from": "Dubai",
-      "to": "Beijing",
-      "date": "Thu Sep 07 2023",
-      "available_seats": 53,
-      "cost": 1033
-    },
-    {
-      "from": "Singapore",
-      "to": "Warsaw",
-      "date": "Sat Dec 23 2023",
-      "available_seats": 50,
-      "cost": 989
-    },
-    {
-      "from": "Paris",
-      "to": "New York City",
-      "date": "Sat Aug 26 2023",
-      "available_seats": 151,
-      "cost": 206
-    },
-    {
-      "from": "Paris",
       "to": "Tokyo",
-      "date": "Sun Aug 13 2023",
-      "available_seats": 139,
-      "cost": 420
-    },
-    {
-      "from": "Dublin",
-      "to": "Dubai",
-      "date": "Tue Nov 21 2023",
-      "available_seats": 226,
-      "cost": 410
-    },
-    {
-      "from": "London",
-      "to": "Beijing",
-      "date": "Tue Oct 03 2023",
-      "available_seats": 236,
-      "cost": 944
+      "date": "Sun Oct 22 2023",
+      "total_seats": 40,
+      "available_seats": 34,
+      "cost": 509
     },
     {
       "from": "Paris",
       "to": "New York City",
-      "date": "Fri Nov 10 2023",
-      "available_seats": 160,
-      "cost": 332
-    },
-    {
-      "from": "Dubai",
-      "to": "Paris",
-      "date": "Sat Sep 02 2023",
-      "available_seats": 156,
-      "cost": 908
-    },
-    {
-      "from": "Tokyo",
-      "to": "Seoul",
-      "date": "Tue Sep 26 2023",
-      "available_seats": 24,
-      "cost": 620
-    },
-    {
-      "from": "Tokyo",
-      "to": "London",
-      "date": "Sat Sep 23 2023",
-      "available_seats": 98,
-      "cost": 1110
-    },
-    {
-      "from": "Tokyo",
-      "to": "New York City",
-      "date": "Sat Dec 02 2023",
-      "available_seats": 176,
-      "cost": 361
-    },
-    {
-      "from": "Dublin",
-      "to": "Paris",
-      "date": "Wed Jul 05 2023",
-      "available_seats": 165,
-      "cost": 1007
-    },
-    {
-      "from": "Beijing",
-      "to": "Warsaw",
-      "date": "Fri Nov 17 2023",
-      "available_seats": 98,
-      "cost": 1086
-    },
-    {
-      "from": "Tokyo",
-      "to": "New York City",
-      "date": "Sun Aug 20 2023",
-      "available_seats": 47,
-      "cost": 764
-    },
-    {
-      "from": "Beijing",
-      "to": "Dubai",
-      "date": "Tue Dec 19 2023",
-      "available_seats": 171,
-      "cost": 636
-    },
-    {
-      "from": "Seoul",
-      "to": "Tokyo",
-      "date": "Wed Jul 05 2023",
-      "available_seats": 88,
-      "cost": 628
-    },
-    {
-      "from": "Dubai",
-      "to": "London",
-      "date": "Fri Aug 25 2023",
-      "available_seats": 72,
-      "cost": 957
-    },
-    {
-      "from": "Dubai",
-      "to": "New York City",
-      "date": "Fri Dec 01 2023",
-      "available_seats": 249,
-      "cost": 926
-    },
-    {
-      "from": "Dubai",
-      "to": "Warsaw",
-      "date": "Thu Sep 28 2023",
-      "available_seats": 120,
-      "cost": 1186
-    },
-    {
-      "from": "Dubai",
-      "to": "New York City",
-      "date": "Sun Nov 12 2023",
-      "available_seats": 187,
-      "cost": 280
-    },
-    {
-      "from": "Warsaw",
-      "to": "London",
-      "date": "Thu Dec 28 2023",
-      "available_seats": 121,
+      "date": "Tue Dec 12 2023",
+      "total_seats": 160,
+      "available_seats": 32,
       "cost": 517
     },
     {
-      "from": "Seoul",
+      "from": "Tokyo",
+      "to": "Paris",
+      "date": "Tue Aug 08 2023",
+      "total_seats": 24,
+      "available_seats": 15,
+      "cost": 937
+    },
+    {
+      "from": "New York City",
+      "to": "Tokyo",
+      "date": "Fri Dec 22 2023",
+      "total_seats": 69,
+      "available_seats": 24,
+      "cost": 285
+    },
+    {
+      "from": "Dubai",
       "to": "London",
-      "date": "Fri Sep 15 2023",
-      "available_seats": 68,
-      "cost": 980
+      "date": "Wed Oct 04 2023",
+      "total_seats": 103,
+      "available_seats": 48,
+      "cost": 463
+    },
+    {
+      "from": "London",
+      "to": "Dublin",
+      "date": "Sat Jul 01 2023",
+      "total_seats": 82,
+      "available_seats": 37,
+      "cost": 444
+    },
+    {
+      "from": "London",
+      "to": "Paris",
+      "date": "Tue Jun 20 2023",
+      "total_seats": 65,
+      "available_seats": 2,
+      "cost": 538
+    },
+    {
+      "from": "Dubai",
+      "to": "Seoul",
+      "date": "Thu Aug 10 2023",
+      "total_seats": 35,
+      "available_seats": 22,
+      "cost": 1080
+    },
+    {
+      "from": "Paris",
+      "to": "New York City",
+      "date": "Sun Nov 19 2023",
+      "total_seats": 49,
+      "available_seats": 1,
+      "cost": 497
+    },
+    {
+      "from": "Singapore",
+      "to": "Beijing",
+      "date": "Wed Aug 16 2023",
+      "total_seats": 141,
+      "available_seats": 0,
+      "cost": 335
+    },
+    {
+      "from": "New York City",
+      "to": "Seoul",
+      "date": "Sun Jul 23 2023",
+      "total_seats": 230,
+      "available_seats": 57,
+      "cost": 1056
+    },
+    {
+      "from": "Dublin",
+      "to": "Paris",
+      "date": "Tue Oct 03 2023",
+      "total_seats": 147,
+      "available_seats": 83,
+      "cost": 475
+    },
+    {
+      "from": "Dublin",
+      "to": "Beijing",
+      "date": "Wed Sep 27 2023",
+      "total_seats": 2,
+      "available_seats": 2,
+      "cost": 775
+    },
+    {
+      "from": "Singapore",
+      "to": "Warsaw",
+      "date": "Sat Aug 05 2023",
+      "total_seats": 49,
+      "available_seats": 32,
+      "cost": 870
     },
     {
       "from": "Warsaw",
       "to": "Seoul",
-      "date": "Tue Oct 31 2023",
-      "available_seats": 115,
-      "cost": 555
+      "date": "Fri Jun 23 2023",
+      "total_seats": 204,
+      "available_seats": 7,
+      "cost": 1016
     },
     {
-      "from": "Tokyo",
-      "to": "Seoul",
-      "date": "Fri Dec 29 2023",
-      "available_seats": 122,
-      "cost": 651
-    },
-    {
-      "from": "Singapore",
-      "to": "Dubai",
-      "date": "Fri Dec 22 2023",
-      "available_seats": 136,
-      "cost": 204
-    },
-    {
-      "from": "London",
-      "to": "Paris",
-      "date": "Mon Aug 14 2023",
-      "available_seats": 76,
-      "cost": 215
-    },
-    {
-      "from": "Seoul",
-      "to": "Dubai",
-      "date": "Fri Aug 11 2023",
-      "available_seats": 73,
-      "cost": 633
-    },
-    {
-      "from": "Dublin",
-      "to": "London",
-      "date": "Sun Sep 17 2023",
-      "available_seats": 131,
-      "cost": 374
-    },
-    {
-      "from": "London",
-      "to": "Beijing",
-      "date": "Thu Aug 17 2023",
-      "available_seats": 124,
-      "cost": 926
-    },
-    {
-      "from": "Tokyo",
-      "to": "Dublin",
-      "date": "Mon Sep 11 2023",
-      "available_seats": 32,
-      "cost": 1118
-    },
-    {
-      "from": "London",
-      "to": "Seoul",
-      "date": "Wed Oct 04 2023",
-      "available_seats": 28,
-      "cost": 834
-    },
-    {
-      "from": "London",
+      "from": "Beijing",
       "to": "Warsaw",
-      "date": "Thu Oct 12 2023",
-      "available_seats": 19,
-      "cost": 820
+      "date": "Wed Sep 20 2023",
+      "total_seats": 163,
+      "available_seats": 107,
+      "cost": 929
     },
     {
       "from": "New York City",
-      "to": "Seoul",
-      "date": "Fri Nov 24 2023",
-      "available_seats": 38,
-      "cost": 988
-    },
-    {
-      "from": "London",
-      "to": "Paris",
-      "date": "Tue Aug 29 2023",
-      "available_seats": 235,
-      "cost": 516
-    },
-    {
-      "from": "New York City",
-      "to": "London",
-      "date": "Sat Aug 19 2023",
-      "available_seats": 61,
-      "cost": 917
-    },
-    {
-      "from": "Dublin",
-      "to": "Dubai",
-      "date": "Wed Sep 13 2023",
-      "available_seats": 33,
-      "cost": 233
-    },
-    {
-      "from": "New York City",
-      "to": "Dubai",
-      "date": "Mon Nov 06 2023",
-      "available_seats": 224,
-      "cost": 357
-    },
-    {
-      "from": "New York City",
-      "to": "London",
-      "date": "Thu Aug 03 2023",
-      "available_seats": 139,
-      "cost": 781
-    },
-    {
-      "from": "Seoul",
-      "to": "London",
-      "date": "Fri Aug 18 2023",
-      "available_seats": 130,
-      "cost": 326
-    },
-    {
-      "from": "Singapore",
-      "to": "London",
-      "date": "Wed Oct 04 2023",
-      "available_seats": 29,
-      "cost": 725
-    },
-    {
-      "from": "New York City",
-      "to": "Tokyo",
-      "date": "Fri Nov 24 2023",
-      "available_seats": 224,
-      "cost": 1091
-    },
-    {
-      "from": "Seoul",
-      "to": "Beijing",
-      "date": "Sun Dec 10 2023",
-      "available_seats": 64,
-      "cost": 363
-    },
-    {
-      "from": "New York City",
-      "to": "Tokyo",
-      "date": "Fri Oct 13 2023",
-      "available_seats": 220,
-      "cost": 472
-    },
-    {
-      "from": "Paris",
-      "to": "Seoul",
-      "date": "Mon Aug 07 2023",
-      "available_seats": 103,
-      "cost": 1070
-    },
-    {
-      "from": "New York City",
-      "to": "Seoul",
-      "date": "Tue Aug 08 2023",
-      "available_seats": 160,
-      "cost": 920
-    },
-    {
-      "from": "London",
       "to": "Warsaw",
-      "date": "Tue Jul 18 2023",
-      "available_seats": 126,
-      "cost": 626
+      "date": "Fri Jul 28 2023",
+      "total_seats": 243,
+      "available_seats": 112,
+      "cost": 565
     },
     {
-      "from": "Paris",
-      "to": "Tokyo",
-      "date": "Fri Jul 14 2023",
-      "available_seats": 184,
-      "cost": 944
-    },
-    {
-      "from": "Seoul",
-      "to": "New York City",
-      "date": "Sun Sep 03 2023",
-      "available_seats": 15,
+      "from": "New York City",
+      "to": "Dubai",
+      "date": "Thu Nov 30 2023",
+      "total_seats": 38,
+      "available_seats": 5,
       "cost": 761
     },
     {
-      "from": "New York City",
-      "to": "Paris",
-      "date": "Sun Nov 26 2023",
-      "available_seats": 106,
-      "cost": 835
-    },
-    {
-      "from": "London",
-      "to": "Paris",
-      "date": "Thu Sep 07 2023",
-      "available_seats": 156,
-      "cost": 731
-    },
-    {
-      "from": "New York City",
-      "to": "Singapore",
-      "date": "Tue Nov 21 2023",
-      "available_seats": 60,
-      "cost": 957
-    },
-    {
       "from": "Dubai",
-      "to": "Warsaw",
-      "date": "Sat Oct 07 2023",
-      "available_seats": 55,
-      "cost": 679
-    },
-    {
-      "from": "Dubai",
-      "to": "Beijing",
-      "date": "Wed Jul 26 2023",
-      "available_seats": 121,
-      "cost": 499
-    },
-    {
-      "from": "Singapore",
-      "to": "Dubai",
-      "date": "Sat Jul 22 2023",
-      "available_seats": 147,
-      "cost": 972
+      "to": "New York City",
+      "date": "Fri Jun 30 2023",
+      "total_seats": 116,
+      "available_seats": 33,
+      "cost": 1164
     },
     {
       "from": "Paris",
-      "to": "Singapore",
-      "date": "Sat Oct 21 2023",
-      "available_seats": 85,
-      "cost": 556
-    },
-    {
-      "from": "Dubai",
       "to": "Seoul",
-      "date": "Wed Dec 27 2023",
-      "available_seats": 36,
-      "cost": 783
+      "date": "Wed Oct 11 2023",
+      "total_seats": 93,
+      "available_seats": 64,
+      "cost": 732
     },
     {
-      "from": "Paris",
-      "to": "Tokyo",
-      "date": "Fri Oct 20 2023",
-      "available_seats": 81,
-      "cost": 516
-    },
-    {
-      "from": "Dublin",
-      "to": "Tokyo",
-      "date": "Wed Nov 29 2023",
-      "available_seats": 128,
-      "cost": 283
-    },
-    {
-      "from": "Warsaw",
-      "to": "Beijing",
-      "date": "Mon Sep 25 2023",
-      "available_seats": 136,
-      "cost": 414
-    },
-    {
-      "from": "London",
+      "from": "New York City",
       "to": "Dubai",
-      "date": "Wed Oct 04 2023",
-      "available_seats": 193,
-      "cost": 515
+      "date": "Sat Dec 02 2023",
+      "total_seats": 174,
+      "available_seats": 147,
+      "cost": 961
     }
   ]
 }

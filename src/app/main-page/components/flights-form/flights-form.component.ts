@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { cities } from 'CONST';
 import { SearchService } from '../../services/search-flyght.service';
-import { Store } from '@ngrx/store';
 import { StoreType } from 'src/app/redux/store.model';
-import { addFlightData } from 'src/app/redux/actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flights-form',
@@ -21,8 +20,8 @@ export class FlightsFormComponent implements OnInit {
   };
   searchForm = this.fb.nonNullable.group({
     oneWay: [false],
-    from: ['', Validators.required],
-    to: ['', [Validators.required]],
+    from: ['London', Validators.required], // to change for ''
+    to: ['Dublin', [Validators.required]], // to change for ''
     date: this.fb.nonNullable.group({
       startDate: [''],
       endDate: [''],
@@ -31,13 +30,9 @@ export class FlightsFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private search: SearchService,
-    private store: Store<StoreType>
+    private router: Router
   ) {}
-  ngOnInit() {
-    this.store.select('flightData').subscribe((data) => {
-      console.log('select: ', data);
-    });
-  }
+  ngOnInit() {}
 
   increaseValue(e: Event, option: string) {
     e.stopImmediatePropagation();
@@ -52,15 +47,15 @@ export class FlightsFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.searchForm);
+    // console.log(this.searchForm);
     if (this.searchForm.invalid) {
       return;
     }
     const { oneWay, from, to, date } = this.searchForm.value;
     this.search
       .search(oneWay!, from!, to!, date?.startDate, date?.endDate)
-      .subscribe((data) => {
-        this.store.dispatch(addFlightData({ data }));
+      .subscribe(() => {
+        this.router.navigateByUrl('booking');
       });
   }
 }
