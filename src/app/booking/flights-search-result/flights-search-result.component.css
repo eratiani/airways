@@ -21,3 +21,6 @@
 .moveElement-two {
   z-index: 2;
 }
+.no-fly {
+  pointer-events: none;
+}

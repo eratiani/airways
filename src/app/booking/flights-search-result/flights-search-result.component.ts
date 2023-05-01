@@ -81,27 +81,34 @@ export class FlightsSearchResultComponent {
     },
   ];
   onFilightSelect(event: Event) {
-    this.flightSelected = true;
-    const prevElementHiglighted: Element | null =
-      document.querySelector('.moveElement');
-    if (prevElementHiglighted)
-      prevElementHiglighted.classList.remove('moveElement');
     const target = event.target as HTMLElement;
-
     const flightCard = target.closest('.flight-card');
-    if (!flightCard) return;
+
+    if (!flightCard || !flightCard.classList.contains('normal-fly')) return;
+
+    //// render data logic on this line
+    this.flightSelected = true;
+    this.removeClass('moveElement');
     flightCard.classList.add('moveElement');
   }
+
   onReturnFilightSelect(event: Event) {
-    this.returnFlightSelected = true;
-    const prevElementHiglighted: Element | null =
-      document.querySelector('.moveElement-two');
-    if (prevElementHiglighted)
-      prevElementHiglighted.classList.remove('moveElement-two');
     const target = event.target as HTMLElement;
 
     const flightCard = target.closest('.flight-card');
-    if (!flightCard) return;
+    if (!flightCard || !flightCard.classList.contains('normal-fly')) return;
+
+    //// render data logic on this line
+    this.removeClass('moveElement-two');
+    this.returnFlightSelected = true;
     flightCard.classList.add('moveElement-two');
+  }
+  removeClass(className: string): void {
+    const prevElementHiglighted: Element | null = document.querySelector(
+      `.${className}`
+    );
+
+    if (prevElementHiglighted)
+      prevElementHiglighted.classList.remove(`${className}`);
   }
 }

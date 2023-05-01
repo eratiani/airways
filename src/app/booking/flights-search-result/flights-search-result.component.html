@@ -4,7 +4,14 @@
     to destination
   </h2>
   <div class="cards-container d-flex m-2" (click)="onFilightSelect($event)">
-    <div *ngFor="let flight of mockFlights | slice : 0 : 5" class="flight-card">
+    <div
+      [ngClass]="{
+        'no-fly': flight.date < 3,
+        'normal-fly': flight.date >= 3
+      }"
+      *ngFor="let flight of mockFlights | slice : 0 : 5"
+      class="flight-card"
+    >
       <p>{{ flight.date }}</p>
       <p>{{ flight.day }}</p>
       <div *ngIf="flight.date < 3">
@@ -32,7 +39,14 @@
     class="cards-container d-flex m-2"
     (click)="onReturnFilightSelect($event)"
   >
-    <div *ngFor="let flight of mockFlights | slice : 0 : 5" class="flight-card">
+    <div
+      [ngClass]="{
+        'no-fly': flight.date < 3,
+        'normal-fly': flight.date >= 3
+      }"
+      *ngFor="let flight of mockFlights | slice : 0 : 5"
+      class="flight-card"
+    >
       <p>{{ flight.date }}</p>
       <p>{{ flight.day }}</p>
       <div *ngIf="flight.date < 3">
