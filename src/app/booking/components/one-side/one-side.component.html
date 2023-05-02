@@ -1,0 +1,33 @@
+<h2 style="margin-left: 15px">
+  <span><img src="../../../assets/planeRight.png" alt="planr" /></span>
+  {{ flights[0].from }} to {{ flights[0].to }}
+</h2>
+<div class="cards-container d-flex m-2">
+  <div
+    *ngFor="let flight of flights | slice : 0 : 5"
+    class="flight-card"
+    (click)="selectCard(card, flight)"
+    #card
+    [id]="flight.id"
+  >
+    <p>{{ flight.date | date : "dd MMM" }}</p>
+    <p>{{ flight.date | date : "EEEE" }}</p>
+    <!-- <div *ngIf="flight.date < 3">
+      <img src="../../../assets/noFly.png" alt="noFly" />
+    </div> -->
+
+    <!-- will use user pipe next -->
+    <p>{{ flight.cost | currency : "USD" }}</p>
+    <div
+      *ngIf="selectedCard?.id === card.id"
+      class="highlighted"
+      appHiglight
+      [elementAvailableSeats]="flight.available_seats"
+      [elementTotalSeats]="flight.total_seats"
+    ></div>
+  </div>
+</div>
+<app-flight-selected
+  *ngIf="selectedCard"
+  [flight]="selectedCard"
+></app-flight-selected>

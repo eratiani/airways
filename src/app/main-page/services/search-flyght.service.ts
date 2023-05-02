@@ -1,9 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FlightDataType } from '../../models/flyght-data.model';
-import { map, tap } from 'rxjs';
+import { Observable, forkJoin, map, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { addFlightData } from 'src/app/redux/actions';
+import {
+  flightBackAdd,
+  flightOneWayAdd,
+  resetBackFlights,
+} from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
 
 const SERVER = 'http://localhost:3000';
@@ -21,6 +25,26 @@ export class SearchService {
     start?: string,
     end?: string
   ) {
+    const oneWay$ = this.getFlights(from, to, start, end).pipe(
+      tap((data) => {
+        this.store.dispatch(flightOneWayAdd({ data }));
+        this.store.dispatch(resetBackFlights());
+      })
+    );
+
+    const backWay$ = this.getFlights(to, from, start, end).pipe(
+      tap((data) => {
+        this.store.dispatch(flightBackAdd({ data }));
+      })
+    );
+    const all: Observable<FlightDataType[]>[] = [oneWay$];
+    if (!oneWay) {
+      all.push(backWay$);
+    }
+    return forkJoin(all);
+  }
+
+  private getFlights(from: string, to: string, start?: string, end?: string) {
     return this.http.get<FlightDataType[]>(`${SERVER}/data`).pipe(
       map((res) =>
         res.filter((fl) => {
@@ -30,10 +54,10 @@ export class SearchService {
             (start && end ? this.dateMatch(fl.date, start, end) : true)
           );
         })
-      ),
-      tap((data) => {
-        this.store.dispatch(addFlightData({ data }));
-      })
+      )
+      // tap((data) => {
+      //   this.store.dispatch(flightOneWayAdd({ data }));
+      // })
     );
   }
 
