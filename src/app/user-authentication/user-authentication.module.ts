@@ -13,9 +13,11 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import {HttpClientModule} from '@angular/common/http';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 import { LogInComponent } from './log-in/log-in.component';
-import { RegisterComponent } from './register/register.component';
+import { MY_DATE_FORMAT, RegisterComponent } from './register/register.component';
 import { AuthenticationFormContainerComponent } from './authentication-form-container/authentication-form-container.component';
 
 
@@ -40,9 +42,14 @@ import { AuthenticationFormContainerComponent } from './authentication-form-cont
     MatRadioModule,
     MatSelectCountryModule.forRoot('en'),
     HttpClientModule,
-    MatCheckboxModule
-  ]
-  ,
+    MatCheckboxModule,
+   
+     
+  ],
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT }
+  ],
   exports: [
     AuthenticationFormContainerComponent
   ]

@@ -74,9 +74,10 @@
             <input
               matInput
               [matDatepicker]="picker2"
+              
               formControlName="dateOfBirth"
             />
-            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-hint>{{ dateFormat }}</mat-hint>
             <mat-datepicker-toggle
               matIconSuffix
               [for]="picker2"
