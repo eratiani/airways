@@ -43,5 +43,17 @@
       <p>{{ flight.cost | currency : "USD" }}</p>
     </div>
   </div>
-  <button class="btn btn-primary">select</button>
+  <button
+    *ngIf="!selected; else edit"
+    (click)="handleSelect()"
+    class="btn btn-primary"
+  >
+    select
+  </button>
+
+  <ng-template #edit
+    ><button (click)="handleSelect()" class="btn btn-primary">
+      edit
+    </button></ng-template
+  >
 </div>

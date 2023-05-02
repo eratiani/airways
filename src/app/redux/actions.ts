@@ -12,3 +12,8 @@ export const flightBackAdd = createAction(
 );
 
 export const resetBackFlights = createAction('[flights back] reset');
+
+export const selectOneWayFlight = createAction(
+  '[flights one way] save',
+  props<{ data: FlightDataType }>()
+);

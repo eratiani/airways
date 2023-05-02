@@ -7,17 +7,20 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { MainPageModule } from './main-page/main-page.module';
 import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
-import { flightsReducer } from './redux/reducers';
+import { flightsReducer, selectedFlihgtReducer } from './redux/reducers';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent, ],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MainPageModule,
     CoreModule,
-    StoreModule.forRoot({ flightData: flightsReducer }, {}),
+    StoreModule.forRoot(
+      { flightData: flightsReducer, selectedFlight: selectedFlihgtReducer },
+      {}
+    ),
     MatSnackBarModule,
   ],
   providers: [],
