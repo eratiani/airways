@@ -1,21 +1,17 @@
-import { Directive, HostBinding, Input, OnInit } from '@angular/core';
+import { Directive, HostBinding, Input, OnChanges, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appHiglight]',
 })
-export class HiglightDirective implements OnInit {
+export class HiglightDirective implements OnChanges {
   @Input() elementAvailableSeats: number = 0;
   @Input() elementTotalSeats: number = 0;
   @HostBinding('style.backgroundColor') backgroundColor = 'inherit';
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     const availableSeats = this.elementAvailableSeats;
     const TotalSeats = this.elementTotalSeats;
     if (availableSeats < 10) {
-      console.log(TotalSeats);
-
-      console.log(availableSeats);
-
       this.backgroundColor = 'red';
     } else if (availableSeats >= TotalSeats / 2) {
       this.backgroundColor = 'green';

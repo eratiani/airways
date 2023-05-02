@@ -34,7 +34,12 @@
     <p>Flight no. FR 1925</p>
   </div>
   <div>
-    <p style="background-color: #f1c933">
+    <p  class="d-flex justify-content-center align-items-center rounded-pill"
+    style="height: 70px; text-align: center;"
+      appHiglight
+      [elementAvailableSeats]="flight.available_seats"
+      [elementTotalSeats]="flight.total_seats"
+      >
       {{ flight.available_seats }} seats available
     </p>
     <div>

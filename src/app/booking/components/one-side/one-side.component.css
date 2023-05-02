@@ -17,4 +17,7 @@
 }
 .moveElement {
   z-index: 2;
+  transform: translateY(-15%);
+  background-color: transparent;
+  transition: all 1s;
 }
