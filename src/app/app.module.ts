@@ -9,6 +9,9 @@ import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import { flightsReducer } from './redux/reducers';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MY_DATE_FORMAT } from './core/services/date-format';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, ],
@@ -20,7 +23,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     StoreModule.forRoot({ flightData: flightsReducer }, {}),
     MatSnackBarModule,
   ],
-  providers: [],
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

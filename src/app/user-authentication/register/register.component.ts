@@ -66,12 +66,7 @@ export class RegisterComponent {
 
   ngOnInit() {
     this.createForm();
-    this.headerState.dateFormatEmiter.subscribe((date)=>{
-      console.log(date);
-      
-      MY_DATE_FORMAT.parse.dateInput = date; 
-      MY_DATE_FORMAT.display.dateInput = date;
-    })
+    this.headerState.dateFormatEmiter.subscribe(date => this.dateFormat = date)
   }
   createForm() {
     let emailregex: RegExp =
