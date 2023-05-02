@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { StoreType } from 'src/app/redux/store.model';
-import { FlightDataType } from '../../models/flyght-data.model';
+import { FlightDataType } from '../../../models/flyght-data.model';
 
 @Component({
   selector: 'app-flights-search-result',
@@ -10,22 +10,16 @@ import { FlightDataType } from '../../models/flyght-data.model';
   styleUrls: ['./flights-search-result.component.css'],
 })
 export class FlightsSearchResultComponent {
-  selectedCard?: FlightDataType;
   constructor(private store: Store<StoreType>, private router: Router) {
-    store.select('flightData').subscribe((data) => {
-      this.matchedFlights = data;
+    store.select('flightData', 'oneWay').subscribe((data) => {
+      this.oneWayFlights = data;
+    });
+    store.select('flightData', 'backWay').subscribe((data) => {
+      this.backFlights = data;
     });
   }
-  matchedFlights: FlightDataType[] = [];
-
-  selectCard(flightCard: HTMLDivElement, flight: FlightDataType) {
-    // remove 'moveElement' from all cards
-    Array.from(flightCard.parentElement?.children || []).forEach((elem) => {
-      elem.classList.remove('moveElement');
-    });
-    flightCard.classList.add('moveElement');
-    this.selectedCard = flight;
-  }
+  oneWayFlights: FlightDataType[] = [];
+  backFlights?: FlightDataType[];
 
   clickBack() {
     this.router.navigateByUrl('');

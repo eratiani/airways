@@ -20,8 +20,8 @@ export class FlightsFormComponent implements OnInit {
   };
   searchForm = this.fb.nonNullable.group({
     oneWay: [false],
-    from: ['London', Validators.required], // to change for ''
-    to: ['Dublin', [Validators.required]], // to change for ''
+    from: ['Paris', Validators.required], // to change for ''
+    to: ['Seoul', [Validators.required]], // to change for ''
     date: this.fb.nonNullable.group({
       startDate: [''],
       endDate: [''],
@@ -54,7 +54,8 @@ export class FlightsFormComponent implements OnInit {
     const { oneWay, from, to, date } = this.searchForm.value;
     this.search
       .search(oneWay!, from!, to!, date?.startDate, date?.endDate)
-      .subscribe(() => {
+      .subscribe((data) => {
+        console.log(data);
         this.router.navigateByUrl('booking');
       });
   }

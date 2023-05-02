@@ -1,0 +1,9 @@
+<div class="container-md">
+  <one-side [flights]="oneWayFlights"></one-side>
+  <one-side *ngIf="backFlights" [flights]="backFlights"></one-side>
+
+  <div class="d-flex justify-content-end">
+    <button class="btn" (click)="clickBack()">back</button>
+    <button class="btn btn-primary">continue</button>
+  </div>
+</div>

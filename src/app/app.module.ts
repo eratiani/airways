@@ -7,20 +7,23 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { MainPageModule } from './main-page/main-page.module';
 import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
-import { flightsReducer } from './redux/reducers';
+import { flightsReducer, selectedFlihgtReducer } from './redux/reducers';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MY_DATE_FORMAT } from './core/services/date-format';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent, ],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MainPageModule,
     CoreModule,
-    StoreModule.forRoot({ flightData: flightsReducer }, {}),
+    StoreModule.forRoot(
+      { flightData: flightsReducer, selectedFlight: selectedFlihgtReducer },
+      {}
+    ),
     MatSnackBarModule,
   ],
   providers: [

@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FlightsSearchResultComponent } from './flights-search-result/flights-search-result.component';
+import { FlightsSearchResultComponent } from './components/flights-search-result/flights-search-result.component';
 import { BookingViewComponent } from './booking-view/booking-view.component';
-import { FlightsSearchInputComponent } from './flights-search-input/flights-search-input.component';
-import { FlightSelectedComponent } from './flight-selected/flight-selected.component';
-import { ReturnFlightSelectedComponent } from './return-flight-selected/return-flight-selected.component';
+import { FlightsSearchInputComponent } from './components/flights-search-input/flights-search-input.component';
+import { FlightSelectedComponent } from './components/flight-selected/flight-selected.component';
 import { BookingRoutig } from './booking-routing.module';
 import { HiglightDirective } from './directives/higlight.directive';
-import { RouterModule } from '@angular/router';
+import { OneSideComponent } from './components/one-side/one-side.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +14,10 @@ import { RouterModule } from '@angular/router';
     BookingViewComponent,
     FlightsSearchInputComponent,
     FlightSelectedComponent,
-    ReturnFlightSelectedComponent,
     HiglightDirective,
+    OneSideComponent,
   ],
-  imports: [CommonModule, BookingRoutig, RouterModule],
-  exports: [
-    // BookingViewComponent
-  ],
+  imports: [CommonModule, BookingRoutig],
+  exports: [],
 })
 export class BookingViewModule {}

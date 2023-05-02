@@ -1,9 +1,24 @@
 import { createReducer, on } from '@ngrx/store';
-import { FlightDataType } from '../models/flyght-data.model';
-import { addFlightData } from './actions';
+import {
+  flightBackAdd,
+  flightOneWayAdd,
+  resetBackFlights,
+  selectOneWayFlight,
+} from './actions';
+import { StoreType } from './store.model';
 
-const initialState: FlightDataType[] = [];
+const initialMatchedFlights: StoreType['flightData'] = { oneWay: [] };
 export const flightsReducer = createReducer(
-  initialState,
-  on(addFlightData, (state, { data }) => data)
+  initialMatchedFlights,
+  on(flightOneWayAdd, (state, { data }) => ({ ...state, oneWay: data })),
+  on(flightBackAdd, (state, { data }) => ({ ...state, backWay: data })),
+  on(resetBackFlights, (state) => ({ ...state, backWay: undefined }))
+);
+
+const initialSelectedFlight = {
+  oneWay: {},
+};
+export const selectedFlihgtReducer = createReducer(
+  initialSelectedFlight,
+  on(selectOneWayFlight, (state, { data }) => ({ ...state, oneWay: data }))
 );
