@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, OnInit } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class HeaderStateService {
@@ -10,7 +10,8 @@ export class HeaderStateService {
   userOnSummaryPage$ = this.userOnSummaryPageSubject.asObservable();
   private userOnpassengersPageSubject = new BehaviorSubject<boolean>(false);
   userOnpassengersPage$ = this.userOnpassengersPageSubject.asObservable();
-
+  dateFormatEmiter = new Subject<string>()
+  currencyFormatEmitter = new Subject<string>()
   toggleUserOnBookingPage() {
     this.userOnBookingPageSubject.next(!this.userOnBookingPageSubject.value);
   }
