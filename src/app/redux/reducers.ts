@@ -3,7 +3,7 @@ import {
   flightBackAdd,
   flightOneWayAdd,
   resetBackFlights,
-  selectOneWayFlight,
+  selectFlight,
 } from './actions';
 import { StoreType } from './store.model';
 
@@ -15,10 +15,8 @@ export const flightsReducer = createReducer(
   on(resetBackFlights, (state) => ({ ...state, backWay: undefined }))
 );
 
-const initialSelectedFlight = {
-  oneWay: {},
-};
+const initialSelectedFlight: StoreType['selectedFlight'] = {};
 export const selectedFlihgtReducer = createReducer(
   initialSelectedFlight,
-  on(selectOneWayFlight, (state, { data }) => ({ ...state, oneWay: data }))
+  on(selectFlight, (state, { oneWay, backWay }) => ({ oneWay, backWay }))
 );

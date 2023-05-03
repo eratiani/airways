@@ -6,7 +6,7 @@ export interface StoreType {
     backWay?: FlightDataType[];
   };
   selectedFlight: {
-    oneWay: FlightDataType;
+    oneWay?: FlightDataType;
     backWay?: FlightDataType;
   };
 }

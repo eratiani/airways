@@ -1,6 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FlightDataType } from 'src/app/models/flyght-data.model';
 import { OneSideStateService } from '../../services/one-side-state.service';
+
+export type SideType = 'one-way' | 'back';
 
 @Component({
   selector: 'one-side',
@@ -9,7 +11,9 @@ import { OneSideStateService } from '../../services/one-side-state.service';
   providers: [OneSideStateService],
 })
 export class OneSideComponent {
+  @Input() type!: SideType;
   @Input() flights: FlightDataType[] = [];
+  @Output() storeSelect = new EventEmitter<FlightDataType>();
   selectedCard?: FlightDataType;
 
   constructor(public state: OneSideStateService) {}
@@ -26,6 +30,7 @@ export class OneSideComponent {
   selectFlight(doSelect: boolean) {
     if (doSelect) {
       this.state.setSelected();
+      this.storeSelect.emit(this.selectedCard);
     } else {
       this.state.setUnselected();
     }
