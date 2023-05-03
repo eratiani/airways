@@ -2,7 +2,7 @@
 <div class="container--form">
   <form
     class="d-flex flex-column"
-    [formGroup]="infantForm"
+    [formGroup]="infant"
     #formDirective="ngForm"
     (ngSubmit)="onSubmit(formDirective)"
   >
@@ -15,7 +15,7 @@
           placeholder="First Name *"
           formControlName="name"
         />
-        <mat-error *ngIf="checkValidation('name')">
+        <mat-error *ngIf="infant.hasError('required','name')">
           {{ fieldRequired }}
         </mat-error>
       </mat-form-field>
@@ -28,7 +28,7 @@
           placeholder="Last Name *"
           formControlName="surname"
         />
-        <mat-error *ngIf="checkValidation('surname')">
+        <mat-error *ngIf="infant.hasError('required','surname')">
           {{ fieldRequired }}
         </mat-error>
       </mat-form-field>
@@ -43,7 +43,7 @@
         <mat-label
           for="female"
           [ngClass]="{
-            active: infantForm.get('gender')?.value === 'female'
+            active: infant.get('gender')?.value === 'female'
           }"
           (click)="setGender('female')"
           class="btn btn-primary m-2"
@@ -59,7 +59,7 @@
         <mat-label
           for="male"
           [ngClass]="{
-            active: infantForm.get('gender')?.value === 'male'
+            active: infant.get('gender')?.value === 'male'
           }"
           (click)="setGender('male')"
           class="btn btn-primary"
@@ -67,7 +67,7 @@
         >
       </mat-radio-group>
 
-      <mat-error *ngIf="checkValidation('gender')">
+      <mat-error *ngIf="infant.hasError('required','gender')">
         {{ fieldRequired }}
       </mat-error>
 
@@ -85,8 +85,11 @@
             [for]="picker2"
           ></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
-          <mat-error *ngIf="checkValidation('dateOfBirth')">
-            {{ dateErrors() }}
+          <mat-error *ngIf="infant.hasError('required', 'dateOfBirth')">
+            {{ fieldRequired }}
+          </mat-error>
+          <mat-error *ngIf="infant.hasError('dateNotInFuture', 'dateOfBirth')">
+            Not a valid date
           </mat-error>
         </mat-form-field>
       </div>

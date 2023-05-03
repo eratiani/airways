@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -14,37 +14,12 @@ import {
   styleUrls: ['./passenger-contact-info.component.css'],
 })
 export class PassengerContactInfoComponent {
-  contactForm!: FormGroup<{
-    email: FormControl<string>;
-  }>;
+  @Input() contact!: any;
   fieldRequired: string = 'This field is required';
   ngOnInit(): void {
-    this.createForm();
   }
-  createForm() {
-    let emailregex: RegExp =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    this.contactForm = new FormGroup({
-      email: new FormControl('', {
-        validators: [Validators.required, Validators.pattern(emailregex)],
-        nonNullable: true,
-      }),
-    });
-  }
-  emaiErrors() {
-    return this.contactForm.get('email')?.hasError('required')
-      ? 'This field is required'
-      : this.contactForm.get('email')?.hasError('pattern')
-      ? 'Not a valid emailaddress'
-      : '';
-  }
-  checkValidation(input: string) {
-    const validation =
-      this.contactForm.get(input)?.invalid &&
-      (this.contactForm.get(input)?.dirty ||
-        this.contactForm.get(input)?.touched);
-    return validation;
-  }
+
+ 
 
   onSubmit(formDirective: FormGroupDirective): void {
     console.log(formDirective);

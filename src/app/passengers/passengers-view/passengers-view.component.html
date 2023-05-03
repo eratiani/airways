@@ -1,10 +1,10 @@
-<form class="container">
-  <app-passenger-adult></app-passenger-adult>
-  <app-passenger-child></app-passenger-child>
-  <app-passenger-infant></app-passenger-infant>
-  <app-passenger-contact-info></app-passenger-contact-info>
+<form class="container" [formGroup]="PassengersForm" (ngSubmit)="onSubmit()">
+  <app-passenger-adult [adult]="PassengersForm.get('adult')"></app-passenger-adult>
+  <app-passenger-child [child]="PassengersForm.get('child')"></app-passenger-child>
+  <app-passenger-infant [infant]="PassengersForm.get('infant')"></app-passenger-infant>
+  <app-passenger-contact-info [contact]="PassengersForm.get('contact')"></app-passenger-contact-info>
   <div class="row justify-content-end">
     <a routerLink=".." class="btn btn-warning col-1 me-3">back</a>
-    <button type="submit" class="btn btn-success col-1">continue</button>
+    <button type="submit" class="btn btn-success col-1" [disabled]="PassengersForm.invalid">continue</button>
   </div>
 </form>

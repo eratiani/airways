@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -7,6 +7,7 @@ import {
   ValidationErrors,
   FormGroupDirective,
 } from '@angular/forms';
+import { passangerModel } from '../../passengers-view/models/passanger.model';
 
 @Component({
   selector: 'app-passenger-adult',
@@ -14,75 +15,17 @@ import {
   styleUrls: ['./passenger-adult.component.css'],
 })
 export class PassengerAdultComponent implements OnInit {
-  adultForm!: FormGroup<{
-    name: FormControl<string>;
-
-    surname: FormControl<string>;
-    gender: FormControl<string>;
-    dateOfBirth: FormControl<string>;
-    specialNeeds: FormControl<boolean>;
-  }>;
+  @Input() adult!: any;
   fieldRequired: string = 'This field is required';
   ngOnInit(): void {
-    this.createForm();
+    console.log(this.adult);
+    
+    // this.createForm();
   }
-  createForm() {
-    this.adultForm = new FormGroup({
-      name: new FormControl('', {
-        validators: [Validators.required],
-        nonNullable: true,
-      }),
-      surname: new FormControl('', {
-        validators: [Validators.required],
-        nonNullable: true,
-      }),
 
-      dateOfBirth: new FormControl('', {
-        validators: [Validators.required, this.dateNotInFutureValidator],
-        nonNullable: true,
-      }),
-      gender: new FormControl('', {
-        validators: Validators.required,
-        nonNullable: true,
-      }),
-      specialNeeds: new FormControl(false, {
-        validators: [],
-        nonNullable: true,
-      }),
-    });
-  }
-  checkValidation(input: string) {
-    const validation =
-      this.adultForm.get(input)?.invalid &&
-      (this.adultForm.get(input)?.dirty || this.adultForm.get(input)?.touched);
-    return validation;
-  }
-  emaiErrors() {
-    return this.adultForm.get('email')?.hasError('required')
-      ? 'This field is required'
-      : this.adultForm.get('email')?.hasError('pattern')
-      ? 'Not a valid emailaddress'
-      : '';
-  }
-  dateErrors() {
-    return this.adultForm.get('dateOfBirth')?.hasError('required')
-      ? 'This field is required'
-      : this.adultForm.get('dateOfBirth')?.hasError('dateNotInFuture')
-      ? 'Not a valid date of birth'
-      : '';
-  }
-  dateNotInFutureValidator(control: AbstractControl): ValidationErrors | null {
-    const inputDate = new Date(control.value);
-    const currentDate = new Date();
 
-    if (inputDate > currentDate) {
-      return { dateNotInFuture: true };
-    }
-
-    return null;
-  }
   setGender(gender: string) {
-    this.adultForm.get('gender')?.setValue(gender);
+    this.adult.get('gender')?.setValue(gender);
   }
   onSubmit(formDirective: FormGroupDirective): void {
     console.log(formDirective);

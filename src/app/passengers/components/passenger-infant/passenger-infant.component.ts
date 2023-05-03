@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -14,76 +14,15 @@ import {
   styleUrls: ['./passenger-infant.component.css'],
 })
 export class PassengerInfantComponent {
-  infantForm!: FormGroup<{
-    name: FormControl<string>;
-
-    surname: FormControl<string>;
-    gender: FormControl<string>;
-    dateOfBirth: FormControl<string>;
-    specialNeeds: FormControl<boolean>;
-  }>;
+  @Input( ) infant!: any;
   fieldRequired: string = 'This field is required';
   ngOnInit(): void {
-    this.createForm();
   }
-  createForm() {
-    this.infantForm = new FormGroup({
-      name: new FormControl('', {
-        validators: [Validators.required],
-        nonNullable: true,
-      }),
-      surname: new FormControl('', {
-        validators: [Validators.required],
-        nonNullable: true,
-      }),
-
-      dateOfBirth: new FormControl('', {
-        validators: [Validators.required, this.dateNotInFutureValidator],
-        nonNullable: true,
-      }),
-      gender: new FormControl('', {
-        validators: Validators.required,
-        nonNullable: true,
-      }),
-      specialNeeds: new FormControl(false, {
-        validators: [],
-        nonNullable: true,
-      }),
-    });
-  }
-  checkValidation(input: string) {
-    const validation =
-      this.infantForm.get(input)?.invalid &&
-      (this.infantForm.get(input)?.dirty ||
-        this.infantForm.get(input)?.touched);
-    return validation;
-  }
-  emaiErrors() {
-    return this.infantForm.get('email')?.hasError('required')
-      ? 'This field is required'
-      : this.infantForm.get('email')?.hasError('pattern')
-      ? 'Not a valid emailaddress'
-      : '';
-  }
-  dateErrors() {
-    return this.infantForm.get('dateOfBirth')?.hasError('required')
-      ? 'This field is required'
-      : this.infantForm.get('dateOfBirth')?.hasError('dateNotInFuture')
-      ? 'Not a valid date of birth'
-      : '';
-  }
-  dateNotInFutureValidator(control: AbstractControl): ValidationErrors | null {
-    const inputDate = new Date(control.value);
-    const currentDate = new Date();
-
-    if (inputDate > currentDate) {
-      return { dateNotInFuture: true };
-    }
-
-    return null;
-  }
+ 
+  
+  
   setGender(gender: string) {
-    this.infantForm.get('gender')?.setValue(gender);
+    this.infant.get('gender')?.setValue(gender);
   }
   onSubmit(formDirective: FormGroupDirective): void {
     console.log(formDirective);

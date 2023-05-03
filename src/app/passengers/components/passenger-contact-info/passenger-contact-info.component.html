@@ -6,7 +6,7 @@
 <div class="container--form">
   <form
     class="d-flex flex-column"
-    [formGroup]="contactForm"
+    [formGroup]="contact"
     #formDirective="ngForm"
     (ngSubmit)="onSubmit(formDirective)"
   >
@@ -18,8 +18,11 @@
         placeholder="Email *"
         formControlName="email"
       />
-      <mat-error *ngIf="checkValidation('email')">
-        {{ emaiErrors() }}
+      <mat-error *ngIf="contact.hasError('required','email')">
+        {{ fieldRequired }}
+      </mat-error>
+      <mat-error *ngIf="contact.hasError('pattern', 'email')">
+        email is not valid 
       </mat-error>
     </mat-form-field>
   </form>
