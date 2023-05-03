@@ -1,0 +1,4 @@
+.text-center p:first-child {
+  height: 40px;
+  padding: 10px;
+}
