@@ -41,6 +41,7 @@ export class FlightsSearchResultComponent {
   }
 
   clickContinue() {
+    console.log(this.selectedData);
     if (!this.selectedData) {
       return;
     }
