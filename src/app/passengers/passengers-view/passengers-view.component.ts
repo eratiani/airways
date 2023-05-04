@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
-
-// function createGroup() {
-//   return new Form('',{validators:Validators.required})
-// }
 
 @Component({
   selector: 'app-passengers-view',
@@ -12,11 +14,48 @@ import { HeaderStateService } from 'src/app/core/services/header-state.service';
   styleUrls: ['./passengers-view.component.css'],
 })
 export class PassengersViewComponent implements OnInit, OnDestroy {
-  passengersForm = new FormGroup({
-    adult: this.createGroup(),
-    child: this.createGroup(),
+  counts = {
+    adult: 1,
+    child: 2,
+    infant: 2,
+  };
+  passengersForm = this.fb.group({
+    adult: this.fb.array<FormGroup>([]),
+    child: this.fb.array<FormGroup>([]),
+    infant: this.fb.array<FormGroup>([]),
+    contact: this.fb.group({}),
   });
-  constructor(private headerState: HeaderStateService) {}
+
+  // getMember(name:keyof typeof this.passengersForm['controls']){
+  //   return this.passengersForm.controls[name] as FormArray
+  // }
+
+  constructor(
+    private headerState: HeaderStateService,
+    private fb: FormBuilder
+  ) {
+    this.passengersForm.controls.adult.push(this.createGroup());
+    this.passengersForm.controls.child.push(this.createGroup());
+    this.passengersForm.controls.adult.push(this.createGroup());
+    this.passengersForm.controls.adult.controls;
+    // console.log(this.passengersForm);
+    // this.passengersForm.get()
+  }
+
+  private createGroup() {
+    return this.fb.group({
+      name: ['', Validators.required],
+      surname: [''],
+    });
+  }
+  // get adults() {
+  //   return this.passengersForm.get('adult') as FormArray;
+  // }
+  // oneControl() {
+  //   return this.fb.group({
+  //     name: [''],
+  //   });
+  // }
   ngOnInit(): void {
     this.headerState.toggleUserOnPassengersPage();
   }
@@ -26,11 +65,5 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     console.log(this.passengersForm.value, this.passengersForm);
-  }
-
-  private createGroup() {
-    return new FormGroup({
-      name: new FormControl('', { validators: Validators.required }),
-    });
   }
 }

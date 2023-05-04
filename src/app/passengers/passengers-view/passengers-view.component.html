@@ -1,15 +1,50 @@
 <form class="container" [formGroup]="passengersForm" (submit)="onSubmit()">
-  <app-passenger-adult
-    [control]="passengersForm.controls.adult"
-    title="Adult"
-  ></app-passenger-adult>
-  <app-passenger-adult
-    [control]="passengersForm.controls.child"
-    title="Child"
-  ></app-passenger-adult>
-  <!-- <app-passenger-child></app-passenger-child>
-  <app-passenger-infant></app-passenger-infant>
-  <app-passenger-contact-info></app-passenger-contact-info> -->
+  <div
+    formArrayName="adult"
+    *ngIf="passengersForm.controls.adult.controls.length"
+  >
+    <h1>Adults</h1>
+    <passenger-each
+      *ngFor="
+        let control of passengersForm.controls.adult.controls;
+        let i = index
+      "
+      [count]="i + 1"
+      [control]="control"
+    ></passenger-each>
+  </div>
+
+  <div
+    formArrayName="child"
+    *ngIf="passengersForm.controls.child.controls.length"
+  >
+    <h1>Children</h1>
+    <passenger-each
+      *ngFor="
+        let control of passengersForm.controls.child.controls;
+        let i = index
+      "
+      [count]="i + 1"
+      [control]="control"
+    ></passenger-each>
+  </div>
+
+  <div
+    formArrayName="infant"
+    *ngIf="passengersForm.controls.infant.controls.length"
+  >
+    <h1>Infants</h1>
+    <passenger-each
+      *ngFor="
+        let control of passengersForm.controls.infant.controls;
+        let i = index
+      "
+      [count]="i + 1"
+      [control]="control"
+    ></passenger-each>
+  </div>
+
+  <p>{{ passengersForm.value | json }}</p>
   <div class="row justify-content-end">
     <a routerLink=".." class="btn btn-warning col-1 me-3">back</a>
     <button type="submit" class="btn btn-success col-1">continue</button>

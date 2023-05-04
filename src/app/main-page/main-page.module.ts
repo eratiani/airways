@@ -11,8 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ContentMainComponent } from './components/content-main/content-main.component';
 import { FlightsFormComponent } from './components/flights-form/flights-form.component';
 import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
-import { BookingViewModule } from '../booking/booking.module';
-import { PassengersModule } from '../passengers/passengers.module';
+// import { BookingViewModule } from '../booking/booking.module';
+// import { PassengersModule } from '../passengers/passengers.module';
 import { SummaryModule } from '../summary/summary.module';
 
 @NgModule({
@@ -27,8 +27,8 @@ import { SummaryModule } from '../summary/summary.module';
     MatNativeDateModule,
     MatInputModule,
     UserAuthenticationModule,
-    BookingViewModule,
-    PassengersModule,
+    // BookingViewModule,
+    // PassengersModule,
     SummaryModule,
   ],
 })
