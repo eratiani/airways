@@ -1,11 +1,6 @@
-<h1>1. adult</h1>
+<h1>1. {{ title }}</h1>
 <div class="container--form">
-  <form
-    class="d-flex flex-column"
-    [formGroup]="adultForm"
-    #formDirective="ngForm"
-    (ngSubmit)="onSubmit(formDirective)"
-  >
+  <form class="d-flex flex-column" [formGroup]="control">
     <div class="d-flex align-items-between justify-content-between w-100">
       <mat-form-field>
         <input
@@ -20,7 +15,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field>
+      <!-- <mat-form-field>
         <input
           autofocus
           type="text"
@@ -89,12 +84,12 @@
             {{ dateErrors() }}
           </mat-error>
         </mat-form-field>
-      </div>
+      </div> -->
 
       <hr />
     </div>
-    <mat-slide-toggle formControlName="specialNeeds"
+    <!-- <mat-slide-toggle formControlName="specialNeeds"
       >Slide me!</mat-slide-toggle
-    >
+    > -->
   </form>
 </div>

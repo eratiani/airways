@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -14,6 +14,8 @@ import {
   styleUrls: ['./passenger-adult.component.css'],
 })
 export class PassengerAdultComponent implements OnInit {
+  @Input() control!: FormGroup;
+  @Input() title!: string;
   adultForm!: FormGroup<{
     name: FormControl<string>;
 
@@ -25,6 +27,12 @@ export class PassengerAdultComponent implements OnInit {
   fieldRequired: string = 'This field is required';
   ngOnInit(): void {
     this.createForm();
+    console.log(this.control);
+    // this.control.addControl('name',new FormControl('', { validators: Validators.required }))
+    // this.control.addControl(
+    //   'name',
+    //   new FormControl('', { validators: Validators.required })
+    // );
   }
   createForm() {
     this.adultForm = new FormGroup({

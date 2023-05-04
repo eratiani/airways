@@ -1,8 +1,15 @@
-<form class="container">
-  <app-passenger-adult></app-passenger-adult>
-  <app-passenger-child></app-passenger-child>
+<form class="container" [formGroup]="passengersForm" (submit)="onSubmit()">
+  <app-passenger-adult
+    [control]="passengersForm.controls.adult"
+    title="Adult"
+  ></app-passenger-adult>
+  <app-passenger-adult
+    [control]="passengersForm.controls.child"
+    title="Child"
+  ></app-passenger-adult>
+  <!-- <app-passenger-child></app-passenger-child>
   <app-passenger-infant></app-passenger-infant>
-  <app-passenger-contact-info></app-passenger-contact-info>
+  <app-passenger-contact-info></app-passenger-contact-info> -->
   <div class="row justify-content-end">
     <a routerLink=".." class="btn btn-warning col-1 me-3">back</a>
     <button type="submit" class="btn btn-success col-1">continue</button>
