@@ -12,6 +12,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MY_DATE_FORMAT } from './core/services/date-format';
+import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -20,6 +21,7 @@ import { MY_DATE_FORMAT } from './core/services/date-format';
     AppRoutingModule,
     MainPageModule,
     CoreModule,
+    ShoppingCartModule,
     StoreModule.forRoot(
       { flightData: flightsReducer, selectedFlight: selectedFlihgtReducer },
       {}

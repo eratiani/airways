@@ -1,0 +1,53 @@
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+  <ng-container *ngFor="let column of displayedColumns.slice(1, -1)" [matColumnDef]="column">
+    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+  </ng-container>
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> edit </th>
+    <td mat-cell *matCellDef="let element" style="width: 300px;">
+      <img style="cursor: pointer;" src="../../../../assets/dots.png" alt="" (click)="onEditDelete($event,element)">
+      <div *ngIf="element.showButtons">
+        <button class="btn btn-primary" (click)="onEdit(element)">
+          edit
+        </button>
+        <button class="btn btn-danger" (click)="onDelete(element)">
+          delete
+        </button>
+      </div>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selection.toggle(row)">
+  </tr>
+</table>
+<br>
+<div >
+  <div class="d-flex justify-content-between"> 
+
+    <button class="btn">+ Add new trip</button>
+    <span>total:</span>
+  </div>
+  <div class="d-flex justify-content-end align-items-center"> 
+    <span class="m-4 ">2 selected </span>
+    <button class="btn btn-primary">Payment</button>
+  </div>
+</div>
