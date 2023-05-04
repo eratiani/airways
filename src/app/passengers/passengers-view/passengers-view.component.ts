@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors, FormBuilder, FormArray } from '@angular/forms';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { passangerModel } from './models/passanger.model';
 
@@ -9,22 +9,25 @@ import { passangerModel } from './models/passanger.model';
   styleUrls: ['./passengers-view.component.css'],
 })
 export class PassengersViewComponent implements OnInit, OnDestroy {
-  PassengersForm!: FormGroup<{
-    adult:FormGroup<passangerModel>,
-    child:FormGroup<passangerModel>,
-    contact:FormGroup<{email:FormControl}>
-    infant:FormGroup<{name: FormControl<string>;
-      surname: FormControl<string>;
-      gender: FormControl<boolean>;
-      dateOfBirth: FormControl<string>;
-      }>
-  }>;
-  constructor(private headerState: HeaderStateService) {}
+  infantValue :number =2;
+  PassengersForm!:any;
+  // PassengersForm!: FormGroup<{
+  //   adult:FormArray<FormGroup<passangerModel>>,
+  //   child:FormArray<FormGroup<passangerModel>>,
+  //   contact:FormGroup<{email:FormControl}>
+  //   infant:FormArray<FormGroup<{name: FormControl<string>;
+  //     surname: FormControl<string>;
+  //     gender: FormControl<boolean>;
+  //     dateOfBirth: FormControl<string>;
+  //     }>>
+  // }>;
+  constructor(private headerState: HeaderStateService, private fb: FormBuilder) {}
   createForm() {
     let emailregex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.PassengersForm = new FormGroup({
-      adult: new FormGroup({
+      adult: this.fb.array([
+        this.fb.group({
         name: new FormControl('', {
           validators: [Validators.required],
           nonNullable: true,
@@ -45,47 +48,14 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
           validators: [],
           nonNullable: true,
         }),
-      }),
-      child: new FormGroup({
-        name: new FormControl('', {
-          validators: [Validators.required],
-          nonNullable: true,
-        }),
-        surname: new FormControl('', {
-          validators: [Validators.required],
-          nonNullable: true,
-        }),
-        dateOfBirth: new FormControl('', {
-          validators: [Validators.required, this.dateNotInFutureValidator],
-          nonNullable: true,
-        }),
-        gender: new FormControl(false, {
-          validators: [Validators.required],
-          nonNullable: true,
-        }),
-        specialNeeds: new FormControl(false, {
-          validators: [],
-          nonNullable: true,
-        }),
-      }),
-      infant: new FormGroup({
-        name: new FormControl('', {
-          validators: [Validators.required],
-          nonNullable: true,
-        }),
-        surname: new FormControl('', {
-          validators: [Validators.required],
-          nonNullable: true,
-        }),
-        dateOfBirth: new FormControl('', {
-          validators: [Validators.required, this.dateNotInFutureValidator],
-          nonNullable: true,
-        }),
-        gender: new FormControl(false, {
-          validators: [Validators.required],
-          nonNullable: true,
-        }),
-      }),
+      })
+    ]),
+      child: this.fb.array([
+        
+    ]),
+      infant: this.fb.array([
+      
+    ]),
       contact: new FormGroup({
         email: new FormControl('', {
           validators: [Validators.required,Validators.pattern(emailregex)],
@@ -95,8 +65,60 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
     });
   }
   
-  
-  
+  addInfantForm(value:number){
+    const formGroup =this.fb.group({
+      name: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      surname: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      dateOfBirth: new FormControl('', {
+        validators: [Validators.required, this.dateNotInFutureValidator],
+        nonNullable: true,
+      }),
+      gender: new FormControl(false, {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+    })
+    while(value > 0){
+      this.PassengersForm.get("infant").push(formGroup)
+      value--;
+    }
+
+  }
+  addAdultChildForm(type:string,value:number){
+    const formGroup =this.fb.group({
+      name: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      surname: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      dateOfBirth: new FormControl('', {
+        validators: [Validators.required, this.dateNotInFutureValidator],
+        nonNullable: true,
+      }),
+      gender: new FormControl(false, {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      specialNeeds: new FormControl(false, {
+        validators: [],
+        nonNullable: true,
+      }),
+    })
+    while(value > 0){
+      this.PassengersForm.get(type).push(formGroup)
+      value--;
+    }
+
+  }
   
   
   onSubmit() {
@@ -139,6 +161,11 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.headerState.toggleUserOnPassengersPage();
     this.createForm()
+    this.addInfantForm(this.infantValue)
+    this.addAdultChildForm("adult",this.infantValue)
+    this.addAdultChildForm("child",this.infantValue)
+    console.log( this.PassengersForm.get('adult')['controls']);
+    
   }
   ngOnDestroy(): void {
     this.headerState.toggleUserOnPassengersPage();

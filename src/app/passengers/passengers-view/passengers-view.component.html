@@ -1,7 +1,15 @@
 <form class="container" [formGroup]="PassengersForm" (ngSubmit)="onSubmit()">
-  <app-passenger-adult [adult]="PassengersForm.get('adult')"></app-passenger-adult>
-  <app-passenger-child [child]="PassengersForm.get('child')"></app-passenger-child>
-  <app-passenger-infant [infant]="PassengersForm.get('infant')"></app-passenger-infant>
+  <div formArrayName="adult" *ngFor="let adultControl of PassengersForm.get('adult')['controls']; let i=index" >
+
+    <app-passenger-adult [formGroup]="adultControl" [adult]="adultControl"></app-passenger-adult>
+  </div>
+  <div *ngFor="let childControl of PassengersForm.get('child')['controls']; let i=index" >
+
+    <app-passenger-child [child]="childControl"></app-passenger-child>
+  </div>
+  <div *ngFor="let infantControl of PassengersForm.get('infant')['controls']; let i=index" >
+  <app-passenger-infant [infant]="infantControl"></app-passenger-infant>
+</div>
   <app-passenger-contact-info [contact]="PassengersForm.get('contact')"></app-passenger-contact-info>
   <div class="row justify-content-end">
     <a routerLink=".." class="btn btn-warning col-1 me-3">back</a>
