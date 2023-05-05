@@ -60,39 +60,15 @@
         <mat-form-field class="" appearance="fill">
           <mat-label>Select an option</mat-label>
           <mat-select>
-            <mat-option value="adult">
-              Adult
+            <mat-option *ngFor="let value of keys" [value]="value">
+              {{ toCamelCase(value) }}
               <div class="option-controls">
-                <button mat-button (click)="increaseValue($event, 'adult')">
-                  +
-                </button>
-                {{ optionValues.adult }}
-                <button mat-button (click)="decreaseValue($event, 'adult')">
+                <button mat-button (click)="decreaseValue($event, value)">
                   -
                 </button>
-              </div>
-            </mat-option>
-            <mat-option value="child">
-              Child
-              <div class="option-controls">
-                <button mat-button (click)="increaseValue($event, 'child')">
+                {{ searchForm.controls.passengers.value[value] }}
+                <button mat-button (click)="increaseValue($event, value)">
                   +
-                </button>
-                {{ optionValues.child }}
-                <button mat-button (click)="decreaseValue($event, 'child')">
-                  -
-                </button>
-              </div>
-            </mat-option>
-            <mat-option value="infant">
-              Infant
-              <div class="option-controls">
-                <button mat-button (click)="increaseValue($event, 'infant')">
-                  +
-                </button>
-                {{ optionValues.infant }}
-                <button mat-button (click)="decreaseValue($event, 'infant')">
-                  -
                 </button>
               </div>
             </mat-option>
@@ -100,6 +76,8 @@
         </mat-form-field>
       </div>
     </div>
+
+    <p>{{ searchForm.value | json }}</p>
 
     <div class="w-50 d-flex justify-content-end">
       <button

@@ -4,6 +4,7 @@ import {
   flightOneWayAdd,
   resetBackFlights,
   selectFlight,
+  setPassangersCount,
 } from './actions';
 import { StoreType } from './store.model';
 
@@ -19,4 +20,14 @@ const initialSelectedFlight: StoreType['selectedFlight'] = {};
 export const selectedFlihgtReducer = createReducer(
   initialSelectedFlight,
   on(selectFlight, (state, { oneWay, backWay }) => ({ oneWay, backWay }))
+);
+
+const initialPassangers: StoreType['passengersCount'] = {};
+export const passangersCountReducer = createReducer(
+  initialPassangers,
+  on(setPassangersCount, (state, { adult, child, infant }) => ({
+    adult,
+    child,
+    infant,
+  }))
 );
