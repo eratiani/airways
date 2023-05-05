@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
-  FormArray,
+  AbstractControl,
   FormBuilder,
-  FormControl,
   FormGroup,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
@@ -14,11 +14,11 @@ import { HeaderStateService } from 'src/app/core/services/header-state.service';
   styleUrls: ['./passengers-view.component.css'],
 })
 export class PassengersViewComponent implements OnInit, OnDestroy {
-  counts = {
-    adult: 1,
-    child: 2,
-    infant: 2,
-  };
+  // counts = {
+  //   adult: 1,
+  //   child: 2,
+  //   infant: 2,
+  // };
   passengersForm = this.fb.group({
     adult: this.fb.array<FormGroup>([]),
     child: this.fb.array<FormGroup>([]),
@@ -26,17 +26,13 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
     contact: this.fb.group({}),
   });
 
-  // getMember(name:keyof typeof this.passengersForm['controls']){
-  //   return this.passengersForm.controls[name] as FormArray
-  // }
-
   constructor(
     private headerState: HeaderStateService,
     private fb: FormBuilder
   ) {
     this.passengersForm.controls.adult.push(this.createGroup());
-    this.passengersForm.controls.child.push(this.createGroup());
-    this.passengersForm.controls.adult.push(this.createGroup());
+    // this.passengersForm.controls.child.push(this.createGroup());
+    // this.passengersForm.controls.adult.push(this.createGroup());
     this.passengersForm.controls.adult.controls;
     // console.log(this.passengersForm);
     // this.passengersForm.get()
@@ -45,20 +41,17 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
   private createGroup() {
     return this.fb.group({
       name: ['', Validators.required],
-      surname: [''],
+      surname: ['', Validators.required],
+      gender: ['male'],
+      dOb: ['', [Validators.required, dateNotInFutureValidator]],
+      specialNeeds: [false],
     });
   }
-  // get adults() {
-  //   return this.passengersForm.get('adult') as FormArray;
-  // }
-  // oneControl() {
-  //   return this.fb.group({
-  //     name: [''],
-  //   });
-  // }
+
   ngOnInit(): void {
     this.headerState.toggleUserOnPassengersPage();
   }
+
   ngOnDestroy(): void {
     this.headerState.toggleUserOnPassengersPage();
   }
@@ -66,4 +59,15 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
   onSubmit() {
     console.log(this.passengersForm.value, this.passengersForm);
   }
+}
+
+function dateNotInFutureValidator(
+  control: AbstractControl
+): ValidationErrors | null {
+  const inputDate = new Date(control.value);
+  const currentDate = new Date();
+  if (inputDate > currentDate) {
+    return { dateNotInFuture: true };
+  }
+  return null;
 }

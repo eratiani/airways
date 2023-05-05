@@ -8,9 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatRadioModule } from '@angular/material/radio';
-import { HttpClientModule } from '@angular/common/http';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 import { PassengersViewComponent } from './passengers-view/passengers-view.component';
 import { PassengerEachComponent } from './components/passenger-each/passenger-each.component';
@@ -33,9 +32,8 @@ import { RouterModule } from '@angular/router';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatRadioModule,
-    HttpClientModule,
     MatSlideToggleModule,
+    MatButtonToggleModule,
     RouterModule.forChild([
       {
         path: '',
