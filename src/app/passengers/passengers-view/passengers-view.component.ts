@@ -22,6 +22,11 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
     infant: this.fb.array<FormGroup>([]),
     contact: this.fb.group({}),
   });
+  passengers: Exclude<keyof typeof this.passengersForm.value, 'contact'>[] = [
+    'adult',
+    'child',
+    'infant',
+  ];
 
   constructor(
     private headerState: HeaderStateService,
@@ -49,6 +54,21 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
       dOb: ['', [Validators.required, dateNotInFutureValidator]],
       specialNeeds: [false],
     });
+  }
+
+  addMember(
+    member: Exclude<keyof typeof this.passengersForm.value, 'contact'>
+  ) {
+    console.log();
+    this.passengersForm.controls[member].push(this.createGroup());
+  }
+
+  removeMember(
+    member: Exclude<keyof typeof this.passengersForm.value, 'contact'>
+  ) {
+    this.passengersForm.controls[member].removeAt(
+      this.passengersForm.controls[member].length - 1
+    );
   }
 
   ngOnInit(): void {

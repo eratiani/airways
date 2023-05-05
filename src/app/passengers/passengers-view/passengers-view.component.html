@@ -1,47 +1,21 @@
 <form class="container" [formGroup]="passengersForm" (submit)="onSubmit()">
-  <div
-    formArrayName="adult"
-    *ngIf="passengersForm.controls.adult.controls.length"
-  >
-    <h1>Adults</h1>
-    <passenger-each
-      *ngFor="
-        let control of passengersForm.controls.adult.controls;
-        let i = index
-      "
-      [count]="i + 1"
-      [control]="control"
-    ></passenger-each>
-  </div>
-
-  <div
-    formArrayName="child"
-    *ngIf="passengersForm.controls.child.controls.length"
-  >
-    <h1>Children</h1>
-    <passenger-each
-      *ngFor="
-        let control of passengersForm.controls.child.controls;
-        let i = index
-      "
-      [count]="i + 1"
-      [control]="control"
-    ></passenger-each>
-  </div>
-
-  <div
-    formArrayName="infant"
-    *ngIf="passengersForm.controls.infant.controls.length"
-  >
-    <h1>Infants</h1>
-    <passenger-each
-      *ngFor="
-        let control of passengersForm.controls.infant.controls;
-        let i = index
-      "
-      [count]="i + 1"
-      [control]="control"
-    ></passenger-each>
+  <div *ngFor="let passenger of passengers">
+    <h1>{{ passenger === "child" ? "children" : passenger + "s" }}:</h1>
+    <div>
+      <!-- to do nice appereance -->
+      <button (click)="addMember(passenger)">+</button>
+      <button (click)="removeMember(passenger)">-</button>
+    </div>
+    <div formArrayName="adult">
+      <passenger-each
+        *ngFor="
+          let control of passengersForm.controls[passenger].controls;
+          let i = index
+        "
+        [count]="i + 1"
+        [control]="control"
+      ></passenger-each>
+    </div>
   </div>
 
   <p>{{ passengersForm.value | json }}</p>
