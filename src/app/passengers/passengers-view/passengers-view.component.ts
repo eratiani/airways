@@ -6,7 +6,9 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
+import { StoreType } from 'src/app/redux/store.model';
 
 @Component({
   selector: 'app-passengers-view',
@@ -14,11 +16,6 @@ import { HeaderStateService } from 'src/app/core/services/header-state.service';
   styleUrls: ['./passengers-view.component.css'],
 })
 export class PassengersViewComponent implements OnInit, OnDestroy {
-  // counts = {
-  //   adult: 1,
-  //   child: 2,
-  //   infant: 2,
-  // };
   passengersForm = this.fb.group({
     adult: this.fb.array<FormGroup>([]),
     child: this.fb.array<FormGroup>([]),
@@ -28,14 +25,20 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private headerState: HeaderStateService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private store: Store<StoreType>
   ) {
-    this.passengersForm.controls.adult.push(this.createGroup());
-    // this.passengersForm.controls.child.push(this.createGroup());
-    // this.passengersForm.controls.adult.push(this.createGroup());
-    this.passengersForm.controls.adult.controls;
-    // console.log(this.passengersForm);
-    // this.passengersForm.get()
+    store.select('passengersCount').subscribe((passeng) => {
+      console.log('passang from store: ', passeng);
+      for (const [type, count] of Object.entries(passeng) as [
+        keyof typeof passeng,
+        number
+      ][]) {
+        for (let i = 0; i < count; i += 1) {
+          this.passengersForm.controls[type].push(this.createGroup());
+        }
+      }
+    });
   }
 
   private createGroup() {
@@ -57,7 +60,7 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.passengersForm.value, this.passengersForm);
+    // console.log(this.passengersForm.value, this.passengersForm);
   }
 }
 

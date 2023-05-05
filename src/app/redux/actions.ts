@@ -18,3 +18,9 @@ export const selectFlight = createAction(
   '[selected fligths] save',
   props<StoreType['selectedFlight']>()
 );
+
+// passengers counter
+export const setPassangersCount = createAction(
+  '[passengers] set amount',
+  props<StoreType['passengersCount']>()
+);

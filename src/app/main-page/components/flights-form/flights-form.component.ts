@@ -1,23 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { cities } from 'CONST';
 import { SearchService } from '../../services/search-flyght.service';
-import { StoreType } from 'src/app/redux/store.model';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { setPassangersCount } from 'src/app/redux/actions';
+import { StoreType } from 'src/app/redux/store.model';
+
+type OptionsType = {
+  adult: number;
+  child: number;
+  infant: number;
+};
 
 @Component({
   selector: 'app-flights-form',
   templateUrl: './flights-form.component.html',
   styleUrls: ['./flights-form.component.css'],
 })
-export class FlightsFormComponent implements OnInit {
+export class FlightsFormComponent {
   cities = cities;
   errorMessage = 'Fill this field';
-  optionValues: any = {
-    adult: 0,
-    child: 0,
-    infant: 0,
-  };
   searchForm = this.fb.nonNullable.group({
     oneWay: [false],
     from: ['Paris', Validators.required], // to change for ''
@@ -26,31 +29,50 @@ export class FlightsFormComponent implements OnInit {
       startDate: [''],
       endDate: [''],
     }),
+    passengers: [{ adult: 0, child: 0, infant: 0 }],
   });
+  keys = Object.keys(
+    this.searchForm.controls.passengers.value
+  ) as (keyof OptionsType)[];
+
   constructor(
     private fb: FormBuilder,
     private search: SearchService,
-    private router: Router
+    private router: Router,
+    private store: Store<StoreType>
   ) {}
-  ngOnInit() {}
 
-  increaseValue(e: Event, option: string) {
-    e.stopImmediatePropagation();
-    this.optionValues[option]++;
+  toCamelCase(string: string) {
+    return string.replace(/^\w/, (w) => w.toUpperCase());
   }
 
-  decreaseValue(e: Event, option: string) {
+  increaseValue(e: Event, option: keyof OptionsType) {
     e.stopImmediatePropagation();
-    if (this.optionValues[option] > 0) {
-      this.optionValues[option]--;
+    const temp = this.searchForm.value.passengers!;
+    this.searchForm.patchValue({
+      passengers: { ...temp, [option]: temp[option] + 1 },
+    });
+  }
+
+  decreaseValue(e: Event, option: keyof OptionsType) {
+    e.stopImmediatePropagation();
+    const temp = this.searchForm.value.passengers!;
+    if (!temp[option]) {
+      return;
     }
+    this.searchForm.patchValue({
+      passengers: { ...temp, [option]: temp[option] - 1 },
+    });
   }
 
   onSubmit() {
-    // console.log(this.searchForm);
     if (this.searchForm.invalid) {
       return;
     }
+
+    this.store.dispatch(setPassangersCount(this.searchForm.value.passengers!));
+
+    // to do search with required seats avialable
     const { oneWay, from, to, date } = this.searchForm.value;
     this.search
       .search(oneWay!, from!, to!, date?.startDate, date?.endDate)
