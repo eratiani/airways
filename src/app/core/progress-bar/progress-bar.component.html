@@ -1,0 +1,62 @@
+
+<div
+            *ngIf="
+              userOnBookingPage || userOnPassangersPage || userOnSummaryPage || userOnShoppingCartPage
+            "
+            class="progress--bar d-flex align-items-center justify-content-between"
+          >
+            <div class="first--step d-flex">
+              <img
+                *ngIf="userOnBookingPage"
+                src="../../../assets/Steps-inProgress.png"
+                alt="inProgress"
+              />
+              <img
+                *ngIf="!userOnBookingPage"
+                src="../../../assets/Steps-complete.png"
+                alt="done"
+              />
+              <span>Flights</span>
+            </div>
+            <div class="progress__bar--lineCont">
+              <img src="../../../assets/Steps-Divider.png" alt="" />
+            </div>
+            <div class="second--step d-flex">
+              <img
+                *ngIf="userOnPassangersPage"
+                src="../../../assets/Steps-inProgress.png"
+                alt="inProgress"
+              />
+              <img
+                *ngIf="userOnSummaryPage || userOnShoppingCartPage"
+                src="../../../assets/Steps-complete.png"
+                alt="done"
+              />
+              <img
+                *ngIf="userOnBookingPage"
+                src="../../../assets/Steps-second.png"
+                alt="two"
+              />
+              <span>Passengers</span>
+            </div>
+            <div class="progress__bar--lineCont">
+              <img src="../../../assets/Steps-Divider.png" alt="" />
+            </div>
+
+            <div class="third--step d-flex align-items-center">
+              <div class="d-flex" style="height: 24px">
+                <img
+                  *ngIf="userOnSummaryPage"
+                  src="../../../assets/Steps-inProgress.png"
+                  alt="inProgress"
+                />
+                <img *ngIf="userOnShoppingCartPage" src="../../../assets/Steps-complete.png" alt="done" />
+                <img
+                  *ngIf="userOnPassangersPage || userOnBookingPage"
+                  src="../../../assets/Steps-third.png"
+                  alt="three"
+                />
+              </div>
+              <span>Review & Payment</span>
+            </div>
+          </div>

@@ -14,75 +14,15 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div
-          class="collapse navbar-collapse justify-content-between align-items-center"
+          class="collapse navbar-collapse justify-content-between align-items-center flex-wrap"
           id="navbarSupportedContent"
         >
-          <div class="nav-content d-flex justify-content-center">
+          <div class="nav-content m-2">
             <a class="nav-link" routerLink="/Home" style="cursor: pointer"
               ><img src="../../../assets/logo.png" alt="logo"
             /></a>
           </div>
-          <div
-            *ngIf="
-              userOnBookingPage || userOnPassangersPage || userOnSummaryPage
-            "
-            class="progress--bar d-flex align-items-center justify-content-between"
-          >
-            <div class="first--step d-flex">
-              <img
-                *ngIf="userOnBookingPage"
-                src="../../../assets/Steps-inProgress.png"
-                alt="inProgress"
-              />
-              <img
-                *ngIf="!userOnBookingPage"
-                src="../../../assets/Steps-complete.png"
-                alt="done"
-              />
-              <span>Flights</span>
-            </div>
-            <div class="progress__bar--lineCont">
-              <img src="../../../assets/Steps-Divider.png" alt="" />
-            </div>
-            <div class="second--step d-flex">
-              <img
-                *ngIf="userOnPassangersPage"
-                src="../../../assets/Steps-inProgress.png"
-                alt="inProgress"
-              />
-              <img
-                *ngIf="userOnSummaryPage"
-                src="../../../assets/Steps-complete.png"
-                alt="done"
-              />
-              <img
-                *ngIf="userOnBookingPage"
-                src="../../../assets/Steps-second.png"
-                alt="two"
-              />
-              <span>Passengers</span>
-            </div>
-            <div class="progress__bar--lineCont">
-              <img src="../../../assets/Steps-Divider.png" alt="" />
-            </div>
-
-            <div class="third--step d-flex align-items-center">
-              <div class="d-flex" style="height: 24px">
-                <img
-                  *ngIf="userOnSummaryPage"
-                  src="../../../assets/Steps-inProgress.png"
-                  alt="inProgress"
-                />
-                <img src="../../../assets/Steps-complete.png" alt="done" />
-                <img
-                  *ngIf="userOnPassangersPage || userOnBookingPage"
-                  src="../../../assets/Steps-third.png"
-                  alt="three"
-                />
-              </div>
-              <span>Review & Payment</span>
-            </div>
-          </div>
+         
           <br />
           <div class="d-flex flex-lg-row flex-column align-items-center">
             <a class="nav-link" href="">Book flights</a>
@@ -127,6 +67,9 @@
               /></a>
             </div>
           </div>
+          <app-progress-bar class="m-auto" ></app-progress-bar>
+          <br>
+          <br>
         </div>
       </div>
     </div>

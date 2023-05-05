@@ -10,6 +10,8 @@ export class HeaderStateService  {
   userOnSummaryPage$ = this.userOnSummaryPageSubject.asObservable();
   private userOnpassengersPageSubject = new BehaviorSubject<boolean>(false);
   userOnpassengersPage$ = this.userOnpassengersPageSubject.asObservable();
+  private userOnShoppingCartPageSubject = new BehaviorSubject<boolean>(false);
+  userOnShoppingCartPage$ = this.userOnShoppingCartPageSubject.asObservable();
   dateFormatEmiter = new Subject<string>()
   currencyFormatEmitter = new Subject<string>()
   constructor(){
@@ -29,5 +31,8 @@ export class HeaderStateService  {
     this.userOnpassengersPageSubject.next(
       !this.userOnpassengersPageSubject.value
     );
+  }
+  toggleUserOnShoppingCartPage() {
+    this.userOnShoppingCartPageSubject.next(!this.userOnShoppingCartPageSubject.value);
   }
 }
