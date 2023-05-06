@@ -8,9 +8,8 @@ describe('PassengerContactInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PassengerContactInfoComponent ]
-    })
-    .compileComponents();
+      declarations: [PassengerContactInfoComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PassengerContactInfoComponent);
     component = fixture.componentInstance;

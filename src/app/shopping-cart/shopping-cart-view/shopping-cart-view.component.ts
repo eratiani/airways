@@ -4,10 +4,10 @@ import { HeaderStateService } from 'src/app/core/services/header-state.service';
 @Component({
   selector: 'app-shopping-cart-view',
   templateUrl: './shopping-cart-view.component.html',
-  styleUrls: ['./shopping-cart-view.component.css']
+  styleUrls: ['./shopping-cart-view.component.css'],
 })
 export class ShoppingCartViewComponent implements OnInit, OnDestroy {
-  constructor(private headerState:HeaderStateService) {}
+  constructor(private headerState: HeaderStateService) {}
   ngOnInit(): void {
     this.headerState.toggleUserOnShoppingCartPage();
   }

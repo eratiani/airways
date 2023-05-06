@@ -1,4 +1,10 @@
-import { Directive, HostBinding, Input, OnChanges, OnInit } from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+  Input,
+  OnChanges,
+  OnInit,
+} from '@angular/core';
 
 @Directive({
   selector: '[appHiglight]',

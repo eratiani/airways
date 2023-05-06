@@ -1,20 +1,19 @@
 <div class="card-container d-flex flex-wrap justify-content-between">
-    <mat-card class="col-5" *ngFor="let detail of flightDetails"
->
-  
+  <mat-card class="col-5" *ngFor="let detail of flightDetails">
     <mat-card-content>
-      <h2> {{detail.flightNumber}} {{detail.route}}</h2>
-      <p> {{detail.date}}  {{detail.departureTime}} {{detail.arrivalTime}}</p>
-     
+      <h2>{{ detail.flightNumber }} {{ detail.route }}</h2>
+      <p>
+        {{ detail.date }} {{ detail.departureTime }} {{ detail.arrivalTime }}
+      </p>
+
       <div *ngFor="let passenger of detail.passengers">
-        <hr>  
-        <h2>{{passenger.name}} - {{passenger.seat}} </h2>
-      <hr>  
-      <ul>
-        <li *ngFor="let lugage of passenger.luggage" >{{lugage}}</li>
-      </ul>
-    </div>
-      
+        <hr />
+        <h2>{{ passenger.name }} - {{ passenger.seat }}</h2>
+        <hr />
+        <ul>
+          <li *ngFor="let lugage of passenger.luggage">{{ lugage }}</li>
+        </ul>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

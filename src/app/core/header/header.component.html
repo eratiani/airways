@@ -22,20 +22,27 @@
               ><img src="../../../assets/logo.png" alt="logo"
             /></a>
           </div>
-         
+
           <br />
           <div class="d-flex flex-lg-row flex-column align-items-center">
             <a class="nav-link" href="">Book flights</a>
             <mat-form-field class="m-4" appearance="fill">
               <mat-label>Select Date Format</mat-label>
-              <mat-select [(value)]="date" (selectionChange)="onDateFormatChage()">
+              <mat-select
+                [(value)]="date"
+                (selectionChange)="onDateFormatChage()"
+              >
                 <mat-option value="MM/DD/YYYY">MM/DD/YYYY</mat-option>
                 <mat-option value="DD/MM/YYYY">DD/MM/YYYY</mat-option>
                 <mat-option value="YYYY/DD/MM">YYYY/DD/MM</mat-option>
                 <mat-option value="YYYY/MM/DD">YYYY/MM/DD</mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field class="m-4" appearance="fill" (selectionChange)="oncurrencyFormatChage()">
+            <mat-form-field
+              class="m-4"
+              appearance="fill"
+              (selectionChange)="oncurrencyFormatChage()"
+            >
               <mat-label>Select currency</mat-label>
               <mat-select [(value)]="currency">
                 <mat-option value="EUR">EUR</mat-option>
@@ -44,7 +51,7 @@
                 <mat-option value="PLN">PLN</mat-option>
               </mat-select>
             </mat-form-field>
-           
+
             <div class="nav-item">
               <a
                 style="height: 40px; width: 100px; cursor: pointer"
@@ -67,9 +74,9 @@
               /></a>
             </div>
           </div>
-          <app-progress-bar class="m-auto" ></app-progress-bar>
-          <br>
-          <br>
+          <app-progress-bar class="m-auto"></app-progress-bar>
+          <br />
+          <br />
         </div>
       </div>
     </div>

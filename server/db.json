@@ -80,6 +80,14 @@
       "gender": "female",
       "age": 1,
       "id": 9
+    },
+    {
+      "email": "johndoe@example.com",
+      "password": "$2a$10$zuTYYC/R7x6C.MaN.jBU3ONU5FiK2x3m7e8Sli2s/1SxBWFClRR9i",
+      "username": "JohnDoe",
+      "gender": "male",
+      "age": 34,
+      "id": 10
     }
   ],
   "data": [

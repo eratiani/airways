@@ -41,7 +41,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Choose a date</mat-label>
           <input matInput [matDatepicker]="picker2" formControlName="dOb" />
-          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-hint>{{ dateFormat }}</mat-hint>
           <mat-datepicker-toggle
             matIconSuffix
             [for]="picker2"

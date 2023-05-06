@@ -11,20 +11,18 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
-import {HttpClientModule} from '@angular/common/http';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { HttpClientModule } from '@angular/common/http';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { LogInComponent } from './log-in/log-in.component';
-import {  RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './register/register.component';
 import { AuthenticationFormContainerComponent } from './authentication-form-container/authentication-form-container.component';
-
-
 
 @NgModule({
   declarations: [
     LogInComponent,
     RegisterComponent,
-    AuthenticationFormContainerComponent
+    AuthenticationFormContainerComponent,
   ],
   imports: [
     CommonModule,
@@ -41,12 +39,8 @@ import { AuthenticationFormContainerComponent } from './authentication-form-cont
     MatSelectCountryModule.forRoot('en'),
     HttpClientModule,
     MatCheckboxModule,
-   
-     
   ],
 
-  exports: [
-    AuthenticationFormContainerComponent
-  ]
+  exports: [AuthenticationFormContainerComponent],
 })
-export class UserAuthenticationModule { }
+export class UserAuthenticationModule {}

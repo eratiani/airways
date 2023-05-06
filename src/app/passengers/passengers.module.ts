@@ -7,7 +7,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+  MatNativeDateModule,
+} from '@angular/material/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
@@ -15,6 +20,8 @@ import { PassengersViewComponent } from './passengers-view/passengers-view.compo
 import { PassengerEachComponent } from './components/passenger-each/passenger-each.component';
 import { PassengerContactInfoComponent } from './components/passenger-contact-info/passenger-contact-info.component';
 import { RouterModule } from '@angular/router';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MY_DATE_FORMAT } from '../core/services/date-format';
 
 @NgModule({
   declarations: [
@@ -40,6 +47,14 @@ import { RouterModule } from '@angular/router';
         component: PassengersViewComponent,
       },
     ]),
+  ],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT },
   ],
   // exports: [PassengersViewComponent],
 })

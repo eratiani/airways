@@ -9,17 +9,7 @@ import {
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 import { SnackBarService } from 'src/app/services/snack-bar.srvice';
-export const MY_DATE_FORMAT = {
-  parse: {
-    dateInput: 'DD/MM/YYYY', // this is how your date will be parsed from Input
-  },
-  display: {
-    dateInput: 'DD/MM/YYYY', // this is how your date will get displayed on the Input
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY'
-  }
-};
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -29,7 +19,7 @@ export class RegisterComponent {
   private preSelectData = {
     username: 'JohnDoe',
     email: 'johndoe@example.com',
-    password: 'myPassword',
+    password: 'QWERTY1!test',
     gender: 'male',
     dateOfBirth: '1990-01-01',
     country: {
@@ -54,19 +44,20 @@ export class RegisterComponent {
     }>;
     termsAndServices: FormControl<boolean>;
   }>;
-  dateFormat:string = 'MM/dd/yyyy';
+  dateFormat: string = 'DD/MM/YYYY';
   fieldRequired: string = 'This field is required';
-  
+
   constructor(
     private auth: BackendUserService,
     private headerState: HeaderStateService,
-    private snackBar: SnackBarService,
-    
+    private snackBar: SnackBarService
   ) {}
 
   ngOnInit() {
     this.createForm();
-    this.headerState.dateFormatEmiter.subscribe(date => this.dateFormat = date)
+    this.headerState.dateFormatEmiter.subscribe(
+      (date) => (this.dateFormat = date)
+    );
   }
   createForm() {
     let emailregex: RegExp =
@@ -178,7 +169,7 @@ export class RegisterComponent {
       termsAndServices: this.preSelectData.termsAndServices,
     });
   }
- 
+
   dateNotInFutureValidator(control: AbstractControl): ValidationErrors | null {
     const inputDate = new Date(control.value);
     const currentDate = new Date();

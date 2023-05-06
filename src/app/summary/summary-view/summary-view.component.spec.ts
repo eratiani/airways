@@ -8,9 +8,8 @@ describe('SummaryViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SummaryViewComponent ]
-    })
-    .compileComponents();
+      declarations: [SummaryViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SummaryViewComponent);
     component = fixture.componentInstance;

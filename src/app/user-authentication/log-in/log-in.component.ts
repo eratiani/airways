@@ -17,7 +17,7 @@ import { SnackBarService } from 'src/app/services/snack-bar.srvice';
 export class LogInComponent {
   private preSelectData = {
     email: 'johndoe@example.com',
-    password: 'myPassword',
+    password: 'QWERTY1!test',
   };
   logInForm!: FormGroup<{
     email: FormControl<string>;

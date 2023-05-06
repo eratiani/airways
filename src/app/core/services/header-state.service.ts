@@ -1,8 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { MY_DATE_FORMAT } from "./date-format";
+import { MY_DATE_FORMAT } from './date-format';
 @Injectable({ providedIn: 'root' })
-export class HeaderStateService  {
+export class HeaderStateService {
   showAuth = false;
   private userOnBookingPageSubject = new BehaviorSubject<boolean>(false);
   userOnBookingPage$ = this.userOnBookingPageSubject.asObservable();
@@ -12,18 +12,18 @@ export class HeaderStateService  {
   userOnpassengersPage$ = this.userOnpassengersPageSubject.asObservable();
   private userOnShoppingCartPageSubject = new BehaviorSubject<boolean>(false);
   userOnShoppingCartPage$ = this.userOnShoppingCartPageSubject.asObservable();
-  dateFormatEmiter = new Subject<string>()
-  currencyFormatEmitter = new Subject<string>()
-  constructor(){
-    this.dateFormatEmiter.subscribe((date)=>{
+  dateFormatEmiter = new Subject<string>();
+  currencyFormatEmitter = new Subject<string>();
+  constructor() {
+    this.dateFormatEmiter.subscribe((date) => {
       MY_DATE_FORMAT.display.dateInput = date;
       MY_DATE_FORMAT.parse.dateInput = date;
-    })
+    });
   }
   toggleUserOnBookingPage() {
     this.userOnBookingPageSubject.next(!this.userOnBookingPageSubject.value);
   }
-  
+
   toggleUserOnSummaryPage() {
     this.userOnSummaryPageSubject.next(!this.userOnSummaryPageSubject.value);
   }
@@ -33,6 +33,8 @@ export class HeaderStateService  {
     );
   }
   toggleUserOnShoppingCartPage() {
-    this.userOnShoppingCartPageSubject.next(!this.userOnShoppingCartPageSubject.value);
+    this.userOnShoppingCartPageSubject.next(
+      !this.userOnShoppingCartPageSubject.value
+    );
   }
 }

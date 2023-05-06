@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component } from '@angular/core';
 import { HeaderStateService } from '../services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 
@@ -8,22 +8,20 @@ import { BackendUserService } from 'src/app/services/backend-user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
- 
-  date:string = 'DD/MM/YYYY';
-  currency:string = 'USD';
+  date: string = 'DD/MM/YYYY';
+  currency: string = 'USD';
   constructor(
     private headState: HeaderStateService,
     public userState: BackendUserService
   ) {}
-  
+
   onDateFormatChage() {
-    this.headState.dateFormatEmiter.next(this.date)
+    this.headState.dateFormatEmiter.next(this.date);
   }
   oncurrencyFormatChage() {
-    this.headState.currencyFormatEmitter.next(this.currency)
+    this.headState.currencyFormatEmitter.next(this.currency);
   }
- 
-  
+
   handleLog() {
     if (!this.userState.loggedIn) {
       this.headState.showAuth = true;
