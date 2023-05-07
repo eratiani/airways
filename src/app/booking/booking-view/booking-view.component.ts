@@ -11,9 +11,7 @@ export class BookingViewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.headerState.toggleUserOnBookingPage();
-    // this.headerState.currencyFormatEmitter.subscribe(
-    //   (currency) => (this.currencyFormat = currency)
-    // );
+   
   }
   ngOnDestroy(): void {
     this.headerState.toggleUserOnBookingPage();

@@ -6,8 +6,12 @@
   *ngIf="!state.isSelected"
   class="cards-container justify-content-center align-items-center d-flex m-2 flex-wrap"
 >
+<div class="arrows d-flex justify-content-between align-items-center">
+  <img (click)="moveLeft()" src="../../../../assets/left-arrow.png" alt="left">
+  <img (click)="moveRIght()" src="../../../../assets/right-arrow.png" alt="right">
+</div>
   <div
-    *ngFor="let flight of flights | slice : 0 : 5"
+    *ngFor="let flight of flightCurrent"
     class="flight-card m-2"
     (click)="selectCard(card, flight)"
     #card
@@ -17,7 +21,7 @@
     <p>{{ flight.date | date : "EEEE" }}</p>
 
     <!-- will use user pipe next -->
-    <p>{{ flight.cost | currency : "USD" }}</p>
+    <p>{{ flight.cost | currency : currencyFormat }}</p>
     <div
       *ngIf="selectedCard?.id === card.id"
       class="highlighted"
@@ -29,6 +33,7 @@
 </div>
 <app-flight-selected
   *ngIf="selectedCard"
+  [currencyFormat]="currencyFormat"
   [flight]="selectedCard"
   (changeEv)="selectFlight($event)"
   [selected]="state.isSelected"

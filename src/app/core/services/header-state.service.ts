@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, Subject, Subscription } from 'rxjs';
 import { MY_DATE_FORMAT } from './date-format';
 @Injectable({ providedIn: 'root' })
 export class HeaderStateService {
@@ -12,8 +12,8 @@ export class HeaderStateService {
   userOnpassengersPage$ = this.userOnpassengersPageSubject.asObservable();
   private userOnShoppingCartPageSubject = new BehaviorSubject<boolean>(false);
   userOnShoppingCartPage$ = this.userOnShoppingCartPageSubject.asObservable();
-  dateFormatEmiter = new Subject<string>();
-  currencyFormatEmitter = new Subject<string>();
+  dateFormatEmiter = new ReplaySubject<string>(2)
+  currencyFormatEmitter = new ReplaySubject<string>(2)
   dateFormatSub!: Subscription;
   constructor() {
     this.dateFormatSub = this.dateFormatEmiter.subscribe((date) => {

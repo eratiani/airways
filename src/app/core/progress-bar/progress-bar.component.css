@@ -1,0 +1,10 @@
+.img__prigress--bar{
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}
+@media only screen and (max-width: 550px) {
+    .progress--bar {
+        display: none !important;
+    }
+  }
