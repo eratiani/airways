@@ -2,10 +2,13 @@
   <span><img src="../../../assets/planeRight.png" alt="planr" /></span>
   {{ flights[0].from }} to {{ flights[0].to }}
 </h2>
-<div *ngIf="!state.isSelected" class="cards-container d-flex m-2">
+<div
+  *ngIf="!state.isSelected"
+  class="cards-container justify-content-center align-items-center d-flex m-2 flex-wrap"
+>
   <div
     *ngFor="let flight of flights | slice : 0 : 5"
-    class="flight-card"
+    class="flight-card m-2"
     (click)="selectCard(card, flight)"
     #card
     [id]="flight.id"
