@@ -47,7 +47,7 @@
             <input matStartDate formControlName="startDate" />
             <input matEndDate formControlName="endDate" />
           </mat-date-range-input>
-          <mat-hint>MM/DD/YYYY - MM/DD/YYYY</mat-hint>
+          <mat-hint>{{ dateFormat }} - {{ dateFormat }}</mat-hint>
           <mat-datepicker-toggle
             matIconSuffix
             [for]="picker"

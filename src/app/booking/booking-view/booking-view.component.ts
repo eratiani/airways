@@ -8,8 +8,12 @@ import { HeaderStateService } from 'src/app/core/services/header-state.service';
 })
 export class BookingViewComponent implements OnInit, OnDestroy {
   constructor(private headerState: HeaderStateService) {}
+
   ngOnInit(): void {
     this.headerState.toggleUserOnBookingPage();
+    // this.headerState.currencyFormatEmitter.subscribe(
+    //   (currency) => (this.currencyFormat = currency)
+    // );
   }
   ngOnDestroy(): void {
     this.headerState.toggleUserOnBookingPage();

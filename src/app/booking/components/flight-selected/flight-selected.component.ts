@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FlightDataType } from 'src/app/models/flyght-data.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { FlightDataType } from 'src/app/models/flyght-data.model';
 export class FlightSelectedComponent {
   @Input() flight!: FlightDataType;
   @Input() selected!: boolean;
+  @Input() currencyFormat: string = 'USD';
   @Output() changeEv = new EventEmitter<boolean>();
 
   handleSelect() {

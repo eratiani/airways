@@ -40,13 +40,12 @@
                 <mat-option value="YYYY/MM/DD">YYYY/MM/DD</mat-option>
               </mat-select>
             </mat-form-field>
-            <mat-form-field
-              class="m-4"
-              appearance="fill"
-              (selectionChange)="oncurrencyFormatChage()"
-            >
+            <mat-form-field class="m-4" appearance="fill">
               <mat-label>Select currency</mat-label>
-              <mat-select [(value)]="currency">
+              <mat-select
+                [(value)]="currency"
+                (selectionChange)="oncurrencyFormatChage()"
+              >
                 <mat-option value="EUR">EUR</mat-option>
                 <mat-option value="USD">USD</mat-option>
                 <mat-option value="RUB">RUB</mat-option>

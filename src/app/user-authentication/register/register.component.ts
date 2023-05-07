@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -6,6 +6,7 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 import { SnackBarService } from 'src/app/services/snack-bar.srvice';
@@ -15,7 +16,7 @@ import { SnackBarService } from 'src/app/services/snack-bar.srvice';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit, OnDestroy {
   private preSelectData = {
     username: 'JohnDoe',
     email: 'johndoe@example.com',
@@ -44,6 +45,7 @@ export class RegisterComponent {
     }>;
     termsAndServices: FormControl<boolean>;
   }>;
+  dateSub!: Subscription;
   dateFormat: string = 'DD/MM/YYYY';
   fieldRequired: string = 'This field is required';
 
@@ -55,9 +57,12 @@ export class RegisterComponent {
 
   ngOnInit() {
     this.createForm();
-    this.headerState.dateFormatEmiter.subscribe(
+    this.dateSub = this.headerState.dateFormatEmiter.subscribe(
       (date) => (this.dateFormat = date)
     );
+  }
+  ngOnDestroy(): void {
+    this.dateSub.unsubscribe();
   }
   createForm() {
     let emailregex: RegExp =

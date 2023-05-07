@@ -88,6 +88,14 @@
       "gender": "male",
       "age": 34,
       "id": 10
+    },
+    {
+      "email": "johndoe@xample.com",
+      "password": "$2a$10$FNY16RfnPwEYUPUQvvIK9u4vPTf0g6RGbN1VVx3lIR88zCgc7XPW2",
+      "username": "JohnDoe",
+      "gender": "male",
+      "age": 34,
+      "id": 11
     }
   ],
   "data": [
