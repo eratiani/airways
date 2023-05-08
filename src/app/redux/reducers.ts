@@ -8,7 +8,7 @@ import {
 } from './actions';
 import { StoreType } from './store.model';
 
-const initialMatchedFlights: StoreType['flightData'] = { oneWay: [] };
+const initialMatchedFlights: StoreType['flightData'] = {};
 export const flightsReducer = createReducer(
   initialMatchedFlights,
   on(flightOneWayAdd, (state, { data }) => ({ ...state, oneWay: data })),

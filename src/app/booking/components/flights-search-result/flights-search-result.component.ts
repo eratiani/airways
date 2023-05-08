@@ -24,7 +24,7 @@ export class FlightsSearchResultComponent {
       this.backFlights = data;
     });
   }
-  oneWayFlights: FlightDataType[] = [];
+  oneWayFlights?: FlightDataType[];
   backFlights?: FlightDataType[];
 
   selectedData?: StoreType['selectedFlight'];

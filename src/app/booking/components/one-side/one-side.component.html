@@ -28,7 +28,6 @@
     <p>{{ flight.date | date : "dd MMM" }}</p>
     <p>{{ flight.date | date : "EEEE" }}</p>
 
-    <!-- will use user pipe next -->
     <p>{{ flight.cost | currency : headerState.currencyFormat }}</p>
     <div
       *ngIf="selectedCard?.id === card.id"
@@ -41,7 +40,6 @@
 </div>
 <app-flight-selected
   *ngIf="selectedCard"
-  [currencyFormat]="currencyFormat"
   [flight]="selectedCard"
   (changeEv)="selectFlight($event)"
   [selected]="state.isSelected"

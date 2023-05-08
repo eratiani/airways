@@ -47,7 +47,7 @@
     <div>
       <p style="margin: 0">price</p>
       <!-- with user pipe -->
-      <p>{{ flight.cost | currency : currencyFormat }}</p>
+      <p>{{ flight.cost | currency : state.currencyFormat }}</p>
     </div>
   </div>
   <button

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { cities } from 'CONST';
 import { SearchService } from '../../services/search-flyght.service';
@@ -20,11 +20,10 @@ type OptionsType = {
   templateUrl: './flights-form.component.html',
   styleUrls: ['./flights-form.component.css'],
 })
-export class FlightsFormComponent implements OnInit, OnDestroy {
+export class FlightsFormComponent {
   cities = cities;
   dateSub!: Subscription;
   errorMessage = 'Fill this field';
-  dateFormat: string = 'DD/MM/YYYY';
   searchForm = this.fb.nonNullable.group({
     oneWay: [false],
     from: ['Paris', Validators.required], // to change for ''
@@ -44,16 +43,9 @@ export class FlightsFormComponent implements OnInit, OnDestroy {
     private search: SearchService,
     private router: Router,
     private store: Store<StoreType>,
-    private headerService: HeaderStateService
+    public headState: HeaderStateService
   ) {}
-  ngOnInit(): void {
-    this.dateSub = this.headerService.dateFormatEmiter.subscribe(
-      (date) => (this.dateFormat = date)
-    );
-  }
-  ngOnDestroy(): void {
-    this.dateSub.unsubscribe();
-  }
+
   toCamelCase(string: string) {
     return string.replace(/^\w/, (w) => w.toUpperCase());
   }
@@ -89,7 +81,6 @@ export class FlightsFormComponent implements OnInit, OnDestroy {
     this.search
       .search(oneWay!, from!, to!, date?.startDate, date?.endDate)
       .subscribe((data) => {
-        console.log(data);
         this.router.navigateByUrl('booking');
       });
   }

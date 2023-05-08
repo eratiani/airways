@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
@@ -8,21 +8,12 @@ import { HeaderStateService } from 'src/app/core/services/header-state.service';
   templateUrl: './passenger-each.component.html',
   styleUrls: ['./passenger-each.component.css'],
 })
-export class PassengerEachComponent implements OnInit, OnDestroy {
+export class PassengerEachComponent {
   @Input() control!: FormGroup;
   @Input() count!: number;
-  dateFormat: string = 'DD/MM/YYYY';
 
   fieldRequired: string = 'This field is required';
-  private subscriptions = new Subscription();
-  constructor(private headerState: HeaderStateService) {}
-  ngOnInit(): void {
-    console.log(this.control.controls);
-    // this.control.controls'
-    this.subscriptions = this.headerState.dateFormatEmiter.subscribe(
-      (date) => (this.dateFormat = date)
-    );
-  }
+  constructor(public headerState: HeaderStateService) {}
 
   emaiErrors() {
     return this.control.get('email')?.hasError('required')
@@ -45,8 +36,5 @@ export class PassengerEachComponent implements OnInit, OnDestroy {
     //  &&
     // (this.control.get(name)?.dirty || this.control.get(name)?.touched);
     return validation;
-  }
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -6,7 +6,6 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 import { SnackBarService } from 'src/app/services/snack-bar.srvice';
@@ -16,7 +15,7 @@ import { SnackBarService } from 'src/app/services/snack-bar.srvice';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit {
   private preSelectData = {
     username: 'JohnDoe',
     email: 'johndoe@example.com',
@@ -45,27 +44,20 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }>;
     termsAndServices: FormControl<boolean>;
   }>;
-  dateSub!: Subscription;
-  dateFormat: string = 'DD/MM/YYYY';
   fieldRequired: string = 'This field is required';
 
   constructor(
     private auth: BackendUserService,
-    private headerState: HeaderStateService,
+    public headerState: HeaderStateService,
     private snackBar: SnackBarService
   ) {}
 
   ngOnInit() {
     this.createForm();
-    this.dateSub = this.headerState.dateFormatEmiter.subscribe(
-      (date) => (this.dateFormat = date)
-    );
   }
-  ngOnDestroy(): void {
-    this.dateSub.unsubscribe();
-  }
+
   createForm() {
-    let emailregex: RegExp =
+    const emailregex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.registerForm = new FormGroup({
       username: new FormControl('', {
