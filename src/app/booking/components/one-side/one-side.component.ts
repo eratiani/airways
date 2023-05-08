@@ -43,23 +43,6 @@ ngOnDestroy(): void {
     flightCard.classList.add('moveElement');
     this.selectedCard = flight;
   }
-<<<<<<< Updated upstream
-  moveRIght(){
-    if (this.tempFligh.length <= 5) return
-    if (this.flightIndex >= this.tempFligh.length - 5) {
-      this.flightIndex = -1;
-    }
-    this.flightIndex ++;
-    this.flightCurrent = this.tempFligh.slice(this.flightIndex, this.flightIndex + 5)
-  }
-  moveLeft(){
-    if (this.tempFligh.length <= 5 ) return
-    if (this.flightIndex === 0) {
-      this.flightIndex = this.tempFligh.length - 4;
-    }
-    this.flightIndex--;
-    this.flightCurrent = this.tempFligh.slice(this.flightIndex, this.flightIndex + 5)
-=======
   moveRIght() {
     if (this.tempFligh.length <5) return
     this.flightIndex = (this.flightIndex + 1) % this.tempFligh.length;
@@ -84,7 +67,6 @@ ngOnDestroy(): void {
         .concat(this.tempFligh.slice(0, endIndex));
     }
   
->>>>>>> Stashed changes
   }
   selectFlight(doSelect: boolean) {
     if (doSelect) {
