@@ -43,6 +43,7 @@ ngOnDestroy(): void {
     flightCard.classList.add('moveElement');
     this.selectedCard = flight;
   }
+<<<<<<< Updated upstream
   moveRIght(){
     if (this.tempFligh.length <= 5) return
     if (this.flightIndex >= this.tempFligh.length - 5) {
@@ -58,6 +59,32 @@ ngOnDestroy(): void {
     }
     this.flightIndex--;
     this.flightCurrent = this.tempFligh.slice(this.flightIndex, this.flightIndex + 5)
+=======
+  moveRIght() {
+    if (this.tempFligh.length <5) return
+    this.flightIndex = (this.flightIndex + 1) % this.tempFligh.length;
+    this.render();
+  }
+
+  moveLeft() {
+    if (this.tempFligh.length <5) return
+    this.flightIndex =
+      (this.flightIndex - 1 + this.tempFligh.length) % this.tempFligh.length;
+    this.render();
+  }
+
+  render() {
+    const startIndex = this.flightIndex;
+    const endIndex = (this.flightIndex + 5) % this.tempFligh.length;
+    if (startIndex < endIndex) {
+      this.flightCurrent = this.tempFligh.slice(startIndex, endIndex);
+    } else {
+      this.flightCurrent = this.tempFligh
+        .slice(startIndex)
+        .concat(this.tempFligh.slice(0, endIndex));
+    }
+  
+>>>>>>> Stashed changes
   }
   selectFlight(doSelect: boolean) {
     if (doSelect) {

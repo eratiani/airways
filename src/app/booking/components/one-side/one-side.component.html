@@ -33,7 +33,7 @@
 </div>
 <app-flight-selected
   *ngIf="selectedCard"
-  [currencyFormat]="currencyFormat"
+  [currencyFormat]="headerState.currencyFormat"
   [flight]="selectedCard"
   (changeEv)="selectFlight($event)"
   [selected]="state.isSelected"
