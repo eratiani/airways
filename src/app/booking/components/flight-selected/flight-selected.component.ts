@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { FlightDataType } from 'src/app/models/flyght-data.model';
 
 @Component({
@@ -9,8 +10,9 @@ import { FlightDataType } from 'src/app/models/flyght-data.model';
 export class FlightSelectedComponent {
   @Input() flight!: FlightDataType;
   @Input() selected!: boolean;
-  @Input() currencyFormat: string = 'USD';
   @Output() changeEv = new EventEmitter<boolean>();
+
+  constructor(public state: HeaderStateService) {}
 
   handleSelect() {
     this.changeEv.emit(!this.selected);

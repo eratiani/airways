@@ -11,9 +11,9 @@ export class SummaryViewComponent implements OnInit, OnDestroy {
   constructor(private headerState: HeaderStateService) {}
   ngOnInit(): void {
     this.headerState.toggleUserOnSummaryPage();
-    this.headerState.dateFormatEmiter.subscribe((e) => {
-      console.log(e);
-    });
+    // this.headerState.dateFormatEmiter.subscribe((e) => {
+    //   console.log(e);
+    // });
   }
   ngOnDestroy(): void {
     this.headerState.toggleUserOnSummaryPage();

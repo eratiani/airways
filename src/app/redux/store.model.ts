@@ -5,7 +5,7 @@ import {
 
 export interface StoreType {
   flightData: {
-    oneWay: FlightDataType[];
+    oneWay?: FlightDataType[];
     backWay?: FlightDataType[];
   };
   selectedFlight: {

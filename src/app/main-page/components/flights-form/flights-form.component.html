@@ -47,7 +47,9 @@
             <input matStartDate formControlName="startDate" />
             <input matEndDate formControlName="endDate" />
           </mat-date-range-input>
-          <mat-hint>{{ dateFormat }} - {{ dateFormat }}</mat-hint>
+          <mat-hint
+            >{{ headState.dateFormat }} - {{ headState.dateFormat }}</mat-hint
+          >
           <mat-datepicker-toggle
             matIconSuffix
             [for]="picker"
@@ -76,8 +78,6 @@
         </mat-form-field>
       </div>
     </div>
-
-    <p>{{ searchForm.value | json }}</p>
 
     <div class="w-50 d-flex justify-content-end">
       <button
