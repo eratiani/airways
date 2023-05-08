@@ -17,6 +17,7 @@ export class HeaderComponent {
 
   onDateFormatChage() {
     this.headState.dateFormatEmiter.next(this.date);
+    // this.headState.changeDataFormat(this.date);
   }
   oncurrencyFormatChage() {
     // this.headState.currencyFormatEmitter.next(this.currency);

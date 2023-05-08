@@ -16,11 +16,19 @@ export class HeaderStateService {
   currencyFormatEmitter = new ReplaySubject<string>(2);
   dateFormatSub!: Subscription;
   currencyFormat = 'USD';
+  dateFormat = 'DD/MM/YYYY';
   constructor() {
     this.dateFormatSub = this.dateFormatEmiter.subscribe((date) => {
       MY_DATE_FORMAT.display.dateInput = date;
       MY_DATE_FORMAT.parse.dateInput = date;
     });
+  }
+
+  changeDataFormat(format: string) {
+    this.dateFormat = format;
+    MY_DATE_FORMAT.display.dateInput = format;
+    MY_DATE_FORMAT.parse.dateInput = format;
+    console.log(this.dateFormat);
   }
   toggleUserOnBookingPage() {
     this.userOnBookingPageSubject.next(!this.userOnBookingPageSubject.value);
