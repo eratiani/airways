@@ -12,9 +12,10 @@ export class HeaderStateService {
   userOnpassengersPage$ = this.userOnpassengersPageSubject.asObservable();
   private userOnShoppingCartPageSubject = new BehaviorSubject<boolean>(false);
   userOnShoppingCartPage$ = this.userOnShoppingCartPageSubject.asObservable();
-  dateFormatEmiter = new ReplaySubject<string>(2)
-  currencyFormatEmitter = new ReplaySubject<string>(2)
+  dateFormatEmiter = new ReplaySubject<string>(2);
+  currencyFormatEmitter = new ReplaySubject<string>(2);
   dateFormatSub!: Subscription;
+  currencyFormat = 'USD';
   constructor() {
     this.dateFormatSub = this.dateFormatEmiter.subscribe((date) => {
       MY_DATE_FORMAT.display.dateInput = date;

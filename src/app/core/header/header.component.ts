@@ -19,7 +19,8 @@ export class HeaderComponent {
     this.headState.dateFormatEmiter.next(this.date);
   }
   oncurrencyFormatChage() {
-    this.headState.currencyFormatEmitter.next(this.currency);
+    // this.headState.currencyFormatEmitter.next(this.currency);
+    this.headState.currencyFormat = this.currency;
   }
 
   handleLog() {
