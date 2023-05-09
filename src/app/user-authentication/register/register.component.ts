@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit {
     },
     termsAndServices: true,
   };
+  phoneNumber!:string
   registerForm!: FormGroup<{
     username: FormControl<string>;
     email: FormControl<string>;
@@ -42,6 +43,7 @@ export class RegisterComponent implements OnInit {
       alpha3Code: string;
       numericCode: string;
     }>;
+    telephone:FormControl<string>
     termsAndServices: FormControl<boolean>;
   }>;
   fieldRequired: string = 'This field is required';
@@ -53,9 +55,33 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.phoneNumber = '';
     this.createForm();
   }
-
+  phoneNumberValidator() {
+    
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const phoneNumberRegex = /^\d+-\d{3}-\d{3}-\d{4}$/; 
+      const value = control.value;
+      
+      if (!value) {
+        return null; 
+      }
+  
+      if (!phoneNumberRegex.test(value)) {
+        return { phoneNumber: `Invalid phone number for ${value}` }; 
+      }
+  
+      return null; 
+    };
+  }
+  
+  onCountrySelected(country:{alpha2Code:string, alpha3Code:string,    callingCode:string,    name:string,    numericCode:string
+    }){
+      this.phoneNumber = country.callingCode;
+      this.registerForm.controls['telephone'].setValue(`${this.phoneNumber} - `);
+      console.log(this.phoneNumber);
+  }
   createForm() {
     const emailregex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -92,6 +118,11 @@ export class RegisterComponent implements OnInit {
           nonNullable: true,
         }
       ),
+      telephone: new FormControl('', {
+        validators: [Validators.required, this.phoneNumberValidator()],
+        nonNullable: true,
+      }),
+      
       termsAndServices: new FormControl(false, {
         validators: [this.termsAndServicesvalidation],
         nonNullable: true,
