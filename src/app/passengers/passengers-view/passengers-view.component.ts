@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -7,7 +7,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { StoreType } from 'src/app/redux/store.model';
 
 @Component({
@@ -15,7 +14,7 @@ import { StoreType } from 'src/app/redux/store.model';
   templateUrl: './passengers-view.component.html',
   styleUrls: ['./passengers-view.component.css'],
 })
-export class PassengersViewComponent implements OnInit, OnDestroy {
+export class PassengersViewComponent {
   passengersForm = this.fb.group({
     adult: this.fb.array<FormGroup>([]),
     child: this.fb.array<FormGroup>([]),
@@ -28,11 +27,7 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
     'infant',
   ];
 
-  constructor(
-    private headerState: HeaderStateService,
-    private fb: FormBuilder,
-    private store: Store<StoreType>
-  ) {
+  constructor(private fb: FormBuilder, private store: Store<StoreType>) {
     store.select('passengersCount').subscribe((passeng) => {
       console.log('passang from store: ', passeng);
       for (const [type, count] of Object.entries(passeng) as [
@@ -69,14 +64,6 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
     this.passengersForm.controls[member].removeAt(
       this.passengersForm.controls[member].length - 1
     );
-  }
-
-  ngOnInit(): void {
-    this.headerState.toggleUserOnPassengersPage();
-  }
-
-  ngOnDestroy(): void {
-    this.headerState.toggleUserOnPassengersPage();
   }
 
   onSubmit() {}

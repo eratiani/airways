@@ -1,19 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HeaderStateService } from 'src/app/core/services/header-state.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-booking-view',
   templateUrl: './booking-view.component.html',
   styleUrls: ['./booking-view.component.css'],
 })
-export class BookingViewComponent implements OnInit, OnDestroy {
-  constructor(private headerState: HeaderStateService) {}
-
-  ngOnInit(): void {
-    this.headerState.toggleUserOnBookingPage();
-   
-  }
-  ngOnDestroy(): void {
-    this.headerState.toggleUserOnBookingPage();
-  }
-}
+export class BookingViewComponent {}
