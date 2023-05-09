@@ -5,10 +5,6 @@ p {
 .progress-wrapper {
   padding: 2rem;
 }
-/* .btn-check-custom {
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-} */
 
 mat-button-toggle-group {
   height: 55px;
@@ -16,4 +12,11 @@ mat-button-toggle-group {
 mat-button-toggle {
   display: flex;
   align-items: center;
+}
+
+.count {
+  align-self: center;
+  align-self: center;
+  font-size: 2rem;
+  font-weight: 500;
 }

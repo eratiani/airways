@@ -15,6 +15,8 @@ import {
 } from '@angular/material/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { PassengersViewComponent } from './passengers-view/passengers-view.component';
 import { PassengerEachComponent } from './components/passenger-each/passenger-each.component';
@@ -41,6 +43,8 @@ import { MY_DATE_FORMAT } from '../core/services/date-format';
     MatNativeDateModule,
     MatSlideToggleModule,
     MatButtonToggleModule,
+    MatButtonModule,
+    MatIconModule,
     RouterModule.forChild([
       {
         path: '',
@@ -56,6 +60,5 @@ import { MY_DATE_FORMAT } from '../core/services/date-format';
     },
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT },
   ],
-  // exports: [PassengersViewComponent],
 })
 export class PassengersModule {}

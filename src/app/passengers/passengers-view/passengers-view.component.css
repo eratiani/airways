@@ -1,3 +1,15 @@
 h1 {
   text-transform: capitalize;
+  display: inline-block;
+}
+
+.controls {
+  display: inline-flex;
+  margin-left: 2rem;
+  gap: 1rem;
+}
+
+mat-card {
+  margin-block: 1rem;
+  background: whitesmoke;
 }

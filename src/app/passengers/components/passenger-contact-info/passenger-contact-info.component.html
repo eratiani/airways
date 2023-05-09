@@ -4,12 +4,7 @@
   your flight.
 </p>
 <div class="container--form">
-  <form
-    class="d-flex flex-column"
-    [formGroup]="contactForm"
-    #formDirective="ngForm"
-    (ngSubmit)="onSubmit(formDirective)"
-  >
+  <div class="d-flex flex-column" [formGroup]="control">
     <mat-form-field class="col-3">
       <input
         autofocus
@@ -22,5 +17,5 @@
         {{ emaiErrors() }}
       </mat-error>
     </mat-form-field>
-  </form>
+  </div>
 </div>

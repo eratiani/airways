@@ -79,9 +79,7 @@ export class PassengersViewComponent implements OnInit, OnDestroy {
     this.headerState.toggleUserOnPassengersPage();
   }
 
-  onSubmit() {
-    // console.log(this.passengersForm.value, this.passengersForm);
-  }
+  onSubmit() {}
 }
 
 function dateNotInFutureValidator(
