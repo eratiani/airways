@@ -27,6 +27,12 @@
     </mat-card-content>
   </mat-card>
 
+  <app-passenger-contact-info
+    [control]="passengersForm.controls.contact"
+  ></app-passenger-contact-info>
+
+  <!-- <p>{{ passengersForm.value | json }}/p></p> -->
+
   <div class="row justify-content-end text-center">
     <a style="width: 80px" routerLink=".." class="btn btn-warning me-3">back</a>
     <button style="width: 100px" type="submit" class="btn btn-success me-3">
