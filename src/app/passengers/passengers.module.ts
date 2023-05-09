@@ -24,6 +24,7 @@ import { PassengerContactInfoComponent } from './components/passenger-contact-in
 import { RouterModule } from '@angular/router';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MY_DATE_FORMAT } from '../core/services/date-format';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MY_DATE_FORMAT } from '../core/services/date-format';
     MatButtonToggleModule,
     MatButtonModule,
     MatIconModule,
+    MatSelectCountryModule,
     RouterModule.forChild([
       {
         path: '',
