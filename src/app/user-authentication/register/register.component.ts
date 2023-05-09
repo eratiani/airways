@@ -58,30 +58,7 @@ export class RegisterComponent implements OnInit {
     this.phoneNumber = '';
     this.createForm();
   }
-  phoneNumberValidator() {
-    
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const phoneNumberRegex = /^\d+-\d{3}-\d{3}-\d{4}$/; 
-      const value = control.value;
-      
-      if (!value) {
-        return null; 
-      }
-  
-      if (!phoneNumberRegex.test(value)) {
-        return { phoneNumber: `Invalid phone number for ${value}` }; 
-      }
-  
-      return null; 
-    };
-  }
-  
-  onCountrySelected(country:{alpha2Code:string, alpha3Code:string,    callingCode:string,    name:string,    numericCode:string
-    }){
-      this.phoneNumber = country.callingCode;
-      this.registerForm.controls['telephone'].setValue(`${this.phoneNumber} - `);
-      console.log(this.phoneNumber);
-  }
+ 
   createForm() {
     const emailregex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -129,6 +106,32 @@ export class RegisterComponent implements OnInit {
       }),
     });
   }
+  phoneNumberValidator() {
+    
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const countryPhone = this.phoneNumber;
+      const phoneNumberRegex = new RegExp(`^\\+${countryPhone}-\\d{3}-\\d{3}-\\d{4}$`);
+      const value = control.value;
+      console.log(value);
+      
+      if (!value) {
+        return null;
+      }
+  
+      if (!phoneNumberRegex.test(value)) {
+        return { phoneNumber: true };
+      }
+  
+      return null;
+    };
+}
+
+onCountrySelected(country:{alpha2Code:string, alpha3Code:string,    callingCode:string,    name:string,    numericCode:string
+  }){
+    this.phoneNumber = country.callingCode;
+    this.registerForm.controls['telephone'].setValue(`${this.phoneNumber}-`);
+    console.log(this.phoneNumber);
+}
   termsAndServicesvalidation(control: AbstractControl) {
     return control.value;
   }
@@ -144,6 +147,13 @@ export class RegisterComponent implements OnInit {
       ? 'This field is required'
       : this.registerForm.get('dateOfBirth')?.hasError('dateNotInFuture')
       ? 'Not a valid date of birth'
+      : '';
+  }
+  phoneErrors() {
+    return this.registerForm.get('telephone')?.hasError('required')
+      ? 'This field is required'
+      : this.registerForm.get('telephone')?.hasError('phoneNumber')
+      ? `Not a valid Phone number must start with ${this.phoneNumber}`
       : '';
   }
   checkPassword(control: AbstractControl) {

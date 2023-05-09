@@ -141,13 +141,13 @@
              matInput
              formControlName="telephone"
              [value]="phoneNumber"
-           />
-           <mat-hint>{{ phoneNumber }} - (xxx-xxx-xxxx)</mat-hint>
-           <mat-error *ngIf="checkValidation('phone')">
-            {{ fieldRequired }}
-          </mat-error>
+             />
+             <mat-hint>{{ phoneNumber }}-***-***-****</mat-hint>
+           <mat-error *ngIf="checkValidation('telephone')">
+             {{ phoneErrors() }}
+            </mat-error>
           </mat-form-field>
-         
+         <br>
           
         
         <mat-checkbox required formControlName="termsAndServices">
