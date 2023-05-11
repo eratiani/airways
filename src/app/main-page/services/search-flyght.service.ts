@@ -27,14 +27,18 @@ export class SearchService {
   ) {
     const oneWay$ = this.getFlights(from, to, start, end).pipe(
       tap((data) => {
-        this.store.dispatch(flightOneWayAdd({ data }));
+        if (data.length) {
+          this.store.dispatch(flightOneWayAdd({ data }));
+        }
         this.store.dispatch(resetBackFlights());
       })
     );
 
     const backWay$ = this.getFlights(to, from, start, end).pipe(
       tap((data) => {
-        this.store.dispatch(flightBackAdd({ data }));
+        if (data.length) {
+          this.store.dispatch(flightBackAdd({ data }));
+        }
       })
     );
     const all: Observable<FlightDataType[]>[] = [oneWay$];

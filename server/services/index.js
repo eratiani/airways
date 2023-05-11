@@ -40,4 +40,31 @@ function generate(amount) {
   return data;
 }
 
-console.log(JSON.stringify(generate(200)));
+// console.log(JSON.stringify(generate(200)));
+
+const fs = require("fs");
+const path = require("path");
+
+fs.readFile(
+  path.resolve(__dirname, "../db.json"),
+  { encoding: "utf-8" },
+  (err, data) => {
+    if (err) {
+      throw err;
+    }
+    const users = JSON.parse(data).users;
+    writeData(users);
+  }
+);
+const writeData = (users) => {
+  fs.writeFile(
+    path.resolve(__dirname, "../db.json"),
+    JSON.stringify({ users, data: generate(200) }),
+    (err) => {
+      if (err) {
+        throw err;
+      }
+      console.log("Success");
+    }
+  );
+};
