@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 
 @Component({

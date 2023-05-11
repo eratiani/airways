@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-passenger-contact-info',
@@ -9,15 +14,19 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 export class PassengerContactInfoComponent {
   @Input() control!: FormGroup;
   fieldRequired: string = 'This field is required';
-  phoneNumber:string = '';
+  phoneNumber: string = '';
+
   ngOnInit(): void {
-   
-    this.control = new FormGroup({
-      email: new FormControl('', {
+    this.control.addControl(
+      'email',
+      new FormControl('', {
         validators: [Validators.required, Validators.email],
         nonNullable: true,
-      }),
-      country: new FormControl(
+      })
+    );
+    this.control.addControl(
+      'country',
+      new FormControl(
         {
           name: '',
           alpha2Code: '',
@@ -28,12 +37,15 @@ export class PassengerContactInfoComponent {
           validators: Validators.required,
           nonNullable: true,
         }
-      ),
-      telephone: new FormControl('', {
+      )
+    );
+    this.control.addControl(
+      'telephone',
+      new FormControl('', {
         validators: [Validators.required, this.phoneNumberValidator()],
         nonNullable: true,
-      }),
-    });
+      })
+    );
   }
 
   emaiErrors() {
@@ -43,44 +55,52 @@ export class PassengerContactInfoComponent {
       ? 'Not a valid emailaddress'
       : '';
   }
+
   phoneNumberValidator() {
-    
     return (control: AbstractControl): { [key: string]: any } | null => {
       const countryPhone = this.phoneNumber;
-      const phoneNumberRegex = new RegExp(`^\\+${countryPhone}-\\d{3}-\\d{3}-\\d{4}$`);
+      const phoneNumberRegex = new RegExp(
+        `^\\+${countryPhone}-\\d{3}-\\d{3}-\\d{4}$`
+      );
       const value = control.value;
       console.log(value);
-      
+
       if (!value) {
         return null;
       }
-  
+
       if (!phoneNumberRegex.test(value)) {
         return { phoneNumber: true };
       }
-  
+
       return null;
     };
-}
+  }
 
-onCountrySelected(country:{alpha2Code:string, alpha3Code:string,    callingCode:string,    name:string,    numericCode:string
-  }){
+  onCountrySelected(country: {
+    alpha2Code: string;
+    alpha3Code: string;
+    callingCode: string;
+    name: string;
+    numericCode: string;
+  }) {
     this.phoneNumber = country.callingCode;
     this.control.controls['telephone'].setValue(`${this.phoneNumber}-`);
     console.log(this.phoneNumber);
-}
-phoneErrors() {
-  return this.control.get('telephone')?.hasError('required')
-    ? 'This field is required'
-    : this.control.get('telephone')?.hasError('phoneNumber')
-    ? `Not a valid Phone number must start with ${this.phoneNumber}`
-    : '';
-}
-checkValidation(input: string) {
-  const validation =
-    this.control.get(input)?.invalid &&
-    (this.control.get(input)?.dirty ||
-      this.control.get(input)?.touched);
-  return validation;
-}
+  }
+
+  phoneErrors() {
+    return this.control.get('telephone')?.hasError('required')
+      ? 'This field is required'
+      : this.control.get('telephone')?.hasError('phoneNumber')
+      ? `Not a valid Phone number must start with ${this.phoneNumber}`
+      : '';
+  }
+
+  checkValidation(input: string) {
+    const validation =
+      this.control.get(input)?.invalid &&
+      (this.control.get(input)?.dirty || this.control.get(input)?.touched);
+    return validation;
+  }
 }
