@@ -1,17 +1,19 @@
-<div class="container--buttons">
-  <mat-toolbar
-    (click)="onLoginActive()"
-    [class.active]="!isActive"
-    class="login-toolbar btn btn-primary active"
-    >Log In</mat-toolbar
-  >
-  <mat-toolbar
-    (click)="onRegisterActive()"
-    [class.active]="isActive"
-    class="login-toolbar btn btn-primary"
-    >REGISTER</mat-toolbar
-  >
-</div>
+<div class="container--form">
+  <div class="container--buttons">
+    <mat-toolbar
+      (click)="onLoginActive()"
+      [class.active]="!isActive"
+      class="login-toolbar btn btn-primary active"
+      >Log In</mat-toolbar
+    >
+    <mat-toolbar
+      (click)="onRegisterActive()"
+      [class.active]="isActive"
+      class="login-toolbar btn btn-primary"
+      >REGISTER</mat-toolbar
+    >
+  </div>
 
-<app-register *ngIf="isActive"></app-register>
-<app-log-in *ngIf="!isActive"></app-log-in>
+  <app-register *ngIf="isActive"></app-register>
+  <app-log-in *ngIf="!isActive"></app-log-in>
+</div>

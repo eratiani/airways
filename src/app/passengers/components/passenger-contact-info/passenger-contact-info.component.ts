@@ -60,7 +60,7 @@ export class PassengerContactInfoComponent {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const countryPhone = this.phoneNumber;
       const phoneNumberRegex = new RegExp(
-        `^\\+${countryPhone}-\\d{3}-\\d{3}-\\d{4}$`
+        `^\\+${countryPhone}-?\\d{3}-?\\d{3}-?\\d{4}$`
       );
       const value = control.value;
       console.log(value);

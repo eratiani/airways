@@ -21,9 +21,19 @@ import {
 } from '@angular/material/core';
 import { MY_DATE_FORMAT } from './core/services/date-format';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
+import { UserAuthenticationModule } from './user-authentication/user-authentication.module';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT },
+  ],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -39,15 +49,7 @@ import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
       {}
     ),
     MatSnackBarModule,
+    UserAuthenticationModule,
   ],
-  providers: [
-    {
-      provide: DateAdapter,
-      useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE],
-    },
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT },
-  ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
