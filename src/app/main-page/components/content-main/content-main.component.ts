@@ -7,7 +7,7 @@ import { HeaderStateService } from 'src/app/core/services/header-state.service';
   styleUrls: ['./content-main.component.css'],
 })
 export class ContentMainComponent {
-  constructor(public headerState: HeaderStateService) {}
+  constructor() {}
   signedIn: boolean = false;
   onSignIn(event: boolean) {
     this.signedIn = event;
