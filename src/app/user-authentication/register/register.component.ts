@@ -26,11 +26,12 @@ export class RegisterComponent implements OnInit {
       name: 'Germany',
       alpha2Code: 'DE',
       alpha3Code: 'DEU',
-      numericCode: '276',
+      numericCode: '+49',
     },
     termsAndServices: true,
+    telephone: '+49-111-111-1111',
   };
-  phoneNumber!:string
+  phoneNumber!: string;
   registerForm!: FormGroup<{
     username: FormControl<string>;
     email: FormControl<string>;
@@ -43,7 +44,7 @@ export class RegisterComponent implements OnInit {
       alpha3Code: string;
       numericCode: string;
     }>;
-    telephone:FormControl<string>
+    telephone: FormControl<string>;
     termsAndServices: FormControl<boolean>;
   }>;
   fieldRequired: string = 'This field is required';
@@ -58,7 +59,7 @@ export class RegisterComponent implements OnInit {
     this.phoneNumber = '';
     this.createForm();
   }
- 
+
   createForm() {
     const emailregex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -99,7 +100,7 @@ export class RegisterComponent implements OnInit {
         validators: [Validators.required, this.phoneNumberValidator()],
         nonNullable: true,
       }),
-      
+
       termsAndServices: new FormControl(false, {
         validators: [this.termsAndServicesvalidation],
         nonNullable: true,
@@ -107,31 +108,35 @@ export class RegisterComponent implements OnInit {
     });
   }
   phoneNumberValidator() {
-    
     return (control: AbstractControl): { [key: string]: any } | null => {
       const countryPhone = this.phoneNumber;
-      const phoneNumberRegex = new RegExp(`^\\+${countryPhone}-\\d{3}-\\d{3}-\\d{4}$`);
+      const phoneNumberRegex = new RegExp(
+        `^\\+${countryPhone}-?\\d{3}-?\\d{3}-?\\d{4}$`
+      );
       const value = control.value;
-      console.log(value);
-      
+
       if (!value) {
         return null;
       }
-  
+
       if (!phoneNumberRegex.test(value)) {
         return { phoneNumber: true };
       }
-  
+
       return null;
     };
-}
+  }
 
-onCountrySelected(country:{alpha2Code:string, alpha3Code:string,    callingCode:string,    name:string,    numericCode:string
-  }){
+  onCountrySelected(country: {
+    alpha2Code: string;
+    alpha3Code: string;
+    callingCode: string;
+    name: string;
+    numericCode: string;
+  }) {
     this.phoneNumber = country.callingCode;
     this.registerForm.controls['telephone'].setValue(`${this.phoneNumber}-`);
-    console.log(this.phoneNumber);
-}
+  }
   termsAndServicesvalidation(control: AbstractControl) {
     return control.value;
   }
@@ -197,6 +202,7 @@ onCountrySelected(country:{alpha2Code:string, alpha3Code:string,    callingCode:
     });
   }
   onGoogleFbSignIn() {
+    this.phoneNumber = '+49';
     this.registerForm.patchValue({
       username: this.preSelectData.username,
       email: this.preSelectData.email,
@@ -205,6 +211,7 @@ onCountrySelected(country:{alpha2Code:string, alpha3Code:string,    callingCode:
       dateOfBirth: this.preSelectData.dateOfBirth,
       country: this.preSelectData.country,
       termsAndServices: this.preSelectData.termsAndServices,
+      telephone: this.preSelectData.telephone,
     });
   }
 
