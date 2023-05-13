@@ -125,31 +125,31 @@
         <mat-error *ngIf="checkValidation('gender')">
           {{ fieldRequired }}
         </mat-error>
-        <mat-select-country formControlName="country"
-        [itemsLoadSize]="5"
-        (onCountrySelected)="onCountrySelected($event)"
+        <mat-select-country
+          formControlName="country"
+          [itemsLoadSize]="5"
+          (onCountrySelected)="onCountrySelected($event)"
         >
-           </mat-select-country>
-           <mat-error *ngIf="checkValidation('country')">
-            {{ fieldRequired }}
+        </mat-select-country>
+        <mat-error *ngIf="checkValidation('country')">
+          {{ fieldRequired }}
+        </mat-error>
+        <mat-form-field appearance="fill" *ngIf="phoneNumber != ''">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="telephone"
+            [value]="phoneNumber"
+            (keydown)="onTelephoneKeydown($event)"
+          />
+          <mat-hint>{{ phoneNumber }}-***-***-****</mat-hint>
+          <mat-error *ngIf="checkValidation('telephone')">
+            {{ phoneErrors() }}
           </mat-error>
-           <mat-form-field appearance="fill" 
-           *ngIf="phoneNumber!=''"
-           >
-           <mat-label>Choose a date</mat-label>
-           <input
-             matInput
-             formControlName="telephone"
-             [value]="phoneNumber"
-             />
-             <mat-hint>{{ phoneNumber }}-***-***-****</mat-hint>
-           <mat-error *ngIf="checkValidation('telephone')">
-             {{ phoneErrors() }}
-            </mat-error>
-          </mat-form-field>
-         <br>
-          
-        
+        </mat-form-field>
+        <br />
+
         <mat-checkbox required formControlName="termsAndServices">
           I agree to Airway's Privacy Policy and Terms of Use
         </mat-checkbox>

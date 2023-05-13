@@ -59,7 +59,13 @@ export class RegisterComponent implements OnInit {
     this.phoneNumber = '';
     this.createForm();
   }
+  onTelephoneKeydown(event: KeyboardEvent) {
+    const allowedKeys = ['-', 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'];
 
+    if (!allowedKeys.includes(event.key) && isNaN(Number(event.key))) {
+      event.preventDefault();
+    }
+  }
   createForm() {
     const emailregex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -158,7 +164,7 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('telephone')?.hasError('required')
       ? 'This field is required'
       : this.registerForm.get('telephone')?.hasError('phoneNumber')
-      ? `Not a valid Phone number must start with ${this.phoneNumber}`
+      ? ` ${this.phoneNumber}-***-***-****`
       : '';
   }
   checkPassword(control: AbstractControl) {

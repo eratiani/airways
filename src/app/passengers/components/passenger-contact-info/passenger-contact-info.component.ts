@@ -17,10 +17,12 @@ export class PassengerContactInfoComponent {
   phoneNumber: string = '';
 
   ngOnInit(): void {
+    const emailregex: RegExp =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.control.addControl(
       'email',
       new FormControl('', {
-        validators: [Validators.required, Validators.email],
+        validators: [Validators.required, Validators.pattern(emailregex)],
         nonNullable: true,
       })
     );
@@ -51,7 +53,7 @@ export class PassengerContactInfoComponent {
   emaiErrors() {
     return this.control.get('email')?.hasError('required')
       ? 'This field is required'
-      : this.control.get('email')?.hasError('email')
+      : this.control.get('email')?.hasError('pattern')
       ? 'Not a valid emailaddress'
       : '';
   }
@@ -63,7 +65,6 @@ export class PassengerContactInfoComponent {
         `^\\+${countryPhone}-?\\d{3}-?\\d{3}-?\\d{4}$`
       );
       const value = control.value;
-      console.log(value);
 
       if (!value) {
         return null;
@@ -86,17 +87,22 @@ export class PassengerContactInfoComponent {
   }) {
     this.phoneNumber = country.callingCode;
     this.control.controls['telephone'].setValue(`${this.phoneNumber}-`);
-    console.log(this.phoneNumber);
   }
 
   phoneErrors() {
     return this.control.get('telephone')?.hasError('required')
       ? 'This field is required'
       : this.control.get('telephone')?.hasError('phoneNumber')
-      ? `Not a valid Phone number must start with ${this.phoneNumber}`
+      ? ` ${this.phoneNumber}-***-***-****`
       : '';
   }
+  onTelephoneKeydown(event: KeyboardEvent) {
+    const allowedKeys = ['-', 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight'];
 
+    if (!allowedKeys.includes(event.key) && isNaN(Number(event.key))) {
+      event.preventDefault();
+    }
+  }
   checkValidation(input: string) {
     const validation =
       this.control.get(input)?.invalid &&

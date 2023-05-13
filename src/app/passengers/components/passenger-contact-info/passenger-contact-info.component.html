@@ -38,7 +38,13 @@
       *ngIf="phoneNumber != ''"
     >
       <mat-label>Choose a date</mat-label>
-      <input matInput formControlName="telephone" [value]="phoneNumber" />
+      <input
+        matInput
+        type="text"
+        formControlName="telephone"
+        [value]="phoneNumber"
+        (keydown)="onTelephoneKeydown($event)"
+      />
       <mat-hint>{{ phoneNumber }}-***-***-****</mat-hint>
       <mat-error *ngIf="checkValidation('telephone')">
         {{ phoneErrors() }}
