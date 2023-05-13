@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
 import { UserData } from '../models/user.model';
+import { Router } from '@angular/router';
 
 const SERVER = 'http://localhost:3000';
 type RespType = { accessToken: string; user: UserData };
@@ -11,10 +12,9 @@ type RespType = { accessToken: string; user: UserData };
 })
 export class BackendUserService {
   loggedIn = false;
-  // token: string = '';
   userLocal: Partial<UserData> = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   registerUser(user: Partial<UserData>) {
     return this.http.post<RespType>(`${SERVER}/register`, user).pipe(
@@ -36,10 +36,10 @@ export class BackendUserService {
   logOut() {
     this.loggedIn = false;
     localStorage.removeItem('token');
+    this.router.navigateByUrl('/');
   }
 
   private setLoggin(token: string, id: number, email: string) {
-    // this.token = token;
     this.loggedIn = true;
     this.userLocal = { email, id };
     localStorage.setItem('token', token);

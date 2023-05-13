@@ -1,15 +1,3 @@
-<div class="posAbs">
-  <app-header></app-header>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
-
-  <div
-    (click)="onHideOverlay($event)"
-    *ngIf="headerState.showAuth"
-    class="overlay"
-  >
-    <div class="custom">
-      <app-authentication-form-container></app-authentication-form-container>
-    </div>
-  </div>
-</div>
+<app-header></app-header>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

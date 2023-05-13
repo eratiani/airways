@@ -8,9 +8,4 @@ import { HeaderStateService } from './core/services/header-state.service';
 })
 export class AppComponent {
   title = 'airways';
-  constructor(public headerState: HeaderStateService) {}
-  onHideOverlay(ev: Event) {
-    if ((ev.target as HTMLElement).classList.contains('overlay'))
-      this.headerState.showAuth = false;
-  }
 }

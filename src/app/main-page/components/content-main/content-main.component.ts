@@ -7,9 +7,10 @@ import { HeaderStateService } from 'src/app/core/services/header-state.service';
   styleUrls: ['./content-main.component.css'],
 })
 export class ContentMainComponent {
-  constructor() {}
-  signedIn: boolean = false;
-  onSignIn(event: boolean) {
-    this.signedIn = event;
+  constructor(public headerState: HeaderStateService) {}
+
+  onHideOverlay(ev: Event) {
+    if ((ev.target as HTMLElement).classList.contains('overlay'))
+      this.headerState.showAuth = false;
   }
 }
