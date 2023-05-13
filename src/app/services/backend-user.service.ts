@@ -35,13 +35,13 @@ export class BackendUserService {
   }
   logOut() {
     this.loggedIn = false;
-    localStorage.removeItem('token');
+    window.sessionStorage.removeItem('airways-token');
     this.router.navigateByUrl('/');
   }
 
   private setLoggin(token: string, id: number, email: string) {
     this.loggedIn = true;
     this.userLocal = { email, id };
-    localStorage.setItem('token', token);
+    window.sessionStorage.setItem('airways-token', token);
   }
 }

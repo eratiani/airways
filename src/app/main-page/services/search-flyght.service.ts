@@ -59,9 +59,6 @@ export class SearchService {
           );
         })
       )
-      // tap((data) => {
-      //   this.store.dispatch(flightOneWayAdd({ data }));
-      // })
     );
   }
 

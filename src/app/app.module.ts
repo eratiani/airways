@@ -23,6 +23,7 @@ import {
 import { MY_DATE_FORMAT } from './core/services/date-format';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { UserAuthenticationModule } from './user-authentication/user-authentication.module';
+import { interceptorsProviders } from './interceptors';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
@@ -33,6 +34,7 @@ import { UserAuthenticationModule } from './user-authentication/user-authenticat
       deps: [MAT_DATE_LOCALE],
     },
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT },
+    interceptorsProviders,
   ],
   bootstrap: [AppComponent],
   imports: [

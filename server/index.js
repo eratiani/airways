@@ -14,7 +14,7 @@ const dataHandler = (req, resp, next) => {
 };
 
 const rules = auth.rewriter({
-  // data: 440,
+  data: 440,
   users: 660,
 });
 
