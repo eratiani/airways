@@ -11,7 +11,6 @@ import { MatInputModule } from '@angular/material/input';
 import { ContentMainComponent } from './components/content-main/content-main.component';
 import { FlightsFormComponent } from './components/flights-form/flights-form.component';
 import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
-import { SummaryModule } from '../summary/summary.module';
 
 @NgModule({
   declarations: [ContentMainComponent, FlightsFormComponent],
@@ -25,7 +24,6 @@ import { SummaryModule } from '../summary/summary.module';
     MatNativeDateModule,
     MatInputModule,
     UserAuthenticationModule,
-    SummaryModule,
   ],
 })
 export class MainPageModule {}

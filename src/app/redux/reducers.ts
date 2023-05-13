@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  addPassengers,
   flightBackAdd,
   flightOneWayAdd,
   resetBackFlights,
@@ -7,6 +8,7 @@ import {
   setPassangersCount,
 } from './actions';
 import { StoreType } from './store.model';
+import { ReservationDataType } from '../models/flyght-data.model';
 
 const initialMatchedFlights: StoreType['flightData'] = {};
 export const flightsReducer = createReducer(
@@ -30,4 +32,15 @@ export const passangersCountReducer = createReducer(
     child,
     infant,
   }))
+);
+
+//reservations
+const initialReservations: ReservationDataType[] = [];
+export const reservationsReducer = createReducer(
+  initialReservations,
+  on(addPassengers, (state, { passengers, contact }) => {
+    const temp = [...state];
+    temp.push({ passengers, contact });
+    return temp;
+  })
 );

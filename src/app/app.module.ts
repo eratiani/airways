@@ -10,6 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import {
   flightsReducer,
   passangersCountReducer,
+  reservationsReducer,
   selectedFlihgtReducer,
 } from './redux/reducers';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -45,6 +46,7 @@ import { UserAuthenticationModule } from './user-authentication/user-authenticat
         flightData: flightsReducer,
         selectedFlight: selectedFlihgtReducer,
         passengersCount: passangersCountReducer,
+        reservations: reservationsReducer,
       },
       {}
     ),

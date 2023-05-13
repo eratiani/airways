@@ -5,6 +5,7 @@ import {
   Validators,
   AbstractControl,
 } from '@angular/forms';
+import { ContactType } from '../../passengers-view/passengers-view.component';
 
 @Component({
   selector: 'app-passenger-contact-info',
@@ -12,7 +13,7 @@ import {
   styleUrls: ['./passenger-contact-info.component.css'],
 })
 export class PassengerContactInfoComponent {
-  @Input() control!: FormGroup;
+  @Input() control!: FormGroup<Partial<ContactType>>;
   fieldRequired: string = 'This field is required';
   phoneNumber: string = '';
 
@@ -86,7 +87,9 @@ export class PassengerContactInfoComponent {
     numericCode: string;
   }) {
     this.phoneNumber = country.callingCode;
-    this.control.controls['telephone'].setValue(`${this.phoneNumber}-`);
+    if (this.control.controls.telephone) {
+      this.control.controls.telephone.setValue(`${this.phoneNumber}-`);
+    }
   }
 
   phoneErrors() {

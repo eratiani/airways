@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import {
   AbstractControl,
   FormBuilder,
@@ -7,7 +8,16 @@ import {
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { addPassengers } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
+
+export interface ContactType {
+  email: FormControl<string>;
+  country: FormControl<
+    Record<'name' | 'alpha2Code' | 'alpha3Code' | 'numericCode', string>
+  >;
+  telephone: FormControl<string>;
+}
 
 @Component({
   selector: 'app-passengers-view',
@@ -19,7 +29,7 @@ export class PassengersViewComponent {
     adult: this.fb.array<FormGroup>([]),
     child: this.fb.array<FormGroup>([]),
     infant: this.fb.array<FormGroup>([]),
-    contact: this.fb.group({}),
+    contact: this.fb.group<Partial<ContactType>>({}),
   });
   passengers: Exclude<keyof typeof this.passengersForm.value, 'contact'>[] = [
     'adult',
@@ -66,7 +76,19 @@ export class PassengersViewComponent {
     );
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if (!this.passengersForm.value) {
+      return;
+    }
+    const { adult, child, infant, contact } = this.passengersForm.value;
+    const { email, country, telephone } = contact!;
+    this.store.dispatch(
+      addPassengers({
+        passengers: { adult, child, infant },
+        contact: { ...contact, country: contact!.country!.name },
+      })
+    );
+  }
 }
 
 function dateNotInFutureValidator(

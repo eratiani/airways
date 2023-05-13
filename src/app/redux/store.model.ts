@@ -15,4 +15,5 @@ export interface StoreType {
   passengersCount: Partial<
     Record<keyof ReservationDataType['passengers'], number>
   >;
+  reservations: ReservationDataType[];
 }

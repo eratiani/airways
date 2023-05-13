@@ -1,5 +1,8 @@
 import { createAction, props } from '@ngrx/store';
-import { FlightDataType } from '../models/flyght-data.model';
+import {
+  FlightDataType,
+  ReservationDataType,
+} from '../models/flyght-data.model';
 import { StoreType } from './store.model';
 
 export const flightOneWayAdd = createAction(
@@ -23,4 +26,10 @@ export const selectFlight = createAction(
 export const setPassangersCount = createAction(
   '[passengers] set amount',
   props<StoreType['passengersCount']>()
+);
+
+// reservations
+export const addPassengers = createAction(
+  '[reservations] add passengers data',
+  props<ReservationDataType>()
 );
