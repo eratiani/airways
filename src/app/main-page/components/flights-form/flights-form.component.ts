@@ -68,7 +68,12 @@ export class FlightsFormComponent {
       passengers: { ...temp, [option]: temp[option] - 1 },
     });
   }
-
+  onFlightSwap(ev: Event) {
+    ev.preventDefault();
+    const { from = 'Paris', to = 'Seoul' } = this.searchForm.value;
+    this.searchForm.controls.from.setValue(to);
+    this.searchForm.controls.to.setValue(from);
+  }
   onSubmit() {
     if (this.searchForm.invalid) {
       return;

@@ -4,7 +4,7 @@
   <form
     [formGroup]="searchForm"
     (submit)="onSubmit()"
-    class="container-sm d-flex flex-column align-items-center justify-content-center"
+    class="container-sm d-flex flex-column align-items-center justify-content-center posRel"
   >
     <mat-radio-group
       formControlName="oneWay"
@@ -26,7 +26,13 @@
         errorMessage
       }}</mat-error>
     </mat-form-field>
-
+    <button
+      (click)="onFlightSwap($event)"
+      class="btn btn-light rounded-pill posAbs d-flex justify-content-center align-items-center"
+      style="width: 40px; height: 40px"
+    >
+      <img src="../../../../assets/swapArrows.png" alt="swapArrows" />
+    </button>
     <mat-form-field class="m-md-2 col-sm-6" appearance="fill">
       <mat-label>Destination</mat-label>
       <mat-select formControlName="to">
@@ -42,7 +48,7 @@
     <div class="row">
       <div class="col-sm-7 d-flex justify-content-center">
         <mat-form-field appearance="fill">
-          <mat-label>Choose a range</mat-label>
+          <mat-label>Choose a Date</mat-label>
           <mat-date-range-input formGroupName="date" [rangePicker]="picker">
             <input matStartDate formControlName="startDate" />
             <input matEndDate formControlName="endDate" />
@@ -60,7 +66,7 @@
 
       <div class="col-sm-5 d-flex justify-content-center">
         <mat-form-field class="" appearance="fill">
-          <mat-label>Select an option</mat-label>
+          <mat-label>Passangers List</mat-label>
           <mat-select>
             <mat-option *ngFor="let value of keys" [value]="value">
               {{ toCamelCase(value) }}

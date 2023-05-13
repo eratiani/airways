@@ -6,3 +6,25 @@
 .mat-mdc-radio-button ~ .mat-mdc-radio-button {
   margin-left: 16px;
 }
+.posAbs {
+  position: absolute;
+  top: 30%;
+  right: 25%;
+  background-color: white;
+  z-index: 4;
+}
+.posRel {
+  position: relative;
+}
+
+@media only screen and (max-width: 767px) {
+  .posAbs {
+    top: 28%;
+    right: 46%;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .posAbs {
+    top: 22%;
+  }
+}
