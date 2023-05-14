@@ -1,6 +1,8 @@
 <div class="container">
   <h2>Summary</h2>
-  <app-flight-details></app-flight-details>
+  <app-flight-details
+    [flightDetails]="passangersInfo.passengers"
+  ></app-flight-details>
   <app-flight-fare></app-flight-fare>
   <br />
   <div class="d-flex justify-content-end">
