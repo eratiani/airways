@@ -23,9 +23,12 @@ import {
 import { MY_DATE_FORMAT } from './core/services/date-format';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { interceptorsProviders } from './interceptors';
+import { ConfirmLogin } from './modals/confirm-dialog/confirm';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent],
+  declarations: [AppComponent, PageNotFoundComponent, ConfirmLogin],
   providers: [
     {
       provide: DateAdapter,
@@ -42,6 +45,8 @@ import { interceptorsProviders } from './interceptors';
     MainPageModule,
     CoreModule,
     ShoppingCartModule,
+    MatDialogModule,
+    MatButtonModule,
     StoreModule.forRoot(
       {
         flightData: flightsReducer,

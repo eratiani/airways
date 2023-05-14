@@ -1,29 +1,35 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { inject } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 import { BackendUserService } from '../services/backend-user.service';
 import { HeaderStateService } from '../core/services/header-state.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmLogin } from '../modals/confirm-dialog/confirm';
+import { map, tap } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthGuard implements CanActivate {
-  constructor(
-    private backendUserService: BackendUserService,
-    private headerService: HeaderStateService,
-    private router:Router
-  ) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.backendUserService.loggedIn) {
-        return true;
-      } else {
-        this.headerService.showAuth = true;
-        
-        return this.router.createUrlTree(['/Home']);
-      }
-    
+export const authGuard = (
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot
+) => {
+  const headState = inject(HeaderStateService);
+  const router = inject(Router);
+  if (inject(BackendUserService).loggedIn) {
+    return true;
+  } else {
+    const dialogRef = inject(MatDialog).open<ConfirmLogin, string, boolean>(
+      ConfirmLogin,
+      { data: 'You must logged to view this page!' }
+    );
+    return dialogRef.afterClosed().pipe(
+      tap((submit) => {
+        if (submit) {
+          headState.showAuth = true;
+        }
+      }),
+      map((submit) => (submit ? router.createUrlTree(['']) : false))
+    );
   }
-  
-}
+};
