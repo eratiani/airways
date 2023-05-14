@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Router, ActivatedRoute } from '@angular/router';
 import { addPassengers } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
 
@@ -37,7 +38,12 @@ export class PassengersViewComponent {
     'infant',
   ];
 
-  constructor(private fb: FormBuilder, private store: Store<StoreType>) {
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<StoreType>,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     store.select('passengersCount').subscribe((passeng) => {
       console.log('passang from store: ', passeng);
       for (const [type, count] of Object.entries(passeng) as [
@@ -88,6 +94,7 @@ export class PassengersViewComponent {
         contact: { ...contact, country: contact!.country!.name },
       })
     );
+    this.router.navigate(['/booking/summary'], { relativeTo: this.route });
   }
 }
 
