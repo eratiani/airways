@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { SideType } from 'src/app/booking/components/one-side/one-side.component';
-import { FlightDataType } from 'src/app/models/flyght-data.model';
+import { FlightDataType, ReservationDataType } from 'src/app/models/flyght-data.model';
 import { StoreType } from 'src/app/redux/store.model';
 
 @Component({
@@ -10,7 +10,7 @@ import { StoreType } from 'src/app/redux/store.model';
   styleUrls: ['./summary-view.component.css'],
 })
 export class SummaryViewComponent implements OnInit {
-  passangersInfo: any;
+  passangersInfo!: ReservationDataType;
   oneWayFlight?: FlightDataType;
   backFlight?: FlightDataType;
 
@@ -18,7 +18,7 @@ export class SummaryViewComponent implements OnInit {
   ngOnInit(): void {
     this.store
       .select('reservations')
-      .subscribe((data) => (this.passangersInfo = data[data.length - 1]));
+      .subscribe((data) => (this.passangersInfo = data[data.length-1]));
     console.log(this.passangersInfo);
     this.store.select('selectedFlight', 'oneWay').subscribe((data) => {
       console.log(data);

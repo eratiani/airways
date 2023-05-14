@@ -3,9 +3,13 @@
   <app-flight-details
     [oneWayFlight]="oneWayFlight"
     [backFlight]="backFlight"
-    [flightDetails]="passangersInfo.passengers"
+    [flightDetails]="passangersInfo"
   ></app-flight-details>
-  <app-flight-fare></app-flight-fare>
+  <app-flight-fare  
+  [oneWayFlight]="oneWayFlight"
+  [backFlight]="backFlight"
+  [flightDetails]="passangersInfo"
+  ></app-flight-fare>
   <br />
   <div class="d-flex justify-content-end">
     <div
