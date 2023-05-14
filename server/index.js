@@ -14,8 +14,8 @@ const dataHandler = (req, resp, next) => {
 };
 
 const rules = auth.rewriter({
-  data: 440,
-  users: 660,
+  // data: 440,
+  users: 640,
 });
 
 const PORT = 3000;

@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
         nonNullable: true,
       }),
       dateOfBirth: new FormControl('', {
-        validators: [Validators.required, this.dateNotInFutureValidator],
+        validators: [Validators.required, dateNotInFutureValidator],
         nonNullable: true,
       }),
       gender: new FormControl('', {
@@ -220,15 +220,17 @@ export class RegisterComponent implements OnInit {
       telephone: this.preSelectData.telephone,
     });
   }
+}
 
-  dateNotInFutureValidator(control: AbstractControl): ValidationErrors | null {
-    const inputDate = new Date(control.value);
-    const currentDate = new Date();
+function dateNotInFutureValidator(
+  control: AbstractControl
+): ValidationErrors | null {
+  const inputDate = new Date(control.value);
+  const currentDate = new Date();
 
-    if (inputDate > currentDate) {
-      return { dateNotInFuture: true };
-    }
-
-    return null;
+  if (inputDate > currentDate) {
+    return { dateNotInFuture: true };
   }
+
+  return null;
 }

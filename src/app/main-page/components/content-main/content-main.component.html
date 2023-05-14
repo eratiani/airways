@@ -2,12 +2,4 @@
   <app-flights-form></app-flights-form>
   <br />
 </div>
-<div
-  (click)="onHideOverlay($event)"
-  *ngIf="headerState.showAuth"
-  class="overlay"
->
-  <div class="custom">
-    <app-authentication-form-container></app-authentication-form-container>
-  </div>
-</div>
+<app-authentication-form-container></app-authentication-form-container>

@@ -5,3 +5,26 @@
   width: 30vw;
   margin: 0 auto;
 }
+
+.overlay {
+  height: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  z-index: 999;
+}
+
+.custom {
+  width: 500px;
+  margin: 10px;
+  position: absolute;
+  right: 10%;
+  top: 70px;
+}
+@media only screen and (max-width: 520px) {
+  .custom {
+    width: 100vw;
+  }
+}

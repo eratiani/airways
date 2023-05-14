@@ -7,6 +7,7 @@ import { FlightSelectedComponent } from './components/flight-selected/flight-sel
 import { BookingRoutig } from './booking-routing.module';
 import { HiglightDirective } from './directives/higlight.directive';
 import { OneSideComponent } from './components/one-side/one-side.component';
+import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { OneSideComponent } from './components/one-side/one-side.component';
     HiglightDirective,
     OneSideComponent,
   ],
-  imports: [CommonModule, BookingRoutig],
+  imports: [CommonModule, BookingRoutig, UserAuthenticationModule],
   exports: [],
 })
 export class BookingViewModule {}

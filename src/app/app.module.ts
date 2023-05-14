@@ -22,7 +22,6 @@ import {
 } from '@angular/material/core';
 import { MY_DATE_FORMAT } from './core/services/date-format';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
-import { UserAuthenticationModule } from './user-authentication/user-authentication.module';
 import { interceptorsProviders } from './interceptors';
 
 @NgModule({
@@ -53,7 +52,6 @@ import { interceptorsProviders } from './interceptors';
       {}
     ),
     MatSnackBarModule,
-    UserAuthenticationModule,
   ],
 })
 export class AppModule {}

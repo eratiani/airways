@@ -1,25 +1,30 @@
 <div class="login-container">
   <div class="login-content">
     <mat-card>
-      <a
+      <button
         (click)="onGoogleFbSignIn()"
         class="btn btn-light m-2 d-flex justify-content-center align-items-center"
-        ><img
+      >
+        <img
           style="margin-right: 15px"
           src="../../../assets/fblogo.png"
           alt="fb"
-        />Continue with Facebook</a
-      >
-      <a
+        />Continue with Facebook
+      </button>
+
+      <button
         (click)="onGoogleFbSignIn()"
         class="btn btn-light m-2 d-flex justify-content-center align-items-center"
-        ><img
+      >
+        <img
           style="margin-right: 25px"
           src="../../../assets/google_24px.png"
           alt="google"
-        />Continue with Google</a
-      >
+        />Continue with Google
+      </button>
+
       <p class="text-center m-4">or sign up with your email</p>
+
       <form
         class="d-flex flex-column align-items-center justify-content-center"
         [formGroup]="registerForm"
@@ -68,6 +73,7 @@
             {{ getErrorPassword() }}
           </mat-error>
         </mat-form-field>
+
         <div class="col-sm-7 d-flex justify-content-center">
           <mat-form-field appearance="fill">
             <mat-label>Choose a date</mat-label>
@@ -87,6 +93,7 @@
             </mat-error>
           </mat-form-field>
         </div>
+
         <mat-radio-group formControlName="gender">
           <mat-radio-button
             class="btn-check-custom"
@@ -121,19 +128,22 @@
             >Male</mat-label
           >
         </mat-radio-group>
-
         <mat-error *ngIf="checkValidation('gender')">
           {{ fieldRequired }}
         </mat-error>
+
         <mat-select-country
           formControlName="country"
           [itemsLoadSize]="5"
           (onCountrySelected)="onCountrySelected($event)"
         >
         </mat-select-country>
+
+        <!-- error in console with validation -->
         <mat-error *ngIf="checkValidation('country')">
           {{ fieldRequired }}
         </mat-error>
+
         <mat-form-field appearance="fill" *ngIf="phoneNumber != ''">
           <mat-label>Choose a date</mat-label>
           <input
@@ -148,6 +158,7 @@
             {{ phoneErrors() }}
           </mat-error>
         </mat-form-field>
+
         <br />
 
         <mat-checkbox required formControlName="termsAndServices">
@@ -156,7 +167,9 @@
         <mat-error *ngIf="checkValidation('termsAndServices')">
           {{ fieldRequired }}
         </mat-error>
+
         <hr />
+
         <div class="socialMediaFlex">
           <button
             [disabled]="registerForm.invalid"
