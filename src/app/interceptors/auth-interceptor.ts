@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const path = new URL(req.url).pathname;
+    const path = new URL(req.url, 'http://localhost:4200').pathname;
     if (path === '/users') {
       const token = window.sessionStorage.getItem('airways-token');
       const copyReq = req.clone({

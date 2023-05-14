@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     termsAndServices: true,
     telephone: '+49-111-111-1111',
   };
-  phoneNumber!: string;
+  phoneNumber = '';
   registerForm!: FormGroup<{
     username: FormControl<string>;
     email: FormControl<string>;
@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.phoneNumber = '';
+    // this.phoneNumber = '';
     this.createForm();
   }
   onTelephoneKeydown(event: KeyboardEvent) {

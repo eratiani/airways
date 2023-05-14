@@ -32,37 +32,27 @@
         (ngSubmit)="onSubmit()"
       >
         <mat-form-field>
-          <input
-            autofocus
-            type="email"
-            matInput
-            placeholder="Email *"
-            formControlName="email"
-          />
+          <mat-label>Email</mat-label>
+          <input autofocus type="email" matInput formControlName="email" />
           <mat-error *ngIf="checkValidation('email')">
             {{ emaiErrors() }}
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
-          <input
-            autofocus
-            type="text"
-            matInput
-            placeholder="Username *"
-            formControlName="username"
-          />
+          <mat-label>Username</mat-label>
+          <input autofocus type="text" matInput formControlName="username" />
           <mat-error *ngIf="checkValidation('username')">
             {{ fieldRequired }}
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
+          <mat-label>Password</mat-label>
           <input
             type="password"
             autocomplete="false"
             matInput
-            placeholder="Password *"
             formControlName="password"
           />
           <mat-hint
@@ -76,7 +66,7 @@
 
         <div class="col-sm-7 d-flex justify-content-center">
           <mat-form-field appearance="fill">
-            <mat-label>Choose a date</mat-label>
+            <mat-label>Choose a date of birthd</mat-label>
             <input
               matInput
               [matDatepicker]="picker2"
@@ -139,18 +129,16 @@
         >
         </mat-select-country>
 
-        <!-- error in console with validation -->
         <mat-error *ngIf="checkValidation('country')">
           {{ fieldRequired }}
         </mat-error>
 
         <mat-form-field appearance="fill" *ngIf="phoneNumber != ''">
-          <mat-label>Choose a date</mat-label>
+          <mat-label>Choose a tel.</mat-label>
           <input
             matInput
             type="text"
             formControlName="telephone"
-            [value]="phoneNumber"
             (keydown)="onTelephoneKeydown($event)"
           />
           <mat-hint>{{ phoneNumber }}-***-***-****</mat-hint>
