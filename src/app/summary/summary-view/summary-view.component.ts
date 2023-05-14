@@ -11,9 +11,9 @@ import { StoreType } from 'src/app/redux/store.model';
 })
 export class SummaryViewComponent implements OnInit {
   passangersInfo: any;
-  oneWayFlights?: FlightDataType;
-  backFlights?: FlightDataType;
-  selectedData?: StoreType['selectedFlight'];
+  oneWayFlight?: FlightDataType;
+  backFlight?: FlightDataType;
+
   constructor(private store: Store<StoreType>) {}
   ngOnInit(): void {
     this.store
@@ -22,18 +22,12 @@ export class SummaryViewComponent implements OnInit {
     console.log(this.passangersInfo);
     this.store.select('selectedFlight', 'oneWay').subscribe((data) => {
       console.log(data);
-      this.oneWayFlights = data;
+      this.oneWayFlight = data;
     });
     this.store.select('selectedFlight', 'backWay').subscribe((data) => {
       console.log(data);
 
-      this.backFlights = data;
+      this.backFlight = data;
     });
-  }
-  storeChoise(type: SideType, flight: FlightDataType) {
-    this.selectedData =
-      type === 'one-way'
-        ? { ...this.selectedData, oneWay: flight }
-        : { ...this.selectedData, backWay: flight };
   }
 }

@@ -1,6 +1,8 @@
 <div class="container">
   <h2>Summary</h2>
   <app-flight-details
+    [oneWayFlight]="oneWayFlight"
+    [backFlight]="backFlight"
     [flightDetails]="passangersInfo.passengers"
   ></app-flight-details>
   <app-flight-fare></app-flight-fare>

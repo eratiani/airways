@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FlightDataType } from 'src/app/models/flyght-data.model';
 
 @Component({
   selector: 'app-flight-details',
@@ -6,11 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./flight-details.component.css'],
 })
 export class FlightDetailsComponent implements OnInit {
-  @Input() flightDetails!: any;
-  constructor() {
-    console.log(this.flightDetails);
-  }
+  @Input() flightDetails?: any;
+  @Input() oneWayFlight?: FlightDataType;
+  @Input() backFlight?: FlightDataType;
+
   ngOnInit(): void {
-    console.log(this.flightDetails);
+    console.log(this.backFlight);
   }
 }
