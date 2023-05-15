@@ -8,6 +8,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { Route, RouterModule } from '@angular/router';
+
+const routes: Route[] = [
+  {
+    path: '',
+    component: ShoppingCartViewComponent,
+  },
+];
 
 @NgModule({
   declarations: [ShoppingCartViewComponent, ShoppingCartTableComponent],
@@ -19,7 +27,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatCheckboxModule,
     MatIconModule,
     MatMenuModule,
+    RouterModule.forChild(routes),
   ],
-  exports: [ShoppingCartViewComponent],
 })
 export class ShoppingCartModule {}

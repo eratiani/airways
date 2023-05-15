@@ -3,15 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ContentMainComponent } from './main-page/main-view/content-main.component';
-import { ShoppingCartViewComponent } from './shopping-cart/shopping-cart-view/shopping-cart-view.component';
 import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: '', component: ContentMainComponent },
   {
-    path: 'table',
-    component: ShoppingCartViewComponent,
+    path: 'cart',
+    loadChildren: () =>
+      import('./shopping-cart/shopping-cart.module').then(
+        (m) => m.ShoppingCartModule
+      ),
     canActivate: [authGuard],
   },
   {

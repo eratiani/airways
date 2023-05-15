@@ -11,7 +11,7 @@ type RespType = { accessToken: string; user: UserData };
   providedIn: 'root',
 })
 export class BackendUserService {
-  loggedIn = false;
+  loggedIn = true; // to change to false
   userLocal: Partial<UserData> = {};
 
   constructor(private http: HttpClient, private router: Router) {}
