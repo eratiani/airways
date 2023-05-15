@@ -113,6 +113,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./shopping-cart-table.component.css'],
 })
 export class ShoppingCartTableComponent {
+  isUserAcount = false; // should be pass dependly of mode later
+
   displayedColumns: string[] = [
     'select',
     'No',

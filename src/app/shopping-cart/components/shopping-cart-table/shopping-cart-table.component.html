@@ -35,12 +35,15 @@
       style="width: auto"
     >
       <div class="m-2">
-        <img
+        <!-- <img
           style="cursor: pointer"
           src="../../../../assets/dots.png"
           alt=""
           (click)="onEditDelete($event, element)"
-        />
+        /> -->
+        <button mat-icon-button (click)="onEditDelete($event, element)">
+          <mat-icon>more_vert</mat-icon>
+        </button>
       </div>
       <div *ngIf="element.showButtons">
         <button class="btn btn-primary m-2" (click)="onEdit(element)">

@@ -9,6 +9,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { Route, RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Route[] = [
   {
@@ -27,6 +28,7 @@ const routes: Route[] = [
     MatCheckboxModule,
     MatIconModule,
     MatMenuModule,
+    MatButtonModule,
     RouterModule.forChild(routes),
   ],
 })
