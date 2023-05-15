@@ -1,0 +1,77 @@
+<div
+  class="container-sm d-flex flex-column align-items-center justify-content-center"
+>
+  <form
+    [formGroup]="searchForm"
+    (submit)="onSubmit()"
+    class="container-sm d-flex align-items-center justify-content-between posRel flex-wrap"
+  >
+    <mat-form-field class="m-md-2 col-xl-2 col-5" appearance="fill">
+      <mat-label>From</mat-label>
+      <mat-select formControlName="from">
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="searchForm.controls.from.errors">{{
+        errorMessage
+      }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="m-md-2 col-xl-2 col-5" appearance="fill">
+      <mat-label>Destination</mat-label>
+      <mat-select formControlName="to">
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="searchForm.controls.to.errors">{{
+        errorMessage
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field
+      class="col-xl-3 col-12 col-md-5 d-flex justify-content-center m-md-2"
+      appearance="fill"
+    >
+      <mat-label> Date</mat-label>
+      <mat-date-range-input formGroupName="date" [rangePicker]="picker">
+        <input matStartDate formControlName="startDate" />
+        <input matEndDate formControlName="endDate" />
+      </mat-date-range-input>
+      <mat-hint
+        >{{ headState.dateFormat }} - {{ headState.dateFormat }}</mat-hint
+      >
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <mat-form-field
+      class="col-xl-3 d-flex col-12 col-md-5 justify-content-center m-md-2"
+      appearance="fill"
+    >
+      <mat-label>Passangers List</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let value of keys" [value]="value">
+          {{ toCamelCase(value) }}
+          <div class="option-controls">
+            <button mat-button (click)="decreaseValue($event, value)">-</button>
+            {{ searchForm.controls.passengers.value[value] }}
+            <button mat-button (click)="increaseValue($event, value)">+</button>
+          </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="w-50 d-flex justify-content-end">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="searchForm.invalid"
+      >
+        edit
+      </button>
+    </div>
+  </form>
+</div>
