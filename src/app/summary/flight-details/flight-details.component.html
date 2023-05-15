@@ -1,17 +1,86 @@
 <div class="card-container d-flex flex-wrap justify-content-between">
-  <mat-card class="col-5" *ngFor="let detail of flightDetails">
-    <mat-card-content>
-      <h2>{{ detail.flightNumber }} {{ detail.route }}</h2>
-      <p>
-        {{ detail.date }} {{ detail.departureTime }} {{ detail.arrivalTime }}
-      </p>
+  <mat-card class="col-xl-5">
+    <mat-card-content *ngIf="oneWayFlight">
+      <h2>From {{ oneWayFlight.from }} To {{ oneWayFlight.to }}</h2>
+      <p>{{ oneWayFlight.date }} {{ timeOfLanding(oneWayFlight) }}</p>
 
-      <div *ngFor="let passenger of detail.passengers">
+      <div *ngFor="let passenger of flightDetails.passengers
+      .adult; let i = index">
         <hr />
-        <h2>{{ passenger.name }} - {{ passenger.seat }}</h2>
+        <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
         <hr />
         <ul>
-          <li *ngFor="let lugage of passenger.luggage">{{ lugage }}</li>
+          <li>1checked bag (total 23 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>Seat 1{{ i }}D</li>
+        </ul>
+      </div>
+      <div *ngFor="let passenger of flightDetails.passengers
+      .child; let i = index">
+        <hr />
+        <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
+        <hr />
+        <ul>
+          <li>1checked bag (total 23 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>Seat 1{{ i }}F</li>
+        </ul>
+      </div>
+      <div *ngFor="let passenger of flightDetails.passengers
+      .infant; let i = index">
+        <hr />
+        <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
+        <hr />
+        <ul>
+          <li>1checked bag (total 23 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>Seat 1{{ i }}E</li>
+        </ul>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="backFlight" class="col-xl-5">
+    <mat-card-content>
+      <h2>From {{ backFlight.from }} To {{ backFlight.to }}</h2>
+      <p>{{ backFlight.date }} {{ timeOfLanding(backFlight) }}</p>
+
+      <div *ngFor="let passenger of flightDetails.passengers
+      .adult; let i = index">
+        <hr />
+        <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
+        <hr />
+        <ul>
+          <li>1checked bag (total 23 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>Seat 1{{ i }}D</li>
+        </ul>
+      </div>
+      <div *ngFor="let passenger of flightDetails.passengers
+      .child; let i = index">
+        <hr />
+        <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
+        <hr />
+        <ul>
+          <li>1checked bag (total 23 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>Seat 1{{ i }}F</li>
+        </ul>
+      </div>
+      <div *ngFor="let passenger of flightDetails.passengers
+      .infant; let i = index">
+        <hr />
+        <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
+        <hr />
+        <ul>
+          <li>1checked bag (total 23 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>Seat 1{{ i }}E</li>
         </ul>
       </div>
     </mat-card-content>

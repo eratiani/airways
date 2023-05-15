@@ -1,21 +1,93 @@
-<div class="container-bill d-flex justify-content-end">
-  <div class="card col-5">
-    <div *ngFor="let item of flightPrices">
+<div class="container-bill d-flex justify-content-between  m-2">
+  <div class="card col-xl-5" *ngIf="oneWayFlight">
+    <div *ngFor="let passanger of flightDetails.passengers.adult">
       <div class="card-body">
         <h5 class="card-title">
-          {{ item.passengerType }} {{ item.ticketType }}
+          Adult Fare
         </h5>
-        <p class="card-text">fare: {{ item.ticketPrice }}</p>
+        <p class="card-text">fare: {{ oneWayFlight.cost - oneWayFlight.cost*0.2 }}</p>
         <p class="card-text">
-          Tax and Service Charge: {{ item.taxAndServiceCharge }}
+          Tax and Service Charge: {{ oneWayFlight.cost*0.2 }}
         </p>
-        <p class="card-text">Total Price: {{ item.totalPrice }}</p>
+        <p class="card-text">Total Price: {{ oneWayFlight.cost }}</p>
       </div>
     </div>
     <hr />
-    <div class="d-flex justify-content-between p-2">
-      <p class="text-end">total:</p>
-      <p class="text-end">552</p>
+    <div *ngFor="let passanger of flightDetails.passengers.child">
+      <div class="card-body">
+        <h5 class="card-title">
+          Child Fare
+        </h5>
+        <p class="card-text">fare: {{ oneWayFlight.cost - oneWayFlight.cost*0.2 }}</p>
+        <p class="card-text">
+          Tax and Service Charge: {{ oneWayFlight.cost*0.2 }}
+        </p>
+        <p class="card-text">Total Price: {{ oneWayFlight.cost }}</p>
+      </div>
     </div>
+    <hr />
+    <div *ngFor="let passanger of flightDetails.passengers.infant">
+      <div class="card-body">
+        <h5 class="card-title">
+          Infant Fare
+        </h5>
+        <p class="card-text">fare: {{ oneWayFlight.cost - oneWayFlight.cost*0.2 }}</p>
+        <p class="card-text">
+          Tax and Service Charge: {{ oneWayFlight.cost*0.2 }}
+        </p>
+        <p class="card-text">Total Price: {{ oneWayFlight.cost }}</p>
+      </div>
+    </div>
+    <hr />
+    
   </div>
+  <div class="card col-xl-5" *ngIf="backFlight">
+    <div *ngFor="let passanger of flightDetails.passengers.adult">
+      <div class="card-body">
+        <h5 class="card-title">
+          Adult Fare
+        </h5>
+        <p class="card-text">fare: {{ backFlight.cost - backFlight.cost*0.2 }}</p>
+        <p class="card-text">
+          Tax and Service Charge: {{ backFlight.cost*0.2 }}
+        </p>
+        <p class="card-text">Total Price: {{ backFlight.cost }}</p>
+      </div>
+    </div>
+    <hr />
+    <div *ngFor="let passanger of flightDetails.passengers.child">
+      <div class="card-body">
+        <h5 class="card-title">
+          Adult Fare
+        </h5>
+        <p class="card-text">fare: {{ backFlight.cost - backFlight.cost*0.2 }}</p>
+        <p class="card-text">
+          Tax and Service Charge: {{ backFlight.cost*0.2 }}
+        </p>
+        <p class="card-text">Total Price: {{ backFlight.cost }}</p>
+      </div>
+    </div>
+    <hr />
+    <div *ngFor="let passanger of flightDetails.passengers.infant">
+      <div class="card-body">
+        <h5 class="card-title">
+          Adult Fare
+        </h5>
+        <p class="card-text">fare: {{ backFlight.cost - backFlight.cost*0.2 }}</p>
+        <p class="card-text">
+          Tax and Service Charge: {{ backFlight.cost*0.2 }}
+        </p>
+        <p class="card-text">Total Price: {{ backFlight.cost }}</p>
+      </div>
+    </div>
+    <hr />
+   
+  </div>
+  <br>
+</div>
+<hr>
+<div class="d-flex justify-content-between p-2">
+  <br>
+  <p class="text-end">total:</p>
+  <p class="text-end"> {{ totalPrice() }}</p>
 </div>

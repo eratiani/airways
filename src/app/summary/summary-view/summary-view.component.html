@@ -1,7 +1,15 @@
 <div class="container">
   <h2>Summary</h2>
-  <app-flight-details></app-flight-details>
-  <app-flight-fare></app-flight-fare>
+  <app-flight-details
+    [oneWayFlight]="oneWayFlight"
+    [backFlight]="backFlight"
+    [flightDetails]="passangersInfo"
+  ></app-flight-details>
+  <app-flight-fare  
+  [oneWayFlight]="oneWayFlight"
+  [backFlight]="backFlight"
+  [flightDetails]="passangersInfo"
+  ></app-flight-fare>
   <br />
   <div class="d-flex justify-content-end">
     <div
