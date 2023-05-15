@@ -16,6 +16,8 @@ export interface PassengerType {
   specialNeeds: boolean;
 }
 export interface ReservationDataType {
-  passengers: Partial<Record<'adult' | 'child' | 'infant', PassengerType[]>>;
+  passengers: Partial<
+    Record<'adult' | 'child' | 'infant', Partial<PassengerType>[]>
+  >;
   contact: Partial<Record<'email' | 'country' | 'telephone', string>>;
 }

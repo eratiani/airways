@@ -4,11 +4,20 @@
       <mat-card-title>
         <h1>{{ passenger === "child" ? "children" : passenger + "s" }}:</h1>
         <div class="controls">
-          <!-- to do nice appereance -->
-          <button mat-mini-fab color="primary" (click)="addMember(passenger)">
+          <button
+            mat-mini-fab
+            color="primary"
+            type="button"
+            (click)="addMember(passenger)"
+          >
             <mat-icon>plus_one</mat-icon>
           </button>
-          <button mat-mini-fab color="warn" (click)="removeMember(passenger)">
+          <button
+            mat-mini-fab
+            color="warn"
+            type="button"
+            (click)="removeMember(passenger)"
+          >
             <mat-icon>remove</mat-icon>
           </button>
         </div>

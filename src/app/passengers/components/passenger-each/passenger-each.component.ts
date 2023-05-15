@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
+import { EachPassengerType } from '../../passengers-view/passengers-view.component';
 
 @Component({
   selector: 'passenger-each',
@@ -8,7 +9,7 @@ import { HeaderStateService } from 'src/app/core/services/header-state.service';
   styleUrls: ['./passenger-each.component.css'],
 })
 export class PassengerEachComponent {
-  @Input() control!: FormGroup;
+  @Input() control!: FormGroup<EachPassengerType>;
   @Input() count!: number;
 
   fieldRequired: string = 'This field is required';
@@ -31,9 +32,6 @@ export class PassengerEachComponent {
   }
 
   checkValidation(name: string) {
-    const validation = this.control.get(name)?.invalid;
-    //  &&
-    // (this.control.get(name)?.dirty || this.control.get(name)?.touched);
-    return validation;
+    return this.control.get(name)?.hasError;
   }
 }

@@ -13,7 +13,7 @@
           placeholder="First Name *"
           formControlName="name"
         />
-        <mat-error *ngIf="control.get('name')?.invalid">
+        <mat-error *ngIf="checkValidation('surname')">
           {{ fieldRequired }}
         </mat-error>
       </mat-form-field>

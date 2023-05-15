@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { addPassengers } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
 
@@ -19,6 +19,13 @@ export interface ContactType {
   >;
   telephone: FormControl<string>;
 }
+export interface EachPassengerType {
+  name: FormControl<string>;
+  surname: FormControl<string>;
+  gender: FormControl<string>;
+  dOb: FormControl<string>;
+  specialNeeds: FormControl<boolean>;
+}
 
 @Component({
   selector: 'app-passengers-view',
@@ -27,9 +34,9 @@ export interface ContactType {
 })
 export class PassengersViewComponent {
   passengersForm = this.fb.group({
-    adult: this.fb.array<FormGroup>([]),
-    child: this.fb.array<FormGroup>([]),
-    infant: this.fb.array<FormGroup>([]),
+    adult: this.fb.array<FormGroup<EachPassengerType>>([]),
+    child: this.fb.array<FormGroup<EachPassengerType>>([]),
+    infant: this.fb.array<FormGroup<EachPassengerType>>([]),
     contact: this.fb.group<Partial<ContactType>>({}),
   });
   passengers: Exclude<keyof typeof this.passengersForm.value, 'contact'>[] = [
@@ -41,8 +48,7 @@ export class PassengersViewComponent {
   constructor(
     private fb: FormBuilder,
     private store: Store<StoreType>,
-    private router: Router,
-    private route: ActivatedRoute
+    private router: Router
   ) {
     store.select('passengersCount').subscribe((passeng) => {
       console.log('passang from store: ', passeng);
@@ -58,7 +64,7 @@ export class PassengersViewComponent {
   }
 
   private createGroup() {
-    return this.fb.group({
+    return this.fb.nonNullable.group({
       name: ['', Validators.required],
       surname: ['', Validators.required],
       gender: ['male'],
@@ -70,7 +76,6 @@ export class PassengersViewComponent {
   addMember(
     member: Exclude<keyof typeof this.passengersForm.value, 'contact'>
   ) {
-    console.log();
     this.passengersForm.controls[member].push(this.createGroup());
   }
 
@@ -83,18 +88,17 @@ export class PassengersViewComponent {
   }
 
   onSubmit() {
-    if (!this.passengersForm.value) {
+    if (!this.passengersForm.valid) {
       return;
     }
     const { adult, child, infant, contact } = this.passengersForm.value;
-    const { email, country, telephone } = contact!;
     this.store.dispatch(
       addPassengers({
         passengers: { adult, child, infant },
         contact: { ...contact, country: contact!.country!.name },
       })
     );
-    this.router.navigate(['/booking/summary'], { relativeTo: this.route });
+    this.router.navigate(['/booking/summary']);
   }
 }
 

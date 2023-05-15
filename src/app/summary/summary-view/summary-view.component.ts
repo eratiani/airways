@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import {
   FlightDataType,
@@ -11,25 +12,27 @@ import { StoreType } from 'src/app/redux/store.model';
   templateUrl: './summary-view.component.html',
   styleUrls: ['./summary-view.component.css'],
 })
-export class SummaryViewComponent implements OnInit {
+export class SummaryViewComponent {
   passangersInfo!: ReservationDataType;
   oneWayFlight?: FlightDataType;
   backFlight?: FlightDataType;
 
-  constructor(private store: Store<StoreType>) {}
-  ngOnInit(): void {
+  constructor(private store: Store<StoreType>, private router: Router) {
     this.store
       .select('reservations')
       .subscribe((data) => (this.passangersInfo = data[data.length - 1]));
-    console.log(this.passangersInfo);
+    console.log('passengers', this.passangersInfo);
     this.store.select('selectedFlight', 'oneWay').subscribe((data) => {
-      console.log(data);
+      console.log('oneway data', data);
       this.oneWayFlight = data;
     });
     this.store.select('selectedFlight', 'backWay').subscribe((data) => {
-      console.log(data);
-
+      console.log('backflight', data);
       this.backFlight = data;
     });
+  }
+
+  goBack() {
+    this.router.navigateByUrl('booking/detail');
   }
 }
