@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderStateService } from '../services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,8 @@ export class HeaderComponent {
   currency: string = 'USD';
   constructor(
     private headState: HeaderStateService,
-    public userState: BackendUserService
+    public userState: BackendUserService,
+    private router: Router
   ) {}
 
   onDateFormatChage() {
@@ -26,7 +28,8 @@ export class HeaderComponent {
     if (!this.userState.loggedIn) {
       this.headState.showAuth = true;
     } else {
-      this.userState.logOut();
+      // this.userState.logOut();
+      this.router.navigate(['acount', this.userState.userLocal.id]);
     }
   }
 }

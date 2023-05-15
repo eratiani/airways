@@ -7,6 +7,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, ProgressBarComponent],
@@ -17,6 +19,8 @@ import { ProgressBarComponent } from './progress-bar/progress-bar.component';
     MatSelectModule,
     CommonModule,
     RouterModule,
+    MatButtonModule,
+    MatIconModule,
   ],
 })
 export class CoreModule {}
