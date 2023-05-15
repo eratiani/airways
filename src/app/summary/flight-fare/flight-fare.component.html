@@ -1,17 +1,24 @@
-<div class="container-bill d-flex justify-content-between m-t-4">
-  <div class="card col-xl-5" *ngIf="oneWayFlight">
+<div class="container-bill d-flex justify-content-between m-t-4 flex-wrap">
+  <div class="card col-xl-5 col-12" *ngIf="oneWayFlight">
     <div *ngFor="let passanger of flightDetails.passengers.adult">
       <div class="card-body">
         <h5 class="card-title">Adult Fare</h5>
         <p class="card-text">
-          fare: {{ oneWayFlight.cost - oneWayFlight.cost * 0.2 }}
+          fare:
+          {{
+            oneWayFlight.cost - oneWayFlight.cost * 0.2
+              | currency : state.currencyFormat
+          }}
         </p>
         <p class="card-text">
-          Tax and Service Charge: {{ oneWayFlight.cost * 0.2 }}
+          Tax and Service Charge:
+          {{ oneWayFlight.cost * 0.2 | currency : state.currencyFormat }}
         </p>
         <p class="card-text">
           Total Price:
-          <span class="price__Ticket">{{ oneWayFlight.cost }}</span>
+          <span class="price__Ticket">{{
+            oneWayFlight.cost | currency : state.currencyFormat
+          }}</span>
         </p>
       </div>
     </div>
@@ -20,14 +27,21 @@
       <div class="card-body">
         <h5 class="card-title">Child Fare</h5>
         <p class="card-text">
-          fare: {{ oneWayFlight.cost - oneWayFlight.cost * 0.2 }}
+          fare:
+          {{
+            oneWayFlight.cost - oneWayFlight.cost * 0.2
+              | currency : state.currencyFormat
+          }}
         </p>
         <p class="card-text">
-          Tax and Service Charge: {{ oneWayFlight.cost * 0.2 }}
+          Tax and Service Charge:
+          {{ oneWayFlight.cost * 0.2 | currency : state.currencyFormat }}
         </p>
         <p class="card-text">
           Total Price:
-          <span class="price__Ticket">{{ oneWayFlight.cost }}</span>
+          <span class="price__Ticket">{{
+            oneWayFlight.cost | currency : state.currencyFormat
+          }}</span>
         </p>
       </div>
     </div>
@@ -36,31 +50,46 @@
       <div class="card-body">
         <h5 class="card-title">Infant Fare</h5>
         <p class="card-text">
-          fare: {{ oneWayFlight.cost - oneWayFlight.cost * 0.2 }}
+          fare:
+          {{
+            oneWayFlight.cost - oneWayFlight.cost * 0.2
+              | currency : state.currencyFormat
+          }}
         </p>
         <p class="card-text">
-          Tax and Service Charge: {{ oneWayFlight.cost * 0.2 }}
+          Tax and Service Charge:
+          {{ oneWayFlight.cost * 0.2 | currency : state.currencyFormat }}
         </p>
         <p class="card-text">
           Total Price:
-          <span class="price__Ticket">{{ oneWayFlight.cost }}</span>
+          <span class="price__Ticket">{{
+            oneWayFlight.cost | currency : state.currencyFormat
+          }}</span>
         </p>
       </div>
     </div>
     <hr />
   </div>
-  <div class="card col-xl-5" *ngIf="backFlight">
+  <div class="card col-xl-5 col-12" *ngIf="backFlight">
     <div *ngFor="let passanger of flightDetails.passengers.adult">
       <div class="card-body">
         <h5 class="card-title">Adult Fare</h5>
         <p class="card-text">
-          fare: {{ backFlight.cost - backFlight.cost * 0.2 }}
+          fare:
+          {{
+            backFlight.cost - backFlight.cost * 0.2
+              | currency : state.currencyFormat
+          }}
         </p>
         <p class="card-text">
-          Tax and Service Charge: {{ backFlight.cost * 0.2 }}
+          Tax and Service Charge:
+          {{ backFlight.cost * 0.2 | currency : state.currencyFormat }}
         </p>
         <p class="card-text">
-          Total Price: <span class="price__Ticket">{{ backFlight.cost }}</span>
+          Total Price:
+          <span class="price__Ticket">{{
+            backFlight.cost | currency : state.currencyFormat
+          }}</span>
         </p>
       </div>
     </div>
@@ -69,28 +98,47 @@
       <div class="card-body">
         <h5 class="card-title">Child Fare</h5>
         <p class="card-text">
-          fare: {{ backFlight.cost - backFlight.cost * 0.2 }}
+          fare:
+          {{
+            backFlight.cost - backFlight.cost * 0.2
+              | currency : state.currencyFormat
+          }}
         </p>
         <p class="card-text">
-          Tax and Service Charge: {{ backFlight.cost * 0.2 }}
+          Tax and Service Charge:
+          {{ backFlight.cost * 0.2 | currency : state.currencyFormat }}
         </p>
         <p class="card-text">
-          Total Price: <span class="price__Ticket">{{ backFlight.cost }}</span>
+          Total Price:
+          <span class="price__Ticket">{{
+            backFlight.cost | currency : state.currencyFormat
+          }}</span>
         </p>
       </div>
     </div>
     <hr />
-    <div *ngFor="let passanger of flightDetails.passengers.infant">
+    <div
+      *ngFor="let passanger of flightDetails.passengers.infant; let i = index"
+    >
+      passangerCount += (i+1)
       <div class="card-body">
         <h5 class="card-title">Infant Fare</h5>
         <p class="card-text">
-          fare: {{ backFlight.cost - backFlight.cost * 0.2 }}
+          fare:
+          {{
+            backFlight.cost - backFlight.cost * 0.2
+              | currency : state.currencyFormat
+          }}
         </p>
         <p class="card-text">
-          Tax and Service Charge: {{ backFlight.cost * 0.2 }}
+          Tax and Service Charge:
+          {{ backFlight.cost * 0.2 | currency : state.currencyFormat }}
         </p>
         <p class="card-text">
-          Total Price: <span class="price__Ticket">{{ backFlight.cost }}</span>
+          Total Price:
+          <span class="price__Ticket">{{
+            backFlight.cost | currency : state.currencyFormat
+          }}</span>
         </p>
       </div>
     </div>
@@ -101,5 +149,5 @@
 <div class="d-flex justify-content-between p-2">
   <br />
   <p class="text-end">total:</p>
-  <p class="text-end">{{ totalPrice() }}</p>
+  <p class="text-end">{{ totalPrice() | currency : state.currencyFormat }}</p>
 </div>

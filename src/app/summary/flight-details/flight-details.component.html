@@ -1,11 +1,12 @@
 <div class="card-container d-flex flex-wrap justify-content-between">
-  <mat-card class="col-xl-5">
+  <mat-card class="col-xl-5 col-12">
     <mat-card-content *ngIf="oneWayFlight">
       <h2>From {{ oneWayFlight.from }} To {{ oneWayFlight.to }}</h2>
       <p>{{ oneWayFlight.date }} {{ timeOfLanding(oneWayFlight) }}</p>
 
-      <div *ngFor="let passenger of flightDetails.passengers
-      .adult; let i = index">
+      <div
+        *ngFor="let passenger of flightDetails.passengers.adult; let i = index"
+      >
         <hr />
         <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
         <hr />
@@ -16,8 +17,9 @@
           <li>Seat 1{{ i }}D</li>
         </ul>
       </div>
-      <div *ngFor="let passenger of flightDetails.passengers
-      .child; let i = index">
+      <div
+        *ngFor="let passenger of flightDetails.passengers.child; let i = index"
+      >
         <hr />
         <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
         <hr />
@@ -28,8 +30,9 @@
           <li>Seat 1{{ i }}F</li>
         </ul>
       </div>
-      <div *ngFor="let passenger of flightDetails.passengers
-      .infant; let i = index">
+      <div
+        *ngFor="let passenger of flightDetails.passengers.infant; let i = index"
+      >
         <hr />
         <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
         <hr />
@@ -42,13 +45,14 @@
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-card *ngIf="backFlight" class="col-xl-5">
+  <mat-card *ngIf="backFlight" class="col-xl-5 col-12">
     <mat-card-content>
       <h2>From {{ backFlight.from }} To {{ backFlight.to }}</h2>
       <p>{{ backFlight.date }} {{ timeOfLanding(backFlight) }}</p>
 
-      <div *ngFor="let passenger of flightDetails.passengers
-      .adult; let i = index">
+      <div
+        *ngFor="let passenger of flightDetails.passengers.adult; let i = index"
+      >
         <hr />
         <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
         <hr />
@@ -59,8 +63,9 @@
           <li>Seat 1{{ i }}D</li>
         </ul>
       </div>
-      <div *ngFor="let passenger of flightDetails.passengers
-      .child; let i = index">
+      <div
+        *ngFor="let passenger of flightDetails.passengers.child; let i = index"
+      >
         <hr />
         <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
         <hr />
@@ -71,8 +76,9 @@
           <li>Seat 1{{ i }}F</li>
         </ul>
       </div>
-      <div *ngFor="let passenger of flightDetails.passengers
-      .infant; let i = index">
+      <div
+        *ngFor="let passenger of flightDetails.passengers.infant; let i = index"
+      >
         <hr />
         <h2>{{ passenger.name }} - {{ passenger.surname }}</h2>
         <hr />
