@@ -1,0 +1,24 @@
+<div *ngIf="oneWayFlight && passengerArr.length > 0">
+<div >
+    <div class="card-body">
+      <h5 class="card-title">{{passangerType}} Fare</h5>
+      <p class="card-text">
+        fare:
+        {{
+            price - price * 0.2
+            | currency : state.currencyFormat
+        }}
+      </p>
+      <p class="card-text">
+        Tax and Service Charge:
+        {{ price * 0.2 | currency : state.currencyFormat }}
+      </p>
+      <p class="card-text">
+        Total Price:
+        <span class="price__Ticket">{{
+          price | currency : state.currencyFormat
+        }}</span>
+      </p>
+    </div>
+  </div>
+</div>
