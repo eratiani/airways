@@ -52,7 +52,7 @@ import { MatButtonModule } from '@angular/material/button';
         flightData: flightsReducer,
         selectedFlight: selectedFlihgtReducer,
         passengersCount: passangersCountReducer,
-        reservations: reservationReducer,
+        reservation: reservationReducer,
       },
       {}
     ),

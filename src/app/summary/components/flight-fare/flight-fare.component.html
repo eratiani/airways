@@ -1,0 +1,27 @@
+<div class="container-bill d-flex justify-content-between m-t-4 flex-wrap">
+  <div class="card col-xl-5 col-12" *ngIf="oneWayFlight">
+    <app-flight-fare-type
+    *ngFor="let passenger of getObjectKeys(flightDetails.passengers)" 
+      [passenger]="passenger[1]"
+      [passangerType]="passenger[0]"
+      [flightType]="oneWayFlight"
+    ></app-flight-fare-type>
+    
+  </div>
+  <div class="card col-xl-5 col-12" *ngIf="backFlight">
+    <h2>Return flight</h2>
+    <br>
+    <app-flight-fare-type
+    *ngFor="let passenger of getObjectKeys(flightDetails.passengers)" 
+      [passenger]="passenger[1]"
+      [passangerType]="passenger[0]"
+      [flightType]="backFlight"
+    ></app-flight-fare-type>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between p-2">
+  <br />
+  <p class="text-end">total:</p>
+  <p class="text-end">{{ totalPrice() | currency : state.currencyFormat }}</p>
+</div>

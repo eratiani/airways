@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
-import { FlightDataType } from 'src/app/models/flyght-data.model';
+import { FlightDataType, ReservationDataType } from 'src/app/models/flyght-data.model';
 
 @Component({
   selector: 'app-flight-fare',
@@ -10,7 +10,7 @@ import { FlightDataType } from 'src/app/models/flyght-data.model';
 export class FlightFareComponent {
   @Input() oneWayFlight?: FlightDataType;
   @Input() backFlight?: FlightDataType;
-  @Input() flightDetails!: any;
+  @Input() flightDetails!: ReservationDataType;
   constructor(public state: HeaderStateService) {}
 
   totalPrice() {
@@ -23,5 +23,8 @@ export class FlightFareComponent {
       }
     });
     return priceSum;
+  }
+  getObjectKeys(obj: any):[string, any][] {
+    return Object.entries(obj);
   }
 }
