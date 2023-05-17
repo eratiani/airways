@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FlightDataType } from '../../models/flyght-data.model';
 import { Observable, forkJoin, map, tap } from 'rxjs';
@@ -9,15 +8,14 @@ import {
   resetBackFlights,
 } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
+import { RequestService } from 'src/app/services/http-request.service';
 
-const SERVER = 'http://localhost:3000';
 @Injectable({ providedIn: 'root' })
 export class SearchService {
-  constructor(private http: HttpClient, private store: Store<StoreType>) {
-    this.store.select('flightData').subscribe((data) => {
-      console.log('select: ', data);
-    });
-  }
+  constructor(
+    private request: RequestService,
+    private store: Store<StoreType>
+  ) {}
   search(
     oneWay: boolean,
     from: string,
@@ -49,7 +47,7 @@ export class SearchService {
   }
 
   private getFlights(from: string, to: string, start?: string, end?: string) {
-    return this.http.get<FlightDataType[]>(`${SERVER}/data`).pipe(
+    return this.request.getFlights().pipe(
       map((res) =>
         res.filter((fl) => {
           return (

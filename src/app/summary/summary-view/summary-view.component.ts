@@ -6,6 +6,8 @@ import {
   ReservationDataType,
 } from 'src/app/models/flyght-data.model';
 import { StoreType } from 'src/app/redux/store.model';
+import { BackendUserService } from 'src/app/services/backend-user.service';
+import { RequestService } from 'src/app/services/http-request.service';
 
 @Component({
   selector: 'app-summary-view',
@@ -17,7 +19,12 @@ export class SummaryViewComponent {
   oneWayFlight?: FlightDataType;
   backFlight?: FlightDataType;
 
-  constructor(private store: Store<StoreType>, private router: Router) {
+  constructor(
+    private store: Store<StoreType>,
+    private router: Router,
+    private request: RequestService,
+    private userAuth: BackendUserService
+  ) {
     this.store
       .select('reservation')
       .subscribe((data) => (this.passangersInfo = data));
@@ -34,5 +41,14 @@ export class SummaryViewComponent {
 
   goBack() {
     this.router.navigateByUrl('booking/detail');
+  }
+  goToCart() {
+    this.request
+      .addReservation(this.userAuth.userLocal.id!, {
+        flights: { oneWay: this.oneWayFlight, backWay: this.backFlight },
+        passeng: this.passangersInfo,
+      })
+      .subscribe(console.log);
+    this.router.navigateByUrl('cart');
   }
 }

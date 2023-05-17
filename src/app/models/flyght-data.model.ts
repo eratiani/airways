@@ -1,3 +1,5 @@
+import { StoreType } from '../redux/store.model';
+
 export interface FlightDataType {
   from: string;
   to: string;
@@ -20,4 +22,9 @@ export interface ReservationDataType {
     Record<'adult' | 'child' | 'infant', Partial<PassengerType>[]>
   >;
   contact: Partial<Record<'email' | 'country' | 'telephone', string>>;
+}
+
+export interface UserReservation {
+  flights: StoreType['selectedFlight'];
+  passeng: ReservationDataType;
 }

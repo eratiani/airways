@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Summary</h2>
-  <app-flight-details
+  <!-- <app-flight-details
     [oneWayFlight]="oneWayFlight"
     [backFlight]="backFlight"
     [flightDetails]="passangersInfo"
@@ -9,14 +9,16 @@
     [oneWayFlight]="oneWayFlight"
     [backFlight]="backFlight"
     [flightDetails]="passangersInfo"
-  ></app-flight-fare>
+  ></app-flight-fare> -->
   <br />
   <div class="d-flex justify-content-end">
     <div
       class="buttons col-6 d-flex justify-content-between align-items-center"
     >
       <button class="link" (click)="goBack()">back</button>
-      <button class="btn btn-light">Add to order cart</button>
+      <button class="btn btn-light" (click)="goToCart()">
+        Add to order cart
+      </button>
       <button class="btn btn-primary">Buy now</button>
     </div>
   </div>

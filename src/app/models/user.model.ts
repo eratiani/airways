@@ -1,3 +1,5 @@
+import { UserReservation } from './flyght-data.model';
+
 export interface UserData {
   email: string;
   password: string;
@@ -5,4 +7,5 @@ export interface UserData {
   age: number;
   country: string;
   gender: string;
+  reservations: UserReservation[];
 }

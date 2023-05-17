@@ -1,23 +1,20 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
 import { UserData } from '../models/user.model';
 import { Router } from '@angular/router';
-
-const SERVER = 'http://localhost:3000';
-type RespType = { accessToken: string; user: UserData };
+import { RequestService } from './http-request.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BackendUserService {
-  loggedIn = true; // to change to false
+  loggedIn = false; // to change to false
   userLocal: Partial<UserData> = {};
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private request: RequestService, private router: Router) {}
 
   registerUser(user: Partial<UserData>) {
-    return this.http.post<RespType>(`${SERVER}/register`, user).pipe(
+    return this.request.registerUser(user).pipe(
       tap(({ accessToken, user: { email, id } }) => {
         this.setLoggin(accessToken, id, email);
       })
@@ -25,13 +22,11 @@ export class BackendUserService {
   }
 
   loginUser(email: string, password: string) {
-    return this.http
-      .post<RespType>(`${SERVER}/login`, { email, password })
-      .pipe(
-        tap(({ accessToken, user: { id } }) => {
-          this.setLoggin(accessToken, id, email);
-        })
-      );
+    return this.request.login(email, password).pipe(
+      tap(({ accessToken, user: { id } }) => {
+        this.setLoggin(accessToken, id, email);
+      })
+    );
   }
   logOut() {
     this.loggedIn = false;

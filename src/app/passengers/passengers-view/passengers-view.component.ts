@@ -92,6 +92,7 @@ export class PassengersViewComponent {
       return;
     }
     const { adult, child, infant, contact } = this.passengersForm.value;
+
     this.store.dispatch(
       addPassengers({
         passengers: { adult, child, infant },
