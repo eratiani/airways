@@ -19,8 +19,8 @@ export class SummaryViewComponent {
 
   constructor(private store: Store<StoreType>, private router: Router) {
     this.store
-      .select('reservations')
-      .subscribe((data) => (this.passangersInfo = data[data.length - 1]));
+      .select('reservation')
+      .subscribe((data) => (this.passangersInfo = data));
     console.log('passengers', this.passangersInfo);
     this.store.select('selectedFlight', 'oneWay').subscribe((data) => {
       console.log('oneway data', data);

@@ -35,12 +35,11 @@ export const passangersCountReducer = createReducer(
 );
 
 //reservations
-const initialReservations: ReservationDataType[] = [];
-export const reservationsReducer = createReducer(
-  initialReservations,
-  on(addPassengers, (state, { passengers, contact }) => {
-    const temp = [...state];
-    temp.push({ passengers, contact });
-    return temp;
-  })
+const initialReservation: ReservationDataType = { passengers: {}, contact: {} };
+export const reservationReducer = createReducer(
+  initialReservation,
+  on(addPassengers, (state, { passengers, contact }) => ({
+    passengers,
+    contact,
+  }))
 );
