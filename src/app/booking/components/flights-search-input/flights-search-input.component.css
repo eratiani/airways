@@ -1,3 +1,7 @@
 span {
   margin-left: 15px;
 }
+.edit {
+  cursor: pointer;
+  color: blue;
+}

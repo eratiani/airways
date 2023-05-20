@@ -1,14 +1,22 @@
-.container-forms {
+/* .container-forms {
   width: 40vw;
   margin: 0 auto;
   padding: 3vw;
 }
 .mat-mdc-radio-button ~ .mat-mdc-radio-button {
   margin-left: 16px;
+} */
+/* .vertical{
+} */
+.horizontal {
+  flex-direction: column;
+}
+.horizontal .submit {
+  width: 50%;
 }
 .posAbs {
   position: absolute;
-  top: 30%;
+  top: 25%;
   right: 25%;
   background-color: white;
   z-index: 4;

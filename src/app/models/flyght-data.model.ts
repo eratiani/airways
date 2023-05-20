@@ -10,6 +10,17 @@ export interface FlightDataType {
   id: string;
 }
 
+export type SearchParamsType = Partial<{
+  oneWay: boolean;
+  from: string;
+  to: string;
+  date: Partial<{
+    startDate: string;
+    endDate: string;
+  }>;
+  passengers: { adult: number; child: number; infant: number };
+}>;
+
 export interface PassengerType {
   name: string;
   surname: string;
