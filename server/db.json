@@ -138,7 +138,52 @@
       "username": "JohnDoe",
       "gender": "male",
       "age": 34,
-      "id": 10
+      "id": 10,
+      "reservations": [
+        {
+          "flights": {
+            "oneWay": {
+              "from": "Paris",
+              "to": "Seoul",
+              "date": "Sun Dec 17 2023",
+              "total_seats": 38,
+              "available_seats": 12,
+              "cost": 390,
+              "id": "85"
+            },
+            "backWay": {
+              "from": "Seoul",
+              "to": "Paris",
+              "date": "Sun Aug 13 2023",
+              "total_seats": 19,
+              "available_seats": 7,
+              "cost": 417,
+              "id": "199"
+            }
+          },
+          "passeng": {
+            "passengers": {
+              "adult": [
+                {
+                  "name": "sdasd",
+                  "surname": "asdasd",
+                  "gender": "male",
+                  "dOb": "2023-05-01T20:00:00.000Z",
+                  "specialNeeds": false,
+                  "baggage": 2
+                }
+              ],
+              "child": [],
+              "infant": []
+            },
+            "contact": {
+              "email": "eratiani@gmail.com",
+              "country": "Georgia",
+              "telephone": "+995-2131232122"
+            }
+          }
+        }
+      ]
     },
     {
       "email": "johndoe@xample.com",
@@ -147,6 +192,15 @@
       "gender": "male",
       "age": 34,
       "id": 11
+    },
+    {
+      "email": "johndoe@2.com",
+      "password": "$2a$10$jXTP19wuWnriXdq5ygcrReNqvkJ0jglc3BF6440osshs0N..mloXO",
+      "username": "JohnDoe",
+      "gender": "male",
+      "telephone": "+49-111-111-1111",
+      "age": 34,
+      "id": 12
     }
   ],
   "data": [

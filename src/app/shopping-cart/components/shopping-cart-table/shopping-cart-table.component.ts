@@ -1,113 +1,32 @@
 // import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { UserReservation } from 'src/app/models/flyght-data.model';
 import { RequestService } from 'src/app/services/http-request.service';
 
-export interface PeriodicElement {
+export interface CartItem {
   Flight: string;
-  No: number;
-  FlightDestination: number;
+  No: string;
+  FlightDestination: string;
   'Date & Time': string;
   Passengers: string;
-  Price: string;
+  Price: number;
   edit: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    No: 1,
-    Flight: 'Dublin - Warsaw Modlin - Dublin',
-    FlightDestination: 1.0079,
-    ['Date & Time']: 'smth',
-    Passengers: 'smth',
-    Price: 'dasdasd',
-    edit: '',
-  },
-  {
-    No: 2,
-    Flight: 'Helium',
-    FlightDestination: 4.0026,
-    ['Date & Time']: 'smth',
-    Passengers: 'smth',
-    Price: 'dasdasd',
-    edit: '',
-  },
-  {
-    No: 3,
-    Flight: 'Lithium',
-    FlightDestination: 6.941,
-    ['Date & Time']: 'smth',
-    Passengers: 'smth',
-    Price: 'dasdasd',
-    edit: '',
-  },
-  {
-    No: 4,
-    Flight: 'Beryllium',
-    FlightDestination: 9.0122,
-    ['Date & Time']: 'smth',
-    Passengers: 'smth',
-    Price: 'dasdasd',
-    edit: '',
-  },
-  {
-    No: 5,
-    Flight: 'Boron',
-    FlightDestination: 10.811,
-    ['Date & Time']: 'smth',
-    Passengers: 'smth',
-    Price: 'dasdasd',
-    edit: '',
-  },
-  {
-    No: 6,
-    Flight: 'Carbon',
-    FlightDestination: 12.0107,
-    ['Date & Time']: 'smth',
-    Passengers: 'smth',
-    Price: 'dasdasd',
-    edit: '',
-  },
-  {
-    No: 7,
-    Flight: 'Nitrogen',
-    FlightDestination: 14.0067,
-    ['Date & Time']: 'smth',
-    Passengers: 'smth',
-    Price: 'dasdasd',
-    edit: '',
-  },
-  {
-    No: 8,
-    Flight: 'Oxygen',
-    FlightDestination: 15.9994,
-    ['Date & Time']: 'smth',
-    Passengers: 'smth',
-    Price: 'dasdasd',
-    edit: '',
-  },
-  {
-    No: 9,
-    Flight: 'Fluorine',
-    FlightDestination: 18.9984,
-    ['Date & Time']: 'smth',
-    Passengers: 'smth',
-    Price: 'dasdasd',
-    edit: '',
-  },
-  {
-    No: 10,
-    Flight: 'Neon',
-    FlightDestination: 20.1797,
-    ['Date & Time']: 'smth',
-    Passengers: 'smth',
-    Price: 'dasdasd',
-    edit: '',
-  },
+let ELEMENT_DATA:CartItem[] = [
+  // {
+  //   No: 10,
+  //   Flight: 'Neon',
+  //   FlightDestination: 20.1797,
+  //   ['Date & Time']: 'smth',
+  //   Passengers: 'smth',
+  //   Price: 'dasdasd',
+  //   edit: '',
+  // },
 ];
 
 @Component({
@@ -115,18 +34,50 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './shopping-cart-table.component.html',
   styleUrls: ['./shopping-cart-table.component.css'],
 })
-export class ShoppingCartTableComponent {
+export class ShoppingCartTableComponent implements OnInit {
   isUserMode = false; // should be pass dependly of mode later
   id = '';
   reservations?: UserReservation[];
-
+ngOnInit(): void {
+console.log(this.reservations);
+ELEMENT_DATA = []
+}
   constructor(private route: ActivatedRoute, private request: RequestService) {
     route.params.subscribe(({ userId, mode }) => {
       this.id = userId;
+      console.log(userId);
+      
       this.isUserMode = mode === 'user' ? true : false;
     });
     request.getUserReservations(Number(this.id)).subscribe((res) => {
       this.reservations = res;
+      res.forEach(res=>{
+        const {child=[], adult=[], infant=[]} = res.passeng.passengers;
+        const totalPass:any= child.length +adult.length+ infant.length
+        console.log(child, adult, infant, totalPass);
+        const flightType = (res.flights.backWay)? "Round Trip" :"One way";
+        let flightDestination:string|string[] ='';
+        if(!res.flights.oneWay) return
+        if ( res.flights.backWay) {
+          flightDestination = `${res.flights.oneWay.from} - ${res.flights.oneWay.to}
+${res.flights.backWay.from} - ${res.flights.backWay.to}`
+        } else {
+          flightDestination = `${res.flights.oneWay.from} + ${res.flights.oneWay.to}`
+        }
+        const cartObj = {
+          No: res.flights.oneWay?.id,
+          FlightDestination: flightDestination,
+          Flight: flightType,
+          'Date & Time': res.flights.oneWay?.date,
+          Passengers: totalPass,
+          Price: res.flights.oneWay?.cost,
+          edit: "",
+        }
+        ELEMENT_DATA.push(cartObj)
+      })
+      console.log(res);
+      // ELEMENT_DATA = res
+      
     });
   }
 
@@ -140,8 +91,8 @@ export class ShoppingCartTableComponent {
     'Price',
     'edit',
   ];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  dataSource = new MatTableDataSource<CartItem>(ELEMENT_DATA);
+  selection = new SelectionModel<CartItem>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -163,11 +114,11 @@ export class ShoppingCartTableComponent {
   //   element.showButtons = !element.showButtons;
   //   event.stopPropagation();
   // }
-  onDelete(e: any) {}
-  onEdit(e: any) {}
+  onDelete(e: CartItem) {}
+  onEdit(e: CartItem) {}
   items = ['delete', 'edit'];
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
+  checkboxLabel(row?: CartItem): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
