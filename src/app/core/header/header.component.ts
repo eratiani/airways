@@ -29,7 +29,7 @@ export class HeaderComponent {
       this.headState.showAuth = true;
     } else {
       // this.userState.logOut();
-      this.router.navigate(['acount', this.userState.userLocal.id]);
+      this.router.navigate(['cart', this.userState.userLocal.id, 'user']);
     }
   }
 

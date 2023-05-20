@@ -21,13 +21,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./booking/booking.module').then((m) => m.BookingViewModule),
   },
-  {
-    path: 'acount',
-    loadChildren: () =>
-      import('./user-acount/user-acount.module').then(
-        (m) => m.UserAcountModule
-      ),
-  },
+  // {
+  //   path: 'acount',
+  //   loadChildren: () =>
+  //     import('./user-acount/user-acount.module').then(
+  //       (m) => m.UserAcountModule
+  //     ),
+  // },
   { path: '**', component: PageNotFoundComponent },
 ];
 
