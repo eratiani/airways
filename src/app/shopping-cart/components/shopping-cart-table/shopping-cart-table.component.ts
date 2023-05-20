@@ -114,8 +114,8 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`
   //   element.showButtons = !element.showButtons;
   //   event.stopPropagation();
   // }
-  onDelete(e: CartItem) {}
-  onEdit(e: CartItem) {}
+  onDelete(e: any) {}
+  onEdit(e: any) {}
   items = ['delete', 'edit'];
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: CartItem): string {

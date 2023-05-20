@@ -1,3 +1,14 @@
 .header {
-  background: rgba(64, 62, 62, 0.449);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background:rgb(191, 199, 208);
+  min-height: 180px;
+}
+@media only screen and (max-width: 991px) {
+  .header{
+    min-height: auto;
+    
+  }
 }
