@@ -1,21 +1,28 @@
 <div
-  class="container-sm d-flex flex-column align-items-center justify-content-center"
+  class="container-sm d-flex flex-column align-items-center justify-content-center pt-4"
 >
   <form
     [formGroup]="searchForm"
     (submit)="onSubmit()"
-    class="container-sm d-flex flex-column align-items-center justify-content-center posRel"
+    class="container-sm d-flex align-items-center justify-content-center posRel"
+    [class.horizontal]="!isEdit"
+    [class.vertical]="isEdit"
   >
     <mat-radio-group
       formControlName="oneWay"
       class="d-flex justify-content-center align-items-center"
       aria-label="Select an option"
+      *ngIf="!isEdit"
     >
       <mat-radio-button [value]="false">Round Trip</mat-radio-button>
       <mat-radio-button [value]="true">One Way</mat-radio-button>
     </mat-radio-group>
 
-    <mat-form-field class="m-md-2 col-sm-6" appearance="fill">
+    <mat-form-field
+      class="mx-md-2"
+      [class.col-sm-6]="!isEdit"
+      appearance="fill"
+    >
       <mat-label>From</mat-label>
       <mat-select formControlName="from">
         <mat-option *ngFor="let city of cities" [value]="city">
@@ -30,10 +37,16 @@
       (click)="onFlightSwap($event)"
       class="btn btn-light rounded-pill posAbs d-flex justify-content-center align-items-center"
       style="width: 40px; height: 40px"
+      *ngIf="!isEdit"
     >
       <img src="../../../../assets/swapArrows.png" alt="swapArrows" />
     </button>
-    <mat-form-field class="m-md-2 col-sm-6" appearance="fill">
+
+    <mat-form-field
+      class="mx-md-2"
+      [class.col-sm-6]="!isEdit"
+      appearance="fill"
+    >
       <mat-label>Destination</mat-label>
       <mat-select formControlName="to">
         <mat-option *ngFor="let city of cities" [value]="city">
@@ -85,7 +98,7 @@
       </div>
     </div>
 
-    <div class="w-50 d-flex justify-content-end">
+    <div class="d-flex justify-content-end submit m-4">
       <button
         type="submit"
         class="btn btn-primary"

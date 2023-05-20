@@ -1,13 +1,21 @@
 <div class="container-md d-flex">
-  <span>starting point</span>
+  <span>{{ userState.searchParams?.from }}</span>
   <span><img src="../../../assets/flightPath.png" alt="plane" /></span>
   <div>
-    <span>return</span>
+    <span>{{ userState.searchParams?.to }}</span>
     <span><img src="../../../assets/dot.png" alt="dot" /></span>
-    <span>arrive date</span>
+    <span
+      >{{ userState.searchParams?.date?.startDate | date : "dd MMM" }} -
+      {{ userState.searchParams?.date?.endDate | date : "dd MMM" }}</span
+    >
     <span><img src="../../../assets/dot.png" alt="dot" /></span>
-    <span>passanger number</span>
+    <span>{{
+      (userState.searchParams?.passengers?.adult || 0) +
+        (userState.searchParams?.passengers?.child || 0) +
+        (userState.searchParams?.passengers?.infant || 0)
+    }}</span>
     <span><img src="../../../assets/passenger.png" alt="passanger" /></span>
   </div>
-  <a href="" style="margin-left: 15px; text-decoration: none">edit</a>
+  <span class="edit" (click)="changeEditVIew()">edit</span>
 </div>
+<app-flights-form *ngIf="showEdit" [isEdit]="true"></app-flights-form>

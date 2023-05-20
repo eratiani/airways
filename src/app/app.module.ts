@@ -26,6 +26,7 @@ import { interceptorsProviders } from './interceptors';
 import { ConfirmLogin } from './modals/confirm-dialog/confirm';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, ConfirmLogin],
@@ -41,6 +42,7 @@ import { MatButtonModule } from '@angular/material/button';
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MainPageModule,
     CoreModule,

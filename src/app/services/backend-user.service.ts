@@ -3,6 +3,7 @@ import { tap } from 'rxjs';
 import { UserData } from '../models/user.model';
 import { Router } from '@angular/router';
 import { RequestService } from './http-request.service';
+import { SearchParamsType } from '../models/flyght-data.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ import { RequestService } from './http-request.service';
 export class BackendUserService {
   loggedIn = true; // to change to false
   userLocal: Partial<UserData> = { id: 4 }; // template id
+  searchParams?: SearchParamsType;
 
   constructor(private request: RequestService, private router: Router) {}
 
