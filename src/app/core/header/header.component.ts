@@ -34,6 +34,6 @@ export class HeaderComponent {
   }
 
   goToCart() {
-    this.router.navigateByUrl('cart');
+    this.router.navigate(['cart', this.userState.userLocal.id, 'shopping']);
   }
 }
