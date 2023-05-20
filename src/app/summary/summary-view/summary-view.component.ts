@@ -49,6 +49,6 @@ export class SummaryViewComponent {
         passeng: this.passangersInfo,
       })
       .subscribe(console.log);
-    this.router.navigateByUrl('cart');
+    this.router.navigate(['cart', this.userAuth.userLocal.id, 'shopping']);
   }
 }

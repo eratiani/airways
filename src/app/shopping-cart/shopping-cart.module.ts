@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShoppingCartViewComponent } from './shopping-cart-view/shopping-cart-view.component';
 import { ShoppingCartTableComponent } from './components/shopping-cart-table/shopping-cart-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -14,12 +13,17 @@ import { MatButtonModule } from '@angular/material/button';
 const routes: Route[] = [
   {
     path: '',
-    component: ShoppingCartViewComponent,
+    pathMatch: 'full',
+    redirectTo: '',
+  },
+  {
+    path: ':userId/:mode',
+    component: ShoppingCartTableComponent,
   },
 ];
 
 @NgModule({
-  declarations: [ShoppingCartViewComponent, ShoppingCartTableComponent],
+  declarations: [ShoppingCartTableComponent],
   imports: [
     CommonModule,
     MatTableModule,
