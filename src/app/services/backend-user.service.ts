@@ -8,8 +8,8 @@ import { RequestService } from './http-request.service';
   providedIn: 'root',
 })
 export class BackendUserService {
-  loggedIn = false; // to change to false
-  userLocal: Partial<UserData> = {};
+  loggedIn = true; // to change to false
+  userLocal: Partial<UserData> = { id: 4 }; // template id
 
   constructor(private request: RequestService, private router: Router) {}
 

@@ -1,14 +1,17 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
+// import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatSort, Sort } from '@angular/material/sort';
+import { Component } from '@angular/core';
+// import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
+import { UserReservation } from 'src/app/models/flyght-data.model';
+import { RequestService } from 'src/app/services/http-request.service';
 
 export interface PeriodicElement {
   Flight: string;
   No: number;
   FlightDestination: number;
-  dateTime: string;
+  'Date & Time': string;
   Passengers: string;
   Price: string;
   edit: string;
@@ -17,9 +20,9 @@ export interface PeriodicElement {
 const ELEMENT_DATA: PeriodicElement[] = [
   {
     No: 1,
-    Flight: 'Hydrogen',
+    Flight: 'Dublin - Warsaw Modlin - Dublin',
     FlightDestination: 1.0079,
-    dateTime: 'smth',
+    ['Date & Time']: 'smth',
     Passengers: 'smth',
     Price: 'dasdasd',
     edit: '',
@@ -28,7 +31,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     No: 2,
     Flight: 'Helium',
     FlightDestination: 4.0026,
-    dateTime: 'smth',
+    ['Date & Time']: 'smth',
     Passengers: 'smth',
     Price: 'dasdasd',
     edit: '',
@@ -37,7 +40,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     No: 3,
     Flight: 'Lithium',
     FlightDestination: 6.941,
-    dateTime: 'smth',
+    ['Date & Time']: 'smth',
     Passengers: 'smth',
     Price: 'dasdasd',
     edit: '',
@@ -46,7 +49,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     No: 4,
     Flight: 'Beryllium',
     FlightDestination: 9.0122,
-    dateTime: 'smth',
+    ['Date & Time']: 'smth',
     Passengers: 'smth',
     Price: 'dasdasd',
     edit: '',
@@ -55,7 +58,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     No: 5,
     Flight: 'Boron',
     FlightDestination: 10.811,
-    dateTime: 'smth',
+    ['Date & Time']: 'smth',
     Passengers: 'smth',
     Price: 'dasdasd',
     edit: '',
@@ -64,7 +67,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     No: 6,
     Flight: 'Carbon',
     FlightDestination: 12.0107,
-    dateTime: 'smth',
+    ['Date & Time']: 'smth',
     Passengers: 'smth',
     Price: 'dasdasd',
     edit: '',
@@ -73,7 +76,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     No: 7,
     Flight: 'Nitrogen',
     FlightDestination: 14.0067,
-    dateTime: 'smth',
+    ['Date & Time']: 'smth',
     Passengers: 'smth',
     Price: 'dasdasd',
     edit: '',
@@ -82,7 +85,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     No: 8,
     Flight: 'Oxygen',
     FlightDestination: 15.9994,
-    dateTime: 'smth',
+    ['Date & Time']: 'smth',
     Passengers: 'smth',
     Price: 'dasdasd',
     edit: '',
@@ -91,7 +94,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     No: 9,
     Flight: 'Fluorine',
     FlightDestination: 18.9984,
-    dateTime: 'smth',
+    ['Date & Time']: 'smth',
     Passengers: 'smth',
     Price: 'dasdasd',
     edit: '',
@@ -100,7 +103,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     No: 10,
     Flight: 'Neon',
     FlightDestination: 20.1797,
-    dateTime: 'smth',
+    ['Date & Time']: 'smth',
     Passengers: 'smth',
     Price: 'dasdasd',
     edit: '',
@@ -113,14 +116,26 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./shopping-cart-table.component.css'],
 })
 export class ShoppingCartTableComponent {
-  isUserAcount = false; // should be pass dependly of mode later
+  isUserMode = false; // should be pass dependly of mode later
+  id = '';
+  reservations?: UserReservation[];
+
+  constructor(private route: ActivatedRoute, private request: RequestService) {
+    route.params.subscribe(({ userId, mode }) => {
+      this.id = userId;
+      this.isUserMode = mode === 'user' ? true : false;
+    });
+    request.getUserReservations(Number(this.id)).subscribe((res) => {
+      this.reservations = res;
+    });
+  }
 
   displayedColumns: string[] = [
     'select',
     'No',
     'Flight',
     'FlightDestination',
-    'dateTime',
+    'Date & Time',
     'Passengers',
     'Price',
     'edit',
@@ -144,10 +159,10 @@ export class ShoppingCartTableComponent {
 
     this.selection.select(...this.dataSource.data);
   }
-  onEditDelete(event: MouseEvent, element: any) {
-    element.showButtons = !element.showButtons;
-    event.stopPropagation();
-  }
+  // onEditDelete(event: MouseEvent, element: any) {
+  //   element.showButtons = !element.showButtons;
+  //   event.stopPropagation();
+  // }
   onDelete(e: any) {}
   onEdit(e: any) {}
   items = ['delete', 'edit'];
