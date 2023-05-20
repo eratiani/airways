@@ -48,15 +48,6 @@
           <button mat-menu-item (click)="onDelete(element)">Delete</button>
           <button mat-menu-item (click)="onEdit(element)">Edit</button>
         </mat-menu>
-
-        <!-- <div *ngIf="element.showButtons">
-          <button class="btn btn-primary m-2" (click)="onEdit(element)">
-            edit
-          </button>
-          <button class="btn btn-danger" (click)="onDelete(element)">
-            delete
-          </button>
-        </div> -->
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
