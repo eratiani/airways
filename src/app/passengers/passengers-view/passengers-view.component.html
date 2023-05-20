@@ -30,6 +30,7 @@
           let control of passengersForm.controls[passenger].controls;
           let i = index
         "
+        [passType]="passenger"
         [count]="i + 1"
         [control]="control"
       ></passenger-each>

@@ -25,6 +25,7 @@ export interface EachPassengerType {
   gender: FormControl<string>;
   dOb: FormControl<string>;
   specialNeeds: FormControl<boolean>;
+  baggage: FormControl<number>;
 }
 
 @Component({
@@ -70,6 +71,7 @@ export class PassengersViewComponent {
       gender: ['male'],
       dOb: ['', [Validators.required, dateNotInFutureValidator]],
       specialNeeds: [false],
+      baggage: [1],
     });
   }
 
@@ -92,6 +94,7 @@ export class PassengersViewComponent {
       return;
     }
     const { adult, child, infant, contact } = this.passengersForm.value;
+console.log(adult);
 
     this.store.dispatch(
       addPassengers({

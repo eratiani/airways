@@ -16,6 +16,7 @@ export interface PassengerType {
   gender: string;
   dOb: string;
   specialNeeds: boolean;
+  baggage?: number;
 }
 export interface ReservationDataType {
   passengers: Partial<
