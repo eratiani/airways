@@ -66,12 +66,12 @@ export class PassengersViewComponent {
 
   private createGroup() {
     return this.fb.nonNullable.group({
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
+      name: ['', [Validators.required, nameSurnamevalidation]],
+      surname: ['', [Validators.required, nameSurnamevalidation]],
       gender: ['male'],
       dOb: ['', [Validators.required, dateNotInFutureValidator]],
       specialNeeds: [false],
-      baggage: [1],
+      baggage: [0],
     });
   }
 
@@ -94,7 +94,7 @@ export class PassengersViewComponent {
       return;
     }
     const { adult, child, infant, contact } = this.passengersForm.value;
-console.log(adult);
+    console.log(adult);
 
     this.store.dispatch(
       addPassengers({
@@ -104,6 +104,17 @@ console.log(adult);
     );
     this.router.navigate(['/booking/summary']);
   }
+}
+function nameSurnamevalidation(
+  control: AbstractControl
+): ValidationErrors | null {
+  const value = control.value;
+  const pattern = /^[A-Za-z ]*$/;
+
+  if (value && !pattern.test(value)) {
+    return { patternval: true };
+  }
+  return null;
 }
 
 function dateNotInFutureValidator(

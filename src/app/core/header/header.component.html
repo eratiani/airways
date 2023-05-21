@@ -30,10 +30,11 @@
           <div class="d-flex flex-lg-row flex-column align-items-center">
             <a class="nav-link" href="">Book flights</a>
             <mat-form-field class="m-4" appearance="fill">
-              <mat-label>Select Date Format</mat-label>
+              <mat-label for="dateFormat">Select Date Format</mat-label>
               <mat-select
                 [(value)]="date"
                 (selectionChange)="onDateFormatChage()"
+                id="dateFormat"
               >
                 <mat-option value="MM/DD/YYYY">MM/DD/YYYY</mat-option>
                 <mat-option value="DD/MM/YYYY">DD/MM/YYYY</mat-option>
@@ -42,10 +43,11 @@
               </mat-select>
             </mat-form-field>
             <mat-form-field class="m-4" appearance="fill">
-              <mat-label>Select currency</mat-label>
+              <mat-label for="currencyFormat">Select currency</mat-label>
               <mat-select
                 [(value)]="currency"
                 (selectionChange)="oncurrencyFormatChage()"
+                id="currencyFormat"
               >
                 <mat-option value="EUR">EUR</mat-option>
                 <mat-option value="USD">USD</mat-option>

@@ -13,8 +13,8 @@
           placeholder="First Name *"
           formControlName="name"
         />
-        <mat-error *ngIf="checkValidation('surname')">
-          {{ fieldRequired }}
+        <mat-error *ngIf="checkValidation('name')">
+          {{ nameSurnameError("name") }}
         </mat-error>
       </mat-form-field>
 
@@ -27,7 +27,7 @@
           formControlName="surname"
         />
         <mat-error *ngIf="checkValidation('surname')">
-          {{ fieldRequired }}
+          {{ nameSurnameError("surname") }}
         </mat-error>
       </mat-form-field>
 
@@ -59,15 +59,40 @@
       <hr />
     </div>
     <div class="d-flex justify-content-between align-items-center flex-wrap">
-    <mat-slide-toggle class="" formControlName="specialNeeds"
-      >Need speciale assistance?</mat-slide-toggle
-    >
-    <div *ngIf="passType !== 'infant'" class="input-group d-flex align-items-center">
-      <mat-hint style=" margin-right: 10px;">Amount Of Baggage </mat-hint>
-      <input type="button" value="-" class="button-minus " (click)="decrement()" data-field="quantity">
-      <input formControlName="baggage" type="number" step="1" max="5" value="1" name="quantity" class="quantity-field" #quantityInput readonly>
-      <input type="button" value="+" class="button-plus" (click)="increment()" data-field="quantity">
+      <mat-slide-toggle class="" formControlName="specialNeeds"
+        >Need speciale assistance?</mat-slide-toggle
+      >
+      <div
+        *ngIf="passType !== 'infant'"
+        class="input-group d-flex align-items-center"
+      >
+        <mat-hint style="margin-right: 10px">Amount Of Baggage </mat-hint>
+        <input
+          type="button"
+          value="-"
+          class="button-minus"
+          (click)="decrement()"
+          data-field="quantity"
+        />
+        <input
+          formControlName="baggage"
+          type="number"
+          step="1"
+          max="5"
+          value="1"
+          name="quantity"
+          class="quantity-field"
+          #quantityInput
+          readonly
+        />
+        <input
+          type="button"
+          value="+"
+          class="button-plus"
+          (click)="increment()"
+          data-field="quantity"
+        />
+      </div>
     </div>
-  </div>
   </div>
 </div>

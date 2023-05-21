@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     this.registerForm = new FormGroup({
       username: new FormControl('', {
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.pattern(/^[A-Za-z ]*$/)],
         nonNullable: true,
       }),
       email: new FormControl('', {
@@ -112,6 +112,13 @@ export class RegisterComponent implements OnInit {
         nonNullable: true,
       }),
     });
+  }
+  nameSurnameError(input: string) {
+    return this.registerForm.get(input)?.hasError('required')
+      ? 'This field is required'
+      : this.registerForm.get(input)?.hasError('pattern')
+      ? ` no numbers allowed`
+      : '';
   }
   phoneNumberValidator() {
     return (control: AbstractControl): { [key: string]: any } | null => {

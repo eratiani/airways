@@ -43,7 +43,7 @@
           <mat-label>Username</mat-label>
           <input autofocus type="text" matInput formControlName="username" />
           <mat-error *ngIf="checkValidation('username')">
-            {{ fieldRequired }}
+            {{ nameSurnameError("username") }}
           </mat-error>
         </mat-form-field>
 

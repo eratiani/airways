@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { firstValueFrom } from 'rxjs';
 import {
   FlightDataType,
   ReservationDataType,
@@ -42,13 +43,13 @@ export class SummaryViewComponent {
   goBack() {
     this.router.navigateByUrl('booking/detail');
   }
-  goToCart() {
-    this.request
-      .addReservation(this.userAuth.userLocal.id!, {
+  async goToCart() {
+    await firstValueFrom(
+      this.request.addReservation(this.userAuth.userLocal.id!, {
         flights: { oneWay: this.oneWayFlight, backWay: this.backFlight },
         passeng: this.passangersInfo,
       })
-      .subscribe(console.log);
+    );
     this.router.navigate(['cart', this.userAuth.userLocal.id, 'shopping']);
   }
 }
