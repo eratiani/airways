@@ -1,6 +1,6 @@
 // import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 // import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
@@ -17,52 +17,46 @@ export interface CartItem {
   edit: string;
 }
 
-let ELEMENT_DATA:CartItem[] = [
-  // {
-  //   No: 10,
-  //   Flight: 'Neon',
-  //   FlightDestination: 20.1797,
-  //   ['Date & Time']: 'smth',
-  //   Passengers: 'smth',
-  //   Price: 'dasdasd',
-  //   edit: '',
-  // },
-];
-
 @Component({
   selector: 'app-shopping-cart-table',
   templateUrl: './shopping-cart-table.component.html',
   styleUrls: ['./shopping-cart-table.component.css'],
 })
-export class ShoppingCartTableComponent implements OnInit {
+export class ShoppingCartTableComponent implements OnDestroy, OnInit {
+  cartContent: CartItem[] = [];
   isUserMode = false; // should be pass dependly of mode later
   id = '';
   reservations?: UserReservation[];
-ngOnInit(): void {
-console.log(this.reservations);
-ELEMENT_DATA = []
-}
-  constructor(private route: ActivatedRoute, private request: RequestService) {
-    route.params.subscribe(({ userId, mode }) => {
+  constructor(
+    private route: ActivatedRoute,
+    private request: RequestService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
+
+  ngOnDestroy(): void {
+    this.cartContent = [];
+  }
+  ngOnInit(): void {
+    this.route.params.subscribe(({ userId, mode }) => {
       this.id = userId;
       console.log(userId);
-      
+
       this.isUserMode = mode === 'user' ? true : false;
     });
-    request.getUserReservations(Number(this.id)).subscribe((res) => {
+    this.request.getUserReservations(Number(this.id)).subscribe((res) => {
       this.reservations = res;
-      res.forEach(res=>{
-        const {child=[], adult=[], infant=[]} = res.passeng.passengers;
-        const totalPass:any= child.length +adult.length+ infant.length
+      res.forEach((res) => {
+        const { child = [], adult = [], infant = [] } = res.passeng.passengers;
+        const totalPass: any = child.length + adult.length + infant.length;
         console.log(child, adult, infant, totalPass);
-        const flightType = (res.flights.backWay)? "Round Trip" :"One way";
-        let flightDestination:string|string[] ='';
-        if(!res.flights.oneWay) return
-        if ( res.flights.backWay) {
+        const flightType = res.flights.backWay ? 'Round Trip' : 'One way';
+        let flightDestination: string | string[] = '';
+        if (!res.flights.oneWay) return;
+        if (res.flights.backWay) {
           flightDestination = `${res.flights.oneWay.from} - ${res.flights.oneWay.to}
-${res.flights.backWay.from} - ${res.flights.backWay.to}`
+${res.flights.backWay.from} - ${res.flights.backWay.to}`;
         } else {
-          flightDestination = `${res.flights.oneWay.from} + ${res.flights.oneWay.to}`
+          flightDestination = `${res.flights.oneWay.from} - ${res.flights.oneWay.to}`;
         }
         const cartObj = {
           No: res.flights.oneWay?.id,
@@ -71,13 +65,13 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`
           'Date & Time': res.flights.oneWay?.date,
           Passengers: totalPass,
           Price: res.flights.oneWay?.cost,
-          edit: "",
-        }
-        ELEMENT_DATA.push(cartObj)
-      })
-      console.log(res);
-      // ELEMENT_DATA = res
-      
+          edit: '',
+        };
+        this.cartContent.push(cartObj);
+      });
+      this.dataSource.data = this.cartContent;
+      this.changeDetectorRef.detectChanges();
+      console.log(this.cartContent);
     });
   }
 
@@ -91,7 +85,7 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`
     'Price',
     'edit',
   ];
-  dataSource = new MatTableDataSource<CartItem>(ELEMENT_DATA);
+  dataSource = new MatTableDataSource<CartItem>(this.cartContent);
   selection = new SelectionModel<CartItem>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */

@@ -1,18 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
-import { FlightDataType, ReservationDataType } from 'src/app/models/flyght-data.model';
+import {
+  FlightDataType,
+  ReservationDataType,
+} from 'src/app/models/flyght-data.model';
 
 @Component({
   selector: 'app-flight-fare',
   templateUrl: './flight-fare.component.html',
   styleUrls: ['./flight-fare.component.css'],
 })
-export class FlightFareComponent {
+export class FlightFareComponent implements OnInit {
   @Input() oneWayFlight?: FlightDataType;
   @Input() backFlight?: FlightDataType;
   @Input() flightDetails!: ReservationDataType;
-  constructor(public state: HeaderStateService) {}
-
+  constructor(
+    public state: HeaderStateService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
+  ngOnInit(): void {
+    this.changeDetectorRef.detectChanges();
+  }
   totalPrice() {
     if (!this.oneWayFlight) return;
     let priceSum = 0;
@@ -24,7 +32,7 @@ export class FlightFareComponent {
     });
     return priceSum;
   }
-  getObjectKeys(obj: any):[string, any][] {
+  getObjectKeys(obj: any): [string, any][] {
     return Object.entries(obj);
   }
 }
