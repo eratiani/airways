@@ -5,7 +5,7 @@ import {
   flightOneWayAdd,
   resetBackFlights,
   selectFlight,
-  setPassangersCount,
+  // setPassangersCount,
 } from './actions';
 import { StoreType } from './store.model';
 import { ReservationDataType } from '../models/flyght-data.model';
@@ -24,15 +24,15 @@ export const selectedFlihgtReducer = createReducer(
   on(selectFlight, (state, { oneWay, backWay }) => ({ oneWay, backWay }))
 );
 
-const initialPassangers: StoreType['passengersCount'] = {};
-export const passangersCountReducer = createReducer(
-  initialPassangers,
-  on(setPassangersCount, (state, { adult, child, infant }) => ({
-    adult,
-    child,
-    infant,
-  }))
-);
+// const initialPassangers: StoreType['passengersCount'] = {};
+// export const passangersCountReducer = createReducer(
+//   initialPassangers,
+//   on(setPassangersCount, (state, { adult, child, infant }) => ({
+//     adult,
+//     child,
+//     infant,
+//   }))
+// );
 
 //reservations
 const initialReservation: ReservationDataType = { passengers: {}, contact: {} };

@@ -9,7 +9,7 @@ import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import {
   flightsReducer,
-  passangersCountReducer,
+  // passangersCountReducer,
   reservationReducer,
   selectedFlihgtReducer,
 } from './redux/reducers';
@@ -53,7 +53,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       {
         flightData: flightsReducer,
         selectedFlight: selectedFlihgtReducer,
-        passengersCount: passangersCountReducer,
+        // passengersCount: passangersCountReducer,
         reservation: reservationReducer,
       },
       {}
