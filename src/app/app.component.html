@@ -1,9 +1,6 @@
-<div class="wrapper">
-    <div class="abs">
-      <app-header></app-header>
-    </div>
-    <div class="content">
-      <router-outlet></router-outlet>
-      <app-footer></app-footer>
-    </div>
+<div [class.background]="url === '/'">
+  <app-header class="header" [class.whiteHeader]="url !== '/'"></app-header>
+  <div class="ofset"></div>
+  <router-outlet></router-outlet>
 </div>
+<app-footer></app-footer>

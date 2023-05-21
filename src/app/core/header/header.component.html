@@ -1,97 +1,75 @@
-<div class="header">
-  <nav
-    class="d-flex justify-content-center navbar navbar-expand-lg bg-body-tertiary"
-  >
-    <div class="">
-      <div class="container-md">
-        <button
-          class="navbar-toggler float-left"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse justify-content-between align-items-center flex-wrap"
-          id="navbarSupportedContent"
-        >
-          <div class="nav-content m-2">
-            <a class="nav-link" routerLink="/" style="cursor: pointer"
-              ><img src="../../../assets/logo.png" alt="logo"
-            /></a>
-          </div>
-
-          <br />
-
-          <div class="d-flex flex-lg-row flex-column align-items-center">
-            <a class="nav-link" href="">Book flights</a>
-            <mat-form-field class="m-4" appearance="fill">
-              <mat-label>Select Date Format</mat-label>
-              <mat-select
-                [(value)]="date"
-                (selectionChange)="onDateFormatChage()"
-              >
-                <mat-option value="MM/DD/YYYY">MM/DD/YYYY</mat-option>
-                <mat-option value="DD/MM/YYYY">DD/MM/YYYY</mat-option>
-                <mat-option value="YYYY/DD/MM">YYYY/DD/MM</mat-option>
-                <mat-option value="YYYY/MM/DD">YYYY/MM/DD</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="m-4" appearance="fill">
-              <mat-label>Select currency</mat-label>
-              <mat-select
-                [(value)]="currency"
-                (selectionChange)="oncurrencyFormatChage()"
-              >
-                <mat-option value="EUR">EUR</mat-option>
-                <mat-option value="USD">USD</mat-option>
-                <mat-option value="RUB">RUB</mat-option>
-                <mat-option value="PLN">PLN</mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <div class="nav-item">
-              <!-- <button
-                style="height: 40px; width: 100px; cursor: pointer"
-                class="nav-link btn btn-success d-flex align-items-center justify-content-center"
-                (click)="handleLog()"
-              >
-                <span
-                  ><img src="../../../assets/log-in.png" alt="log-in"
-                /></span>
-                {{
-                  !userState.loggedIn ? "Sign In" : userState.userLocal.email
-                }}
-              </button> -->
-              <button mat-button (click)="handleLog()">
-                <mat-icon>person_outline</mat-icon>
-                {{
-                  !userState.loggedIn ? "Sign In" : userState.userLocal.email
-                }}
-              </button>
-            </div>
-
-            <div class="nav-item m-2">
-              <!-- <button
-                style="height: 40px; width: 100px"
-                class="nav-link btn btn-success d-flex align-items-center justify-content-center"
-              >
-                <img src="../../../assets/shopping_basket.png" alt="basket" />
-              </button> -->
-              <button mat-button (click)="goToCart()">
-                <mat-icon>shopping_basket</mat-icon>
-              </button>
-            </div>
-          </div>
-          <app-progress-bar class="m-auto"></app-progress-bar>
-          <br />
-          <br />
+<nav
+  class="d-flex justify-content-center navbar navbar-expand-lg bg-body-tertiary"
+>
+  <div class="">
+    <div class="container-md">
+      <button
+        class="navbar-toggler float-left"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-between align-items-center flex-wrap"
+        id="navbarSupportedContent"
+      >
+        <div class="nav-content m-2">
+          <a class="nav-link" routerLink="/" style="cursor: pointer"
+            ><img src="../../../assets/logo.png" alt="logo"
+          /></a>
         </div>
+
+        <br />
+
+        <div class="d-flex flex-lg-row flex-column align-items-center">
+          <a class="nav-link" href="">Book flights</a>
+          <mat-form-field class="m-4" appearance="fill">
+            <mat-label>Select Date Format</mat-label>
+            <mat-select
+              [(value)]="date"
+              (selectionChange)="onDateFormatChage()"
+            >
+              <mat-option value="MM/DD/YYYY">MM/DD/YYYY</mat-option>
+              <mat-option value="DD/MM/YYYY">DD/MM/YYYY</mat-option>
+              <mat-option value="YYYY/DD/MM">YYYY/DD/MM</mat-option>
+              <mat-option value="YYYY/MM/DD">YYYY/MM/DD</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="m-4" appearance="fill">
+            <mat-label>Select currency</mat-label>
+            <mat-select
+              [(value)]="currency"
+              (selectionChange)="oncurrencyFormatChage()"
+            >
+              <mat-option value="EUR">EUR</mat-option>
+              <mat-option value="USD">USD</mat-option>
+              <mat-option value="RUB">RUB</mat-option>
+              <mat-option value="PLN">PLN</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="nav-item">
+            <button mat-button (click)="handleLog()">
+              <mat-icon>person_outline</mat-icon>
+              {{ !userState.loggedIn ? "Sign In" : userState.userLocal.email }}
+            </button>
+          </div>
+
+          <div class="nav-item m-2">
+            <button mat-button (click)="goToCart()">
+              <mat-icon>shopping_basket</mat-icon>
+            </button>
+          </div>
+        </div>
+        <app-progress-bar class="m-auto"></app-progress-bar>
+        <br />
+        <br />
       </div>
     </div>
-  </nav>
-</div>
+  </div>
+</nav>

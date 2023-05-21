@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HeaderStateService } from './core/services/header-state.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,12 @@ import { HeaderStateService } from './core/services/header-state.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'airways';
+  url = '';
+  constructor(private router: Router) {
+    router.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) {
+        this.url = ev.url;
+      }
+    });
+  }
 }
