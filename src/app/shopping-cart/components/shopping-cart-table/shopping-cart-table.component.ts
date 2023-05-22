@@ -45,10 +45,11 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
     });
     this.request.getUserReservations(Number(this.id)).subscribe((res) => {
       this.reservations = res;
+      console.log(this.reservations);
+
       res.forEach((res) => {
         const { child = [], adult = [], infant = [] } = res.passeng.passengers;
         const totalPass: any = child.length + adult.length + infant.length;
-        console.log(child, adult, infant, totalPass);
         const flightType = res.flights.backWay ? 'Round Trip' : 'One way';
         let flightDestination: string | string[] = '';
         if (!res.flights.oneWay) return;
@@ -70,8 +71,6 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
         this.cartContent.push(cartObj);
       });
       this.dataSource.data = this.cartContent;
-      this.changeDetectorRef.detectChanges();
-      console.log(this.cartContent);
     });
   }
 
@@ -108,11 +107,24 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
   //   element.showButtons = !element.showButtons;
   //   event.stopPropagation();
   // }
-  onDelete(e: any) {}
-  onEdit(e: any) {}
+  onDelete(e: any) {
+    const index = this.cartContent.indexOf(e);
+    if (index > -1) {
+      this.cartContent.splice(index, 1);
+      this.dataSource.data = this.cartContent;
+      this.selection.clear();
+    }
+  }
+  onEdit(e: any) {
+    const index = this.cartContent.indexOf(e);
+    const editItemData = this.cartContent[index];
+    console.log(editItemData);
+  }
   items = ['delete', 'edit'];
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: CartItem): string {
+    console.log(row);
+
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }

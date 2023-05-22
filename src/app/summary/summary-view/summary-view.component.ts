@@ -43,13 +43,14 @@ export class SummaryViewComponent {
   goBack() {
     this.router.navigateByUrl('booking/detail');
   }
-  async goToCart() {
-    await firstValueFrom(
-      this.request.addReservation(this.userAuth.userLocal.id!, {
+  goToCart() {
+    this.request
+      .addReservation(this.userAuth.userLocal.id!, {
         flights: { oneWay: this.oneWayFlight, backWay: this.backFlight },
         passeng: this.passangersInfo,
       })
-    );
-    this.router.navigate(['cart', this.userAuth.userLocal.id, 'shopping']);
+      .subscribe((res) =>
+        this.router.navigate(['cart', this.userAuth.userLocal.id, 'shopping'])
+      );
   }
 }

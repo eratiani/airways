@@ -998,6 +998,40 @@
               "telephone": "+995-2323222222"
             }
           }
+        },
+        {
+          "flights": {
+            "oneWay": {
+              "from": "Paris",
+              "to": "Beijing",
+              "date": "Thu Dec 21 2023",
+              "total_seats": 232,
+              "available_seats": 22,
+              "cost": 692,
+              "id": "42"
+            }
+          },
+          "passeng": {
+            "passengers": {
+              "adult": [
+                {
+                  "name": "dsa",
+                  "surname": "sadas",
+                  "gender": "male",
+                  "dOb": "2023-05-01T20:00:00.000Z",
+                  "specialNeeds": false,
+                  "baggage": 1
+                }
+              ],
+              "child": [],
+              "infant": []
+            },
+            "contact": {
+              "email": "eratiani@gmail.com",
+              "country": "Georgia",
+              "telephone": "+995-2323232322"
+            }
+          }
         }
       ]
     }
