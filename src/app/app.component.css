@@ -1,24 +1,25 @@
-.abs {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 12; /* Adjust the z-index value as needed */
-  }
-  
-  .wrapper {
-    padding-top: 180px;
-    position: relative;
-  }
-  
-  .content {
-    position: relative;
-    z-index: 1; /* Adjust the z-index value as needed */
-  }
-  
-  @media only screen and (max-width: 991px) {
-    .wrapper {
-      padding-top: 50px;
-    }
-  }
-  
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 12; /* Adjust the z-index value as needed */
+  background: #9594946b;
+  opacity: 0.8;
+  color: white;
+}
+.whiteHeader {
+  background: #ffff;
+  color: initial;
+  opacity: 1;
+}
+
+.ofset {
+  height: 100px;
+}
+
+.background {
+  background: url("../assets/Background.jpg") center;
+}
+
+@media only screen and (max-width: 991px) {
+}

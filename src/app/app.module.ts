@@ -9,7 +9,7 @@ import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import {
   flightsReducer,
-  passangersCountReducer,
+  // passangersCountReducer,
   reservationReducer,
   selectedFlihgtReducer,
 } from './redux/reducers';
@@ -27,6 +27,7 @@ import { ConfirmLogin } from './modals/confirm-dialog/confirm';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, ConfirmLogin],
@@ -49,11 +50,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ShoppingCartModule,
     MatDialogModule,
     MatButtonModule,
+    LayoutModule,
     StoreModule.forRoot(
       {
         flightData: flightsReducer,
         selectedFlight: selectedFlihgtReducer,
-        passengersCount: passangersCountReducer,
+        // passengersCount: passangersCountReducer,
         reservation: reservationReducer,
       },
       {}

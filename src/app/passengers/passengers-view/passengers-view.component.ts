@@ -11,6 +11,7 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { addPassengers } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
+import { BackendUserService } from 'src/app/services/backend-user.service';
 
 export interface ContactType {
   email: FormControl<string>;
@@ -49,9 +50,12 @@ export class PassengersViewComponent {
   constructor(
     private fb: FormBuilder,
     private store: Store<StoreType>,
-    private router: Router
+    private router: Router,
+    private userState: BackendUserService
   ) {
-    store.select('passengersCount').subscribe((passeng) => {
+    const passeng = userState.searchParams?.passengers;
+    // store.select('passengersCount').subscribe((passeng) => {});
+    if (passeng) {
       console.log('passang from store: ', passeng);
       for (const [type, count] of Object.entries(passeng) as [
         keyof typeof passeng,
@@ -61,7 +65,7 @@ export class PassengersViewComponent {
           this.passengersForm.controls[type].push(this.createGroup());
         }
       }
-    });
+    }
   }
 
   private createGroup() {

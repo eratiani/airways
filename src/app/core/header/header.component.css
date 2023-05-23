@@ -1,14 +1,8 @@
-.header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  background:rgb(191, 199, 208);
-  min-height: 180px;
+nav {
+  height: 85px;
 }
-@media only screen and (max-width: 991px) {
-  .header{
-    min-height: auto;
-    
-  }
+
+.ofset {
+  flex-grow: 1;
+  text-align: right;
 }

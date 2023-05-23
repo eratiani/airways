@@ -1,10 +1,24 @@
-.img__prigress--bar{
-    width: 25px;
-    height: 25px;
-    margin-right: 5px;
+:host {
+  pointer-events: none !important;
+  display: flex;
+  justify-content: flex-end;
 }
-@media only screen and (max-width: 550px) {
-    .progress--bar {
-        display: none !important;
-    }
+
+mat-stepper {
+  background: transparent;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  mat-stepper {
+    max-width: 270px;
   }
+}
+@media (max-width: 841px) {
+  mat-stepper {
+    max-width: 120px;
+  }
+}

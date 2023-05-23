@@ -23,10 +23,10 @@ export const selectFlight = createAction(
 );
 
 // passengers counter
-export const setPassangersCount = createAction(
-  '[passengers] set amount',
-  props<StoreType['passengersCount']>()
-);
+// export const setPassangersCount = createAction(
+//   '[passengers] set amount',
+//   props<StoreType['passengersCount']>()
+// );
 
 // reservations
 export const addPassengers = createAction(

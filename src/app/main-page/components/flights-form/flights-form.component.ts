@@ -9,7 +9,7 @@ import { cities } from 'CONST';
 import { SearchService } from '../../services/search-flyght.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { setPassangersCount } from 'src/app/redux/actions';
+// import { setPassangersCount } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { Subscription } from 'rxjs';
@@ -107,7 +107,7 @@ export class FlightsFormComponent implements OnInit {
       return;
     }
 
-    this.store.dispatch(setPassangersCount(this.searchForm.value.passengers!));
+    // this.store.dispatch(setPassangersCount(this.searchForm.value.passengers!));
 
     // to do search with required seats avialable
     const { oneWay, from, to, date, passengers } = this.searchForm.value;
