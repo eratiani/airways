@@ -1,7 +1,5 @@
-// import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-// import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { UserReservation } from 'src/app/models/flyght-data.model';
@@ -24,19 +22,14 @@ export interface CartItem {
 })
 export class ShoppingCartTableComponent implements OnDestroy, OnInit {
   cartContent: CartItem[] = [];
-  isUserMode = false; // should be pass dependly of mode later
+  isUserMode = false;
   id = '';
   reservations?: UserReservation[];
   constructor(
     private route: ActivatedRoute,
     private request: RequestService,
     private changeDetectorRef: ChangeDetectorRef
-  ) {}
-
-  ngOnDestroy(): void {
-    this.cartContent = [];
-  }
-  ngOnInit(): void {
+  ) {
     this.route.params.subscribe(({ userId, mode }) => {
       this.id = userId;
       console.log(userId);
@@ -74,6 +67,11 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
     });
   }
 
+  ngOnDestroy(): void {
+    // this.cartContent = [];  // why you did it?..
+  }
+  ngOnInit(): void {} // don't need ngOnInit without any Input params...
+
   displayedColumns: string[] = [
     'select',
     'No',
@@ -103,27 +101,30 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
 
     this.selection.select(...this.dataSource.data);
   }
-  // onEditDelete(event: MouseEvent, element: any) {
-  //   element.showButtons = !element.showButtons;
-  //   event.stopPropagation();
-  // }
-  onDelete(e: any) {
-    const index = this.cartContent.indexOf(e);
-    if (index > -1) {
-      this.cartContent.splice(index, 1);
+
+  onDelete(ind: number) {
+    // can't use "any" type !!!!!!!!!!!!!!!
+
+    this.request.deleteReservation(4, ind).subscribe(() => {
+      // const index = this.cartContent.indexOf(e);
+      //     if (index > -1) {
+      this.cartContent.splice(ind, 1);
       this.dataSource.data = this.cartContent;
-      this.selection.clear();
-    }
+      this.selection.clear(); // ??? it's cleared all selections!
+      // }
+    });
   }
-  onEdit(e: any) {
-    const index = this.cartContent.indexOf(e);
-    const editItemData = this.cartContent[index];
+  onEdit(ind: number) {
+    // can't use "any" type !!!!!!!!!!!!!!!
+
+    // const index = this.cartContent.indexOf(e);
+    const editItemData = this.cartContent[ind];
     console.log(editItemData);
   }
   items = ['delete', 'edit'];
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: CartItem): string {
-    console.log(row);
+    // console.log(row);
 
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
