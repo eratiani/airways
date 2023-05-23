@@ -38,7 +38,7 @@
       <td
         class="d-flex align-items-center"
         mat-cell
-        *matCellDef="let element"
+        *matCellDef="let i = index"
         style="width: auto"
       >
         <div class="m-2" *ngIf="!isUserMode">
@@ -47,8 +47,8 @@
           </button>
         </div>
         <mat-menu #menu>
-          <button mat-menu-item (click)="onDelete(element)">Delete</button>
-          <button mat-menu-item (click)="onEdit(element)">Edit</button>
+          <button mat-menu-item (click)="onDelete(i)">Delete</button>
+          <button mat-menu-item (click)="onEdit(i)">Edit</button>
         </mat-menu>
       </td>
     </ng-container>

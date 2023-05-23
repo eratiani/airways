@@ -28,8 +28,8 @@ export class HeaderComponent {
   isFirstPage = true;
   isBooking = false;
 
-  onDateFormatChage() {
-    this.headState.changeDataFormat(this.date);
+  onDateFormatChange(format: string) {
+    this.headState.changeDataFormat(format);
   }
   onCurrencyChange(curr: string) {
     this.headState.currencyFormat = curr;

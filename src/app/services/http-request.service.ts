@@ -43,4 +43,16 @@ export class RequestService {
       })
     );
   }
+
+  deleteReservation(userId: number, reservNo: number) {
+    return this.getUserReservations(userId).pipe(
+      mergeMap((userReserv) => {
+        const reservations = [...userReserv];
+        reservations.splice(reservNo, 1);
+        return this.http.patch<UserData>(`${SERVER}/users/${userId}`, {
+          reservations,
+        });
+      })
+    );
+  }
 }
