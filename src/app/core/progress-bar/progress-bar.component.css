@@ -2,6 +2,7 @@
   pointer-events: none !important;
   display: flex;
   justify-content: flex-end;
+  margin-right: 1rem;
 }
 
 mat-stepper {
@@ -15,10 +16,5 @@ mat-stepper {
 @media (max-width: 991px) {
   mat-stepper {
     max-width: 270px;
-  }
-}
-@media (max-width: 841px) {
-  mat-stepper {
-    max-width: 120px;
   }
 }
