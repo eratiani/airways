@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { BreakpointObserveService } from 'src/app/services/breakpoints-observer.service';
 
 @Component({
   selector: 'app-progress-bar',
@@ -7,17 +8,28 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./progress-bar.component.css'],
 })
 export class ProgressBarComponent {
-  userOnBookingPage!: boolean;
-  userOnPassangersPage!: boolean;
-  userOnSummaryPage!: boolean;
-  userOnShoppingCartPage!: boolean;
-  constructor(private router: Router) {
+  show = false;
+  index?: number;
+  constructor(
+    private router: Router,
+    public observer: BreakpointObserveService
+  ) {
     router.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
-        this.userOnBookingPage = ev.url === '/booking';
-        this.userOnPassangersPage = ev.url.includes('detail');
-        this.userOnSummaryPage = ev.url.includes('summary');
-        this.userOnShoppingCartPage = false; // set dependly of url
+        this.show = ev.url !== '/';
+        switch (ev.url) {
+          case '/booking':
+            this.index = 0;
+            break;
+          case '/booking/detail':
+            this.index = 1;
+            break;
+          case '/booking/summary':
+            this.index = 2;
+            break;
+          default:
+            break;
+        }
       }
     });
   }

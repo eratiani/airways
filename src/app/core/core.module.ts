@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, ProgressBarComponent],
@@ -21,6 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
     RouterModule,
     MatButtonModule,
     MatIconModule,
+    MatStepperModule,
+    MatMenuModule,
   ],
 })
 export class CoreModule {}

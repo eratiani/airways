@@ -1,5 +1,8 @@
 <div [class.background]="url === '/'">
-  <app-header class="header" [class.whiteHeader]="url !== '/'"></app-header>
+  <app-header
+    class="header shadow-sm"
+    [class.whiteHeader]="url !== '/'"
+  ></app-header>
   <div class="ofset"></div>
   <router-outlet></router-outlet>
 </div>

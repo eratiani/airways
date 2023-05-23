@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { HeaderStateService } from '../services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { BreakpointObserveService } from 'src/app/services/breakpoints-observer.service';
 
 @Component({
   selector: 'app-header',
@@ -10,18 +11,28 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   date: string = 'DD/MM/YYYY';
-  currency: string = 'USD';
   constructor(
-    private headState: HeaderStateService,
+    public headState: HeaderStateService,
     public userState: BackendUserService,
-    private router: Router
-  ) {}
+    private router: Router,
+    public observer: BreakpointObserveService
+  ) {
+    router.events.subscribe((ev) => {
+      if (ev instanceof NavigationEnd) {
+        this.isFirstPage = ev.url === '/';
+        this.isBooking = ev.url.includes('booking');
+      }
+    });
+  }
+
+  isFirstPage = true;
+  isBooking = false;
 
   onDateFormatChage() {
     this.headState.changeDataFormat(this.date);
   }
-  oncurrencyFormatChage() {
-    this.headState.currencyFormat = this.currency;
+  onCurrencyChange(curr: string) {
+    this.headState.currencyFormat = curr;
   }
 
   handleLog() {

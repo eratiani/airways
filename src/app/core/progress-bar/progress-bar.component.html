@@ -1,76 +1,14 @@
-<div
-  *ngIf="
-    userOnBookingPage ||
-    userOnPassangersPage ||
-    userOnSummaryPage ||
-    userOnShoppingCartPage
-  "
-  class="progress--bar d-flex align-items-center justify-content-between flex-wrap"
->
-  <div class="first--step d-flex">
-    <img
-      class="img__prigress--bar"
-      *ngIf="userOnBookingPage"
-      src="../../../assets/Steps-inProgress.png"
-      alt="inProgress"
-    />
-    <img
-      class="img__prigress--bar"
-      *ngIf="!userOnBookingPage"
-      src="../../../assets/Steps-complete.png"
-      alt="done"
-    />
-    <span>Flights</span>
-  </div>
-  <div class="progress__bar--lineCont">
-    <img src="../../../assets/Steps-Divider.png" alt="divider" />
-  </div>
-  <div class="second--step d-flex">
-    <img
-      class="img__prigress--bar"
-      *ngIf="userOnPassangersPage"
-      src="../../../assets/Steps-inProgress.png"
-      alt="inProgress"
-    />
-    <img
-      class="img__prigress--bar"
-      *ngIf="userOnSummaryPage || userOnShoppingCartPage"
-      src="../../../assets/Steps-complete.png"
-      alt="done"
-    />
-    <img
-      class="img__prigress--bar"
-      *ngIf="userOnBookingPage"
-      src="../../../assets/Steps-second.png"
-      alt="two"
-    />
-    <span>Passengers</span>
-  </div>
-  <div class="progress__bar--lineCont">
-    <img src="../../../assets/Steps-Divider.png" alt="" />
-  </div>
+<mat-stepper linear [selectedIndex]="index">
+  <mat-step [editable]="false" [label]="observer.max1100 ? '' : 'Flights'">
+  </mat-step>
 
-  <div class="third--step d-flex align-items-center">
-    <div class="d-flex" style="height: 24px">
-      <img
-        class="img__prigress--bar"
-        *ngIf="userOnSummaryPage"
-        src="../../../assets/Steps-inProgress.png"
-        alt="inProgress"
-      />
-      <img
-        class="img__prigress--bar"
-        *ngIf="userOnShoppingCartPage"
-        src="../../../assets/Steps-complete.png"
-        alt="done"
-      />
-      <img
-        class="img__prigress--bar"
-        *ngIf="userOnPassangersPage || userOnBookingPage"
-        src="../../../assets/Steps-third.png"
-        alt="three"
-      />
-    </div>
-    <span>Review & Payment</span>
-  </div>
-</div>
+  <mat-step [editable]="false" [label]="observer.max1100 ? '' : 'Passengers'"
+    >>
+  </mat-step>
+
+  <mat-step
+    [editable]="false"
+    [label]="observer.max1100 ? '' : 'Review & Payment'"
+  >
+  </mat-step>
+</mat-stepper>

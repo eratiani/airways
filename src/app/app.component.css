@@ -8,8 +8,9 @@
   color: white;
 }
 .whiteHeader {
-  background: #ffffff6b;
+  background: #ffff;
   color: initial;
+  opacity: 1;
 }
 
 .ofset {
