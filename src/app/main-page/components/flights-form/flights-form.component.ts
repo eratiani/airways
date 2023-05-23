@@ -127,7 +127,8 @@ export class FlightsFormComponent implements OnInit {
       },
       passengers,
     };
-
+    console.log("tsssssssssssdasdsd",this.userState.searchParams);
+    
     this.search
       .search(oneWay!, from!, to!, date?.startDate, date?.endDate)
       .subscribe((data) => {

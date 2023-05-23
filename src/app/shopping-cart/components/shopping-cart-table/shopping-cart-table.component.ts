@@ -3,9 +3,14 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 // import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { UserReservation } from 'src/app/models/flyght-data.model';
+import { selectFlight } from 'src/app/redux/actions';
+import { StoreType } from 'src/app/redux/store.model';
+import { BackendUserService } from 'src/app/services/backend-user.service';
 import { RequestService } from 'src/app/services/http-request.service';
+import { PassangerDataService } from 'src/app/services/passanger-data.service';
 
 export interface CartItem {
   Flight: string;
@@ -30,7 +35,10 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
   constructor(
     private route: ActivatedRoute,
     private request: RequestService,
-    private changeDetectorRef: ChangeDetectorRef
+    private store:Store<StoreType>,
+    private router:Router,
+    private userService: BackendUserService,
+    private passangerData: PassangerDataService
   ) {}
 
   ngOnDestroy(): void {
@@ -107,7 +115,7 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
   //   element.showButtons = !element.showButtons;
   //   event.stopPropagation();
   // }
-  onDelete(e: any) {
+  onDelete(e: CartItem) {
     const index = this.cartContent.indexOf(e);
     if (index > -1) {
       this.cartContent.splice(index, 1);
@@ -115,15 +123,32 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
       this.selection.clear();
     }
   }
-  onEdit(e: any) {
+  onEdit(e: CartItem) {
     const index = this.cartContent.indexOf(e);
-    const editItemData = this.cartContent[index];
-    console.log(editItemData);
+    if(!this.reservations) return
+    const editItemData = this.reservations[index];
+      this.userService.searchParams = {
+        oneWay: !!editItemData.flights.backWay,
+  from: "",
+  to: "",
+  date: {
+    startDate: "",
+    endDate: ""
+  },
+  passengers:{
+    adult:editItemData.passeng.passengers.adult?.length as number ,
+    child:editItemData.passeng.passengers.child?.length as number,
+    infant:editItemData.passeng.passengers.infant?.length as number
+}
+      },
+      this.passangerData.passangerData = editItemData;
+      this.passangerData.isEditMode = true;
+    this.store.dispatch(selectFlight(editItemData.flights));
+    this.router.navigate(['/booking/detail']);
   }
   items = ['delete', 'edit'];
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: CartItem): string {
-    console.log(row);
 
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormArray, FormControl } from '@angular/forms';
 import {
   AbstractControl,
   FormBuilder,
@@ -12,11 +12,13 @@ import { Router } from '@angular/router';
 import { addPassengers } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
 import { BackendUserService } from 'src/app/services/backend-user.service';
+import { PassangerDataService } from 'src/app/services/passanger-data.service';
+import { PassengerContactInfoComponent } from '../components/passenger-contact-info/passenger-contact-info.component';
 
 export interface ContactType {
   email: FormControl<string>;
   country: FormControl<
-    Record<'name' | 'alpha2Code' | 'alpha3Code' | 'numericCode', string>
+    Record<'name' | 'alpha2Code' | 'alpha3Code' | 'numericCode' | "callingCode", string>
   >;
   telephone: FormControl<string>;
 }
@@ -46,12 +48,14 @@ export class PassengersViewComponent {
     'child',
     'infant',
   ];
-
+  @ViewChild(PassengerContactInfoComponent)
+  private passengerContactInfoComponent!: PassengerContactInfoComponent;
   constructor(
     private fb: FormBuilder,
     private store: Store<StoreType>,
     private router: Router,
-    private userState: BackendUserService
+    private userState: BackendUserService,
+    private passangerData: PassangerDataService,
   ) {
     const passeng = userState.searchParams?.passengers;
     // store.select('passengersCount').subscribe((passeng) => {});
@@ -61,11 +65,30 @@ export class PassengersViewComponent {
         keyof typeof passeng,
         number
       ][]) {
+        if (!passangerData.isEditMode) {
         for (let i = 0; i < count; i += 1) {
-          this.passengersForm.controls[type].push(this.createGroup());
+            this.passengersForm.controls[type].push(this.createGroup());
+          }
+         
+        }
+        if (passangerData.isEditMode && passangerData.passangerData) {
+          const passengersData = passangerData.passangerData;
+          const passengers = this.passengersForm.get(type.toLowerCase()) as FormArray;
+        
+          const passengerArray = passengersData.passeng.passengers[type];
+          if (!passengerArray) return
+          const passengerCount = Math.min(passengerArray.length, count);
+          for (let i = 0; i < passengerCount; i += 1) {
+            passengers.push(this.createGroup());
+            if (passengerArray[i]) {
+              passengers.at(i).patchValue(passengerArray[i]);
+            }
+          }
         }
       }
+    
     }
+    
   }
 
   private createGroup() {
@@ -98,12 +121,11 @@ export class PassengersViewComponent {
       return;
     }
     const { adult, child, infant, contact } = this.passengersForm.value;
-    console.log(adult);
-
+    console.log(this.passengersForm.value);
     this.store.dispatch(
       addPassengers({
         passengers: { adult, child, infant },
-        contact: { ...contact, country: contact!.country!.name },
+        contact: { ...contact, country: contact!.country },
       })
     );
     this.router.navigate(['/booking/summary']);

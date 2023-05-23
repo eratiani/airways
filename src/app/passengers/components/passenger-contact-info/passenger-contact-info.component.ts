@@ -6,6 +6,7 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { ContactType } from '../../passengers-view/passengers-view.component';
+import { PassangerDataService } from 'src/app/services/passanger-data.service';
 
 @Component({
   selector: 'app-passenger-contact-info',
@@ -16,7 +17,7 @@ export class PassengerContactInfoComponent {
   @Input() control!: FormGroup<Partial<ContactType>>;
   fieldRequired: string = 'This field is required';
   phoneNumber: string = '';
-
+constructor(private passangerData: PassangerDataService){}
   ngOnInit(): void {
     const emailregex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -49,6 +50,12 @@ export class PassengerContactInfoComponent {
         nonNullable: true,
       })
     );
+ if (this.passangerData.isEditMode ) {
+  this.phoneNumber = this.passangerData.passangerData.passeng.contact.country?.callingCode as string
+  this.control.get("email")?.setValue(this.passangerData.passangerData.passeng.contact.email)
+  this.control.get("country")?.setValue(this.passangerData.passangerData.passeng.contact.country)
+  this.control.get("telephone")?.setValue(this.passangerData.passangerData.passeng.contact.telephone)
+ }
   }
 
   emaiErrors() {
