@@ -3,7 +3,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  OnInit,
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
@@ -19,31 +18,23 @@ export type SideType = 'one-way' | 'back';
   templateUrl: './one-side.component.html',
   providers: [OneSideStateService],
 })
-export class OneSideComponent implements OnInit, OnChanges {
+export class OneSideComponent implements OnChanges {
   // @Input() type!: SideType;
   @Input() flights: FlightDataType[] = [];
   flightsCurrent: FlightDataType[] = [];
   @Output() storeSelect = new EventEmitter<FlightDataType>();
   selectedCard?: FlightDataType;
   flightIndex: number = 0;
-  // tempFligh: FlightDataType[] = [];
   constructor(
     public state: OneSideStateService,
     public headerState: HeaderStateService
   ) {}
 
-  ngOnInit(): void {
-    // this.tempFligh = [...this.flights];
-    // this.flightsCurrent = this.flights.slice(0, 5);
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log('changes: ', changes, this.type);
     if (changes['flights']) {
       this.flights = changes['flights'].currentValue;
       this.flightsCurrent = this.flights.slice(0, 5);
     }
-    // console.log(this.flights);
   }
 
   selectCard(flightCard: HTMLDivElement, flight: FlightDataType) {
@@ -53,6 +44,7 @@ export class OneSideComponent implements OnInit, OnChanges {
     flightCard.classList.add('moveElement');
     this.selectedCard = flight;
   }
+
   moveRIght() {
     if (this.flights.length < 5) return;
     this.flightIndex = (this.flightIndex + 1) % this.flights.length;
@@ -77,6 +69,7 @@ export class OneSideComponent implements OnInit, OnChanges {
         .concat(this.flights.slice(0, endIndex));
     }
   }
+
   selectFlight(doSelect: boolean) {
     if (doSelect) {
       this.state.setSelected();

@@ -49,13 +49,17 @@ export class SearchService {
   private getFlights(from: string, to: string, start?: string, end?: string) {
     return this.request.getFlights().pipe(
       map((res) =>
-        res.filter((fl) => {
-          return (
-            fl.from === from &&
-            fl.to === to &&
-            (start && end ? this.dateMatch(fl.date, start, end) : true)
-          );
-        })
+        res
+          .filter((fl) => {
+            return (
+              fl.from === from &&
+              fl.to === to &&
+              (start && end ? this.dateMatch(fl.date, start, end) : true)
+            );
+          })
+          .sort(
+            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+          )
       )
     );
   }
