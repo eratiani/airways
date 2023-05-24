@@ -55,4 +55,20 @@ export class RequestService {
       })
     );
   }
+
+  editReservation(
+    userId: number,
+    reservNo: number,
+    reservation: UserReservation
+  ) {
+    return this.getUserReservations(userId).pipe(
+      mergeMap((userReserv) => {
+        const reservations = userReserv;
+        reservations[reservNo] = reservation;
+        return this.http.patch<UserData>(`${SERVER}/users/${userId}`, {
+          reservations,
+        });
+      })
+    );
+  }
 }
