@@ -23,8 +23,8 @@
       [class.col-sm-6]="!isEdit"
       appearance="fill"
     >
-      <mat-label for="destinationFrom">From</mat-label>
-      <mat-select id="destinationFrom" formControlName="from">
+      <mat-label>From</mat-label>
+      <mat-select formControlName="from">
         <mat-option *ngFor="let city of cities" [value]="city">
           {{ city }}
         </mat-option>
@@ -43,13 +43,12 @@
     </button>
 
     <mat-form-field
-      for="destinationTo"
       class="mx-md-2"
       [class.col-sm-6]="!isEdit"
       appearance="fill"
     >
-      <mat-label for="destinationTo">Destination</mat-label>
-      <mat-select id="destinationTo" formControlName="to">
+      <mat-label>Destination</mat-label>
+      <mat-select formControlName="to">
         <mat-option *ngFor="let city of cities" [value]="city">
           {{ city }}
         </mat-option>
@@ -62,14 +61,10 @@
     <div class="row">
       <div class="col-sm-7 d-flex justify-content-center">
         <mat-form-field appearance="fill">
-          <mat-label for="dateRange">Choose a Date</mat-label>
-          <mat-date-range-input
-            formGroupName="date"
-            [rangePicker]="picker"
-            id="dateRange"
-          >
-            <input id="dateStart" matStartDate formControlName="startDate" />
-            <input id="dateEnd" matEndDate formControlName="endDate" />
+          <mat-label>Choose a Date</mat-label>
+          <mat-date-range-input formGroupName="date" [rangePicker]="picker">
+            <input matStartDate formControlName="startDate" />
+            <input matEndDate formControlName="endDate" />
           </mat-date-range-input>
           <mat-hint
             >{{ headState.dateFormat }} - {{ headState.dateFormat }}</mat-hint
@@ -84,8 +79,8 @@
 
       <div class="col-sm-5 d-flex justify-content-center">
         <mat-form-field class="" appearance="fill">
-          <mat-label for="passangers">Passangers List</mat-label>
-          <mat-select id="passangers">
+          <mat-label>Passangers List</mat-label>
+          <mat-select>
             <mat-option *ngFor="let value of keys" [value]="value">
               {{ toCamelCase(value) }}
               <div class="option-controls">

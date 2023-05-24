@@ -1,4 +1,11 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { FlightDataType } from 'src/app/models/flyght-data.model';
 import { OneSideStateService } from '../../services/one-side-state.service';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
@@ -11,22 +18,23 @@ export type SideType = 'one-way' | 'back';
   templateUrl: './one-side.component.html',
   providers: [OneSideStateService],
 })
-export class OneSideComponent implements OnInit {
-  @Input() type!: SideType;
+export class OneSideComponent implements OnChanges {
+  // @Input() type!: SideType;
   @Input() flights: FlightDataType[] = [];
-  flightCurrent: FlightDataType[] = [];
+  flightsCurrent: FlightDataType[] = [];
   @Output() storeSelect = new EventEmitter<FlightDataType>();
   selectedCard?: FlightDataType;
   flightIndex: number = 0;
-  tempFligh: FlightDataType[] = [];
   constructor(
     public state: OneSideStateService,
     public headerState: HeaderStateService
   ) {}
 
-  ngOnInit(): void {
-    this.tempFligh = [...this.flights];
-    this.flightCurrent = this.tempFligh.slice(0, 5);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['flights']) {
+      this.flights = changes['flights'].currentValue;
+      this.flightsCurrent = this.flights.slice(0, 5);
+    }
   }
 
   selectCard(flightCard: HTMLDivElement, flight: FlightDataType) {
@@ -36,30 +44,32 @@ export class OneSideComponent implements OnInit {
     flightCard.classList.add('moveElement');
     this.selectedCard = flight;
   }
+
   moveRIght() {
-    if (this.tempFligh.length < 5) return;
-    this.flightIndex = (this.flightIndex + 1) % this.tempFligh.length;
+    if (this.flights.length < 5) return;
+    this.flightIndex = (this.flightIndex + 1) % this.flights.length;
     this.render();
   }
 
   moveLeft() {
-    if (this.tempFligh.length < 5) return;
+    if (this.flights.length < 5) return;
     this.flightIndex =
-      (this.flightIndex - 1 + this.tempFligh.length) % this.tempFligh.length;
+      (this.flightIndex - 1 + this.flights.length) % this.flights.length;
     this.render();
   }
 
   render() {
     const startIndex = this.flightIndex;
-    const endIndex = (this.flightIndex + 5) % this.tempFligh.length;
+    const endIndex = (this.flightIndex + 5) % this.flights.length;
     if (startIndex < endIndex) {
-      this.flightCurrent = this.tempFligh.slice(startIndex, endIndex);
+      this.flightsCurrent = this.flights.slice(startIndex, endIndex);
     } else {
-      this.flightCurrent = this.tempFligh
+      this.flightsCurrent = this.flights
         .slice(startIndex)
-        .concat(this.tempFligh.slice(0, endIndex));
+        .concat(this.flights.slice(0, endIndex));
     }
   }
+
   selectFlight(doSelect: boolean) {
     if (doSelect) {
       this.state.setSelected();
