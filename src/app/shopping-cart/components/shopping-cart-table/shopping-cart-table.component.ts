@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { UserReservation } from 'src/app/models/flyght-data.model';
 import { selectFlight } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
@@ -30,13 +31,15 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
   isUserMode = false;
   id = '';
   reservations?: UserReservation[];
+  totalPrice:number = 0;
   constructor(
     private route: ActivatedRoute,
     private request: RequestService,
     private userService: BackendUserService,
     private passangerData:PassangerDataService,
     private router:Router,
-    private store: Store<StoreType>
+    private store: Store<StoreType>,
+    public state: HeaderStateService
   ) {
     this.route.params.subscribe(({ userId, mode }) => {
       this.id = userId;
@@ -50,11 +53,15 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
 
       res.forEach((res) => {
         const { child = [], adult = [], infant = [] } = res.passeng.passengers;
-        const totalPass: any = child.length + adult.length + infant.length;
+        const totalPass: string = String(child.length + adult.length + infant.length);
         const flightType = res.flights.backWay ? 'Round Trip' : 'One way';
         let flightDestination: string | string[] = '';
         if (!res.flights.oneWay) return;
+        const price = res.flights.oneWay.cost;
+        const reservationPrice = price * child.length + price * adult.length + price * infant.length;
+        this.totalPrice += reservationPrice;
         if (res.flights.backWay) {
+          this.totalPrice += price * child.length + price * adult.length + price * infant.length;
           flightDestination = `${res.flights.oneWay.from} - ${res.flights.oneWay.to}
 ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
         } else {
@@ -66,7 +73,7 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
           Flight: flightType,
           'Date & Time': res.flights.oneWay?.date,
           Passengers: totalPass,
-          Price: res.flights.oneWay?.cost,
+          Price:reservationPrice,
           edit: '',
         };
         this.cartContent.push(cartObj);
@@ -122,9 +129,10 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
       // }
     });
   }
-  onEdit(e: CartItem) {
-    const index = this.cartContent.indexOf(e);
+  onEdit(index: number) {
+
     if(!this.reservations) return
+    this.passangerData.index = index;
     const editItemData = this.reservations[index];
       this.userService.searchParams = {
         oneWay: !!editItemData.flights.backWay,

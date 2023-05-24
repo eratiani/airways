@@ -1356,14 +1356,6 @@
                   "dOb": "2023-05-01T20:00:00.000Z",
                   "specialNeeds": false,
                   "baggage": 0
-                },
-                {
-                  "name": "sad",
-                  "surname": "asdasd",
-                  "gender": "male",
-                  "dOb": "2023-05-08T20:00:00.000Z",
-                  "specialNeeds": false,
-                  "baggage": 0
                 }
               ],
               "child": [],
@@ -1403,27 +1395,45 @@
                   "gender": "female",
                   "dOb": "2023-05-01T20:00:00.000Z",
                   "specialNeeds": false,
-                  "baggage": 1
+                  "baggage": 0
                 },
                 {
-                  "name": "sad",
+                  "name": "eqwe",
                   "surname": "asdasd",
                   "gender": "male",
-                  "dOb": "2023-05-08T20:00:00.000Z",
+                  "dOb": "2023-05-09T20:00:00.000Z",
                   "specialNeeds": false,
                   "baggage": 0
                 },
                 {
-                  "name": "asdas",
-                  "surname": "XCZczxc",
+                  "name": "rrrrrrrr",
+                  "surname": "sdasdasd",
                   "gender": "male",
-                  "dOb": "2023-05-08T20:00:00.000Z",
+                  "dOb": "2023-05-01T20:00:00.000Z",
                   "specialNeeds": false,
                   "baggage": 0
                 }
               ],
-              "child": [],
-              "infant": []
+              "child": [
+                {
+                  "name": "dasd",
+                  "surname": "asdasd",
+                  "gender": "male",
+                  "dOb": "2023-05-01T20:00:00.000Z",
+                  "specialNeeds": false,
+                  "baggage": 0
+                }
+              ],
+              "infant": [
+                {
+                  "name": "dasd",
+                  "surname": "asdasd",
+                  "gender": "male",
+                  "dOb": "2023-05-01T20:00:00.000Z",
+                  "specialNeeds": false,
+                  "baggage": 0
+                }
+              ]
             },
             "contact": {
               "email": "eratiani@gmail.com",

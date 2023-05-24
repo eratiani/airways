@@ -50,6 +50,8 @@ constructor(private passangerData: PassangerDataService){}
         nonNullable: true,
       })
     );
+    console.log(this.passangerData.isEditMode);
+    
  if (this.passangerData.isEditMode ) {
   this.phoneNumber = this.passangerData.passangerData.passeng.contact.country?.callingCode as string
   this.control.get("email")?.setValue(this.passangerData.passangerData.passeng.contact.email)

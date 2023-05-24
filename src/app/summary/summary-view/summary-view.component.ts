@@ -9,6 +9,7 @@ import {
 import { StoreType } from 'src/app/redux/store.model';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 import { RequestService } from 'src/app/services/http-request.service';
+import { PassangerDataService } from 'src/app/services/passanger-data.service';
 
 @Component({
   selector: 'app-summary-view',
@@ -24,7 +25,8 @@ export class SummaryViewComponent {
     private store: Store<StoreType>,
     private router: Router,
     private request: RequestService,
-    private userAuth: BackendUserService
+    private userAuth: BackendUserService,
+    private passengersData: PassangerDataService
   ) {
     this.store
       .select('reservation')
@@ -35,7 +37,7 @@ export class SummaryViewComponent {
       this.oneWayFlight = data;
     });
     this.store.select('selectedFlight', 'backWay').subscribe((data) => {
-      console.log('backflight', data);
+      console.log('backflight', data ,this.passengersData.isEditMode);
       this.backFlight = data;
     });
   }
@@ -44,6 +46,18 @@ export class SummaryViewComponent {
     this.router.navigateByUrl('booking/detail');
   }
   goToCart() {
+    if (this.passengersData.isEditMode) {
+      
+      this.request.editReservation(this.userAuth.userLocal.id!,this.passengersData.index, {
+        flights: { oneWay: this.oneWayFlight, backWay: this.backFlight },
+        passeng: this.passangersInfo,
+      }).subscribe(res=>{
+        console.log(res);
+        
+        this.router.navigate(['cart', this.userAuth.userLocal.id, 'shopping'])
+      })
+      return 
+    } 
     this.request
       .addReservation(this.userAuth.userLocal.id!, {
         flights: { oneWay: this.oneWayFlight, backWay: this.backFlight },
