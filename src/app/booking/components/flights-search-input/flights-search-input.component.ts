@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SearchParamsType } from 'src/app/models/flyght-data.model';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 
 @Component({
@@ -8,7 +7,7 @@ import { BackendUserService } from 'src/app/services/backend-user.service';
   styleUrls: ['./flights-search-input.component.css'],
 })
 export class FlightsSearchInputComponent {
-  showEdit = true; // change to false!
+  showEdit = false;
   changeEditVIew() {
     this.showEdit = !this.showEdit;
   }
