@@ -30,10 +30,17 @@ export interface PassengerType {
   baggage?: number;
 }
 export interface ReservationDataType {
-  passengers: Partial<
+  passengers?: Partial<
     Record<'adult' | 'child' | 'infant', Partial<PassengerType>[]>
   >;
-  contact: Partial<{'email':string, 'country':Record<'name' | 'alpha2Code'| "callingCode" | 'alpha3Code' | 'numericCode', string>, 'telephone':string}>;
+  contact?: Partial<{
+    email: string;
+    country: Record<
+      'name' | 'alpha2Code' | 'callingCode' | 'alpha3Code' | 'numericCode',
+      string
+    >;
+    telephone: string;
+  }>;
 }
 
 export interface UserReservation {

@@ -24,48 +24,6 @@
             "backWay": {
               "from": "Seoul",
               "to": "Paris",
-              "date": "Thu Oct 26 2023",
-              "total_seats": 216,
-              "available_seats": 160,
-              "cost": 1196,
-              "id": "105"
-            }
-          },
-          "passeng": {
-            "passengers": {
-              "adult": [],
-              "child": [],
-              "infant": [
-                {
-                  "name": "Wiktoria",
-                  "surname": "Kusyy",
-                  "gender": "male",
-                  "dOb": "2023-04-30T22:00:00.000Z",
-                  "specialNeeds": false
-                }
-              ]
-            },
-            "contact": {
-              "email": "ex@gmail.com",
-              "country": "Poland",
-              "telephone": "+48-333-333-3333"
-            }
-          }
-        },
-        {
-          "flights": {
-            "oneWay": {
-              "from": "Paris",
-              "to": "Seoul",
-              "date": "Fri Sep 29 2023",
-              "total_seats": 62,
-              "available_seats": 60,
-              "cost": 1087,
-              "id": "175"
-            },
-            "backWay": {
-              "from": "Seoul",
-              "to": "Paris",
               "date": "Sun Aug 13 2023",
               "total_seats": 19,
               "available_seats": 7,
@@ -144,6 +102,64 @@
               "email": "some@dude.com",
               "country": "Åland Islands",
               "telephone": "+358-444-444-2222"
+            }
+          }
+        },
+        {
+          "flights": {
+            "oneWay": {
+              "from": "Paris",
+              "to": "Seoul",
+              "date": "Fri Sep 29 2023",
+              "total_seats": 62,
+              "available_seats": 60,
+              "cost": 1087,
+              "id": "175"
+            },
+            "backWay": {
+              "from": "Seoul",
+              "to": "Paris",
+              "date": "Sun Aug 13 2023",
+              "total_seats": 19,
+              "available_seats": 7,
+              "cost": 417,
+              "id": "199"
+            }
+          },
+          "passeng": {
+            "passengers": {
+              "adult": [
+                {
+                  "name": "some ",
+                  "surname": "dude",
+                  "gender": "male",
+                  "dOb": "2023-04-30T22:00:00.000Z",
+                  "specialNeeds": false,
+                  "baggage": 3
+                }
+              ],
+              "child": [
+                {
+                  "name": "litle ",
+                  "surname": "dude",
+                  "gender": "male",
+                  "dOb": "2023-04-30T22:00:00.000Z",
+                  "specialNeeds": false,
+                  "baggage": 3
+                }
+              ],
+              "infant": []
+            },
+            "contact": {
+              "email": "dude@mail.com",
+              "country": {
+                "name": "Afghanistan",
+                "alpha2Code": "AF",
+                "alpha3Code": "AFG",
+                "numericCode": "004",
+                "callingCode": "+93"
+              },
+              "telephone": "+93-222-222-2222-333-333-3333"
             }
           }
         }
