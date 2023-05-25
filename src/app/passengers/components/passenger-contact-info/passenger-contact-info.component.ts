@@ -6,7 +6,9 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { ContactType } from '../../passengers-view/passengers-view.component';
-import { PassangerDataService } from 'src/app/services/passanger-data.service';
+// import { PassangerDataService } from 'src/app/services/passanger-data.service';
+import { Store } from '@ngrx/store';
+import { StoreType } from 'src/app/redux/store.model';
 
 @Component({
   selector: 'app-passenger-contact-info',
@@ -17,7 +19,10 @@ export class PassengerContactInfoComponent {
   @Input() control!: FormGroup<Partial<ContactType>>;
   fieldRequired: string = 'This field is required';
   phoneNumber: string = '';
-constructor(private passangerData: PassangerDataService){}
+  constructor(
+    // private passangerData: PassangerDataService,
+    private store: Store<StoreType>
+  ) {}
   ngOnInit(): void {
     const emailregex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -50,14 +55,21 @@ constructor(private passangerData: PassangerDataService){}
         nonNullable: true,
       })
     );
-    console.log(this.passangerData.isEditMode);
-    
- if (this.passangerData.isEditMode ) {
-  this.phoneNumber = this.passangerData.passangerData.passeng.contact.country?.callingCode as string
-  this.control.get("email")?.setValue(this.passangerData.passangerData.passeng.contact.email)
-  this.control.get("country")?.setValue(this.passangerData.passangerData.passeng.contact.country)
-  this.control.get("telephone")?.setValue(this.passangerData.passangerData.passeng.contact.telephone)
- }
+
+    this.store.select('reservation').subscribe((initReserv) => {
+      this.setValuesFromReservation(initReserv.contact);
+    });
+  }
+
+  private setValuesFromReservation(
+    contacts: StoreType['reservation']['contact']
+  ) {
+    if (contacts) {
+      this.phoneNumber = contacts.telephone || '';
+      this.control.controls.email?.setValue(contacts.email || '');
+      this.control.controls.country?.setValue(contacts.country!);
+      this.control.controls.telephone?.setValue(contacts.telephone || '');
+    }
   }
 
   emaiErrors() {
