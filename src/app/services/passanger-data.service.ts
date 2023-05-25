@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserReservation } from '../models/flyght-data.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PassangerDataService {
   passangerData!: UserReservation;
@@ -11,4 +11,5 @@ export class PassangerDataService {
   index!:number
   isEditMode:boolean = false; 
   constructor() { }
+  
 }

@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -39,8 +39,8 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
     private route: ActivatedRoute,
     private request: RequestService,
     private userService: BackendUserService,
-    private passangerData:PassangerDataService,
-    private router:Router,
+    private passangerData: PassangerDataService,
+    private router: Router,
     private store: Store<StoreType>,
     public state: HeaderStateService,
    private userAuth: BackendUserService
@@ -58,7 +58,8 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
       res.forEach((res) => {
         console.log(!!res.payed, this.isUserMode);
         
-        if (!this.isUserMode && res.payed) return
+        if (!this.isUserMode && res.payed ) return
+        if (!res.passeng.passengers) return
         const { child = [], adult = [], infant = [] } = res.passeng.passengers;
         const totalPass: string = String(child.length + adult.length + infant.length);
         const flightType = res.flights.backWay ? 'Round Trip' : 'One way';
@@ -81,7 +82,7 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
           Flight: flightType,
           'Date & Time': res.flights.oneWay?.date,
           Passengers: totalPass,
-          Price:reservationPrice,
+          Price: reservationPrice,
           edit: '',
         };
         this.cartContent.push(cartObj);
@@ -126,39 +127,40 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
   }
 
   onDelete(ind: number) {
-    // can't use "any" type !!!!!!!!!!!!!!!
-
     this.request.deleteReservation(4, ind).subscribe(() => {
-      // const index = this.cartContent.indexOf(e);
-      //     if (index > -1) {
       this.cartContent.splice(ind, 1);
       this.dataSource.data = this.cartContent;
       this.selection.clear(); // ??? it's cleared all selections!
-      // }
     });
   }
   onEdit(index: number) {
+    if (!this.reservations) return;
+    const { flights, passeng } = this.reservations[index];
+    this.store.dispatch(
+      selectFlight({ oneWay: flights.oneWay, backWay: flights.backWay })
+    );
+    this.store.dispatch(addPassengers(passeng));
 
-    if(!this.reservations) return
-    this.passangerData.index = index;
-    const editItemData = this.reservations[index];
-      this.userService.searchParams = {
-        oneWay: !!editItemData.flights.backWay,
-  from: "",
-  to: "",
-  date: {
-    startDate: "",
-    endDate: ""
-  },
-  passengers:{
-    adult:editItemData.passeng.passengers.adult?.length as number ,
-    child:editItemData.passeng.passengers.child?.length as number,
-    infant:editItemData.passeng.passengers.infant?.length as number
-}
-      },
-      this.passangerData.passangerData = editItemData;
-      this.passangerData.isEditMode = true;
-    this.store.dispatch(selectFlight(editItemData.flights));
+    // this.passangerData.index = index;
+    // const editItemData = this.reservations[index];
+    // (this.userService.searchParams = {
+    //   oneWay: !!editItemData.flights.backWay,
+    //   from: '',
+    //   to: '',
+    //   date: {
+    //     startDate: '',
+    //     endDate: '',
+    //   },
+    //   passengers: {
+    //     adult: editItemData.passeng.passengers.adult?.length as number,
+    //     child: editItemData.passeng.passengers.child?.length as number,
+    //     infant: editItemData.passeng.passengers.infant?.length as number,
+    //   },
+    // }),
+    //   (this.passangerData.passangerData = editItemData);
+    // this.passangerData.isEditMode = true;
+    // this.store.dispatch(selectFlight(editItemData.flights));
+    this.onDelete(index);
     this.router.navigate(['/booking/detail']);
   }
   onSummaryCheck(index:number,e:Event) {

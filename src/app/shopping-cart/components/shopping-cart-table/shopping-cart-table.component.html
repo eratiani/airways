@@ -31,7 +31,7 @@
       <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
       <td  style="white-space: pre" mat-cell *matCellDef="let element">
         <ng-container *ngIf="column === 'Price'">
-          {{ element[column] | currency: state.currencyFormat }}
+          {{ element[column] | currency : state.currencyFormat }}
         </ng-container>
         <ng-container *ngIf="column !== 'Price'">
           {{ element[column] }}
