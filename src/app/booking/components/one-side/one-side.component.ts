@@ -85,8 +85,10 @@ checkScreenWidth(){
   render(numOfItems:number) {
     const startIndex = this.flightIndex;
     const endIndex = (this.flightIndex + numOfItems) % this.flights.length;
-    if (startIndex < endIndex) {
+    if (startIndex < endIndex && this.flights.length > numOfItems) {
       this.flightsCurrent = this.flights.slice(startIndex, endIndex);
+    }else if(this.flights.length <numOfItems) {
+      this.flightsCurrent = this.flights.slice(0);
     } else {
       this.flightsCurrent = this.flights
         .slice(startIndex)
