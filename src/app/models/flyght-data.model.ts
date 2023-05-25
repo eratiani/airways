@@ -47,4 +47,5 @@ export interface ReservationDataType {
 export interface UserReservation {
   flights: StoreType['selectedFlight'];
   passeng: ReservationDataType;
+  payed?: boolean;
 }

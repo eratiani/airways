@@ -20,14 +20,15 @@ export class SummaryViewComponent {
   passangersInfo!: ReservationDataType;
   oneWayFlight?: FlightDataType;
   backFlight?: FlightDataType;
-
+  FromCartPage:boolean = false;
   constructor(
     private store: Store<StoreType>,
     private router: Router,
     private request: RequestService,
     private userAuth: BackendUserService,
-    private passengersData: PassangerDataService
+    private passengersData: PassangerDataService,
   ) {
+    this.FromCartPage = this.passengersData.enteringSummaryView;
     this.store
       .select('reservation')
       .subscribe((data) => (this.passangersInfo = data));
@@ -44,6 +45,9 @@ export class SummaryViewComponent {
 
   goBack() {
     this.router.navigateByUrl('booking/detail');
+  }
+  toUserPage(){
+    this.router.navigate(['cart', this.userAuth.userLocal.id, 'user'])
   }
   goToCart() {
     if (this.passengersData.isEditMode) {
