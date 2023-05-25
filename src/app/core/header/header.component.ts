@@ -36,12 +36,12 @@ export class HeaderComponent {
   }
 
   handleLog() {
-    // if (!this.userState.loggedIn) {
+    if (!this.userState.loggedIn) {
       this.headState.showAuth = true;
-    // } else {
+    } else {
       // this.userState.logOut();
-      // this.router.navigate(['cart', this.userState.userLocal.id, 'user']);
-    // }
+      this.router.navigate(['cart', this.userState.userLocal.id, 'user']);
+    }
   }
 
   goToCart() {
