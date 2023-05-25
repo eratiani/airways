@@ -1,11 +1,11 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { UserReservation } from 'src/app/models/flyght-data.model';
-import { selectFlight } from 'src/app/redux/actions';
+import { addPassengers, selectFlight } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 import { RequestService } from 'src/app/services/http-request.service';
@@ -19,6 +19,7 @@ export interface CartItem {
   Passengers: string;
   Price: number;
   edit: string;
+  payed?:false;
 }
 
 @Component({
@@ -30,8 +31,10 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
   cartContent: CartItem[] = [];
   isUserMode = false;
   id = '';
-  reservations?: UserReservation[];
+  reservations!: UserReservation[];
   totalPrice:number = 0;
+  itemsSelectedLenght:number = 0;
+  itemsSelected!:UserReservation[] ;
   constructor(
     private route: ActivatedRoute,
     private request: RequestService,
@@ -39,7 +42,8 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
     private passangerData:PassangerDataService,
     private router:Router,
     private store: Store<StoreType>,
-    public state: HeaderStateService
+    public state: HeaderStateService,
+   private userAuth: BackendUserService
   ) {
     this.route.params.subscribe(({ userId, mode }) => {
       this.id = userId;
@@ -48,19 +52,23 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
       this.isUserMode = mode === 'user' ? true : false;
     });
     this.request.getUserReservations(Number(this.id)).subscribe((res) => {
-      this.reservations = res;
+      this.reservations = res
       console.log(this.reservations);
 
       res.forEach((res) => {
+        console.log(!!res.payed, this.isUserMode);
+        
+        if (!this.isUserMode && res.payed) return
         const { child = [], adult = [], infant = [] } = res.passeng.passengers;
         const totalPass: string = String(child.length + adult.length + infant.length);
         const flightType = res.flights.backWay ? 'Round Trip' : 'One way';
         let flightDestination: string | string[] = '';
         if (!res.flights.oneWay) return;
         const price = res.flights.oneWay.cost;
-        const reservationPrice = price * child.length + price * adult.length + price * infant.length;
+        let reservationPrice = price * child.length + price * adult.length + price * infant.length;
         this.totalPrice += reservationPrice;
         if (res.flights.backWay) {
+          reservationPrice*=2;
           this.totalPrice += price * child.length + price * adult.length + price * infant.length;
           flightDestination = `${res.flights.oneWay.from} - ${res.flights.oneWay.to}
 ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
@@ -153,10 +161,39 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
     this.store.dispatch(selectFlight(editItemData.flights));
     this.router.navigate(['/booking/detail']);
   }
+  onSummaryCheck(index:number,e:Event) {
+    e.stopPropagation()
+    const summaryObj = this.reservations[index];
+    this.store.dispatch(
+      addPassengers(summaryObj.passeng))
+      this.store.dispatch(selectFlight(summaryObj.flights));
+      this.passangerData.enteringSummaryView = true;
+      this.router.navigate(['/booking/summary']);
+  }
   items = ['delete', 'edit'];
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: CartItem): string {
-
+  onreturnItemsLenght() {
+     return this.selection.selected.length;
+  }
+  onAddnewTrip(){
+    this.router.navigate(['/']);
+  }
+  onPayment(){
+    if(this.itemsSelected.length === 0) return
+    this.itemsSelected.forEach(item=>{
+      const index = this.reservations.indexOf(item)
+      item.payed = true;
+      this.request.editReservation(this.userAuth.userLocal.id!,index, item).subscribe(res=>{
+        this.cartContent.splice(index, 1);
+       this.dataSource.data = this.cartContent;
+         this.selection.clear();}
+      )
+    })
+  }
+  checkboxLabel( row?: CartItem): string {
+    
+    this.itemsSelected = this.selection.selected.map(e=>this.reservations[this.cartContent.indexOf(e)]);
+    
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }

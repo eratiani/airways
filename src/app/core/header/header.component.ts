@@ -39,8 +39,8 @@ export class HeaderComponent {
     // if (!this.userState.loggedIn) {
       this.headState.showAuth = true;
     // } else {
-      // this.userState.logOut();
-      // this.router.navigate(['cart', this.userState.userLocal.id, 'user']);
+    //   this.userState.logOut();
+      this.router.navigate(['cart', this.userState.userLocal.id, 'user']);
     // }
   }
 
