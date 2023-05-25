@@ -8,6 +8,7 @@ export interface FlightDataType {
   total_seats: number;
   cost: number;
   id: string;
+  dateArriv: string;
 }
 
 export type SearchParamsType = Partial<{

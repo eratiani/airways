@@ -57,8 +57,6 @@ export class OneSideComponent implements OnChanges {
   }
 
   moveRIght() {
-  
-  
     if (this.flights.length < this.itemsToShow) return;
     this.flightIndex = (this.flightIndex + 1) % this.flights.length;
     this.render(this.itemsToShow);
@@ -74,8 +72,6 @@ checkScreenWidth(){
   }
 }
   moveLeft() {
-    
-   
     if (this.flights.length < this.itemsToShow) return;
     this.flightIndex =
       (this.flightIndex - 1 + this.flights.length) % this.flights.length;

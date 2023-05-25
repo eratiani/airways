@@ -25,10 +25,9 @@
     #card
     [id]="flight.id"
   >
-    <p>{{ flight.date | date : "dd MMM" }}</p>
-    <p>{{ flight.date | date : "EEEE" }}</p>
-
-    <p>{{ flight.cost | currency : headerState.currencyFormat }}</p>
+    <div>{{ flight.date | date : "dd MMM" }}</div>
+    <div>{{ flight.date | date : "EEEE" }}</div>
+    <div>{{ flight.cost | currency : headerState.currencyFormat }}</div>
     <div
       *ngIf="selectedCard?.id === card.id"
       class="highlighted"

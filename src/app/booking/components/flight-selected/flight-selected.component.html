@@ -4,12 +4,15 @@
   <div>
     <p>{{ flight.date | date : "mediumDate" }}</p>
     <!-- to do  -->
-    <p>4:50 (time ) <span>utc timeZone</span></p>
+    <p>
+      {{ flight.date | date : "shortTime" }}
+      <!-- <span>utc timeZone</span> -->
+    </p>
     <p>{{ flight.from }}</p>
   </div>
   <div class="d-flex flex-column align-items-center">
     <!-- to do  -->
-    <p>time of flight</p>
+    <p>{{ timeOfFlight(flight.date, flight.dateArriv) }}</p>
     <div>
       <span
         ><img
@@ -22,19 +25,23 @@
       /></span>
     </div>
     <!-- to do  -->
-    <p>type of flight</p>
+    <p>Direct</p>
   </div>
   <div>
     <!-- to do  -->
-    <p>sat march 28 (date of arriwal)</p>
+    <p>{{ flight.dateArriv | date : "mediumDate" }}</p>
     <!-- to do  -->
-    <p><span>utc timeZone</span>4:50 (time )</p>
+    <p>
+      <!-- <span>utc timeZone</span> -->
+      {{ flight.dateArriv | date : "shortTime" }}
+    </p>
     <p>{{ flight.to }}</p>
   </div>
   <div>
     <!-- to do  -->
     <p>Flight no. FR 1925</p>
   </div>
+
   <div class="text-center">
     <p
       class="d-flex justify-content-center align-items-center rounded-pill"
@@ -46,10 +53,10 @@
     </p>
     <div>
       <p style="margin: 0">price</p>
-      <!-- with user pipe -->
       <p>{{ flight.cost | currency : state.currencyFormat }}</p>
     </div>
   </div>
+
   <button
     *ngIf="!selected; else edit"
     (click)="handleSelect()"
