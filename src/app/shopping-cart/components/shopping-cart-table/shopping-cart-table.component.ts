@@ -1,15 +1,15 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { UserReservation } from 'src/app/models/flyght-data.model';
-import { selectFlight } from 'src/app/redux/actions';
+import { addPassengers, selectFlight } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 import { RequestService } from 'src/app/services/http-request.service';
-import { PassangerDataService } from 'src/app/services/passanger-data.service';
+// import { PassangerDataService } from 'src/app/services/passanger-data.service';
 
 export interface CartItem {
   Flight: string;
@@ -31,13 +31,13 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
   isUserMode = false;
   id = '';
   reservations?: UserReservation[];
-  totalPrice:number = 0;
+  totalPrice: number = 0;
   constructor(
     private route: ActivatedRoute,
     private request: RequestService,
     private userService: BackendUserService,
-    private passangerData:PassangerDataService,
-    private router:Router,
+    // private passangerData: PassangerDataService,
+    private router: Router,
     private store: Store<StoreType>,
     public state: HeaderStateService
   ) {
@@ -52,16 +52,20 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
       console.log(this.reservations);
 
       res.forEach((res) => {
-        const { child = [], adult = [], infant = [] } = res.passeng.passengers;
-        const totalPass: string = String(child.length + adult.length + infant.length);
+        const { child = [], adult = [], infant = [] } = res.passeng.passengers!;
+        const totalPass: string = String(
+          child.length + adult.length + infant.length
+        );
         const flightType = res.flights.backWay ? 'Round Trip' : 'One way';
         let flightDestination: string | string[] = '';
         if (!res.flights.oneWay) return;
         const price = res.flights.oneWay.cost;
-        const reservationPrice = price * child.length + price * adult.length + price * infant.length;
+        const reservationPrice =
+          price * child.length + price * adult.length + price * infant.length;
         this.totalPrice += reservationPrice;
         if (res.flights.backWay) {
-          this.totalPrice += price * child.length + price * adult.length + price * infant.length;
+          this.totalPrice +=
+            price * child.length + price * adult.length + price * infant.length;
           flightDestination = `${res.flights.oneWay.from} - ${res.flights.oneWay.to}
 ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
         } else {
@@ -73,7 +77,7 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
           Flight: flightType,
           'Date & Time': res.flights.oneWay?.date,
           Passengers: totalPass,
-          Price:reservationPrice,
+          Price: reservationPrice,
           edit: '',
         };
         this.cartContent.push(cartObj);
@@ -118,45 +122,45 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
   }
 
   onDelete(ind: number) {
-    // can't use "any" type !!!!!!!!!!!!!!!
-
     this.request.deleteReservation(4, ind).subscribe(() => {
-      // const index = this.cartContent.indexOf(e);
-      //     if (index > -1) {
       this.cartContent.splice(ind, 1);
       this.dataSource.data = this.cartContent;
       this.selection.clear(); // ??? it's cleared all selections!
-      // }
     });
   }
   onEdit(index: number) {
+    if (!this.reservations) return;
+    const { flights, passeng } = this.reservations[index];
+    this.store.dispatch(
+      selectFlight({ oneWay: flights.oneWay, backWay: flights.backWay })
+    );
+    this.store.dispatch(addPassengers(passeng));
 
-    if(!this.reservations) return
-    this.passangerData.index = index;
-    const editItemData = this.reservations[index];
-      this.userService.searchParams = {
-        oneWay: !!editItemData.flights.backWay,
-  from: "",
-  to: "",
-  date: {
-    startDate: "",
-    endDate: ""
-  },
-  passengers:{
-    adult:editItemData.passeng.passengers.adult?.length as number ,
-    child:editItemData.passeng.passengers.child?.length as number,
-    infant:editItemData.passeng.passengers.infant?.length as number
-}
-      },
-      this.passangerData.passangerData = editItemData;
-      this.passangerData.isEditMode = true;
-    this.store.dispatch(selectFlight(editItemData.flights));
+    // this.passangerData.index = index;
+    // const editItemData = this.reservations[index];
+    // (this.userService.searchParams = {
+    //   oneWay: !!editItemData.flights.backWay,
+    //   from: '',
+    //   to: '',
+    //   date: {
+    //     startDate: '',
+    //     endDate: '',
+    //   },
+    //   passengers: {
+    //     adult: editItemData.passeng.passengers.adult?.length as number,
+    //     child: editItemData.passeng.passengers.child?.length as number,
+    //     infant: editItemData.passeng.passengers.infant?.length as number,
+    //   },
+    // }),
+    //   (this.passangerData.passangerData = editItemData);
+    // this.passangerData.isEditMode = true;
+    // this.store.dispatch(selectFlight(editItemData.flights));
+    this.onDelete(index);
     this.router.navigate(['/booking/detail']);
   }
   items = ['delete', 'edit'];
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: CartItem): string {
-
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }

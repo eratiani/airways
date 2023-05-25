@@ -12,8 +12,5 @@ export interface StoreType {
     oneWay?: FlightDataType;
     backWay?: FlightDataType;
   };
-  passengersCount: Partial<
-    Record<keyof ReservationDataType['passengers'], number>
-  >;
   reservation: ReservationDataType;
 }
