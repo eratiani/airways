@@ -5,6 +5,8 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
+  OnInit,
+  HostListener,
 } from '@angular/core';
 import { FlightDataType } from 'src/app/models/flyght-data.model';
 import { OneSideStateService } from '../../services/one-side-state.service';
@@ -25,15 +27,24 @@ export class OneSideComponent implements OnChanges {
   @Output() storeSelect = new EventEmitter<FlightDataType>();
   selectedCard?: FlightDataType;
   flightIndex: number = 0;
+  itemsToShow!:number
+  
   constructor(
     public state: OneSideStateService,
     public headerState: HeaderStateService
-  ) {}
-
+  ) {
+    this.itemsToShow = this.checkScreenWidth()
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.itemsToShow = this.checkScreenWidth();
+    this.render(this.itemsToShow);
+  }
   ngOnChanges(changes: SimpleChanges): void {
+    // this.itemsToShow = this.checkScreenWidth();
     if (changes['flights']) {
       this.flights = changes['flights'].currentValue;
-      this.flightsCurrent = this.flights.slice(0, 5);
+      this.flightsCurrent = this.flights.slice(0, this.itemsToShow);
     }
   }
 
@@ -46,21 +57,34 @@ export class OneSideComponent implements OnChanges {
   }
 
   moveRIght() {
-    if (this.flights.length < 5) return;
+  
+  
+    if (this.flights.length < this.itemsToShow) return;
     this.flightIndex = (this.flightIndex + 1) % this.flights.length;
-    this.render();
+    this.render(this.itemsToShow);
   }
-
+checkScreenWidth(){
+  const screenWidth = window.innerWidth;
+  if (screenWidth <= 360) {
+    return  1
+  }else if(screenWidth > 360 && screenWidth <= 700){
+    return 2
+  } else {
+    return 5
+  }
+}
   moveLeft() {
-    if (this.flights.length < 5) return;
+    
+   
+    if (this.flights.length < this.itemsToShow) return;
     this.flightIndex =
       (this.flightIndex - 1 + this.flights.length) % this.flights.length;
-    this.render();
+    this.render(this.itemsToShow);
   }
 
-  render() {
+  render(numOfItems:number) {
     const startIndex = this.flightIndex;
-    const endIndex = (this.flightIndex + 5) % this.flights.length;
+    const endIndex = (this.flightIndex + numOfItems) % this.flights.length;
     if (startIndex < endIndex) {
       this.flightsCurrent = this.flights.slice(startIndex, endIndex);
     } else {
