@@ -5,7 +5,11 @@ const datePipeInst = new DatePipe('en-US');
 
 @Pipe({ name: 'userFormat' })
 export class DateFormatPipe implements PipeTransform {
-  transform(value: string | number | Date, format: string, userFormat: string) {
+  transform(
+    value: string | number | Date | undefined,
+    format: string,
+    userFormat: string
+  ) {
     return datePipeInst.transform(value, FORMATS[format][userFormat]);
   }
 }

@@ -5,8 +5,15 @@
     <span>{{ userState.searchParams?.to }}</span>
     <span><img src="../../../assets/dot.png" alt="dot" /></span>
     <span
-      >{{ userState.searchParams?.date?.startDate | date : "dd MMM" }} -
-      {{ userState.searchParams?.date?.endDate | date : "dd MMM" }}</span
+      >{{
+        userState.searchParams?.date?.startDate
+          | userFormat : "shortDate" : headState.dateFormat
+      }}
+      -
+      {{
+        userState.searchParams?.date?.endDate
+          | userFormat : "shortDate" : headState.dateFormat
+      }}</span
     >
     <span><img src="../../../assets/dot.png" alt="dot" /></span>
     <span>{{

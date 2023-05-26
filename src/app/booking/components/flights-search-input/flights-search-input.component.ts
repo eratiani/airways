@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { BackendUserService } from 'src/app/services/backend-user.service';
 
 @Component({
@@ -11,5 +12,8 @@ export class FlightsSearchInputComponent {
   changeEditVIew() {
     this.showEdit = !this.showEdit;
   }
-  constructor(public userState: BackendUserService) {}
+  constructor(
+    public userState: BackendUserService,
+    public headState: HeaderStateService
+  ) {}
 }
