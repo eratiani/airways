@@ -9,7 +9,6 @@ import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import {
   flightsReducer,
-  // passangersCountReducer,
   reservationReducer,
   selectedFlihgtReducer,
 } from './redux/reducers';
@@ -55,7 +54,6 @@ import { LayoutModule } from '@angular/cdk/layout';
       {
         flightData: flightsReducer,
         selectedFlight: selectedFlihgtReducer,
-        // passengersCount: passangersCountReducer,
         reservation: reservationReducer,
       },
       {}

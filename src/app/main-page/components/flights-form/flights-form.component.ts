@@ -42,6 +42,9 @@ export class FlightsFormComponent implements OnInit {
   cities = cities;
   dateSub!: Subscription;
   errorMessage = 'Fill this field';
+  startSearchDate = new Date('07/01/2023');
+  endSearchDate = new Date('12/31/2023');
+
   searchForm: FormGroup<FormType> = this.fb.nonNullable.group({
     // oneWay: [false],
     from: [this.userState.searchParams?.from || 'Paris', Validators.required], // to change for ''
@@ -107,12 +110,9 @@ export class FlightsFormComponent implements OnInit {
       return;
     }
 
-    // this.store.dispatch(setPassangersCount(this.searchForm.value.passengers!));
-
     // to do search with required seats avialable
     const { oneWay, from, to, date, passengers } = this.searchForm.value;
     if (date?.startDate) {
-      console.log(new Date(date.startDate));
     }
 
     this.userState.searchParams = {
@@ -130,7 +130,7 @@ export class FlightsFormComponent implements OnInit {
 
     this.search
       .search(oneWay!, from!, to!, date?.startDate, date?.endDate)
-      .subscribe((data) => {
+      .subscribe(() => {
         this.router.navigateByUrl('booking');
       });
   }

@@ -8,6 +8,7 @@ import { HiglightDirective } from './directives/higlight.directive';
 import { OneSideComponent } from './components/one-side/one-side.component';
 
 import { MainPageModule } from '../main-page/main-page.module';
+import { DateFormatPipeModule } from '../shared-pipes/date-format-pipe/date-format.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { MainPageModule } from '../main-page/main-page.module';
     HiglightDirective,
     OneSideComponent,
   ],
-  imports: [BookingRoutig, MainPageModule],
+  imports: [BookingRoutig, MainPageModule, DateFormatPipeModule],
   exports: [],
 })
 export class BookingViewModule {}
