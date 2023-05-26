@@ -2,8 +2,7 @@
   class="container d-flex align-items-center justify-content-between flex-wrap"
 >
   <div>
-    <p>{{ flight.date | date : "mediumDate" }}</p>
-    <!-- to do  -->
+    <p>{{ flight.date | userFormat : "mediumDate" : state.dateFormat }}</p>
     <p>
       {{ flight.date | date : "shortTime" }}
       <!-- <span>utc timeZone</span> -->
@@ -11,7 +10,6 @@
     <p>{{ flight.from }}</p>
   </div>
   <div class="d-flex flex-column align-items-center">
-    <!-- to do  -->
     <p>{{ timeOfFlight(flight.date, flight.dateArriv) }}</p>
     <div>
       <span
@@ -24,12 +22,10 @@
         ><img style="max-width: 10vw" src="../../../assets/Arrow 1.png" alt=""
       /></span>
     </div>
-    <!-- to do  -->
     <p>Direct</p>
   </div>
   <div>
-    <!-- to do  -->
-    <p>{{ flight.dateArriv | date : "mediumDate" }}</p>
+    <p>{{ flight.dateArriv | userFormat : "mediumDate" : state.dateFormat }}</p>
     <!-- to do  -->
     <p>
       <!-- <span>utc timeZone</span> -->
@@ -38,7 +34,7 @@
     <p>{{ flight.to }}</p>
   </div>
   <div>
-    <!-- to do  -->
+    <!-- to do ?  -->
     <p>Flight no. FR 1925</p>
   </div>
 

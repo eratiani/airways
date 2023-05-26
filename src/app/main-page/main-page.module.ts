@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ContentMainComponent } from './main-view/content-main.component';
 import { FlightsFormComponent } from './components/flights-form/flights-form.component';
 import { UserAuthenticationModule } from '../user-authentication/user-authentication.module';
+import { DateFormatPipeModule } from '../shared-pipes/date-format-pipe/date-format.module';
 
 @NgModule({
   declarations: [ContentMainComponent, FlightsFormComponent],
@@ -22,6 +23,7 @@ import { UserAuthenticationModule } from '../user-authentication/user-authentica
     MatNativeDateModule,
     MatInputModule,
     UserAuthenticationModule,
+    DateFormatPipeModule,
   ],
   exports: [
     CommonModule,

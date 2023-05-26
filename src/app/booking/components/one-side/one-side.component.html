@@ -25,7 +25,9 @@
     #card
     [id]="flight.id"
   >
-    <div>{{ flight.date | date : "dd MMM" }}</div>
+    <div>
+      {{ flight.date | userFormat : "shortDate" : headerState.dateFormat }}
+    </div>
     <div>{{ flight.date | date : "EEEE" }}</div>
     <div>{{ flight.cost | currency : headerState.currencyFormat }}</div>
     <div

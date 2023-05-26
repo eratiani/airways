@@ -67,7 +67,13 @@
             <input matEndDate formControlName="endDate" />
           </mat-date-range-input>
           <mat-hint
-            >{{ headState.dateFormat }} - {{ headState.dateFormat }}</mat-hint
+            >{{
+              startSearchDate | userFormat : "mediumDate" : headState.dateFormat
+            }}
+            -
+            {{
+              endSearchDate | userFormat : "mediumDate" : headState.dateFormat
+            }}</mat-hint
           >
           <mat-datepicker-toggle
             matIconSuffix
