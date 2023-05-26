@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ShoppingCartTableComponent } from './components/shopping-cart-table/shopping-cart-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -35,5 +35,6 @@ const routes: Route[] = [
     MatButtonModule,
     RouterModule.forChild(routes),
   ],
+  providers: [DatePipe],
 })
 export class ShoppingCartModule {}

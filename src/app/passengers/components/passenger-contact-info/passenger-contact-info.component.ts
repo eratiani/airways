@@ -65,7 +65,7 @@ export class PassengerContactInfoComponent {
     contacts: StoreType['reservation']['contact']
   ) {
     if (contacts) {
-      this.phoneNumber = contacts.telephone || '';
+      this.phoneNumber = contacts.country?.callingCode || '';
       this.control.controls.email?.setValue(contacts.email || '');
       this.control.controls.country?.setValue(contacts.country!);
       this.control.controls.telephone?.setValue(contacts.telephone || '');
