@@ -8,7 +8,6 @@ import { UserReservation } from 'src/app/models/flyght-data.model';
 import { addPassengers, selectFlight } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
 import { RequestService } from 'src/app/services/http-request.service';
-import { PassangerDataService } from 'src/app/services/passanger-data.service';
 
 interface CartItem {
   Flight: string;
@@ -36,7 +35,6 @@ export class ShoppingCartTableComponent {
   constructor(
     private route: ActivatedRoute,
     private request: RequestService,
-    private passangerData: PassangerDataService,
     private router: Router,
     private store: Store<StoreType>,
     public state: HeaderStateService
@@ -163,8 +161,7 @@ export class ShoppingCartTableComponent {
     const summaryObj = this.reservations[index];
     this.store.dispatch(addPassengers(summaryObj.passeng));
     this.store.dispatch(selectFlight(summaryObj.flights));
-    this.passangerData.enteringSummaryView = true;
-    this.router.navigate(['/booking/summary']);
+    this.router.navigate(['/booking/summary', 'edit']);
   }
 
   onreturnItemsLenght() {

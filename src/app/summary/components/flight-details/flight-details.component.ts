@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { FlightDataType } from 'src/app/models/flyght-data.model';
 import { ReservationDataType } from 'src/app/models/flyght-data.model';
 
@@ -7,19 +8,14 @@ import { ReservationDataType } from 'src/app/models/flyght-data.model';
   templateUrl: './flight-details.component.html',
   styleUrls: ['./flight-details.component.css'],
 })
-export class FlightDetailsComponent  {
+export class FlightDetailsComponent {
   @Input() flightDetails!: ReservationDataType;
   @Input() oneWayFlight?: FlightDataType;
   @Input() backFlight?: FlightDataType;
- 
-  timeOfLanding(flightObj: FlightDataType) {
-    const randomHours = Math.floor(Math.random() * 12) + 1;
-    const date = new Date(flightObj.date);
-    date.setHours(date.getHours() + randomHours);
 
-    return date;
-  }
-  getObjectKeys(obj: any):[string, any][] {
+  constructor(public state: HeaderStateService) {}
+
+  getObjectKeys(obj: any): [string, any][] {
     return Object.entries(obj);
   }
 }

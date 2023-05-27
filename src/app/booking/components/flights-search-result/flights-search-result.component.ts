@@ -19,11 +19,9 @@ export class FlightsSearchResultComponent {
   ) {
     store.select('flightData', 'oneWay').subscribe((data) => {
       this.oneWayFlights = data;
-      console.log('oneway: ', this.oneWayFlights);
     });
     store.select('flightData', 'backWay').subscribe((data) => {
       this.backFlights = data;
-      console.log('back: ', this.backFlights);
     });
   }
   oneWayFlights?: FlightDataType[];

@@ -18,7 +18,6 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       tap({
-        next: (ev) => console.log('success: ', ev),
         error: (ev) => {
           if (ev instanceof HttpErrorResponse) {
             this.snack.open(`${ev.statusText}, ${ev.error}`);

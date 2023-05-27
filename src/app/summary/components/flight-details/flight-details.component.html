@@ -2,24 +2,33 @@
   <mat-card class="col-xl-5 col-12">
     <mat-card-content *ngIf="oneWayFlight">
       <h2>From {{ oneWayFlight.from }} To {{ oneWayFlight.to }}</h2>
-      <p>{{ oneWayFlight.date }} {{ timeOfLanding(oneWayFlight) }}</p>
+      <p>
+        {{ oneWayFlight.date | userFormat : "fullDate" : state.dateFormat }}
+        {{ oneWayFlight.date | date : "hh:mm" }} -
+        {{ oneWayFlight.dateArriv | date : "hh:mm" }}
+      </p>
 
-     <app-passanger-info 
-      *ngFor="let passenger of getObjectKeys(flightDetails.passengers)" 
-      [passenger]="passenger[1]"
-      [passangerType]="passenger[0]"
+      <app-passanger-info
+        *ngFor="let passenger of getObjectKeys(flightDetails.passengers)"
+        [passenger]="passenger[1]"
+        [passangerType]="passenger[0]"
       ></app-passanger-info>
     </mat-card-content>
   </mat-card>
   <mat-card *ngIf="backFlight" class="col-xl-5 col-12">
     <mat-card-content>
       <h2>From {{ backFlight.from }} To {{ backFlight.to }}</h2>
-      <p>{{ backFlight.date }} {{ timeOfLanding(backFlight) }}</p>
+      <p>
+        {{ backFlight.date | userFormat : "fullDate" : state.dateFormat }}
+        {{ backFlight.date | date : "hh:mm" }}-{{
+          backFlight.dateArriv | date : "hh:mm"
+        }}
+      </p>
 
-      <app-passanger-info 
-      *ngFor="let passenger of getObjectKeys(flightDetails.passengers)" 
-      [passenger]="passenger[1]"
-      [passangerType]="passenger[0]"
+      <app-passanger-info
+        *ngFor="let passenger of getObjectKeys(flightDetails.passengers)"
+        [passenger]="passenger[1]"
+        [passangerType]="passenger[0]"
       ></app-passanger-info>
     </mat-card-content>
   </mat-card>

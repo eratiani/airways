@@ -7,10 +7,15 @@ import { FlightFareComponent } from './components/flight-fare/flight-fare.compon
 import { RouterModule, Routes } from '@angular/router';
 import { PassangerInfoComponent } from './components/passanger-info/passanger-info.component';
 import { FlightFareTypeComponent } from './components/flight-fare-type/flight-fare-type.component';
+import { DateFormatPipeModule } from '../shared-pipes/date-format-pipe/date-format.module';
 
 const routes: Routes = [
   {
     path: '',
+    component: SummaryViewComponent,
+  },
+  {
+    path: ':mode',
     component: SummaryViewComponent,
   },
 ];
@@ -23,7 +28,11 @@ const routes: Routes = [
     PassangerInfoComponent,
     FlightFareTypeComponent,
   ],
-  imports: [CommonModule, MatCardModule, RouterModule.forChild(routes)],
-  // exports:[SummaryViewComponent]
+  imports: [
+    CommonModule,
+    MatCardModule,
+    RouterModule.forChild(routes),
+    DateFormatPipeModule,
+  ],
 })
 export class SummaryModule {}

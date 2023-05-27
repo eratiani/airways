@@ -9,7 +9,7 @@ import { SearchParamsType } from '../models/flyght-data.model';
   providedIn: 'root',
 })
 export class BackendUserService {
-  loggedIn = true; // to change to false
+  loggedIn = false; // to change to false
   userLocal: Partial<UserData> = { id: 4 }; // template id
   searchParams?: SearchParamsType;
 

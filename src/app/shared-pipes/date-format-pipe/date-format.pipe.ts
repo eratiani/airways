@@ -27,4 +27,10 @@ const FORMATS: Record<string, Record<string, string>> = {
     ['YYYY/DD/MM']: 'dd MMM',
     ['YYYY/MM/DD']: 'MMM dd',
   },
+  fullDate: {
+    ['MM/DD/YYYY']: 'EEEE, MMMM d, y',
+    ['DD/MM/YYYY']: 'EEEE, d MMMM, y',
+    ['YYYY/DD/MM']: 'EEEE, y, d MMMM',
+    ['YYYY/MM/DD']: 'EEEE, y MMMM d',
+  },
 };
