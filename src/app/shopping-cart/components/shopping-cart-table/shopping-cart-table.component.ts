@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { DatePipe } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+// import { DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -8,7 +8,7 @@ import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { UserReservation } from 'src/app/models/flyght-data.model';
 import { addPassengers, selectFlight } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
-import { BackendUserService } from 'src/app/services/backend-user.service';
+// import { BackendUserService } from 'src/app/services/backend-user.service';
 import { RequestService } from 'src/app/services/http-request.service';
 import { PassangerDataService } from 'src/app/services/passanger-data.service';
 
@@ -28,7 +28,7 @@ export interface CartItem {
   templateUrl: './shopping-cart-table.component.html',
   styleUrls: ['./shopping-cart-table.component.css'],
 })
-export class ShoppingCartTableComponent implements OnDestroy, OnInit {
+export class ShoppingCartTableComponent {
   cartContent: CartItem[] = [];
   isUserMode = false;
   id = '';
@@ -39,69 +39,21 @@ export class ShoppingCartTableComponent implements OnDestroy, OnInit {
   constructor(
     private route: ActivatedRoute,
     private request: RequestService,
-    private userService: BackendUserService,
+    // private userService: BackendUserService,
     private passangerData: PassangerDataService,
     private router: Router,
     private store: Store<StoreType>,
-    public state: HeaderStateService,
-    private userAuth: BackendUserService,
-    private datePipe: DatePipe
+    public state: HeaderStateService // private userAuth: BackendUserService // private datePipe: DatePipe
   ) {
     this.route.params.subscribe(({ userId, mode }) => {
       this.id = userId;
-      console.log(userId);
-
       this.isUserMode = mode === 'user' ? true : false;
     });
     this.request.getUserReservations(Number(this.id)).subscribe((res) => {
       this.reservations = res;
-      console.log(this.reservations);
-
-      res.forEach((res) => {
-        console.log(!!res.payed, this.isUserMode);
-
-        if (!this.isUserMode && res.payed) return;
-        if (!res.passeng.passengers) return;
-        const { child = [], adult = [], infant = [] } = res.passeng.passengers;
-        const totalPass: string = String(
-          child.length + adult.length + infant.length
-        );
-        const flightType = res.flights.backWay ? 'Round Trip' : 'One way';
-        let flightDestination: string | string[] = '';
-        if (!res.flights.oneWay) return;
-        const price = res.flights.oneWay.cost;
-        let reservationPrice =
-          price * child.length + price * adult.length + price * infant.length;
-        this.totalPrice += reservationPrice;
-        if (res.flights.backWay) {
-          reservationPrice *= 2;
-          this.totalPrice +=
-            price * child.length + price * adult.length + price * infant.length;
-          flightDestination = `${res.flights.oneWay.from} - ${res.flights.oneWay.to}
-${res.flights.backWay.from} - ${res.flights.backWay.to}`;
-        } else {
-          flightDestination = `${res.flights.oneWay.from} - ${res.flights.oneWay.to}`;
-        }
-        const cartObj = {
-          No: res.flights.oneWay.id,
-          FlightDestination: flightDestination,
-          Flight: flightType,
-          'Date & Time': `${res.flights.oneWay?.date}
- ${res.flights.oneWay?.dateArriv}`,
-          Passengers: totalPass,
-          Price: reservationPrice,
-          edit: '',
-        };
-        this.cartContent.push(cartObj);
-      });
-      this.dataSource.data = this.cartContent;
+      this.fillTableFromUserReservations();
     });
   }
-
-  ngOnDestroy(): void {
-    // this.cartContent = [];  // why you did it?..
-  }
-  ngOnInit(): void {} // don't need ngOnInit without any Input params...
 
   displayedColumns: string[] = [
     'select',
@@ -116,6 +68,49 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
   dataSource = new MatTableDataSource<CartItem>(this.cartContent);
   selection = new SelectionModel<CartItem>(true, []);
 
+  private fillTableFromUserReservations() {
+    // this.request.getUserReservations(Number(this.id)).subscribe((res) => {
+    console.log('reservations: ', this.reservations);
+    this.reservations.forEach((res) => {
+      // console.log(!!res.payed, this.isUserMode);
+      if (!this.isUserMode && res.payed) return;
+      if (!res.passeng.passengers) return;
+      const { child = [], adult = [], infant = [] } = res.passeng.passengers;
+      const totalPass: string = String(
+        child.length + adult.length + infant.length
+      );
+      const flightType = res.flights.backWay ? 'Round Trip' : 'One way';
+      let flightDestination: string | string[] = '';
+      if (!res.flights.oneWay) return;
+      const price = res.flights.oneWay.cost;
+      let reservationPrice =
+        price * child.length + price * adult.length + price * infant.length;
+      this.totalPrice += reservationPrice;
+      if (res.flights.backWay) {
+        reservationPrice *= 2;
+        this.totalPrice +=
+          price * child.length + price * adult.length + price * infant.length;
+        flightDestination = `${res.flights.oneWay.from} - ${res.flights.oneWay.to}
+${res.flights.backWay.from} - ${res.flights.backWay.to}`;
+      } else {
+        flightDestination = `${res.flights.oneWay.from} - ${res.flights.oneWay.to}`;
+      }
+      const cartObj = {
+        No: res.flights.oneWay.id,
+        FlightDestination: flightDestination,
+        Flight: flightType,
+        'Date & Time': `${res.flights.oneWay?.date}
+ ${res.flights.oneWay?.dateArriv}`,
+        Passengers: totalPass,
+        Price: reservationPrice,
+        edit: '',
+      };
+      this.cartContent.push(cartObj);
+    });
+    this.dataSource.data = this.cartContent;
+    // });
+  }
+
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -129,12 +124,11 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
       this.selection.clear();
       return;
     }
-
     this.selection.select(...this.dataSource.data);
   }
 
   onDelete(ind: number) {
-    this.request.deleteReservation(4, ind).subscribe(() => {
+    this.request.deleteReservation(Number(this.id), ind).subscribe(() => {
       this.cartContent.splice(ind, 1);
       this.dataSource.data = this.cartContent;
       this.selection.clear(); // ??? it's cleared all selections!
@@ -147,26 +141,6 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
       selectFlight({ oneWay: flights.oneWay, backWay: flights.backWay })
     );
     this.store.dispatch(addPassengers(passeng));
-
-    // this.passangerData.index = index;
-    // const editItemData = this.reservations[index];
-    // (this.userService.searchParams = {
-    //   oneWay: !!editItemData.flights.backWay,
-    //   from: '',
-    //   to: '',
-    //   date: {
-    //     startDate: '',
-    //     endDate: '',
-    //   },
-    //   passengers: {
-    //     adult: editItemData.passeng.passengers.adult?.length as number,
-    //     child: editItemData.passeng.passengers.child?.length as number,
-    //     infant: editItemData.passeng.passengers.infant?.length as number,
-    //   },
-    // }),
-    //   (this.passangerData.passangerData = editItemData);
-    // this.passangerData.isEditMode = true;
-    // this.store.dispatch(selectFlight(editItemData.flights));
     this.onDelete(index);
     this.router.navigate(['/booking/detail']);
   }
@@ -178,7 +152,8 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
     this.passangerData.enteringSummaryView = true;
     this.router.navigate(['/booking/summary']);
   }
-  items = ['delete', 'edit'];
+  // items = ['delete', 'edit'];
+
   /** The label for the checkbox on the passed row */
   onreturnItemsLenght() {
     return this.selection.selected.length;
@@ -187,13 +162,13 @@ ${res.flights.backWay.from} - ${res.flights.backWay.to}`;
     this.router.navigate(['/']);
   }
   onPayment() {
-    if (this.itemsSelected.length === 0) return;
+    if (this.itemsSelected.length) return;
     this.itemsSelected.forEach((item) => {
       const index = this.reservations.indexOf(item);
       item.payed = true;
       this.request
-        .editReservation(this.userAuth.userLocal.id!, index, item)
-        .subscribe((res) => {
+        .editReservation(Number(this.id), index, item)
+        .subscribe(() => {
           this.cartContent.splice(index, 1);
           this.dataSource.data = this.cartContent;
           this.selection.clear();
