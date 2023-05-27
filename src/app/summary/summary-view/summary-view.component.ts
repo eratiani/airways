@@ -20,13 +20,13 @@ export class SummaryViewComponent {
   passangersInfo!: ReservationDataType;
   oneWayFlight?: FlightDataType;
   backFlight?: FlightDataType;
-  FromCartPage:boolean = false;
+  FromCartPage: boolean = false;
   constructor(
     private store: Store<StoreType>,
     private router: Router,
     private request: RequestService,
     private userAuth: BackendUserService,
-    private passengersData: PassangerDataService,
+    private passengersData: PassangerDataService
   ) {
     this.FromCartPage = this.passengersData.enteringSummaryView;
     this.store
@@ -38,7 +38,6 @@ export class SummaryViewComponent {
       this.oneWayFlight = data;
     });
     this.store.select('selectedFlight', 'backWay').subscribe((data) => {
-      console.log('backflight', data ,this.passengersData.isEditMode);
       this.backFlight = data;
     });
   }
@@ -46,22 +45,32 @@ export class SummaryViewComponent {
   goBack() {
     this.router.navigateByUrl('booking/detail');
   }
-  toUserPage(){
-    this.router.navigate(['cart', this.userAuth.userLocal.id, 'user'])
+
+  toUserPage() {
+    this.router.navigate(['cart', this.userAuth.userLocal.id, 'user']);
   }
+
   goToCart() {
     if (this.passengersData.isEditMode) {
-      
-      this.request.editReservation(this.userAuth.userLocal.id!,this.passengersData.index, {
-        flights: { oneWay: this.oneWayFlight, backWay: this.backFlight },
-        passeng: this.passangersInfo,
-      }).subscribe(res=>{
-        console.log(res);
-        
-        this.router.navigate(['cart', this.userAuth.userLocal.id, 'shopping'])
-      })
-      return 
-    } 
+      this.request
+        .editReservation(
+          this.userAuth.userLocal.id!,
+          this.passengersData.index,
+          {
+            flights: { oneWay: this.oneWayFlight, backWay: this.backFlight },
+            passeng: this.passangersInfo,
+          }
+        )
+        .subscribe((res) => {
+          console.log(res);
+          this.router.navigate([
+            'cart',
+            this.userAuth.userLocal.id,
+            'shopping',
+          ]);
+        });
+      return;
+    }
     this.request
       .addReservation(this.userAuth.userLocal.id!, {
         flights: { oneWay: this.oneWayFlight, backWay: this.backFlight },

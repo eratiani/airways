@@ -5,11 +5,9 @@ import { UserReservation } from '../models/flyght-data.model';
   providedIn: 'root',
 })
 export class PassangerDataService {
-  passangerData!: UserReservation;
-  summaryData!: UserReservation;
-  enteringSummaryView:boolean = false;
-  index!:number
-  isEditMode:boolean = false; 
-  constructor() { }
-  
+  // passangerData!: UserReservation;
+  // summaryData!: UserReservation;
+  enteringSummaryView: boolean = false;
+  index!: number;
+  isEditMode: boolean = false;
 }

@@ -5,3 +5,11 @@ table {
 th.mat-sort-header-sorted {
   color: black;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.mat-mdc-header-row th {
+  font-weight: 700;
+}

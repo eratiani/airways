@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { Route, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { DateFormatPipeModule } from '../shared-pipes/date-format-pipe/date-format.module';
 
 const routes: Route[] = [
   {
@@ -34,6 +35,7 @@ const routes: Route[] = [
     MatMenuModule,
     MatButtonModule,
     RouterModule.forChild(routes),
+    DateFormatPipeModule,
   ],
   providers: [DatePipe],
 })

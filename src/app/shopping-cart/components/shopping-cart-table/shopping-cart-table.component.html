@@ -1,8 +1,4 @@
 <div class="container">
-  <!-- <p>{{ id }}</p>
-  <p>{{ isUserMode }}</p>
-  <p>{{ reservations | json }}</p> -->
-  <!-- <p>{{ reservations | json }}</p> -->
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
@@ -31,12 +27,39 @@
     >
       <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
       <td style="white-space: pre" mat-cell *matCellDef="let element">
-        <ng-container *ngIf="column === 'Price'">
-          {{ element[column] | currency : state.currencyFormat }}
-        </ng-container>
-        <ng-container *ngIf="column !== 'Price'">
-          {{ element[column] }}
-        </ng-container>
+        <div *ngIf="column === 'Date & Time'; else other">
+          <div>
+            <span>
+              {{
+                element[column].to.start
+                  | userFormat : "mediumDate" : state.dateFormat
+              }},
+            </span>
+            <span
+              >{{ element[column].to.start | date : "hh:mm" }} -
+              {{ element[column].to.end | date : "hh:mm" }}</span
+            >
+          </div>
+          <div *ngIf="element[column].back">
+            <span>
+              {{
+                element[column].back.start
+                  | userFormat : "mediumDate" : state.dateFormat
+              }},
+            </span>
+            <span
+              >{{ element[column].back.start | date : "hh:mm" }} -
+              {{ element[column].back.end | date : "hh:mm" }}</span
+            >
+          </div>
+        </div>
+        <ng-template #other>
+          {{
+            column === "Price"
+              ? (element[column] | currency : state.currencyFormat)
+              : element[column]
+          }}
+        </ng-template>
       </td>
     </ng-container>
 
@@ -57,19 +80,24 @@
           <button mat-menu-item (click)="onDelete(i)">Delete</button>
           <button mat-menu-item (click)="onEdit(i)">Edit</button>
         </mat-menu>
-        <div class="m-2" *ngIf="isUserMode">
-          <button mat-menu-item (click)="onSummaryCheck(i, $event)">
-            Summary
-          </button>
-        </div>
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-header-row
+      *matHeaderRowDef="
+        isUserMode ? displayedColumns.slice(1) : displayedColumns
+      "
+    ></tr>
     <tr
       mat-row
-      *matRowDef="let row; columns: displayedColumns"
-      (click)="selection.toggle(row)"
+      *matRowDef="
+        let row;
+        let i = index;
+        columns: isUserMode ? displayedColumns.slice(1) : displayedColumns
+      "
+      [class.clickable]="isUserMode"
+      (click)="onSummaryCheck(i)"
     ></tr>
   </table>
   <br />
