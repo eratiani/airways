@@ -27,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
+import { SpinnerModule } from './spinner/spinner.module';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, ConfirmLogin],
@@ -59,6 +60,7 @@ import { LayoutModule } from '@angular/cdk/layout';
       {}
     ),
     MatSnackBarModule,
+    SpinnerModule,
   ],
 })
 export class AppModule {}
