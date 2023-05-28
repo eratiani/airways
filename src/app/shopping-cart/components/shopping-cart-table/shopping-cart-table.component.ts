@@ -18,7 +18,7 @@ interface CartItem {
   Passengers: string;
   Price: number;
   edit: string;
-  payed?: false;
+  payed?: boolean;
 }
 
 @Component({
@@ -124,6 +124,7 @@ export class ShoppingCartTableComponent implements OnDestroy {
         Passengers: passengers,
         Price: price,
         edit: '',
+        payed: res.payed,
       };
       this.cartContent.push(cartObj);
     });

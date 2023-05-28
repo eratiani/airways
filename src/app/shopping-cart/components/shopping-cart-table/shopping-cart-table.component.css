@@ -13,3 +13,15 @@ th.mat-sort-header-sorted {
 .mat-mdc-header-row th {
   font-weight: 700;
 }
+
+.icon {
+  font-weight: bold;
+}
+
+.payed {
+  color: green;
+}
+
+.not-payed {
+  color: red;
+}
