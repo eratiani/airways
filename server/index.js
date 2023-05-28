@@ -9,13 +9,11 @@ app.db = router.db;
 
 const dataHandler = (req, resp, next) => {
   console.log(req.url);
-  // req.url = "/users";
   next();
 };
 
 const rules = auth.rewriter({
-  // data: 440,
-  users: 640,
+  users: 600,
 });
 
 const PORT = 3000;

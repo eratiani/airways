@@ -17,7 +17,7 @@ function cityGenerate(prev) {
 }
 
 function dateGener() {
-  const month = Math.round(Math.random() * 5) + 6;
+  const month = Math.round(Math.random() * 3) + 6;
   const day = Math.round(Math.random() * 30) + 1;
   const hours = Math.round(Math.random() * 23);
   const minutes = Math.round(Math.random() * 59);

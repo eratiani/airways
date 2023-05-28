@@ -43,12 +43,11 @@ export class FlightsFormComponent implements OnInit {
   dateSub!: Subscription;
   errorMessage = 'Fill this field';
   startSearchDate = new Date('07/01/2023');
-  endSearchDate = new Date('12/31/2023');
+  endSearchDate = new Date('09/31/2023');
 
   searchForm: FormGroup<FormType> = this.fb.nonNullable.group({
-    // oneWay: [false],
-    from: [this.userState.searchParams?.from || 'Paris', Validators.required], // to change for ''
-    to: [this.userState.searchParams?.to || 'Seoul', [Validators.required]], // to change for ''
+    from: [this.userState.searchParams?.from || '', Validators.required],
+    to: [this.userState.searchParams?.to || '', [Validators.required]],
     date: this.fb.nonNullable.group({
       startDate: [this.userState.searchParams?.date?.startDate || ''],
       endDate: [this.userState.searchParams?.date?.endDate || ''],

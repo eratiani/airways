@@ -83,14 +83,14 @@ export class LogInComponent {
   async onSubmit() {
     try {
       const { password, email } = this.logInForm.value;
-      this.userService.loginUser(email!, password!).subscribe((test) => {
-        console.log(test);
+      this.userService.loginUser(email!, password!).subscribe(() => {
         this.snackBar.open('You are login successfully!');
         this.logInForm.reset();
         this.headerState.showAuth = false;
       });
     } catch (err: any) {
       // this.errorService.generateError(err);
+      console.error(err);
     }
   }
 }
