@@ -1,9 +1,4 @@
-import {
-  Component,
-  // HostListener,
-  OnDestroy,
-  // ViewChild,
-} from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   AbstractControl,
@@ -17,9 +12,7 @@ import { Router } from '@angular/router';
 import { addPassengers } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
 import { BackendUserService } from 'src/app/services/backend-user.service';
-// import { PassangerDataService } from 'src/app/services/passanger-data.service';
-// import { PassengerContactInfoComponent } from '../components/passenger-contact-info/passenger-contact-info.component';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { PassengerType } from 'src/app/models/flyght-data.model';
 
 export interface ContactType {
@@ -47,7 +40,6 @@ export interface EachPassengerType {
   styleUrls: ['./passengers-view.component.css'],
 })
 export class PassengersViewComponent implements OnDestroy {
-  // sub!: Subscription;
   destroyer = new Subject<void>();
   passengersForm = this.fb.group({
     adult: this.fb.array<FormGroup<EachPassengerType>>([]),
@@ -60,14 +52,11 @@ export class PassengersViewComponent implements OnDestroy {
     'child',
     'infant',
   ];
-  // @HostListener('window:beforeunload', ['$event'])
-  // @ViewChild(PassengerContactInfoComponent)
-  // private passengerContactInfoComponent!: PassengerContactInfoComponent;
   constructor(
     private fb: FormBuilder,
     private store: Store<StoreType>,
     private router: Router,
-    private userState: BackendUserService // private passangerData: PassangerDataService
+    private userState: BackendUserService
   ) {
     store
       .select('reservation')
@@ -76,7 +65,6 @@ export class PassengersViewComponent implements OnDestroy {
         if (!initReserv.passengers) {
           this.setFromPassengCount();
         } else {
-          // console.log('from reservat: ', initReserv.passengers);
           const passeng = initReserv.passengers;
           for (const [type, each] of Object.entries(passeng) as [
             keyof typeof passeng,
@@ -106,13 +94,7 @@ export class PassengersViewComponent implements OnDestroy {
       }
     }
   }
-  // beforeunloadHandler(event: Event) {
-  //   const targetRoute = this.router.url;
-  //   if (targetRoute !== '/summary' && !targetRoute.includes('/detail')) {
-  //     this.passangerData.isEditMode = false;
-  //     console.log(this.passangerData.isEditMode);
-  //   }
-  // }
+
   ngOnDestroy(): void {
     this.destroyer.next();
     this.destroyer.complete();

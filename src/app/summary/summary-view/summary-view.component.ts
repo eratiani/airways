@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
 import {
   FlightDataType,
   ReservationDataType,
@@ -14,11 +15,12 @@ import { RequestService } from 'src/app/services/http-request.service';
   templateUrl: './summary-view.component.html',
   styleUrls: ['./summary-view.component.css'],
 })
-export class SummaryViewComponent {
+export class SummaryViewComponent implements OnDestroy {
   passangersInfo!: ReservationDataType;
   oneWayFlight?: FlightDataType;
   backFlight?: FlightDataType;
   editMode = false;
+  destroyer = new Subject<void>();
   constructor(
     private store: Store<StoreType>,
     private router: Router,
@@ -28,18 +30,30 @@ export class SummaryViewComponent {
   ) {
     this.store
       .select('reservation')
+      .pipe(takeUntil(this.destroyer))
       .subscribe((data) => (this.passangersInfo = data));
-    this.store.select('selectedFlight', 'oneWay').subscribe((data) => {
-      this.oneWayFlight = data;
-    });
-    this.store.select('selectedFlight', 'backWay').subscribe((data) => {
-      this.backFlight = data;
-    });
-    route.params.subscribe((params) => {
+    this.store
+      .select('selectedFlight', 'oneWay')
+      .pipe(takeUntil(this.destroyer))
+      .subscribe((data) => {
+        this.oneWayFlight = data;
+      });
+    this.store
+      .select('selectedFlight', 'backWay')
+      .pipe(takeUntil(this.destroyer))
+      .subscribe((data) => {
+        this.backFlight = data;
+      });
+    route.params.pipe(takeUntil(this.destroyer)).subscribe((params) => {
       if (params['mode'] === 'edit') {
         this.editMode = true;
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyer.next();
+    this.destroyer.complete();
   }
 
   goBack() {

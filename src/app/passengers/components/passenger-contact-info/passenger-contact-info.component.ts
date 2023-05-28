@@ -6,7 +6,6 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { ContactType } from '../../passengers-view/passengers-view.component';
-// import { PassangerDataService } from 'src/app/services/passanger-data.service';
 import { Store } from '@ngrx/store';
 import { StoreType } from 'src/app/redux/store.model';
 
@@ -19,10 +18,7 @@ export class PassengerContactInfoComponent {
   @Input() control!: FormGroup<Partial<ContactType>>;
   fieldRequired: string = 'This field is required';
   phoneNumber: string = '';
-  constructor(
-    // private passangerData: PassangerDataService,
-    private store: Store<StoreType>
-  ) {}
+  constructor(private store: Store<StoreType>) {}
   ngOnInit(): void {
     const emailregex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

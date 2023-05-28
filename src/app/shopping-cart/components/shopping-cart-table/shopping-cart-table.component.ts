@@ -1,8 +1,9 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subject, takeUntil } from 'rxjs';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { UserReservation } from 'src/app/models/flyght-data.model';
 import { addPassengers, selectFlight } from 'src/app/redux/actions';
@@ -25,13 +26,14 @@ interface CartItem {
   templateUrl: './shopping-cart-table.component.html',
   styleUrls: ['./shopping-cart-table.component.css'],
 })
-export class ShoppingCartTableComponent {
+export class ShoppingCartTableComponent implements OnDestroy {
   cartContent: CartItem[] = [];
   isUserMode = false;
   id = '';
   reservations!: UserReservation[];
   totalPrice: number = 0;
   itemsSelected!: UserReservation[];
+  destroyer = new Subject<void>();
   constructor(
     private route: ActivatedRoute,
     private request: RequestService,
@@ -39,12 +41,19 @@ export class ShoppingCartTableComponent {
     private store: Store<StoreType>,
     public state: HeaderStateService
   ) {
-    this.route.params.subscribe(({ userId, mode }) => {
-      this.id = userId;
-      this.isUserMode = mode === 'user' ? true : false;
-      this.totalPrice = 0;
-      this.readReservations();
-    });
+    this.route.params
+      .pipe(takeUntil(this.destroyer))
+      .subscribe(({ userId, mode }) => {
+        this.id = userId;
+        this.isUserMode = mode === 'user' ? true : false;
+        this.totalPrice = 0;
+        this.readReservations();
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyer.next();
+    this.destroyer.complete();
   }
 
   private readReservations() {

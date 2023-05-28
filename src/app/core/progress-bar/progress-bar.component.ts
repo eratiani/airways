@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { BreakpointObserveService } from 'src/app/services/breakpoints-observer.service';
 
 @Component({
@@ -7,9 +8,10 @@ import { BreakpointObserveService } from 'src/app/services/breakpoints-observer.
   templateUrl: './progress-bar.component.html',
   styleUrls: ['./progress-bar.component.css'],
 })
-export class ProgressBarComponent {
+export class ProgressBarComponent implements OnDestroy {
   show = false;
   index?: number;
+  destroyer = new Subject<void>();
   constructor(
     private router: Router,
     public observer: BreakpointObserveService
@@ -32,5 +34,10 @@ export class ProgressBarComponent {
         }
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyer.next();
+    this.destroyer.complete();
   }
 }
