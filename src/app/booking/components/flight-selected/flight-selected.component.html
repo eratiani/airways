@@ -1,11 +1,10 @@
 <div
-  class="container d-flex align-items-center justify-content-between flex-wrap"
+  class="bg-white container d-flex align-items-center justify-content-between flex-wrap"
 >
   <div>
     <p>{{ flight.date | userFormat : "mediumDate" : state.dateFormat }}</p>
     <p>
       {{ flight.date | date : "shortTime" }}
-      <!-- <span>utc timeZone</span> -->
     </p>
     <p>{{ flight.from }}</p>
   </div>
@@ -34,7 +33,7 @@
   </div>
   <div>
     <!-- to do ?  -->
-    <p>Flight no. FR 1925</p>
+    <p>Flight no. FR {{ flight.id }}</p>
   </div>
 
   <div class="text-center">
@@ -48,7 +47,9 @@
     </p>
     <div>
       <p style="margin: 0">price</p>
-      <p>{{ flight.cost | currency : state.currencyFormat }}</p>
+      <p class="color-main">
+        {{ flight.cost | currency : state.currencyFormat }}
+      </p>
     </div>
   </div>
 

@@ -1,57 +1,74 @@
-<form class="container" [formGroup]="passengersForm" (submit)="onSubmit()">
-  <mat-card *ngFor="let passenger of passengers">
-    <mat-card-header>
-      <mat-card-title>
-        <h1>{{ passenger === "child" ? "children" : passenger + "s" }}:</h1>
-        <div class="controls">
-          <button
-            mat-mini-fab
-            color="primary"
-            type="button"
-            (click)="addMember(passenger)"
-          >
-            <mat-icon>plus_one</mat-icon>
-          </button>
-          <button
-            mat-mini-fab
-            color="warn"
-            type="button"
-            (click)="removeMember(passenger)"
-          >
-            <mat-icon>remove</mat-icon>
-          </button>
-        </div>
-      </mat-card-title>
-    </mat-card-header>
+<div class="container">
+  <h2>
+    <span
+      ><img
+        style="width: 25px"
+        src="../../../assets/passenger.png"
+        alt="passanger img"
+    /></span>
+    Passengers
+  </h2>
+  <p class="text-secondary">
+    Enter the passenger's names as they appear on document (passport or ID).
+  </p>
+  <form [formGroup]="passengersForm" (submit)="onSubmit()">
+    <mat-card *ngFor="let passenger of passengers">
+      <mat-card-header>
+        <mat-card-title>
+          <h1 class="color-main">
+            {{ passenger === "child" ? "children" : passenger + "s" }}:
+          </h1>
+          <div class="controls">
+            <button
+              mat-mini-fab
+              color="primary"
+              type="button"
+              (click)="addMember(passenger)"
+            >
+              <mat-icon>plus_one</mat-icon>
+            </button>
+            <button
+              mat-mini-fab
+              color="warn"
+              type="button"
+              (click)="removeMember(passenger)"
+            >
+              <mat-icon>remove</mat-icon>
+            </button>
+          </div>
+        </mat-card-title>
+      </mat-card-header>
 
-    <mat-card-content [formArrayName]="passenger">
-      <passenger-each
-        *ngFor="
-          let control of passengersForm.controls[passenger].controls;
-          let i = index
-        "
-        [passType]="passenger"
-        [count]="i + 1"
-        [control]="control"
-      ></passenger-each>
-    </mat-card-content>
-  </mat-card>
+      <mat-card-content [formArrayName]="passenger">
+        <passenger-each
+          *ngFor="
+            let control of passengersForm.controls[passenger].controls;
+            let i = index
+          "
+          [passType]="passenger"
+          [count]="i + 1"
+          [control]="control"
+        ></passenger-each>
+      </mat-card-content>
+    </mat-card>
 
-  <app-passenger-contact-info
-    [control]="passengersForm.controls.contact"
-   
-  ></app-passenger-contact-info>
+    <app-passenger-contact-info
+      [control]="passengersForm.controls.contact"
+    ></app-passenger-contact-info>
 
-  <div style="padding-top: 20px;" class="row justify-content-end text-center">
-    <a style="width: 80px" routerLink=".." class="btn btn-warning me-3">back</a>
-    <button
-      [disabled]="passengersForm.invalid"
-      style="width: 100px"
-      type="submit"
-      class="btn btn-success me-3"
-      [disabled]="passengersForm.invalid"
-    >
-      continue
-    </button>
-  </div>
-</form>
+    <div style="padding-top: 20px" class="row justify-content-end text-center">
+      <a style="width: 80px" routerLink=".." class="btn btn-warning me-3"
+        >back</a
+      >
+      <button
+        [disabled]="passengersForm.invalid"
+        style="width: 100px"
+        type="submit"
+        class="btn btn-success me-3"
+        [disabled]="passengersForm.invalid"
+      >
+        continue
+      </button>
+    </div>
+  </form>
+</div>
