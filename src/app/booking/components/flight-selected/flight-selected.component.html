@@ -26,13 +26,11 @@
   <div>
     <p>{{ flight.dateArriv | userFormat : "mediumDate" : state.dateFormat }}</p>
     <p>
-      <!-- <span>utc timeZone</span> -->
       {{ flight.dateArriv | date : "shortTime" }}
     </p>
     <p>{{ flight.to }}</p>
   </div>
   <div>
-    <!-- to do ?  -->
     <p>Flight no. FR {{ flight.id }}</p>
   </div>
 

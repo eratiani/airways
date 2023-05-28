@@ -21,11 +21,11 @@ export type SideType = 'one-way' | 'back';
   providers: [OneSideStateService],
 })
 export class OneSideComponent implements OnChanges {
-  // @Input() type!: SideType;
   @Input() flights: FlightDataType[] = [];
+  @Input() selectedCard?: FlightDataType;
   flightsCurrent: FlightDataType[] = [];
   @Output() storeSelect = new EventEmitter<FlightDataType>();
-  selectedCard?: FlightDataType;
+
   flightIndex: number = 0;
   itemsToShow!: number;
 
@@ -41,17 +41,15 @@ export class OneSideComponent implements OnChanges {
     this.render(this.itemsToShow);
   }
   ngOnChanges(changes: SimpleChanges): void {
-    // this.itemsToShow = this.checkScreenWidth();
     if (changes['flights']) {
       this.flights = changes['flights'].currentValue;
       this.flightsCurrent = this.flights.slice(0, this.itemsToShow);
     }
+    this.state.isSelected = Boolean(this.selectedCard);
   }
 
   selectCard(flightCard: HTMLDivElement, flight: FlightDataType) {
     Array.from(flightCard.parentElement?.children || []).forEach((elem) => {
-      console.log(elem.children[0]);
-
       elem.children[0].classList.remove('color-main');
       elem.classList.remove('moveElement');
     });

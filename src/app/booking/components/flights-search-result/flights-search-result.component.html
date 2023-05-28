@@ -2,13 +2,13 @@
   <one-side
     *ngIf="oneWayFlights"
     [flights]="oneWayFlights"
-    type="one-way"
+    [selectedCard]="selectedData?.oneWay"
     (storeSelect)="storeChoise('one-way', $event)"
   ></one-side>
   <one-side
     *ngIf="backFlights"
     [flights]="backFlights"
-    type="back"
+    [selectedCard]="selectedData?.backWay"
     (storeSelect)="storeChoise('back', $event)"
   ></one-side>
 
