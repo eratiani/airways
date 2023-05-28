@@ -49,10 +49,16 @@ export class FlightsFormComponent implements OnInit {
     from: [this.userState.searchParams?.from || '', Validators.required],
     to: [this.userState.searchParams?.to || '', [Validators.required]],
     date: this.fb.nonNullable.group({
-      startDate: [this.userState.searchParams?.date?.startDate || ''],
-      endDate: [this.userState.searchParams?.date?.endDate || ''],
+      startDate: [
+        this.userState.searchParams?.date?.startDate || '',
+        Validators.required,
+      ],
+      endDate: [
+        this.userState.searchParams?.date?.endDate || '',
+        Validators.required,
+      ],
     }),
-    passengers: [{ adult: 0, child: 0, infant: 0 }],
+    passengers: [{ adult: 0, child: 0, infant: 0 }, Validators.required],
   });
   keys = Object.keys(
     this.searchForm.controls.passengers.value
