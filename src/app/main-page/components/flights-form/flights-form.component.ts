@@ -9,7 +9,6 @@ import { cities } from 'CONST';
 import { SearchService } from '../../services/search-flyght.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-// import { setPassangersCount } from 'src/app/redux/actions';
 import { StoreType } from 'src/app/redux/store.model';
 import { HeaderStateService } from 'src/app/core/services/header-state.service';
 import { Subscription } from 'rxjs';
@@ -36,6 +35,7 @@ interface FormType {
   selector: 'app-flights-form',
   templateUrl: './flights-form.component.html',
   styleUrls: ['./flights-form.component.css'],
+  providers: [SearchService],
 })
 export class FlightsFormComponent implements OnInit {
   @Input() isEdit = false;
@@ -43,7 +43,7 @@ export class FlightsFormComponent implements OnInit {
   dateSub!: Subscription;
   errorMessage = 'Fill this field';
   startSearchDate = new Date('07/01/2023');
-  endSearchDate = new Date('09/31/2023');
+  endSearchDate = new Date('08/31/2023');
 
   searchForm: FormGroup<FormType> = this.fb.nonNullable.group({
     from: [this.userState.searchParams?.from || '', Validators.required],
@@ -109,11 +109,7 @@ export class FlightsFormComponent implements OnInit {
       return;
     }
 
-    // to do search with required seats avialable
     const { oneWay, from, to, date, passengers } = this.searchForm.value;
-    if (date?.startDate) {
-    }
-
     this.userState.searchParams = {
       oneWay,
       from,
@@ -127,8 +123,11 @@ export class FlightsFormComponent implements OnInit {
       passengers,
     };
 
+    const passengCount =
+      passengers && passengers.adult + passengers.child + passengers.infant;
+
     this.search
-      .search(oneWay!, from!, to!, date?.startDate, date?.endDate)
+      .search(oneWay!, from!, to!, date?.startDate, date?.endDate, passengCount)
       .subscribe(() => {
         this.router.navigateByUrl('booking');
       });

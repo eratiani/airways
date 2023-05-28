@@ -10,7 +10,7 @@ import {
 import { StoreType } from 'src/app/redux/store.model';
 import { RequestService } from 'src/app/services/http-request.service';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class SearchService {
   constructor(
     private request: RequestService,
@@ -21,9 +21,10 @@ export class SearchService {
     from: string,
     to: string,
     start?: string,
-    end?: string
+    end?: string,
+    passCount?: number
   ) {
-    const oneWay$ = this.getFlights(from, to, start, end).pipe(
+    const oneWay$ = this.getFlights(from, to, start, end, passCount).pipe(
       tap((data) => {
         if (data.length) {
           this.store.dispatch(flightOneWayAdd({ data }));
@@ -32,7 +33,7 @@ export class SearchService {
       })
     );
 
-    const backWay$ = this.getFlights(to, from, start, end).pipe(
+    const backWay$ = this.getFlights(to, from, start, end, passCount).pipe(
       tap((data) => {
         if (data.length) {
           this.store.dispatch(flightBackAdd({ data }));
@@ -46,7 +47,13 @@ export class SearchService {
     return forkJoin(all);
   }
 
-  private getFlights(from: string, to: string, start?: string, end?: string) {
+  private getFlights(
+    from: string,
+    to: string,
+    start?: string,
+    end?: string,
+    seatsAvailable?: number
+  ) {
     return this.request.getFlights().pipe(
       map((res) =>
         res
@@ -54,7 +61,8 @@ export class SearchService {
             return (
               fl.from === from &&
               fl.to === to &&
-              (start && end ? this.dateMatch(fl.date, start, end) : true)
+              (start && end ? this.dateMatch(fl.date, start, end) : true) &&
+              (seatsAvailable ? seatsAvailable <= fl.available_seats : true)
             );
           })
           .sort(

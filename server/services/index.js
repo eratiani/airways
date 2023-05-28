@@ -17,7 +17,7 @@ function cityGenerate(prev) {
 }
 
 function dateGener() {
-  const month = Math.round(Math.random() * 3) + 6;
+  const month = Math.round(Math.random() * 2) + 6;
   const day = Math.round(Math.random() * 30) + 1;
   const hours = Math.round(Math.random() * 23);
   const minutes = Math.round(Math.random() * 59);
@@ -76,7 +76,7 @@ fs.readFile(
 const writeData = (users) => {
   fs.writeFile(
     path.resolve(__dirname, "../db.json"),
-    JSON.stringify({ users, data: generate(200) }),
+    JSON.stringify({ users, data: generate(250) }),
     (err) => {
       if (err) {
         throw err;
