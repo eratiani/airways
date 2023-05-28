@@ -393,51 +393,7 @@
       "gender": "male",
       "age": 34,
       "id": 10,
-      "reservations": [
-        {
-          "flights": {
-            "oneWay": {
-              "from": "Paris",
-              "to": "Seoul",
-              "date": "Sun Dec 17 2023",
-              "total_seats": 38,
-              "available_seats": 12,
-              "cost": 390,
-              "id": "85"
-            },
-            "backWay": {
-              "from": "Seoul",
-              "to": "Paris",
-              "date": "Sun Aug 13 2023",
-              "total_seats": 19,
-              "available_seats": 7,
-              "cost": 417,
-              "id": "199"
-            }
-          },
-          "passeng": {
-            "passengers": {
-              "adult": [
-                {
-                  "name": "sdasd",
-                  "surname": "asdasd",
-                  "gender": "male",
-                  "dOb": "2023-05-01T20:00:00.000Z",
-                  "specialNeeds": false,
-                  "baggage": 2
-                }
-              ],
-              "child": [],
-              "infant": []
-            },
-            "contact": {
-              "email": "eratiani@gmail.com",
-              "country": "Georgia",
-              "telephone": "+995-2131232122"
-            }
-          }
-        }
-      ]
+      "reservations": []
     },
     {
       "email": "johndoe@xample.com",
@@ -1714,6 +1670,131 @@
               "telephone": "+995-2323232322"
             }
           }
+        }
+      ]
+    },
+    {
+      "email": "test43@mail.ru",
+      "password": "$2a$10$4hFlMkXAuS/zEBfEZUVfuuYLANbfqjriAv6SX5hp1lwEsih0l3twW",
+      "username": "sdasd",
+      "gender": "male",
+      "telephone": "+93-2323232323",
+      "age": 1,
+      "id": 15,
+      "reservations": [
+        {
+          "flights": {
+            "oneWay": {
+              "from": "Dublin",
+              "to": "Beijing",
+              "date": "2023-08-23T10:24:00.000Z",
+              "total_seats": 23,
+              "available_seats": 5,
+              "cost": 1133,
+              "id": "62",
+              "dateArriv": "2023-08-23T16:07:00.000Z"
+            },
+            "backWay": {
+              "from": "Beijing",
+              "to": "Dublin",
+              "date": "2023-09-15T04:52:00.000Z",
+              "total_seats": 78,
+              "available_seats": 24,
+              "cost": 865,
+              "id": "118",
+              "dateArriv": "2023-09-15T09:16:00.000Z"
+            }
+          },
+          "passeng": {
+            "passengers": {
+              "adult": [
+                {
+                  "name": "dsadas",
+                  "surname": "dasdas",
+                  "gender": "male",
+                  "dOb": "2023-05-01T20:00:00.000Z",
+                  "specialNeeds": false,
+                  "baggage": 0
+                }
+              ],
+              "child": [],
+              "infant": []
+            },
+            "contact": {
+              "email": "eratiani@gmail.com",
+              "country": {
+                "name": "Georgia",
+                "alpha2Code": "GE",
+                "alpha3Code": "GEO",
+                "numericCode": "268",
+                "callingCode": "+995"
+              },
+              "telephone": "+995-2323222222"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "email": "test5@mail.ru",
+      "password": "$2a$10$S5NapS2n/cz9w49SuZRCrOKSuYtMK6SocC5CjiVHGGJw8wx6eihD6",
+      "username": "csadsad",
+      "gender": "female",
+      "telephone": "+93-2323223232",
+      "age": 1,
+      "id": 16,
+      "reservations": [
+        {
+          "flights": {
+            "oneWay": {
+              "from": "Dublin",
+              "to": "Tokyo",
+              "date": "2023-08-12T01:46:00.000Z",
+              "total_seats": 240,
+              "available_seats": 13,
+              "cost": 1069,
+              "id": "29",
+              "dateArriv": "2023-08-12T02:29:00.000Z"
+            },
+            "backWay": {
+              "from": "Tokyo",
+              "to": "Dublin",
+              "date": "2023-09-15T06:58:00.000Z",
+              "total_seats": 221,
+              "available_seats": 148,
+              "cost": 736,
+              "id": "51",
+              "dateArriv": "2023-09-15T10:52:00.000Z"
+            }
+          },
+          "passeng": {
+            "passengers": {
+              "adult": [
+                {
+                  "name": "dasd",
+                  "surname": "sadasd",
+                  "gender": "male",
+                  "dOb": "2023-05-01T20:00:00.000Z",
+                  "specialNeeds": false,
+                  "baggage": 0
+                }
+              ],
+              "child": [],
+              "infant": []
+            },
+            "contact": {
+              "email": "eratiani@gmail.com",
+              "country": {
+                "name": "Georgia",
+                "alpha2Code": "GE",
+                "alpha3Code": "GEO",
+                "numericCode": "268",
+                "callingCode": "+995"
+              },
+              "telephone": "+995-2232323222"
+            }
+          },
+          "payed": true
         }
       ]
     }

@@ -63,7 +63,20 @@ export class SummaryViewComponent implements OnDestroy {
   toUserPage() {
     this.router.navigate(['cart', this.userAuth.userLocal.id, 'user']);
   }
+  onBuy() {
+    const reservatio = {
+      flights: { oneWay: this.oneWayFlight, backWay: this.backFlight },
+      passeng: this.passangersInfo,
+      payed: true
+    }
+    
+    this.request
+    .addReservation(this.userAuth.userLocal.id!, reservatio )
+    .subscribe(() =>
+    this.router.navigate(['cart', this.userAuth.userLocal.id, 'user'])
+    );
 
+  }
   goToCart() {
     this.request
       .addReservation(this.userAuth.userLocal.id!, {
