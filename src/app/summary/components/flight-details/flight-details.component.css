@@ -1,0 +1,7 @@
+.bg-flight {
+    background: #F1F3F6;
+    padding: 20px;
+    border-top: 3px solid #11397E;
+    border-radius: 8px 8px 0px 0px;
+    box-decoration-break: clone;
+  }

@@ -50,7 +50,6 @@ export class OneSideComponent implements OnChanges {
 
   selectCard(flightCard: HTMLDivElement, flight: FlightDataType) {
     Array.from(flightCard.parentElement?.children || []).forEach((elem) => {
-      console.log(elem.children[0]);
 
       elem.children[0].classList.remove('color-main');
       elem.classList.remove('moveElement');
