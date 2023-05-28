@@ -20,7 +20,7 @@
       <button style="margin: 0px 10px;" class="btn btn-light" (click)="goToCart()">
         Add to order cart
       </button>
-      <button class="btn btn-primary">Buy now</button>
+      <button (click)="onBuy()" class="btn btn-primary">Buy now</button>
     </div>
     <ng-template #toUser>
       <button class="btn btn-primary" (click)="toUserPage()">
