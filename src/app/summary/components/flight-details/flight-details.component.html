@@ -1,0 +1,37 @@
+<div  class=" card-container d-flex flex-wrap justify-content-between">
+  <mat-card class="col-xl-5 col-12">
+    <mat-card-content class="p-0" *ngIf="oneWayFlight">
+      <div class="bg-flight">
+      <h2><span class="text-primary">FR {{ oneWayFlight.id }}</span>  From {{ oneWayFlight.from }} To {{ oneWayFlight.to }}</h2>
+      <p>
+        {{ oneWayFlight.date | userFormat : "fullDate" : state.dateFormat }}
+        {{ oneWayFlight.date | date : "hh:mm" }} -
+        {{ oneWayFlight.dateArriv | date : "hh:mm" }}
+      </p>
+    </div>
+      <app-passanger-info
+        *ngFor="let passenger of getObjectKeys(flightDetails.passengers)"
+        [passenger]="passenger[1]"
+        [passangerType]="passenger[0]"
+      ></app-passanger-info>
+    </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="backFlight" class="col-xl-5 col-12">
+    <mat-card-content class="p-0" >
+      <div class="bg-flight">
+      <h2> <span class="text-primary">FR {{ backFlight.id }}</span> From {{ backFlight.from }} To {{ backFlight.to }}</h2>
+      <p>
+        {{ backFlight.date | userFormat : "fullDate" : state.dateFormat }}
+        {{ backFlight.date | date : "hh:mm" }}-{{
+          backFlight.dateArriv | date : "hh:mm"
+        }}
+      </p>
+    </div>
+      <app-passanger-info
+        *ngFor="let passenger of getObjectKeys(flightDetails.passengers)"
+        [passenger]="passenger[1]"
+        [passangerType]="passenger[0]"
+      ></app-passanger-info>
+    </mat-card-content>
+  </mat-card>
+</div>

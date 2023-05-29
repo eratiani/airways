@@ -1,0 +1,15 @@
+.bg-white {
+  background-color: white;
+  margin-bottom: 1%;
+}
+.text-center p:first-child {
+  height: 40px;
+  padding: 10px;
+}
+.color-main {
+  color: #11397e !important;
+}
+.text-center {
+  border-left: medium dashed gray;
+  padding-left: 1rem;
+}

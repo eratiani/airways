@@ -1,7 +1,32 @@
- .container--buttons{
-    display: flex;
- }
-.container-custom{
-    width: 30vw;
-    margin: 0 auto;
+.container--buttons {
+  display: flex;
+}
+.container-custom {
+  width: 30vw;
+  margin: 0 auto;
+}
+
+.overlay {
+  height: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  z-index: 999;
+}
+
+.custom {
+  width: 500px;
+  margin: 10px;
+  position: absolute;
+  right: 10%;
+  top: 70px;
+}
+@media only screen and (max-width: 600px) {
+  .custom {
+    max-width: 90vw;
+    right: 0;
+    left: 0;
+  }
 }

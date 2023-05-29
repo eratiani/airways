@@ -1,0 +1,8 @@
+nav {
+  height: 85px;
+}
+
+.ofset {
+  flex-grow: 1;
+  text-align: right;
+}

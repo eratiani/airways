@@ -1,8 +1,0 @@
-.container-forms {
-  width: 40vw;
-  margin: 0 auto;
-  padding: 3vw;
-}
-.mat-mdc-radio-button ~ .mat-mdc-radio-button {
-  margin-left: 16px;
-}

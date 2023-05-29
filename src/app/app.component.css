@@ -1,0 +1,25 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 12; /* Adjust the z-index value as needed */
+  background: #9594946b;
+  opacity: 0.8;
+  color: white;
+}
+.whiteHeader {
+  background: #ffff;
+  color: initial;
+  opacity: 1;
+}
+
+.ofset {
+  height: 100px;
+}
+
+.background {
+  background: url("../assets/Background.jpg") center;
+}
+
+@media only screen and (max-width: 991px) {
+}

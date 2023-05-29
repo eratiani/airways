@@ -1,0 +1,102 @@
+<header class="container-xl">
+  <nav
+    class="d-flex justify-content-center align-items-center container-fluid justify-content-around"
+  >
+    <div class="nav-content m-2">
+      <a class="nav-link" routerLink="/" style="cursor: pointer"
+        ><img src="../../../assets/logo.png" alt="logo"
+      /></a>
+    </div>
+
+    <div class="ofset">
+      <div *ngIf="isFirstPage || isBooking">
+        <span *ngIf="isFirstPage; else booking">{{
+          !observer.max600 ? "Book flights" : ""
+        }}</span>
+        <ng-template #booking>
+          <app-progress-bar class="m-auto"></app-progress-bar>
+        </ng-template>
+      </div>
+    </div>
+
+    <button
+      mat-button
+      [mat-menu-trigger-for]="setup"
+      *ngIf="observer.max600; else test"
+    >
+      <mat-icon>settings</mat-icon>
+    </button>
+    <mat-menu #setup>
+      <button [mat-menu-trigger-for]="dateMenu" mat-menu-item>
+        {{ headState.dateFormat }}
+      </button>
+      <mat-menu #dateMenu>
+        <button
+          mat-menu-item
+          *ngFor="
+            let date of ['MM/DD/YYYY', 'DD/MM/YYYY', 'YYYY/DD/MM', 'YYYY/MM/DD']
+          "
+          (click)="onDateFormatChange(date)"
+        >
+          {{ date }}
+        </button>
+      </mat-menu>
+
+      <button [mat-menu-trigger-for]="menuCurrency" mat-menu-item>
+        {{ headState.currencyFormat }}
+      </button>
+      <mat-menu #menuCurrency>
+        <button
+          mat-menu-item
+          *ngFor="let currency of ['EUR', 'USD', 'RUB', 'PLN']"
+          (click)="onCurrencyChange(currency)"
+        >
+          {{ currency }}
+        </button>
+      </mat-menu></mat-menu
+    >
+
+    <ng-template #test>
+      <button mat-button [mat-menu-trigger-for]="dateMenu">
+        {{ headState.dateFormat }}
+      </button>
+      <mat-menu #dateMenu>
+        <button
+          mat-menu-item
+          *ngFor="
+            let date of ['MM/DD/YYYY', 'DD/MM/YYYY', 'YYYY/DD/MM', 'YYYY/MM/DD']
+          "
+          (click)="onDateFormatChange(date)"
+        >
+          {{ date }}
+        </button>
+      </mat-menu>
+
+      <button mat-button [mat-menu-trigger-for]="menuCurrency">
+        {{ headState.currencyFormat }}
+      </button>
+      <mat-menu #menuCurrency>
+        <button
+          mat-menu-item
+          *ngFor="let currency of ['EUR', 'USD', 'RUB', 'PLN']"
+          (click)="onCurrencyChange(currency)"
+        >
+          {{ currency }}
+        </button>
+      </mat-menu>
+    </ng-template>
+
+    <div class="nav-item">
+      <button mat-button (click)="handleLog()">
+        <mat-icon>person_outline</mat-icon>
+        {{ !userState.loggedIn ? "Sign In" : userState.userLocal.email }}
+      </button>
+    </div>
+
+    <div class="nav-item m-2">
+      <button mat-button (click)="goToCart()">
+        <mat-icon>shopping_basket</mat-icon>
+      </button>
+    </div>
+  </nav>
+</header>

@@ -1,0 +1,31 @@
+<div style="padding-top: 20px" class="container">
+  <h2> <span><img style="width: 25px;" src="../../../assets/summary.png" alt="summary"></span> Summary</h2>
+  <app-flight-details
+    [oneWayFlight]="oneWayFlight"
+    [backFlight]="backFlight"
+    [flightDetails]="passangersInfo"
+  ></app-flight-details>
+  <app-flight-fare
+    [oneWayFlight]="oneWayFlight"
+    [backFlight]="backFlight"
+    [flightDetails]="passangersInfo"
+  ></app-flight-fare>
+  <br />
+  <div class="d-flex justify-content-end">
+    <div
+      *ngIf="!editMode; else toUser"
+      class="buttons col-12 col-lg-6 d-flex justify-content-end align-items-center"
+    >
+      <button class="link" (click)="goBack()">back</button>
+      <button style="margin: 0px 10px;" class="btn btn-light" (click)="goToCart()">
+        Add to order cart
+      </button>
+      <button (click)="onBuy()" class="btn btn-primary">Buy now</button>
+    </div>
+    <ng-template #toUser>
+      <button class="btn btn-primary" (click)="toUserPage()">
+        Return to Account
+      </button>
+    </ng-template>
+  </div>
+</div>

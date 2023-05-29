@@ -1,0 +1,20 @@
+:host {
+  pointer-events: none !important;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
+
+mat-stepper {
+  background: transparent;
+}
+
+::ng-deep .mat-horizontal-content-container {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  mat-stepper {
+    max-width: 270px;
+  }
+}

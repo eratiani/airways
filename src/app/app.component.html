@@ -1,1 +1,10 @@
-<router-outlet></router-outlet>
+<div [class.background]="url === '/'">
+  <app-header
+    class="header shadow-sm"
+    [class.whiteHeader]="url !== '/'"
+  ></app-header>
+  <div class="ofset"></div>
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>
+<spinner-component></spinner-component>

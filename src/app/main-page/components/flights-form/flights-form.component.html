@@ -1,0 +1,117 @@
+<div
+  class="container-sm d-flex flex-column align-items-center justify-content-center pt-4"
+>
+  <form
+    [formGroup]="searchForm"
+    (submit)="onSubmit()"
+    class="container-sm d-flex align-items-center justify-content-center posRel flex-wrap"
+    [class.horizontal]="!isEdit"
+    [class.vertical]="isEdit"
+  >
+    <mat-radio-group
+      formControlName="oneWay"
+      class="d-flex justify-content-center align-items-center"
+      aria-label="Select an option"
+      *ngIf="!isEdit"
+    >
+      <mat-radio-button [value]="false">Round Trip</mat-radio-button>
+      <mat-radio-button [value]="true">One Way</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field
+      class="mx-md-2"
+      [class.col-sm-6]="!isEdit"
+      appearance="fill"
+    >
+      <mat-label>From</mat-label>
+      <mat-select formControlName="from">
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="searchForm.controls.from.errors">{{
+        errorMessage
+      }}</mat-error>
+    </mat-form-field>
+    <button
+      (click)="onFlightSwap($event)"
+      class="btn btn-light rounded-pill posAbs d-flex justify-content-center align-items-center"
+      style="width: 40px; height: 40px"
+      *ngIf="!isEdit"
+    >
+      <img src="../../../../assets/swapArrows.png" alt="swapArrows" />
+    </button>
+
+    <mat-form-field
+      class="mx-md-2"
+      [class.col-sm-6]="!isEdit"
+      appearance="fill"
+    >
+      <mat-label>Destination</mat-label>
+      <mat-select formControlName="to">
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{ city }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="searchForm.controls.to.errors">{{
+        errorMessage
+      }}</mat-error>
+    </mat-form-field>
+
+    <div class="row">
+      <div class="col-sm-7 d-flex justify-content-center">
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a Date</mat-label>
+          <mat-date-range-input formGroupName="date" [rangePicker]="picker">
+            <input matStartDate formControlName="startDate" />
+            <input matEndDate formControlName="endDate" />
+          </mat-date-range-input>
+          <mat-hint
+            >{{
+              startSearchDate | userFormat : "mediumDate" : headState.dateFormat
+            }}
+            -
+            {{
+              endSearchDate | userFormat : "mediumDate" : headState.dateFormat
+            }}</mat-hint
+          >
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-5 d-flex justify-content-center">
+        <mat-form-field class="" appearance="fill">
+          <mat-label>Passangers List</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let value of keys" [value]="value">
+              {{ toCamelCase(value) }}
+              <div class="option-controls">
+                <button mat-button (click)="decreaseValue($event, value)">
+                  -
+                </button>
+                {{ searchForm.controls.passengers.value[value] }}
+                <button mat-button (click)="increaseValue($event, value)">
+                  +
+                </button>
+              </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end submit m-4">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="searchForm.invalid"
+      >
+        search
+      </button>
+    </div>
+  </form>
+</div>

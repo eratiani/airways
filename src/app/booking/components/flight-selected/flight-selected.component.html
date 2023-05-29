@@ -1,0 +1,67 @@
+<div
+  class="bg-white container d-flex align-items-center justify-content-between flex-wrap"
+>
+  <div>
+    <p>{{ flight.date | userFormat : "mediumDate" : state.dateFormat }}</p>
+    <p>
+      {{ flight.date | date : "shortTime" }}
+    </p>
+    <p>{{ flight.from }}</p>
+  </div>
+  <div class="d-flex flex-column align-items-center">
+    <p>{{ timeOfFlight(flight.date, flight.dateArriv) }}</p>
+    <div>
+      <span
+        ><img
+          style="max-width: 10vw"
+          src="../../../assets/Arrow 1.png"
+          alt="" /></span
+      ><img src="../../../assets/planeFlying.jpg" alt="plane" />
+      <span
+        ><img style="max-width: 10vw" src="../../../assets/Arrow 1.png" alt=""
+      /></span>
+    </div>
+    <p>Direct</p>
+  </div>
+  <div>
+    <p>{{ flight.dateArriv | userFormat : "mediumDate" : state.dateFormat }}</p>
+    <p>
+      {{ flight.dateArriv | date : "shortTime" }}
+    </p>
+    <p>{{ flight.to }}</p>
+  </div>
+  <div>
+    <p>Flight no. FR {{ flight.id }}</p>
+  </div>
+
+  <div class="text-center">
+    <p
+      class="d-flex justify-content-center align-items-center rounded-pill"
+      appHiglight
+      [elementAvailableSeats]="flight.available_seats"
+      [elementTotalSeats]="flight.total_seats"
+    >
+      {{ flight.available_seats }} seats available
+    </p>
+    <div>
+      <p style="margin: 0">price</p>
+      <p class="color-main">
+        {{ flight.cost | currency : state.currencyFormat }}
+      </p>
+    </div>
+  </div>
+
+  <button
+    *ngIf="!selected; else edit"
+    (click)="handleSelect()"
+    class="btn btn-primary"
+  >
+    select
+  </button>
+
+  <ng-template #edit
+    ><button (click)="handleSelect()" class="btn btn-primary">
+      edit
+    </button></ng-template
+  >
+</div>

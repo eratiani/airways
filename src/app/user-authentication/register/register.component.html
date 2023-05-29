@@ -1,40 +1,175 @@
 <div class="login-container">
-	<div class="login-content">
-		
-		<mat-card>
+  <div class="login-content">
+    <mat-card>
+      <button
+        (click)="onGoogleFbSignIn()"
+        class="btn btn-light m-2 d-flex justify-content-center align-items-center"
+      >
+        <img
+          style="margin-right: 15px"
+          src="../../../assets/fblogo.png"
+          alt="fb"
+        />Continue with Facebook
+      </button>
 
-			<form class="d-flex flex-column align-items-center justify-content-center" [formGroup]="registerForm" #formDirective="ngForm" 
-  (ngSubmit)="onSubmit(registerForm, formDirective)">
-				<mat-form-field>
-					<input autofocus type="email" matInput placeholder="Email *" formControlName="email">
-					<mat-error *ngIf="checkValidation('email')">
-						{{ emaiErrors() }}
-          
-					</mat-error>
-				</mat-form-field>
+      <button
+        (click)="onGoogleFbSignIn()"
+        class="btn btn-light m-2 d-flex justify-content-center align-items-center"
+      >
+        <img
+          style="margin-right: 25px"
+          src="../../../assets/google_24px.png"
+          alt="google"
+        />Continue with Google
+      </button>
 
+      <p class="text-center m-4">or sign up with your email</p>
 
-				<mat-form-field >
-					<input autofocus type="text" matInput placeholder="Username *" formControlName="username">
-					<mat-error *ngIf="checkValidation('username')">
-						{{ fieldRequired }}
-					</mat-error>
-				</mat-form-field>
+      <form
+        class="d-flex flex-column align-items-center justify-content-center"
+        [formGroup]="registerForm"
+        #formDirective="ngForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input autofocus type="email" matInput formControlName="email" />
+          <mat-error *ngIf="checkValidation('email')">
+            {{ emaiErrors() }}
+          </mat-error>
+        </mat-form-field>
 
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input autofocus type="text" matInput formControlName="username" />
+          <mat-error *ngIf="checkValidation('username')">
+            {{ nameSurnameError("username") }}
+          </mat-error>
+        </mat-form-field>
 
-				<mat-form-field >
-					<input type="password" autocomplete="false" matInput placeholder="Password *" formControlName="password">
-          <mat-hint>Choose a password of at least eight characters, one uppercase letter and one number</mat-hint>
-      <mat-error *ngIf="checkValidation('password')">
-        {{ getErrorPassword() }}
-      </mat-error>
-				</mat-form-field>
-				
-  <hr>
-			<div class="socialMediaFlex">
-        	<button  [disabled]="registerForm.invalid"  class="m-4"  type="submit" mat-raised-button color="primary">Submit</button>
-      </div>
-			</form>
-		</mat-card>
-	</div>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            autocomplete="false"
+            matInput
+            formControlName="password"
+          />
+          <mat-hint
+            >Choose a password of at least eight characters, one uppercase
+            letter and one number</mat-hint
+          >
+          <mat-error *ngIf="checkValidation('password')">
+            {{ getErrorPassword() }}
+          </mat-error>
+        </mat-form-field>
+
+        <div class="col-sm-7 d-flex justify-content-center">
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date of birthd</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker2"
+              formControlName="dateOfBirth"
+            />
+            <mat-hint>{{ headerState.dateFormat }}</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="checkValidation('dateOfBirth')">
+              {{ dateErrors() }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button
+            class="btn-check-custom"
+            name="options"
+            id="female"
+            [value]="'female'"
+          >
+          </mat-radio-button>
+          <mat-label
+            for="female"
+            [ngClass]="{
+              active: registerForm.get('gender')?.value === 'female'
+            }"
+            (click)="setGender('female')"
+            class="btn btn-primary m-2"
+            >Female</mat-label
+          >
+          <mat-radio-button
+            class="btn-check-custom"
+            name="options"
+            id="male"
+            [value]="'male'"
+          >
+          </mat-radio-button>
+          <mat-label
+            for="male"
+            [ngClass]="{
+              active: registerForm.get('gender')?.value === 'male'
+            }"
+            (click)="setGender('male')"
+            class="btn btn-primary"
+            >Male</mat-label
+          >
+        </mat-radio-group>
+        <mat-error *ngIf="checkValidation('gender')">
+          {{ fieldRequired }}
+        </mat-error>
+
+        <mat-select-country
+          formControlName="country"
+          [itemsLoadSize]="5"
+          (onCountrySelected)="onCountrySelected($event)"
+        >
+        </mat-select-country>
+
+        <mat-error *ngIf="checkValidation('country')">
+          {{ fieldRequired }}
+        </mat-error>
+
+        <mat-form-field appearance="fill" *ngIf="phoneNumber != ''">
+          <mat-label>Choose a tel.</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="telephone"
+            (keydown)="onTelephoneKeydown($event)"
+          />
+          <mat-hint>{{ phoneNumber }}-***-***-****</mat-hint>
+          <mat-error *ngIf="checkValidation('telephone')">
+            {{ phoneErrors() }}
+          </mat-error>
+        </mat-form-field>
+
+        <br />
+
+        <mat-checkbox required formControlName="termsAndServices">
+          I agree to Airway's Privacy Policy and Terms of Use
+        </mat-checkbox>
+        <mat-error *ngIf="checkValidation('termsAndServices')">
+          {{ fieldRequired }}
+        </mat-error>
+
+        <hr />
+
+        <div class="socialMediaFlex">
+          <button
+            [disabled]="registerForm.invalid"
+            class="m-4"
+            type="submit"
+            mat-raised-button
+            color="primary"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
 </div>

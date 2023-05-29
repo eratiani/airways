@@ -1,0 +1,13 @@
+<mat-stepper linear [selectedIndex]="index" *ngIf="!observer.max720">
+  <mat-step [editable]="false" [label]="observer.max1100 ? '' : 'Flights'">
+  </mat-step>
+
+  <mat-step [editable]="false" [label]="observer.max1100 ? '' : 'Passengers'">
+  </mat-step>
+
+  <mat-step
+    [editable]="false"
+    [label]="observer.max1100 ? '' : 'Review & Payment'"
+  >
+  </mat-step>
+</mat-stepper>

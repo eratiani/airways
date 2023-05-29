@@ -1,0 +1,12 @@
+<div
+        *ngFor="let passenger of passengerArr; let i = index"
+      >
+        <hr />
+        <h2 style="padding-left: 20px;">{{passangerType}}: {{ passenger.name }} - {{ passenger.surname }}</h2>
+        <hr />
+        <ul>
+          <li *ngIf="passenger.baggage">{{ passenger.baggage }} checked bag (total 23 kg) included</li>
+          <li *ngIf="!passenger.baggage">1 cabin bag + 1 personal item (max. 8 kg) included</li>
+          <li>Seat 1{{ i }}D</li>
+        </ul>
+      </div>
